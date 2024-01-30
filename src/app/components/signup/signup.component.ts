@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,11 +8,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SignupComponent {
 
+  // creation of a variable
   userForm!: FormGroup;
- 
 
+  // injecting formbuilder
   constructor(private fb: FormBuilder) { }
 
+
+  // create scheme using form group
   ngOnInit(): void {
     this.userForm = this.fb.group({
       username: ['', [Validators.required,Validators.pattern("^[a-z]*$")]],
@@ -26,6 +29,7 @@ export class SignupComponent {
     });
   }
 
+  // radio button required check
   roleRequiredValidator(group: FormGroup) {
     const user = group.get('user');
     const admin = group.get('admin');
@@ -36,25 +40,25 @@ export class SignupComponent {
 
     return null;
   }
-  
+
+
+  // get all controls of the form group
   get f(){
     return this.userForm.controls
   }
 
-
-
   submitted:boolean=false
 
+
+  // submittision of form
   onSubmit(): void {
     this.submitted=true
-
-    console.log(this.f);
     
     console.log(this.userForm.value);
-    
-    
   }
 
+
+  // radio button value storing
   onCheckboxChange(event: any, role: string) {
     const checked = event.target.checked;
     const roleForm = this.userForm.get('role');
@@ -68,5 +72,4 @@ export class SignupComponent {
     }
     
   }
-
 }
