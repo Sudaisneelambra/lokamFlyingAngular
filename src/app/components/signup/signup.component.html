@@ -16,20 +16,20 @@
                         <label class="label-required" for="" *ngIf="submitted && f['email'].errors && f['email'].errors['required']" >email required</label>
                         <label class="label-required" for="" *ngIf="f['email'].errors && f['email'].errors['email']" >enter the email in correct formate</label>
                     </div>
-                    <div class="inputs">
+                    <div class="inputss">
                         <label for="username" class="input-label">password <span>*</span></label>
                         <input type="password" formControlName="password" name="password" id="" placeholder="password" class="input-form">
                         <label class="label-required" for="" *ngIf="submitted && f['password'].errors && f['password'].errors['required']" >password required</label>
                         <label class="label-required" for="" *ngIf="f['password'].errors && f['password'].errors['pattern']" >password must have 8 charecter and it includes uppercase and special charector also</label>
                     </div>
                     <div class="inputs">
-                        <label for="username" formControlName="phoneNumber" class="input-label">phonenumber <span>*</span></label>
-                        <input type="number" name="phonenumber" id="" placeholder="phonenumber" class="input-form">
+                        <label for="username"  class="input-label">phonenumber <span>*</span></label>
+                        <input type="number" formControlName="phoneNumber" name="phonenumber" id="" placeholder="phonenumber" class="input-form">
                         <label class="label-required" for="" *ngIf="submitted && f['phoneNumber'].errors && f['phoneNumber'].errors['required']" >phoneNumber required</label>
                         <label class="label-required" for="" *ngIf="f['phoneNumber'].errors && f['phoneNumber'].errors['maxlength'] " >10 digits</label>
                     </div>
                     
-                    <div class="inputs">
+                    <div class="inputs" >
                         <label class="input-label">Role <span>*</span></label>
                         <div class="check-box">
                             <div>
@@ -37,16 +37,18 @@
                                 <label for="user" class="ml-2 text-gray-700">User</label>
                             </div>
                             <div>
-                                <input type="radio" id="admin" name="role" value="admin" class="form-radio" (change)="onCheckboxChange($event, 'admin')" >
-                                <label for="admin" class="ml-2 text-gray-700">Admin</label>
+                                <input type="radio" id="admin" name="role" value="agency" class="form-radio" (change)="onCheckboxChange($event, 'agency')" >
+                                <label for="agency" class="ml-2 text-gray-700">Agency</label>
                             </div>
                         </div>
                         <label class="label-required" *ngIf="submitted && userForm.get('role')?.errors?.['roleRequired']">This field is required</label>
                     </div>
                     
 
-                    <button type="submit" class="">Submit</button>
+                    <button type="submit" class="" >Sign up</button>
                 </form>
+                <p style="color: red;">{{already}}</p>
+                <p  [ngClass]="{'green-text': otp.otpsend}">{{otp.message}}</p>
                 <p>you are already signup ? <a href="">please login</a></p>
             </div>
         </div>
@@ -56,6 +58,6 @@
             </div>
         </div>
     </div>
-
+    <app-otp class="otp"></app-otp>
     
 </section>

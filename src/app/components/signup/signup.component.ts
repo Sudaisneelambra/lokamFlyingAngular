@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/commonSignup.service';
 
 @Component({
   selector: 'app-signup',
@@ -8,11 +9,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SignupComponent {
 
+  already:any
+  otp:any={}
+
   // creation of a variable
   userForm!: FormGroup;
 
   // injecting formbuilder
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private userService:UserService) { }
 
 
   // create scheme using form group
@@ -20,11 +24,11 @@ export class SignupComponent {
     this.userForm = this.fb.group({
       username: ['', [Validators.required,Validators.pattern("^[a-z]*$")]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8),Validators.pattern("^(1[8-9]|[2-9][0-9]|[1-9][0-9]{2,})$")]],
-      phoneNumber: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
+      password: ['', [Validators.required, Validators.minLength(8),Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)]],
+      phoneNumber: ['', [Validators.required]],
       role: this.fb.group({
-        user: [false],
-        admin: [false ]
+        user: [''],
+        agency: ['' ]
       },{ validators: this.roleRequiredValidator })
     });
   }
@@ -32,7 +36,7 @@ export class SignupComponent {
   // radio button required check
   roleRequiredValidator(group: FormGroup) {
     const user = group.get('user');
-    const admin = group.get('admin');
+    const admin = group.get('agency');
 
     if (!user?.value && !admin?.value) {
       return { roleRequired: true };
@@ -41,7 +45,6 @@ export class SignupComponent {
     return null;
   }
 
-
   // get all controls of the form group
   get f(){
     return this.userForm.controls
@@ -49,12 +52,33 @@ export class SignupComponent {
 
   submitted:boolean=false
 
-
   // submittision of form
   onSubmit(): void {
     this.submitted=true
-    
-    console.log(this.userForm.value);
+
+    this.userService.userSignupPost(this.userForm.value).subscribe({
+      next:(res:any)=>{
+        if (res.otpsend){
+            this.otp=res
+            setTimeout(()=>{
+              this.otp=""
+            },4000)
+          }
+       else{
+        this.already=res.message
+        setTimeout(()=>{
+          this.already=""
+        },4000)
+
+       }
+
+        console.log(res);
+      },
+      error:(err)=>{
+        console.log(err);
+        alert(err.error.message);
+      }
+    })
   }
 
 
@@ -66,10 +90,15 @@ export class SignupComponent {
     {
       if (role === 'user') {
         roleForm.get('user')!.setValue(checked);
-      } else if (role === 'admin') {
-        roleForm.get('admin')!.setValue(checked);
+        roleForm.get('agency')!.setValue('');
+      } else if (role === 'agency') {
+        roleForm.get('agency')!.setValue(checked);
+        roleForm.get('user')!.setValue('');
+
       }
     }
     
   }
+
+  
 }

@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserService } from './services/user.service';
-
 
 
 @NgModule({
@@ -10,6 +8,6 @@ import { UserService } from './services/user.service';
     CommonModule,
   ],
   exports:[],
-  providers:[UserService]
+  providers:[]
 })
 export class UserModule { }
