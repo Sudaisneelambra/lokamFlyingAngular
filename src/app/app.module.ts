@@ -9,6 +9,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { UserService } from './services/commonSignup.service';
 import { HttpClientModule } from '@angular/common/http';
 import { OtpComponent } from './components/signup/otp/otp.component';
+import { UserRoutes } from './modules/user/routes/user.routing.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { OtpComponent } from './components/signup/otp/otp.component';
     UserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    UserRoutes
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

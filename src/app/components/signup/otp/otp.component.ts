@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output,OnChanges, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/commonSignup.service';
 
 @Component({
@@ -6,14 +7,24 @@ import { UserService } from 'src/app/services/commonSignup.service';
   templateUrl: './otp.component.html',
   styleUrls: ['./otp.component.css']
 })
-export class OtpComponent{
-  constructor(private service:UserService){}
+export class OtpComponent implements OnChanges{
+  constructor(private service:UserService,private router:Router){}
+
+  
 
   @Input() boolee!:boolean
   @Input() formdata!:any
   @Output() out=new EventEmitter<boolean>
+  lastThreeNumbers!:any
   message!:any
   otpDigits: string[] = []; // Array to hold individual OTP digits
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.lastThreeNumbers = this.formdata.phoneNumber.toString().slice(-3);
+    console.log(changes);
+    
+    
+  }
 
   onSubmit() {
     const newformdata={otp:this.otpDigits,...this.formdata}
@@ -32,14 +43,20 @@ export class OtpComponent{
               {
                 this.message=res.message
                 console.log(res);
+                setTimeout(() => {
+                  this.router.navigate(['home'])
+                }, 3000);
               }
               else if(res.success && res.agency)
               {
                 this.message=res.message
                 setTimeout(()=>{
-                  alert('verification message send to admin ,after the verification of admin u can use the agency dashboard only')
+                  alert('verification message send to admin ,after the verification of admin you can use the agency dashboard only')
                 },1000)
                 console.log(res);
+                setTimeout(()=>{
+                  this.out.emit(false)
+                },4000)
               }
               else{
                 this.message=res.message
