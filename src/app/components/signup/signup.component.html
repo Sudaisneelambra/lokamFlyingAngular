@@ -24,9 +24,9 @@
                     </div>
                     <div class="inputs">
                         <label for="username"  class="input-label">phonenumber <span>*</span></label>
-                        <input type="number" formControlName="phoneNumber" name="phonenumber" id="" placeholder="phonenumber" class="input-form">
+                        <input type="number" formControlName="phoneNumber" name="phonenumber" id="" placeholder="phonenumber" class="input-form" >
                         <label class="label-required" for="" *ngIf="submitted && f['phoneNumber'].errors && f['phoneNumber'].errors['required']" >phoneNumber required</label>
-                        <label class="label-required" for="" *ngIf="f['phoneNumber'].errors && f['phoneNumber'].errors['maxlength'] " >10 digits</label>
+                        <label class="label-required" for="" *ngIf="f['phoneNumber'].errors && f['phoneNumber'].errors['minlength']">Phone Number must be at least 10 digits</label>
                     </div>
                     
                     <div class="inputs" >
@@ -47,7 +47,7 @@
 
                     <button type="submit" class="" >Sign up</button>
                 </form>
-                <p style="color: red;">{{already}}</p>
+                <p style="color: red; margin-top: 10px;">{{already}}</p>
                 <p  [ngClass]="{'green-text': otp.otpsend}">{{otp.message}}</p>
                 <p>you are already signup ? <a href="">please login</a></p>
             </div>
@@ -58,6 +58,6 @@
             </div>
         </div>
     </div>
-    <app-otp class="otp"></app-otp>
+    <app-otp class="otp" *ngIf="bool" [boolee]="bool"  (out)="boool($event)" [formdata]="data"></app-otp>
     
 </section>

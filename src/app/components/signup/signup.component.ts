@@ -9,23 +9,24 @@ import { UserService } from 'src/app/services/commonSignup.service';
 })
 export class SignupComponent {
 
-  already:any
-  otp:any={}
-
   // creation of a variable
+  already:any
+  otp:any=''
+  bool:boolean=false
   userForm!: FormGroup;
-
+  submitted:boolean=false
+  data!:any
+  
   // injecting formbuilder
   constructor(private fb: FormBuilder,private userService:UserService) { }
-
 
   // create scheme using form group
   ngOnInit(): void {
     this.userForm = this.fb.group({
       username: ['', [Validators.required,Validators.pattern("^[a-z]*$")]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8),Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)]],
-      phoneNumber: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(8),Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~]).{8,}$/)]],
+      phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
       role: this.fb.group({
         user: [''],
         agency: ['' ]
@@ -41,7 +42,6 @@ export class SignupComponent {
     if (!user?.value && !admin?.value) {
       return { roleRequired: true };
     }
-
     return null;
   }
 
@@ -49,8 +49,6 @@ export class SignupComponent {
   get f(){
     return this.userForm.controls
   }
-
-  submitted:boolean=false
 
   // submittision of form
   onSubmit(): void {
@@ -60,19 +58,21 @@ export class SignupComponent {
       next:(res:any)=>{
         if (res.otpsend){
             this.otp=res
+            this.bool=true
+            this.data=this.userForm.value
             setTimeout(()=>{
               this.otp=""
-            },4000)
+            },6000)
           }
        else{
         this.already=res.message
+        console.log('sudais');
+        
         setTimeout(()=>{
           this.already=""
         },4000)
 
        }
-
-        console.log(res);
       },
       error:(err)=>{
         console.log(err);
@@ -82,6 +82,11 @@ export class SignupComponent {
   }
 
 
+  boool(data:any){
+    this.bool=data
+    
+  }
+
   // radio button value storing
   onCheckboxChange(event: any, role: string) {
     const checked = event.target.checked;
@@ -90,15 +95,13 @@ export class SignupComponent {
     {
       if (role === 'user') {
         roleForm.get('user')!.setValue(checked);
-        roleForm.get('agency')!.setValue('');
+        roleForm.get('agency')!.setValue(false);
       } else if (role === 'agency') {
         roleForm.get('agency')!.setValue(checked);
-        roleForm.get('user')!.setValue('');
+        roleForm.get('user')!.setValue(false);
 
       }
     }
-    
+    console.log(this.userForm.value); 
   }
-
-  
 }
