@@ -104,4 +104,12 @@ export class SignupComponent {
     }
     console.log(this.userForm.value); 
   }
+
+  hidePassword = true;
+
+  togglePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
+}
+
+  
 }

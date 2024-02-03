@@ -1,0 +1,31 @@
+@media (max-width:440px){
+    .logo{
+        padding-left: 10px;
+    }
+    .entry{
+        padding-right: 10px;
+    }
+    .btn {
+        padding: 4px 6px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .logo img{
+        max-width: 90%;
+        max-height: 90%;
+    }
+}
+
+button {
+    background-color: #f91382;
+    border: none;
+    color: white;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }

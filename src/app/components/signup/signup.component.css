@@ -39,13 +39,13 @@ form{
 
 }
 .inputs{
-    width: 100%;
+    width: 90%;
     height: 70px;
     display: flex;
     flex-direction: column;
 }
 .inputss{
-    width: 100%;
+    width: 90%;
     display: flex;
     margin-bottom: 15px;
     flex-direction: column;
@@ -67,6 +67,31 @@ form{
     outline: none;
     border: none;
     outline-offset: 2px;
+}
+.input-forms{
+    --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    appearance: none;
+    border-width: 1px;
+    border-radius: 0.25re;
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom:4px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    --tw-text-opacity: 1;
+    color: rgb(55 65 81 / var(--tw-text-opacity));
+    line-height: 1.25;
+    outline: none;
+    border: none;
+    outline-offset: 2px;
+}
+
+.passlabel{
+    margin-left: -26px;
+    z-index: 1;
+    font-size: 13px;
+    color: black;
 }
 .check-box{
     display: flex;
@@ -135,6 +160,7 @@ button{
 }
 .otp{
    position: absolute;
+   z-index: 1;
 }
 
 @media (max-width: 550px) {
