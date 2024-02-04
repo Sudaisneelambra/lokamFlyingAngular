@@ -1,0 +1,51 @@
+button{
+    background-color: #00ff2f; /* Blue color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    /* padding: 10px 20px; Padding */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor style */
+    font-size: 16px; /* Font size */
+    outline: none; 
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+@media (max-width:600px){
+    .chat{
+        flex-direction: column;
+        row-gap: 10px;
+    }
+    .chat-discription{
+        width: 100%;
+    }
+    .chat-button{
+        width: 100%;
+        justify-content: center;
+    }
+    .review{
+        flex-wrap: wrap;
+        row-gap: 10px;
+    }
+    .reviews{
+        flex-direction: column;
+    }
+    .love{
+        flex-direction: column;
+    }
+}
+.rev{
+    box-shadow: 0px 0px 4px 0px gray;
+    padding: 10px;
+    border-radius: 10px;
+}
+.btn{
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: gray;
+    font-weight: 300;
+}

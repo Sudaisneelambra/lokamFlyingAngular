@@ -7,6 +7,7 @@ import { PopularPlacesComponent } from './components/homepage/popular-places/pop
 import { PopularPackagesComponent } from './components/homepage/popular-packages/popular-packages.component';
 import { BannerComponent } from './components/homepage/banner/banner.component';
 import { AboutAgenncyComponent } from './components/homepage/about-agenncy/about-agenncy.component';
+import { FooterComponent } from './components/homepage/footer/footer.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AboutAgenncyComponent } from './components/homepage/about-agenncy/about
     PopularPlacesComponent,
     PopularPackagesComponent,
     BannerComponent,
-    AboutAgenncyComponent
+    AboutAgenncyComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
