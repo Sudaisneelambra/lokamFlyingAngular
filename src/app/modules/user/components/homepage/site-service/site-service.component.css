@@ -1,0 +1,70 @@
+@media (max-width:400px){
+    .image{
+        height: 265px;
+    }
+    .title{
+        height: 320px;
+        align-items: end;
+    }
+    .title1{
+        margin-top: 0;
+    }
+    .one{
+        /* width: 100%; */
+        height: 70%;
+        padding-left:10px ;
+    }
+    .lokam-description{
+        font-size: 13px;
+    }
+}
+@media(max-width:700px){
+    .title1{
+        padding-top: 20px;
+        padding-bottom: 30px;
+        flex-direction: column;
+        height:650px;
+    }
+    .serv{
+        width: 70%;
+        height: 30%;
+        justify-content: center;
+    }
+    .one{
+        width: 100%;
+    }
+}
+@media(min-width: 701px) and (max-width:800px){
+    .serv{
+        width: 30%;
+    }
+}
+
+.title{
+    background-image: url(/assets/images/2018-12-20-02_generated.jpg);
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    filter: saturate(0.5);
+}
+h1{
+    font-size: 15px;
+}
+.lokam-h1{
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.108);
+    color: transparent; /* Make the text transparent */
+    background-clip: text; /* Clip the background to the text */
+    background-image: linear-gradient(to right, #cd4444, #760f0f); /* Define the gradient colors */
+    font-family: 'Concert One', sans-serif;
+}
+.flying-text {
+    font-size: 25px;
+}
+.lokam-description{
+    /* background-color: rgba(0, 0, 0, 0.597); */
+    color: #000000;
+    /* text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); */
+    font-weight: 700;
+}
+

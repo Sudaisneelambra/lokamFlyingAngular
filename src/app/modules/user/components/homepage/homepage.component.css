@@ -29,3 +29,9 @@ button {
     cursor: pointer;
     border-radius: 5px;
   }
+  .service{
+    margin-top: 20px
+  }
+  .nav{
+    z-index: 1;
+  }
