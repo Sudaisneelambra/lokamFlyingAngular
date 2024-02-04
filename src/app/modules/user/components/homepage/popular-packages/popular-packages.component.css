@@ -20,29 +20,35 @@
     .trending-h1{
         font-size: 20px;
     }
-    .agencies{
+    .packages{
         column-gap: 32px;
         padding-left: 20px;
         padding-right: 20px;
     }
 
 }
-.agency-about{
+.package-about{
     background-color:#555555b3;
 }
-.agency{
-    background-image: url(/assets/images/agency\ newlog.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+.package{ 
     border-radius: 10px;
     box-shadow: 0px 0px 15px 0px rgba(128, 128, 128, 0.289);
     overflow: hidden;
-    filter: brightness(100%);
+}
+.package-image{
+    background-image: url(/assets/images/package.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 
 }
-.agency:hover{
-    filter: brightness(80%);
-    scale: 1.02;
-
+button{
+    background-color: #a6286f;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 12px;
+    border-radius: 5px;
+    color: white;
 }

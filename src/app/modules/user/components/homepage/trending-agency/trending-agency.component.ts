@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-trending-agency',
+  selector: 'trending-agency',
   templateUrl: './trending-agency.component.html',
   styleUrls: ['./trending-agency.component.css']
 })

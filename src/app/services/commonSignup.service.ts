@@ -12,20 +12,20 @@ const httpOptions = {
 
 export class UserService{
     
-    private signupapi = 'http://localhost:3000/user/signup';
+    private userapi = 'http://localhost:3000';
 
-    private otppost = 'http://localhost:3000/user/signup/otpverification';
+    // private otppost = 'http://localhost:3000/user/signup/otpverification';
 
 
 constructor(private http:HttpClient){}
 
 userSignupPost(data:any){
-    return this.http.post(this.signupapi,data,httpOptions)
+    return this.http.post(`${this.userapi}/user/signup`,data,httpOptions)
 }
 
 userOtpverification(data:any):Observable<any>{
     console.log(data);
-    return this.http.post(this.otppost,data,httpOptions)
+    return this.http.post(`${this.userapi}/user/signup/otpverification`,data,httpOptions)
 
 }
 

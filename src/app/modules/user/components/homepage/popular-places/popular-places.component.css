@@ -6,6 +6,7 @@
 ::-webkit-scrollbar-thumb {
     background: #0f0d0d; /* Color of the scrollbar handle */
     border-radius: 10px;
+  
 }
 
 /* Handle on hover */
@@ -20,7 +21,7 @@
     .trending-h1{
         font-size: 20px;
     }
-    .agencies{
+    .places{
         column-gap: 32px;
         padding-left: 20px;
         padding-right: 20px;
@@ -30,8 +31,8 @@
 .agency-about{
     background-color:#555555b3;
 }
-.agency{
-    background-image: url(/assets/images/agency\ newlog.png);
+.place{
+    background-image: url(/assets/images/banner.avif);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -41,7 +42,8 @@
     filter: brightness(100%);
 
 }
-.agency:hover{
+
+.place:hover{
     filter: brightness(80%);
     scale: 1.02;
 

@@ -1,0 +1,22 @@
+.image{
+    background-image: url(/assets/images/2018-12-20-02_generated.jpg);
+    background-size: cover;
+    background-position: center;
+}
+@media (max-width:500px){
+    .main{
+        flex-direction: column;
+        height: 600px;
+    }
+    .description{
+        width: 100%;
+    }
+    .image{
+        width: 100%;
+    }
+}
+@media(min-width:500px) and (max-width:650px){
+    .para{
+        font-size: 14px;
+    }
+}

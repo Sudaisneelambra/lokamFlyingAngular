@@ -1,0 +1,32 @@
+.my-marquee {
+    font-size: 24px; /* Increased font size for better readability */
+    color: #007bff; /* Vibrant blue color */
+    background-color: #f8f9facc; /* Light gray background */
+    width: 100%; /* Full width */
+    height: 90px; /* Adjusted height to accommodate larger font */
+    overflow: hidden; /* Hide overflow text */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .my-marquee img{
+    height: 80px;
+    min-width: 100%;
+    filter: contrast(10%);
+  }
+  @media (max-width: 600px) and (min-width:500px){
+    .one{
+        display: none;
+    }
+}
+@media(max-width:500px){
+    .one{
+        display: none;
+    }
+    .three{
+        display: none;
+    }
+}
+ 
