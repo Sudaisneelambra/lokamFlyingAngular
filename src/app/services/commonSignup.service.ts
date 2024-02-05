@@ -29,5 +29,15 @@ userOtpverification(data:any):Observable<any>{
 
 }
 
+userLogin(data:login):Observable<any>{
+        return this.http.post(`${this.userapi}/user/login`,data,httpOptions)
+}
 
+
+}
+
+interface login{
+    name:string,
+    mail:string,
+    pass:string
 }

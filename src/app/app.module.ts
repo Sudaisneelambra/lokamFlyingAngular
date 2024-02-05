@@ -5,10 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserModule } from './modules/user/user.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SignupComponent } from './components/signup/signup.component';
 import { UserService } from './services/commonSignup.service';
 import { HttpClientModule } from '@angular/common/http';
-import { OtpComponent } from './components/signup/otp/otp.component';
+import { OtpComponent } from './components/login/otp/otp.component';
 import { UserRoutes } from './modules/user/routes/user.routing.module';
 import { LoginComponent } from './components/login/login.component';
 
@@ -16,7 +15,6 @@ import { LoginComponent } from './components/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent,
     OtpComponent,
     LoginComponent,
     

@@ -11,6 +11,7 @@
     .love{
     padding: 20px;
     padding-top: 40px !important;
+    margin-left: 35px;
         
     }
 }
@@ -22,6 +23,28 @@
     h1{
         font-size: 20px;
     }
+    button {
+      width: 80px !important; /* Adjust width as needed */
+      height: 30px !important; /* Adjust height as needed */
+      font-size: 13px;
+      background-color: #007bff !important;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 0px !important;
+      transition: background-color 0.3s ease;
+    }
+    .btn{
+      width: 90%;
+    }
+
+ }
+ @media(max-width:360px){
+  
+  .love{
+    margin-left: 22px;
+  }
  }
 
 form {
@@ -30,6 +53,7 @@ form {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 10px;
   }
   
   /* Style each OTP input field */
@@ -45,9 +69,6 @@ form {
     border: 1px solid #ccc;
     border-radius: 5px;
   }
-  .btn{
-    gap: 13px;
-  }
   /* Style the submit button */
   button {
     width: 90px; /* Adjust width as needed */
@@ -58,7 +79,6 @@ form {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 10px;
     transition: background-color 0.3s ease;
   }
   
