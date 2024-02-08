@@ -33,6 +33,19 @@ userLogin(data:login):Observable<any>{
         return this.http.post(`${this.userapi}/user/login`,data,httpOptions)
 }
 
+logout(): void {
+  const one= localStorage.getItem('token')
+  console.log(one);
+  
+    localStorage.removeItem('token'); // Remove JWT token from localStorage upon logout
+    const tow= localStorage.getItem('token')
+    console.log(tow);
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token'); // Check if JWT token exists in localStorage
+  }
+
 
 }
 

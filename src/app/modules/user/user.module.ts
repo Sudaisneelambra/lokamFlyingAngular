@@ -8,7 +8,15 @@ import { PopularPackagesComponent } from './components/homepage/popular-packages
 import { BannerComponent } from './components/homepage/banner/banner.component';
 import { AboutAgenncyComponent } from './components/homepage/about-agenncy/about-agenncy.component';
 import { FooterComponent } from './components/homepage/footer/footer.component';
+import { UserRoutes } from './routes/user.routing.module';
+import { RouterModule, Routes } from '@angular/router';
 
+// const routes:Routes=[
+//   {
+//       path:'',
+//       component:HomepageComponent
+//   }
+// ]
 
 @NgModule({
   declarations: [
@@ -23,8 +31,10 @@ import { FooterComponent } from './components/homepage/footer/footer.component';
   ],
   imports: [
     CommonModule,
+    UserRoutes
   ],
-  exports:[],
+  exports:[
+  ],
   providers:[]
 })
 export class UserModule { }

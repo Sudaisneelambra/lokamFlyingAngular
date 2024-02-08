@@ -110,18 +110,27 @@ export class LoginComponent {
           if(res.user)
           {
             this.loginmessage=res.message
+            localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
+            console.log('Logged in successfully');
+            console.log(res.token);
             setTimeout(() => {
               this.loginmessage=''
-              this.router.navigate(['home'])
+              this.router.navigate(['user'])
             }, 2000);
           } else if(res.admin){
             this.loginmessage=res.message
+            localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
+            console.log('Logged in successfully');
+            console.log(res.token);
             setTimeout(() => {
               console.log('admin');
               this.loginmessage=''
             }, 2000);
           } else if(res.resistered){
             this.loginmessage=res.message
+            localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
+            console.log('Logged in successfully');
+            console.log(res.token);
             setTimeout(() => {
               console.log('resisterde agency');
               this.loginmessage=''
@@ -131,7 +140,7 @@ export class LoginComponent {
             setTimeout(() => {
               alert('dear costomer ,your verification message send to the admin,but he didnt verified your mail, wait for verification')
               console.log('not resisterde agency');
-              this.loginmessage=''
+              this.error=''
             }, 2000);
           } 
         } else {

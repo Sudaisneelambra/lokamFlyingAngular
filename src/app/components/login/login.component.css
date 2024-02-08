@@ -118,12 +118,12 @@ button:hover{
     text-align: center;
   }
 
-  .otp{
+  /* .otp{
     position: absolute;
     z-index: 1;
     top: 110px;
     margin-left: 15px;
- }
+ } */
  .chin{
     width: 80%;
  }

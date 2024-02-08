@@ -1,15 +1,18 @@
 import { NgModule } from "@angular/core";
 import { Routes,RouterModule } from "@angular/router";
 import { HomepageComponent } from "../components/homepage/homepage.component";
+import { goToAuthGuard } from "src/app/guards/gotohome.guard";
 
 const routes:Routes=[
     {
-        path:'home',component:HomepageComponent
+        path:'',
+        canActivate:[goToAuthGuard],
+        component:HomepageComponent
     }
 ]
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forChild(routes)],
     exports :[RouterModule]
 })
 
