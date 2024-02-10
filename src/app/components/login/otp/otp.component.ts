@@ -42,6 +42,8 @@ export class OtpComponent implements OnChanges{
               if(res.success && res.user)
               {
                 this.message=res.message
+                console.log(res.token);
+                
                 console.log(res);
                 setTimeout(() => {
                   this.router.navigate(['home'])

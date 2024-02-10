@@ -15,7 +15,7 @@ export class backtoLoginAuthGuard implements CanActivate {
     if(!this.authService.isLoggedIn()){
       return true
     }else{
-      this.router.navigate(['home'])
+      this.router.navigate(['user'])
       return false
     }
   }

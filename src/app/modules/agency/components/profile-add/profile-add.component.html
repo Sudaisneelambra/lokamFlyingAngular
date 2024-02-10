@@ -1,0 +1,129 @@
+<div id="sticky-banner" tabindex="-1" class=" top-0 start-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+    <div class="flex items-center mx-auto justify-between w-full">
+        <p class="flex items-center justify-between w-full text-sm font-normal text-gray-500 dark:text-gray-400">
+           <img src="/assets/images/logo-no-background.png" class="w-[50px]" alt="">
+            <span>explore with us <a href="https://flowbite.com" class="inline font-medium text-blue-600 underline dark:text-blue-500 underline-offset-2 decoration-600 dark:decoration-500 decoration-solid hover:no-underline">LOKAMA WORLD</a></span>
+        </p>
+    </div>
+</div>
+
+
+<div class="container">
+    <h2>Agency Profile Form</h2>
+    <form [formGroup]="agencyForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+  
+      <!-- Agency Name -->
+      <div>
+        <label for="agency_name">Agency Name:</label>
+        <input type="text" id="agency_name" name="agency_name" formControlName="agency_name" required>
+      </div>
+  
+      <!-- Description -->
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" formControlName="description" required></textarea>
+      </div>
+  
+      <!-- Services -->
+      <div class="services">
+        <label>Services:</label><br>
+      
+        <div class="service">
+          <input type="checkbox" id="Tourpackage" name="Tourpackage" (change)="updateService('Tourpackage', $event)">
+          <label for="Tourpackage">Tour Package</label>
+        </div>
+        
+        <div class="service">
+          <input type="checkbox" id="CustomerSupport" name="CustomerSupport" (change)="updateService('CustomerSupport', $event)">
+          <label for="CustomerSupport">Customer Support</label>
+        </div>
+        
+        <div class="service">
+          <input type="checkbox" id="TransportationServices" name="TransportationServices" (change)="updateService('TransportationServices', $event)">
+          <label for="TransportationServices">Transportation Services</label>
+        </div>
+
+        <div class="service">
+          <input type="checkbox" id="HotelReservationServices" name="HotelReservationServices" (change)="updateService('HotelReservationServices', $event)">
+          <label for="HotelReservationServices">Hotel Reservation Services</label>
+        </div>
+        
+        <div class="service">
+          <input type="checkbox" id="TravelConsultationandAdvice" name="TravelConsultationandAdvice" (change)="updateService('TravelConsultationandAdvice', $event)">
+          <label for="TravelConsultationandAdvice">Travel Consultation and Advice</label>
+        </div>
+      </div>
+      <!-- Contact Numbers -->
+      <div class="contact-numbers">
+        <label>Contact Numbers:1</label><br>
+        <div class="contact-number">
+          <input type="tel" id="contact_number1" name="contact_number1" formControlName="contactNumber1" pattern="[0-9]{10}" required>
+        </div>
+        <label>Contact Numbers:2</label><br>
+        <div class="contact-number">
+          <input type="tel" id="contact_number2" name="contact_number2" formControlName="contactNumber2" pattern="[0-9]{10}" required>
+        </div>
+      </div>
+  
+      <!-- About Agency -->
+      <div>
+        <label for="about_agency">About Agency:</label>
+        <textarea id="about_agency" name="about_agency" rows="4" formControlName="aboutAgency" required></textarea>
+      </div>
+  
+      <!-- Photos -->
+      <div class="photos">
+        <label for="photos">Photos (Max 5):</label><br>
+        <div class="photo">
+          <input type="file" id="photos" name="photos" accept="image/*" (change)="changing($event)">
+        </div>
+        <div class="photo">
+          <input type="file" id="photos" name="photos" accept="image/*" (change)="changing($event)">
+        </div>
+        <div class="photo">
+          <input type="file" id="photos" name="photos" accept="image/*" (change)="changing($event)">
+        </div>
+        <div class="photo">
+          <input type="file" id="photos" name="photos" accept="image/*" (change)="changing($event)">
+        </div>
+        <div class="photo">
+          <input type="file" id="photos" name="photos" accept="image/*" (change)="changing($event)">
+        </div>
+      </div>
+      
+  
+      <!-- Logo -->
+      <div>
+        <label for="logo">Logo:</label><br>
+        <input type="file" id="logo" name="logo" accept="image/*" (change)="changingLogo($event)">
+      </div>
+  
+      <!-- Email -->
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" formControlName="email" required>
+      </div>
+  
+      <!-- Opening Time -->
+      <div>
+        <label for="opening_time">Opening Time:</label>
+        <input type="time" id="opening_time" name="openingtime" formControlName="openingTime" required>
+      </div>
+  
+      <!-- Closing Time -->
+      <div>
+        <label for="closing_time">Closing Time:</label>
+        <input type="time" id="closing_time" name="closingtime" formControlName="closingTime" required>
+      </div>
+  
+      <!-- Location -->
+      <div>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" formControlName="location" required>
+      </div>
+  
+      <input type="submit" value="Submit">
+    </form>
+    <p class="text-red-600">{{message}}</p>
+  </div>
+  

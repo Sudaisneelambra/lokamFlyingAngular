@@ -131,6 +131,7 @@ export class LoginComponent {
             localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
             console.log('Logged in successfully');
             console.log(res.token);
+            this.router.navigate(['/agency/profileadd'])
             setTimeout(() => {
               console.log('resisterde agency');
               this.loginmessage=''

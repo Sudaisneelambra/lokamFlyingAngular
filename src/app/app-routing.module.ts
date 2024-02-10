@@ -20,6 +20,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule),
   },
   {
+    path:'agency',
+    loadChildren:()=> import('./modules/agency/agency.module').then(m=>m.agencyModule),
+  },
+  {
     path:'**',
     component:NotFoundComponent
   },

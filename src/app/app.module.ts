@@ -9,7 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { OtpComponent } from './components/login/otp/otp.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { agencyModule } from './modules/agency/services/agency.module';
+import { agencyModule } from './modules/agency/agency.module';
+import { AgencyHomeComponent } from './modules/agency/components/agency-home/agency-home.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { agencyModule } from './modules/agency/services/agency.module';
     OtpComponent,
     LoginComponent,
     NotFoundComponent,
+    AgencyHomeComponent,
     
   ],
   imports: [
