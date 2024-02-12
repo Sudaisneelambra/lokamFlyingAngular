@@ -6,31 +6,33 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {
-    path:'',
-    canActivate:[backtoLoginAuthGuard],
-    component:LoginComponent,
+    path: '',
+    canActivate: [backtoLoginAuthGuard],
+    component: LoginComponent,
   },
   {
-    path:'authentication',
-    canActivate:[backtoLoginAuthGuard],
-    component:LoginComponent
+    path: 'authentication',
+    canActivate: [backtoLoginAuthGuard],
+    component: LoginComponent,
   },
   {
-    path:'user',
-    loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule),
+    path: 'user',
+    loadChildren: () =>
+      import('./modules/user/user.module').then((m) => m.UserModule),
   },
   {
-    path:'agency',
-    loadChildren:()=> import('./modules/agency/agency.module').then(m=>m.agencyModule),
+    path: 'agency',
+    loadChildren: () =>
+      import('./modules/agency/agency.module').then((m) => m.agencyModule),
   },
   {
-    path:'**',
-    component:NotFoundComponent
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

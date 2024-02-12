@@ -10,6 +10,7 @@ import { AboutAgenncyComponent } from './components/homepage/about-agenncy/about
 import { FooterComponent } from './components/homepage/footer/footer.component';
 import { UserRoutes } from './routes/user.routing.module';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 // const routes:Routes=[
 //   {
@@ -27,14 +28,10 @@ import { RouterModule, Routes } from '@angular/router';
     PopularPackagesComponent,
     BannerComponent,
     AboutAgenncyComponent,
-    FooterComponent
+    FooterComponent,
   ],
-  imports: [
-    CommonModule,
-    UserRoutes
-  ],
-  exports:[
-  ],
-  providers:[]
+  imports: [CommonModule, UserRoutes, HttpClientModule],
+  exports: [],
+  providers: [],
 })
-export class UserModule { }
+export class UserModule {}

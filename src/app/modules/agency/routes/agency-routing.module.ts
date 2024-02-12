@@ -1,21 +1,24 @@
-import { NgModule } from "@angular/core";
-import { Routes,RouterModule } from "@angular/router";
-import { ProfileAddComponent } from "../components/profile-add/profile-add.component";
-import { goToAuthGuard } from "src/app/guards/gotohome.guard";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { ProfileAddComponent } from '../components/profile-add/profile-add.component';
+import { AgencyHomeComponent } from '../components/agency-home/agency-home.component';
+import { gotoagencyhome } from 'src/app/guards/agencyhome.guard';
 
-const routes:Routes=[
-    {
-        path:'profileadd',
-        canActivate:[goToAuthGuard],
-        component:ProfileAddComponent
-    }
-]
+const routes: Routes = [
+  {
+    path: '',
+    canActivate: [gotoagencyhome],
+    component: AgencyHomeComponent,
+  },
+  {
+    path: 'profileadd',
+    canActivate: [gotoagencyhome],
+    component: ProfileAddComponent,
+  },
+];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports :[RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-
-export class AgencyRoutes{
-
-}
+export class AgencyRoutes {}

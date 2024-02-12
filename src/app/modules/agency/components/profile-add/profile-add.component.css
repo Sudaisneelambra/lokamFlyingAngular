@@ -30,7 +30,7 @@ form input[type="time"] {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -91,7 +91,7 @@ form input[type="file"] {
   textarea {
     width: 100%;
     padding: 8px;
-    margin: 6px 0;
+    /* margin: 6px 0; */
     box-sizing: border-box;
   }
   
@@ -111,3 +111,10 @@ form input[type="file"] {
     margin-bottom: 5px;
   }
   
+
+  .label-required{
+    font-size: 10px;
+    /* border: 2px solid; */
+    font-weight: 500 !important;
+    color: red;
+  }

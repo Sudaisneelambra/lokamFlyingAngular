@@ -1,56 +1,63 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
-  }
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+};
 
 @Injectable({
-    providedIn:'root'
+  providedIn: 'root',
 })
+export class UserService {
+  private userapi = 'http://localhost:3000';
 
-export class UserService{
-    
-    private userapi = 'http://localhost:3000';
+  constructor(private http: HttpClient) {}
 
-    // private otppost = 'http://localhost:3000/user/signup/otpverification';
+  userSignupPost(data: any) {
+    return this.http.post(`${this.userapi}/user/signup`, data, httpOptions);
+  }
 
-
-constructor(private http:HttpClient){}
-
-userSignupPost(data:any){
-    return this.http.post(`${this.userapi}/user/signup`,data,httpOptions)
-}
-
-userOtpverification(data:any):Observable<any>{
+  userOtpverification(data: any): Observable<any> {
     console.log(data);
-    return this.http.post(`${this.userapi}/user/signup/otpverification`,data,httpOptions)
+    return this.http.post(
+      `${this.userapi}/user/signup/otpverification`,
+      data,
+      httpOptions
+    );
+  }
 
-}
-
-userLogin(data:login):Observable<any>{
-        return this.http.post(`${this.userapi}/user/login`,data,httpOptions)
-}
-
-logout(): void {
-  const one= localStorage.getItem('token')
-  console.log(one);
-  
-    localStorage.removeItem('token'); // Remove JWT token from localStorage upon logout
-    const tow= localStorage.getItem('token')
-    console.log(tow);
+  userLogin(data: login): Observable<any> {
+    return this.http.post(`${this.userapi}/user/login`, data, httpOptions);
   }
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token'); // Check if JWT token exists in localStorage
   }
 
+  gettypeuser() {
+    const type = localStorage.getItem('type');
+    console.log(type);
+    if (type == 'user') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
+  gettypeagency() {
+    const type = localStorage.getItem('type');
+    console.log(type);
+    if (type == 'agency') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
-interface login{
-    name:string,
-    mail:string,
-    pass:string
+interface login {
+  name: string;
+  mail: string;
+  pass: string;
 }

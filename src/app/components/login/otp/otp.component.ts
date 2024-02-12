@@ -1,82 +1,79 @@
-import { Component, EventEmitter, Input, Output,OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/commonSignup.service';
 
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
-  styleUrls: ['./otp.component.css']
+  styleUrls: ['./otp.component.css'],
 })
-export class OtpComponent implements OnChanges{
-  constructor(private service:UserService,private router:Router){}
+export class OtpComponent implements OnChanges {
+  constructor(private service: UserService, private router: Router) {}
 
-  
-
-  @Input() boolee!:boolean
-  @Input() formdata!:any
-  @Output() out=new EventEmitter<boolean>
-  lastThreeNumbers!:any
-  message!:any
+  @Input() boolee!: boolean;
+  @Input() formdata!: any;
+  @Output() out = new EventEmitter<boolean>();
+  lastThreeNumbers!: any;
+  message!: any;
   otpDigits: string[] = []; // Array to hold individual OTP digits
 
   ngOnChanges(changes: SimpleChanges): void {
     this.lastThreeNumbers = this.formdata.phoneNumber.toString().slice(-3);
     console.log(changes);
-    
-    
   }
 
   onSubmit() {
-    const newformdata={otp:this.otpDigits,...this.formdata}
+    const newformdata = { otp: this.otpDigits, ...this.formdata };
 
-    if(this.otpDigits.length !== 6)
-    {
-      this.message='enter valid otp'
-      setTimeout(()=>{
-      this.message=''
-      },2000)
-    } else{
-
-          this.service.userOtpverification(newformdata).subscribe({
-            next:(res)=>{
-              if(res.success && res.user)
-              {
-                this.message=res.message
-                console.log(res.token);
-                
-                console.log(res);
-                setTimeout(() => {
-                  this.router.navigate(['home'])
-                }, 3000);
-              }
-              else if(res.success && res.agency)
-              {
-                this.message=res.message
-                setTimeout(()=>{
-                  alert('verification message send to admin ,after the verification of admin you can use the agency dashboard only')
-                },1000)
-                console.log(res);
-                setTimeout(()=>{
-                  this.out.emit(false)
-                },4000)
-              }
-              else{
-                this.message=res.message
-              }
-            },
-            error:(err)=>{
-              console.log(err);
-              this.message="otp verification failed"
-            }
-          })
-        }
+    if (this.otpDigits.length !== 6) {
+      this.message = 'enter valid otp';
+      setTimeout(() => {
+        this.message = '';
+      }, 2000);
+    } else {
+      this.service.userOtpverification(newformdata).subscribe({
+        next: (res) => {
+          if (res.success && res.user) {
+            this.message = res.message;
+            console.log(res.token);
+            localStorage.setItem('tokenuser', res.token);
+            console.log(res);
+            setTimeout(() => {
+              this.router.navigate(['home']);
+            }, 3000);
+          } else if (res.success && res.agency) {
+            this.message = res.message;
+            setTimeout(() => {
+              alert(
+                'verification message send to admin ,after the verification of admin you can use the agency dashboard only'
+              );
+            }, 1000);
+            console.log(res);
+            setTimeout(() => {
+              this.out.emit(false);
+            }, 4000);
+          } else {
+            this.message = res.message;
+          }
+        },
+        error: (err) => {
+          console.log(err);
+          this.message = 'otp verification failed';
+        },
+      });
     }
+  }
 
-
-
-  display(){
-    this.out.emit(false)
+  display() {
+    this.out.emit(false);
     console.log(this.formdata);
-    this.formdata=''
+    this.formdata = '';
   }
 }
