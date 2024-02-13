@@ -53,7 +53,9 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
   ngOnInit() {
    this.profileSubscription$ = this.agency.getingprofile().subscribe({
     next:(res)=>{
-      this.datas=res
+      this.datas=res.user
+      console.log(this.datas);
+
       this.agencyForm.get('agency_name')?.patchValue(res.user.name)
       this.agencyForm.get('description')?.patchValue(res.user.description)
       this.agencyForm.get('contactNumber1')?.patchValue(res.user.contactNumber1)
@@ -62,10 +64,7 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
       this.agencyForm.get('email')?.patchValue(res.user.email)
       this.agencyForm.get('openingTime')?.patchValue(res.user.openingTime)
       this.agencyForm.get('closingTime')?.patchValue(res.user.closingTime)
-      this.agencyForm.get('location')?.patchValue(res.user.location)
-
-      console.log(res.user.name);
-      console.log(this.datas);
+      this.agencyForm.get('location')?.patchValue(res?.user?.location)
       
 
     },

@@ -12,12 +12,16 @@ export class agencyService {
   
   private userapi = 'http://localhost:3000';
 
+  getingprofile():Observable<any>{
+    return this.http.get(`${this.api}/agency/profileget`)
+  }
+
   addProfile(data: any): Observable<any> {
     return this.http.post(`${this.api}/agency/profileadd`, data);
   }
 
-  getingprofile():Observable<any>{
-    return this.http.get(`${this.api}/agency/profileget`)
+  addplace(data:any):Observable<any>{
+    return this.http.post(`${this.api}/agency/placeadd`,data)
   }
 
 

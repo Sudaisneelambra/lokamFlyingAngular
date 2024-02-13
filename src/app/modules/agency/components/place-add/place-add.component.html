@@ -1,0 +1,63 @@
+<div
+  id="sticky-banner"
+  tabindex="-1"
+  class="top-0 start-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600"
+>
+  <div class="flex items-center mx-auto justify-between w-full">
+    <p
+      class="flex items-center justify-between w-full text-sm font-normal text-gray-500 dark:text-gray-400"
+    >
+      <img
+        src="/assets/images/logo-no-background.png"
+        class="w-[50px]"
+        alt=""
+      />
+      <span
+        >explore with us
+        <a
+          href="https://flowbite.com"
+          class="inline font-medium text-blue-600 underline dark:text-blue-500 underline-offset-2 decoration-600 dark:decoration-500 decoration-solid hover:no-underline"
+          >LOKAMA WORLD</a
+        ></span
+      >
+    </p>
+  </div>
+</div>
+
+<form [formGroup]="placeForm"  class="place-form">
+    <div class="form-group">
+      <label for="placeName">Place Name:</label>
+      <input type="text" id="placeName" formControlName="placeName" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="placeDescription">Place Description:</label>
+      <textarea id="placeDescription" formControlName="placeDescription" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="images">Images:</label>
+        <input type="file" id="images" class="form-control" accept="image/*" multiple (change)="onImageChange($event)">
+    </div>
+    <div class="form-group">
+      <label for="openingTime">Opening Time:</label>
+      <input type="time" id="openingTime" formControlName="openingTime" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="closingTime">Closing Time:</label>
+      <input type="time" id="closingTime" formControlName="closingTime" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="entryFee">Entry Fee:</label>
+      <input type="number" id="entryFee" formControlName="entryFee" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <input type="text" id="location" formControlName="location" class="form-control">
+    </div>
+  <div class="flex justify-evenly">
+    <button type="submit"  class="btn btn-primary" (click)="onSubmit()">Submit</button>
+    <button type="submit" class="btn btn-primary" (click)="back()">back</button>
+  </div>
+  <h1 class="text-red-500">{{message}}</h1>
+
+  </form>
+  

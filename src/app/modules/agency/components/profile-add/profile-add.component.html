@@ -161,7 +161,7 @@
 
     <!-- Photos -->
     <div class="photos">
-      <label for="photos">Photos (Max 5):</label><br />
+      <label for="photos">Photos:</label><br />
       <div class="photo">
         <input
           type="file"
@@ -275,7 +275,7 @@
 
     <div class="flex justify-evenly mt-5">
       <input type="submit" value="Submit" (click)="onSubmit()" />
-      <input type="submit" value="Back" (click)="back()" />
+      <input type="submit" value="Back" (click)="back()" *ngIf="datas !== null" />
       <input type="submit" value="back to login" (click)="logout()" />
     </div>
   </form>
