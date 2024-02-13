@@ -1,27 +1,32 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { agencyService } from '../../services/agency.service';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/commonSignup.service';
 import { useservice } from 'src/app/modules/user/services/user.service';
+import { Location } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile-add',
   templateUrl: './profile-add.component.html',
   styleUrls: ['./profile-add.component.css'],
 })
-export class ProfileAddComponent {
+export class ProfileAddComponent implements OnInit, OnDestroy {
   message!: string;
   agencyForm: FormGroup;
   formdata = new FormData();
   photosArray: File[] = [];
+  datas!:any
+  profileSubscription$!: Subscription;
 
   constructor(
     private fb: FormBuilder,
     private agency: agencyService,
     private router: Router,
-    private service: agencyService
+    private service: agencyService,
+    private location:Location
   ) {
     this.agencyForm = this.fb.group({
       agency_name: ['', Validators.required],
@@ -45,6 +50,35 @@ export class ProfileAddComponent {
       location: ['', Validators.required],
     });
   }
+  ngOnInit() {
+   this.profileSubscription$ = this.agency.getingprofile().subscribe({
+    next:(res)=>{
+      this.datas=res
+      this.agencyForm.get('agency_name')?.patchValue(res.user.name)
+      this.agencyForm.get('description')?.patchValue(res.user.description)
+      this.agencyForm.get('contactNumber1')?.patchValue(res.user.contactNumber1)
+      this.agencyForm.get('contactNumber2')?.patchValue(res.user.contactNumber2)
+      this.agencyForm.get('aboutAgency')?.patchValue(res.user.aboutAgency)
+      this.agencyForm.get('email')?.patchValue(res.user.email)
+      this.agencyForm.get('openingTime')?.patchValue(res.user.openingTime)
+      this.agencyForm.get('closingTime')?.patchValue(res.user.closingTime)
+      this.agencyForm.get('location')?.patchValue(res.user.location)
+
+      console.log(res.user.name);
+      console.log(this.datas);
+      
+
+    },
+    error:(err)=>{
+      console.log(err);
+      
+    }
+   })
+   
+
+  }
+
+
 
   changing(event: any) {
     const files = event.target.files;
@@ -120,5 +154,13 @@ export class ProfileAddComponent {
     });
     console.log('logouted');
     this.router.navigate(['authentication']);
+  }
+
+  back(){
+    this.location.back()
+  }
+
+  ngOnDestroy(): void {
+      this.profileSubscription$.unsubscribe();
   }
 }

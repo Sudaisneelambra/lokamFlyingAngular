@@ -28,7 +28,6 @@
   <h2>Agency Profile Form</h2>
   <form
     [formGroup]="agencyForm"
-    (ngSubmit)="onSubmit()"
     enctype="multipart/form-data"
   >
     <!-- Agency Name -->
@@ -275,7 +274,8 @@
     </div>
 
     <div class="flex justify-evenly mt-5">
-      <input type="submit" value="Submit" />
+      <input type="submit" value="Submit" (click)="onSubmit()" />
+      <input type="submit" value="Back" (click)="back()" />
       <input type="submit" value="back to login" (click)="logout()" />
     </div>
   </form>
