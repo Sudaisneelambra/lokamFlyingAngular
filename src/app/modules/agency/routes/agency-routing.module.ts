@@ -5,6 +5,8 @@ import { AgencyHomeComponent } from '../components/agency-home/agency-home.compo
 import { gotoagencyhome } from 'src/app/guards/agencyhome.guard';
 import { PackageAddComponent } from '../components/package-add/package-add.component';
 import { PlaceAddComponent } from '../components/place-add/place-add.component';
+import { GuideAddComponent } from '../components/guide-add/guide-add.component';
+import { PlaceComponent } from '../components/agency-home/places/place.component';
 
 const routes: Routes = [
   {
@@ -24,7 +26,15 @@ const routes: Routes = [
   {
     path:'placeadd',
     component:PlaceAddComponent
-  }
+  },
+  {
+    path:'guideadd',
+    component:GuideAddComponent
+  },
+  {
+    path:'place',
+    component:PlaceComponent
+  },
 ];
 
 @NgModule({

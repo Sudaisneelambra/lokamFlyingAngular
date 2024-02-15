@@ -1,0 +1,53 @@
+<div
+  id="sticky-banner"
+  tabindex="-1"
+  class="top-0 start-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600"
+>
+  <div class="flex items-center mx-auto justify-between w-full">
+    <p
+      class="flex items-center justify-between w-full text-sm font-normal text-gray-500 dark:text-gray-400"
+    >
+      <img
+        src="/assets/images/logo-no-background.png"
+        class="w-[50px]"
+        alt=""
+      />
+      <span
+        >explore with us
+        <a
+          href="https://flowbite.com"
+          class="inline font-medium text-blue-600 underline dark:text-blue-500 underline-offset-2 decoration-600 dark:decoration-500 decoration-solid hover:no-underline"
+          >LOKAMA WORLD</a
+        ></span
+      >
+    </p>
+  </div>
+</div>
+
+<form [formGroup]="guideForm" >
+    <div>
+      <label for="guideName">Guide Name</label>
+      <input type="text" formControlName="guideName" id="guideName">
+    </div>
+    <div>
+      <label for="aboutGuide">About Guide</label>
+      <textarea formControlName="aboutGuide" id="aboutGuide"></textarea>
+    </div>
+    <div>
+      <label for="experience">Experience</label>
+      <input type="text" formControlName="experience" id="experience">
+    </div>
+    <div>
+      <label for="image">Upload Image</label>
+      <div class="flex">
+        <input type="file" (change)="onFileChange($event)" id="image" accept="image/*" multiple>
+        <input value="delete" class="but" type="button" (click)="del()">
+      </div>
+    </div>
+    <div class="flex justify-evenly">
+        <button type="submit" [disabled]="!guideForm.valid" (click)="onSubmit()">Submit</button>
+        <button (click)="back()">back</button>
+    </div>
+    <h1 class="text-red-500 text-center">{{message}}</h1>
+  </form>
+  

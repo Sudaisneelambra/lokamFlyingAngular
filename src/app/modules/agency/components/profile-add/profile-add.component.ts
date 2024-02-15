@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { agencyService } from '../../services/agency.service';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/commonSignup.service';
@@ -37,7 +37,7 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
         TransportationServices: [false],
         HotelReservationServices: [false],
         TravelConsultationandAdvice: [false],
-      }),
+      },{ validators: this.requireAtLeastOneService }),
       contactNumber1: [
         '',
         [Validators.required, Validators.pattern('[0-9]{10}')],
@@ -105,6 +105,12 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
     } else {
       this.agencyForm.get(`services.${serviceName}`)?.setValue(false);
     }
+  }
+
+  requireAtLeastOneService(control: AbstractControl): { [key: string]: boolean } | null {
+    const services = Object.values(control.value);
+    const isAtLeastOneSelected = services.some(value => value);
+    return isAtLeastOneSelected ? null : { 'atLeastOneFacilityRequired': true };
   }
 
   onSubmit() {

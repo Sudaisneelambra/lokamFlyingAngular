@@ -1,0 +1,78 @@
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  @media (max-width:550px){
+    .form-container{
+        max-width:350px;
+    }
+  }
+  @media (max-width:400px){
+    .form-container{
+        max-width:280px;
+    }
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  textarea,
+  input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .fecilities {
+    margin-top: 20px;
+  }
+  
+  .fecility {
+    margin-bottom: 10px;
+  }
+  
+  .fecility input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .fecility label {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .fecility input[type="checkbox"]:checked + label {
+    font-weight: bold;
+  }
+  

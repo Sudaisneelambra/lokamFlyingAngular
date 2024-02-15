@@ -274,9 +274,9 @@
     </div>
 
     <div class="flex justify-evenly mt-5">
-      <input type="submit" value="Submit" (click)="onSubmit()" />
+      <button class="sub"  [disabled]="!agencyForm.valid" type="submit"(click)="onSubmit()">Submit</button>
       <input type="submit" value="Back" (click)="back()" *ngIf="datas !== null" />
-      <input type="submit" value="back to login" (click)="logout()" />
+      <input type="submit" value="back to login" (click)="logout()" *ngIf="datas == null" />
     </div>
   </form>
   <p class="text-red-600">{{ message }}</p>

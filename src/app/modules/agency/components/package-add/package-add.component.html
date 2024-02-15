@@ -1,1 +1,144 @@
-<p>package-add works!</p>
+<div
+  id="sticky-banner"
+  tabindex="-1"
+  class="top-0 start-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600"
+>
+  <div class="flex items-center mx-auto justify-between w-full">
+    <p
+      class="flex items-center justify-between w-full text-sm font-normal text-gray-500 dark:text-gray-400"
+    >
+      <img
+        src="/assets/images/logo-no-background.png"
+        class="w-[50px]"
+        alt=""
+      />
+      <span
+        >explore with us
+        <a
+          href="https://flowbite.com"
+          class="inline font-medium text-blue-600 underline dark:text-blue-500 underline-offset-2 decoration-600 dark:decoration-500 decoration-solid hover:no-underline"
+          >LOKAMA WORLD</a
+        ></span
+      >
+    </p>
+  </div>
+</div>
+
+<div class="form-container">
+    <form [formGroup]="packageForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Package Name:</label>
+        <input type="text" formControlName="packageName">
+      </div>
+  
+      <div class="form-group">
+        <label>About Package:</label>
+        <textarea formControlName="aboutPackage"></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label>Package Price:</label>
+        <input type="number" formControlName="packagePrice">
+      </div>
+  
+      <button type="button" class="mb-4">Add place</button>
+
+      <form [formGroup]="placeform" >
+        <div formArrayName="selectedPlaces">
+          <label *ngFor="let place of places; let i = index">
+            <input type="checkbox" [formControlName]="i" [value]="place.id"> {{ place.name }}
+          </label>
+        </div>
+      </form>
+
+      <div class="fecilities border-[1px] border-[#ccc] p-2 rounded-[4px]">
+        <label>fecilities:</label><br>
+      
+        <div class="fecility">
+          <input type="checkbox" id="Transportation" name="Transportation" (change)="updatefecility('Transportation', $event)">
+          <label for="Transportation">Transportation</label>
+        </div>
+        
+        <div class="fecility">
+          <input type="checkbox" id="Accommodation" name="Accommodation" (change)="updatefecility('Accommodation', $event)">
+          <label for="Accommodation">Accommodation</label>
+        </div>
+        
+        <div class="fecility">
+          <input type="checkbox" id="Meals" name="Meals" (change)="updatefecility('Meals', $event)">
+          <label for="Meals">Meals</label>
+        </div>
+
+        <div class="fecility">
+          <input type="checkbox" id="ProfessionalGuides" name="ProfessionalGuides:" (change)="updatefecility('ProfessionalGuides:', $event)">
+          <label for="ProfessionalGuides:">ProfessionalGuides</label>
+        </div>
+        
+        <div class="fecility">
+          <input type="checkbox" id="LanguageSupport" name="LanguageSupport" (change)="updatefecility('LanguageSupport', $event)">
+          <label for="LanguageSupport">LanguageSupport</label>
+        </div>
+
+        <div class="fecility">
+            <input type="checkbox" id="TravelInsurance" name="TravelInsurance" (change)="updatefecility('TravelInsurance', $event)">
+            <label for="TravelInsurance">TravelInsurance</label>
+        </div>
+        <div class="fecility">
+            <input type="checkbox" id="CustomerSupport" name="CustomerSupport" (change)="updatefecility('CustomerSupport', $event)">
+            <label for="CustomerSupport">CustomerSupport</label>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Start Date:</label>
+        <input type="date" formControlName="startDate">
+      </div>
+  
+      <div class="form-group">
+        <label>End Date:</label>
+        <input type="date" formControlName="endDate">
+      </div>
+  
+      <div class="form-group border-[1px] border-[#ccc] p-2 rounded-[4px]">
+        <label>Offer:</label><br>
+        <div class="offer-radio flex gap-4  ">
+          <input type="radio" id="offerYes" name="offer" formControlName="offer" value="Yes" (change)="onOfferChange($event,'yes')">
+          <label for="offerYes">Yes</label>
+        
+          <input type="radio" id="offerNo" name="offer" formControlName="offer" value="No" (change)="onOfferChange($event,'no')">
+          <label for="offerNo">No</label>
+        </div>
+      </div>
+  
+      <div class="form-group" *ngIf="booleanvalue">
+        <label>Offer Rate:</label>
+        <input type="number" formControlName="offerRate">
+      </div>
+  
+      <button type="button" class="mb-4">Add guide</button>
+
+      <form [formGroup]="guideForm" (ngSubmit)="onSubmit()">
+        <div formArrayName="selectedGuides">
+          <label *ngFor="let guide of guides; let i = index">
+            <input type="checkbox" [formControlName]="i" [value]="guide.id"> {{ guide.name }}
+          </label>
+        </div>
+      </form>
+
+      <div class="form-group">
+        <label>Maximum Capacity:</label>
+        <input type="number" formControlName="maximumCapacity">
+      </div>
+  
+      <div class="form-group">
+        <label>Available Slot:</label>
+        <input type="number" formControlName="availableSlot">
+      </div>
+  
+      <div class=" flex justify-evenly">
+        <button type="submit" [disabled]="!packageForm.valid">Submit</button>
+        <button type="submit" class="btn btn-primary" (click)="back()">back</button>
+      </div>
+    </form>
+  </div>
+  

@@ -24,7 +24,7 @@
   </div>
 </div>
 
-<form [formGroup]="placeForm"  class="place-form">
+<form [formGroup]="placeForm"  class="place-form ">
     <div class="form-group">
       <label for="placeName">Place Name:</label>
       <input type="text" id="placeName" formControlName="placeName" class="form-control">
@@ -54,7 +54,7 @@
       <input type="text" id="location" formControlName="location" class="form-control">
     </div>
   <div class="flex justify-evenly">
-    <button type="submit"  class="btn btn-primary" (click)="onSubmit()">Submit</button>
+    <button type="submit"  class="btn btn-primary" (click)="onSubmit()" [disabled]="!placeForm.valid">Submit</button>
     <button type="submit" class="btn btn-primary" (click)="back()">back</button>
   </div>
   <h1 class="text-red-500">{{message}}</h1>

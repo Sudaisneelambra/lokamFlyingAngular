@@ -24,6 +24,10 @@ export class agencyService {
     return this.http.post(`${this.api}/agency/placeadd`,data)
   }
 
+  addguide(data:any):Observable<any>{
+    return this.http.post(`${this.api}/agency/guideadd`,data)
+  }
+
 
   agencylogout(): Observable<any> {
     const one = localStorage.getItem('token');

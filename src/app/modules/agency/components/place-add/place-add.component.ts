@@ -55,7 +55,7 @@ export class PlaceAddComponent {
           if(res.success){
             this.router.navigate(['agency'])
           }else {
-            this.message=res.msg
+            this.message=res.message
           }          
         },
         error:(err)=>{
