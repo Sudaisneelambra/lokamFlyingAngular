@@ -49,7 +49,11 @@ export class GuideAddComponent {
         next:(data)=>{
           console.log(data);
           if(data.success){
-            this.router.navigate(['agency'])
+            this.message=data.msg
+            setTimeout(() => {
+            this.message=''
+              this.router.navigate(['agency'])
+            }, 2000);
           }else {
             this.message=data.message
             console.log(this.message);

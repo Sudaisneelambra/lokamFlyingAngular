@@ -13,7 +13,12 @@ import { Subscription } from 'rxjs';
 export class AgencyHomeComponent implements OnInit , OnDestroy{
 
   profileSubscription$!: Subscription;
+  placeSubscription$!: Subscription;
+  guideSubscription$!: Subscription;
   name!:string
+  data:any
+  guide:any
+  booleanvalue:boolean=true
 
   constructor(private service: agencyService, private router: Router) {}
   
@@ -26,6 +31,31 @@ export class AgencyHomeComponent implements OnInit , OnDestroy{
         console.log(err);
       }
     })
+
+    this.placeSubscription$= this.service.gettingplace().subscribe({
+      next:(res)=>{
+        console.log(res);
+        this.data= res.data
+        console.log(res.message);
+      },
+      error:(err)=>{
+        console.log(err);
+        console.log(err.message);
+      }
+    })
+
+    this.guideSubscription$ =this.service.gettingguides().subscribe({
+      next:(res)=>{
+        console.log(res);
+        this.guide= res.data
+        console.log(res.message);
+      },
+      error:(err)=>{
+        console.log(err);
+        console.log(err.message);
+      }
+    })
+
   }
   bool: boolean = true;
 
@@ -53,5 +83,9 @@ export class AgencyHomeComponent implements OnInit , OnDestroy{
 
   ngOnDestroy(): void {
     this.profileSubscription$.unsubscribe()
+
+    this.placeSubscription$.unsubscribe()
+
+    this.guideSubscription$.unsubscribe()
   }
 }

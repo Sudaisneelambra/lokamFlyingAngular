@@ -29,6 +29,14 @@ export class agencyService {
   }
 
 
+  gettingplace():Observable<any>{
+    return this.http.get(`${this.api}/agency/getplace`)
+  }
+  gettingguides():Observable<any>{
+    return this.http.get(`${this.api}/agency/getguide`)
+  }
+
+
   agencylogout(): Observable<any> {
     const one = localStorage.getItem('token');
     console.log(one);

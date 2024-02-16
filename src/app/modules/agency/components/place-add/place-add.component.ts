@@ -53,7 +53,11 @@ export class PlaceAddComponent {
         next:(res)=>{
           console.log(res);
           if(res.success){
-            this.router.navigate(['agency'])
+            this.message=res.message
+            setTimeout(() => {
+              this.message=''
+              this.router.navigate(['agency'])
+            }, 2000);
           }else {
             this.message=res.message
           }          

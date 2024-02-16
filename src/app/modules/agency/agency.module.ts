@@ -11,6 +11,10 @@ import { PlaceComponent } from './components/agency-home/places/place.component'
 import { AgencyHomeComponent } from './components/agency-home/agency-home.component';
 import { GuideComponent } from './components/agency-home/guide/guide.component';
 import { PackageComponent } from './components/agency-home/package/package.component';
+import { PlacePipe } from './pipes/placename.pipe';
+import { PlaceDiscriptionPipe } from './pipes/placeDiscription.pipe';
+import { guideDiscriptionPipe } from './pipes/guideDiscription.pipe';
+import { PlaceFulldetails } from './components/agency-home/places/placesfulldetails/placesfulldetails.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { PackageComponent } from './components/agency-home/package/package.compo
     PlaceComponent,
     AgencyHomeComponent,
     GuideComponent,
-    PackageComponent
+    PackageComponent,
+    PlacePipe,
+    PlaceDiscriptionPipe,
+    guideDiscriptionPipe,
+    PlaceFulldetails
     ],
   imports: [CommonModule,AgencyRoutes, ReactiveFormsModule, HttpClientModule],
   exports: [],
