@@ -15,6 +15,8 @@ import { PlacePipe } from './pipes/placename.pipe';
 import { PlaceDiscriptionPipe } from './pipes/placeDiscription.pipe';
 import { guideDiscriptionPipe } from './pipes/guideDiscription.pipe';
 import { PlaceFulldetails } from './components/agency-home/places/placesfulldetails/placesfulldetails.component';
+import { AgencyMainHome } from './components/home.component';
+import { GuideFulldetailes } from './components/agency-home/guide/guidefulldetails/guidefulldetails.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { PlaceFulldetails } from './components/agency-home/places/placesfulldeta
     PlacePipe,
     PlaceDiscriptionPipe,
     guideDiscriptionPipe,
-    PlaceFulldetails
+    PlaceFulldetails,
+    AgencyMainHome,
+    GuideFulldetailes
     ],
   imports: [CommonModule,AgencyRoutes, ReactiveFormsModule, HttpClientModule],
   exports: [],

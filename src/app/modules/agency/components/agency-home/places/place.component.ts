@@ -1,5 +1,7 @@
 
 import { Component,EventEmitter,Input, OnInit, Output } from '@angular/core';
+import { agencyService } from '../../../services/agency.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-places',
@@ -7,22 +9,34 @@ import { Component,EventEmitter,Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./place.component.css']
 })
 export class PlaceComponent implements OnInit{
+
+  constructor(private service:agencyService, private rounter:Router){}
   @Input() data:any;
 
   isHovered:boolean=false
   interwell:number=0
   truncatedDescription:any
   placeName:any
+
+  selectedIndex=0
+  bool=true
+  control=true
+  val=true
+  images:any
+  
     ngOnInit(): void {
-     setInterval(()=>{
-      this.interwell=Math.floor(5*Math.random())
-     },3000) 
      console.log(this.data);
 
+     this.images=this.data.placeurl
+     console.log(this.images);
      
 
       this.truncatedDescription = this.truncateDescription(this.data.placeDescription)
       this.placeName=this.place(this.data.placeName)
+
+      if(this.val){
+        this.auto()
+      }
        
     }
 
@@ -47,13 +61,52 @@ export class PlaceComponent implements OnInit{
     }
 
     private place(value: string): string {
-      return value.length > 13 ? `${value.substring(0, 13)}...` : value;
+      return value.length > 12 ? `${value.substring(0, 12)}...` : value;
     }
 
     private fullPlacename(value: string): string {
       return value;
     }
 
+    fulldetails(id:any){
+      this.service.getsingleplace(id).subscribe({
+        next:(res)=>{
+          if(res.success){
+            this.service.singleplace.next(res.data)
+            this.rounter.navigate(['/agency/placedetails'])
+            console.log(res);
+          }
+        },
+        error:(err)=>{
 
+        }
+      })
+    }
+
+   
+  
+    selectimge(index:number){
+      this.selectedIndex=index
+    }
+    onprevclick(){
+      if(this.selectedIndex === 0){
+        this.selectedIndex =this.images.length-1
+      } else{
+        this.selectedIndex --;
+      }
+    }
+    onnextclick(){
+      if(this.selectedIndex === this.images.length-1){
+        this.selectedIndex =0
+      } else{
+        this.selectedIndex ++;
+      }
+    }
+  
+    auto(){
+      setInterval(()=>{
+        this.onnextclick()
+      },6000)
+    }
     
 }

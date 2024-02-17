@@ -1,5 +1,62 @@
-<div class="w-full h-screen bg-transparent flex justify-center items-center absolute z-10">
-   <div class="w-[80%] h-[80%] bg-[#c5b4b4]">
-      
-   </div>
-</div>
+<body>
+  <div class="sin">
+    <div class="place-info">
+      <h1 class="font-bold text-[#ff5500] text-[30px] mb-[20px]">
+        {{ singlePlacedata.placeName | uppercase }}
+      </h1>
+      <div class="" *ngIf="images && images.length > 0" class="son">
+        <img
+          alt="erwee"
+          *ngFor="let image of images; let i = index"
+          [src]="image"
+          [ngClass]="{ 'image-active': selectedIndex === i }"
+          class="fade"
+        />
+
+        <div class="love" *ngIf="bool">
+          <span
+            *ngFor="let dot of images; let i = index"
+            class="dot"
+            [ngClass]="{ active: selectedIndex === i }"
+            (click)="selectimge(i)"
+          ></span>
+        </div>
+
+        <button class="chin btn-prev" *ngIf="control">
+          <i
+            class="fas fa-arrow-circle-left btn-carousel icon-prev"
+            (click)="onprevclick()"
+          ></i>
+        </button>
+        <button class="chin btn-next" *ngIf="control">
+          <i
+            class="fas fa-arrow-circle-right btn-carousel icon-next"
+            (click)="onnextclick()"
+          ></i>
+        </button>
+      </div>
+      <div class="place-details">
+        <p class="mt-[20px]">
+          <strong>About the Place:</strong
+          >{{ singlePlacedata.placeDescription }}
+        </p>
+        <p><strong>Opening Time:</strong> {{ singlePlacedata.openingTime }}</p>
+        <p><strong>Closing Time:</strong> {{ singlePlacedata.closingTime }}</p>
+        <p>
+          <strong>Entry Fee:</strong
+          ><i class="fa-solid fa-indian-rupee-sign text-[14px] ml-4"></i>
+          {{ singlePlacedata.entryFee }}
+        </p>
+        <p class="place-location">
+          <strong>Location:</strong>{{ singlePlacedata.location }}
+        </p>
+      </div>
+      <div class="p-2.5 flex justify-evenly mt-5">
+        <button>Edit details</button>
+        <button (click)="delete(singlePlacedata._id)">Delete place</button>
+        <button (click)="back()">Back</button>
+      </div>
+      <p class="text-center text-green-700">{{msg}}</p>
+    </div>
+  </div>
+</body>

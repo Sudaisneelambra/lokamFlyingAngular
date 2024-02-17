@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { agencyService } from '../../../services/agency.service';
 
 @Component({
   selector: 'app-guide',
@@ -8,12 +9,27 @@ import { Component, Input, OnInit } from '@angular/core';
 export class GuideComponent implements OnInit{
 
 
+  constructor(private service:agencyService){}
   @Input() guide:any
   aboutguide:any
+  fullguide!:any
 
   ngOnInit(): void {
 
       this.aboutguide =this.slittedDiscription(this.guide.aboutguide)
+  }
+
+  getguide(id:any){
+    this.service.getsingleguide(id).subscribe({
+      next:(res)=>{
+        console.log(res);
+        this.service.singleguide.next(res.data)
+      },
+      error:(err)=>{
+        console.log(err);
+        console.log(err.message);
+      }
+    })
   }
 
   onMouseEnter(){

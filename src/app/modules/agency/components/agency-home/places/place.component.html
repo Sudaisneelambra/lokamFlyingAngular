@@ -1,19 +1,35 @@
 <div
   class="one w-[230px] h-[300px] border-[1px] overflow-hidden bg-[#fff] relative rounded-md"
 >
-  <img
-    src="{{ data.placeurl[interwell] }}"
-    style="height: 100%; width: auto; border: 2px; filter: brightness(80%)"
-    alt=""
-  />
-  <div class="sin w-full h-[35%] absolute bottom-0 bg-[#808080d7]" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+  <div class="place-image  h-full">
+    <div  *ngIf="images && images.length >0" class="son">
+      <img  alt="erwee" *ngFor="let image of images; let i=index"
+      [src]="image"
+      [ngClass]="{'image-active':selectedIndex === i }"
+      class="fade"
+      >
+  
+      <div class="love" *ngIf="bool">
+          <span *ngFor="let dot of images; let i=index" class="dot"
+          [ngClass]="{'active':selectedIndex===i}"
+          (click)="selectimge(i)"
+          ></span>
+      </div>
+  </div>
+  </div>
+  <div
+    class="sin w-full h-[35%] absolute bottom-0 bg-[#808080d7]"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()"
+  >
     <h1 class="name pl-1 font-bold text-[23px] text-[#ffffff] text-center">
-      {{ placeName }}
+      {{ placeName | uppercase }}
     </h1>
-    <button class=" hidden px-4 my-4">view full details</button>
-    <h1 class="disc pl-1 font-medium text-[#3a1c1c] text-center"
-   >
-    {{ truncatedDescription }}
+    <button class="hidden px-4 my-4" (click)="fulldetails(data._id)">
+      view full details
+    </button>
+    <h1 class="disc pl-1 font-medium text-[#3a1c1c] text-center">
+      {{ truncatedDescription }}
     </h1>
   </div>
 </div>
