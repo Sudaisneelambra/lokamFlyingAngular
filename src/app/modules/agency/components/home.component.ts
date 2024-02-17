@@ -23,13 +23,17 @@ export class AgencyMainHome{
       this.profileSubscription$ = this.service.getingprofile().subscribe({
         next:(res)=>{
           this.name=res.user.name
+          
         },
         error:(err)=>{
           console.log(err);
         }
       })
+      if(this.router.url === '/agency'){
+        this.router.navigate(['/agency/home'])
 
-      this.router.navigate(['/agency/home'])
+      }
+
   
   
     }

@@ -6,7 +6,6 @@ import { gotouserhome } from 'src/app/guards/userhome.guard';
 const routes: Routes = [
   {
     path: '',
-    canActivate: [gotouserhome],
     component: HomepageComponent,
   },
 ];

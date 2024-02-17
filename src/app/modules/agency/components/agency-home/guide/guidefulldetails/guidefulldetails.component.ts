@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
 import { agencyService } from "src/app/modules/agency/services/agency.service";
 
 @Component({
@@ -7,11 +8,28 @@ import { agencyService } from "src/app/modules/agency/services/agency.service";
     styleUrls:['./guidefulldetails.component.css']
 })
 
-export class GuideFulldetailes{
+export class GuideFulldetailes implements OnInit,OnDestroy{
 
     constructor(private service:agencyService){}
+    
+    getingguidebehaviour$!:Subscription
+    singleguide!:any
+    
+    ngOnInit(): void {
+        this.getingguidebehaviour$= this.service.singleguide.subscribe({
+            next:(res)=>{
+                this.singleguide=res
+                console.log(res);
+                console.log(this.singleguide);  
+            },
+            error:(err)=>{
+                console.log(err);
+            }
+        })
+    }
 
-    onInit(){
-        
+
+    ngOnDestroy(): void {
+        this.getingguidebehaviour$.unsubscribe()
     }
 }

@@ -7,12 +7,10 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 const routes: Routes = [
   {
     path: '',
-    canActivate: [backtoLoginAuthGuard],
     component: LoginComponent,
   },
   {
     path: 'authentication',
-    canActivate: [backtoLoginAuthGuard],
     component: LoginComponent,
   },
   {

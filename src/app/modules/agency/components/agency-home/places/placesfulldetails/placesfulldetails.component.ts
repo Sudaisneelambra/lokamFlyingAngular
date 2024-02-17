@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { Carousel, initTE } from 'tw-elements';
 import { agencyService } from 'src/app/modules/agency/services/agency.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-placefulldetails',
@@ -11,9 +13,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./placesfulldetails.component.css'],
 })
 export class PlaceFulldetails implements OnInit, OnDestroy {
-  constructor(private service: agencyService, private location: Location, private router:Router) {}
+  constructor(private service: agencyService, private location: Location, private router:Router ,private route:ActivatedRoute) {}
 
-  getingplacebehaviour$!: Subscription;
   singlePlacedata!: any;
   selectedIndex = 0;
   bool = true;
@@ -23,17 +24,24 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
   msg!:string
 
   ngOnInit(): void {
-    this.getingplacebehaviour$ = this.service.singleplace.subscribe({
-      next: (res: any) => {
-        this.singlePlacedata = res;
-        this.images=this.singlePlacedata.placeurl
-        console.log(res);
-        console.log(this.singlePlacedata);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    
+    this.route.params.subscribe(params => {
+        const id = params['id'];
+        this.service.getsingleplace(id).subscribe({
+            next:(res)=>{
+                console.log(res);
+                this.singlePlacedata=res.data
+                this.images=res.data.placeurl
+                console.log(this.singlePlacedata);
+                
+            },
+            error:(err)=>{
+                console.log(err.message);
+                this.router.navigate(['/error']) 
+            }
+        })
+      });
+
     if(this.val){
         this.auto()
       }
@@ -59,18 +67,23 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
    }
   }
 
+  edit(id:any){
+    this.router.navigate([`/agency/profileadd/${id}`])
+  }
+
+
   selectimge(index: number) {
     this.selectedIndex = index;
   }
   onprevclick() {
     if (this.selectedIndex === 0) {
-      this.selectedIndex = this.images.length - 1;
+      this.selectedIndex = this.images?.length - 1;
     } else {
       this.selectedIndex--;
     }
   }
   onnextclick() {
-    if (this.selectedIndex === this.images.length - 1) {
+    if (this.selectedIndex === this.images?.length - 1) {
       this.selectedIndex = 0;
     } else {
       this.selectedIndex++;
@@ -86,6 +99,5 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
     this.location.back();
   }
   ngOnDestroy(): void {
-    this.getingplacebehaviour$.unsubscribe();
   }
 }

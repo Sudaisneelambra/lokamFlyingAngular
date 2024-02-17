@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { agencyService } from '../../../services/agency.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-guide',
@@ -9,7 +10,7 @@ import { agencyService } from '../../../services/agency.service';
 export class GuideComponent implements OnInit{
 
 
-  constructor(private service:agencyService){}
+  constructor(private service:agencyService, private router:Router){}
   @Input() guide:any
   aboutguide:any
   fullguide!:any
@@ -24,6 +25,7 @@ export class GuideComponent implements OnInit{
       next:(res)=>{
         console.log(res);
         this.service.singleguide.next(res.data)
+        this.router.navigate(['/agency/guidedetails'])
       },
       error:(err)=>{
         console.log(err);

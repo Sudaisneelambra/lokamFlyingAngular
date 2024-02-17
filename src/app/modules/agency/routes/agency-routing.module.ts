@@ -13,7 +13,6 @@ import { GuideFulldetailes } from '../components/agency-home/guide/guidefulldeta
 const routes: Routes = [
   {
     path: '',
-    canActivate: [gotoagencyhome],
     component: AgencyMainHome,
     children:[
         {
@@ -22,7 +21,6 @@ const routes: Routes = [
         },
         {
           path: 'profileadd',
-          canActivate: [gotoagencyhome],
           component: ProfileAddComponent,
         },
         {
@@ -38,7 +36,7 @@ const routes: Routes = [
           component:GuideAddComponent
         },
         {
-          path:'placedetails',
+          path:'placedetails/:id',
           component:PlaceFulldetails
         },
         {

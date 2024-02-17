@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 export class PlaceComponent implements OnInit{
 
   constructor(private service:agencyService, private rounter:Router){}
-  @Input() data:any;
 
+  @Input() data:any;
   isHovered:boolean=false
   interwell:number=0
   truncatedDescription:any
@@ -25,10 +25,7 @@ export class PlaceComponent implements OnInit{
   images:any
   
     ngOnInit(): void {
-     console.log(this.data);
-
      this.images=this.data.placeurl
-     console.log(this.images);
      
 
       this.truncatedDescription = this.truncateDescription(this.data.placeDescription)
@@ -69,18 +66,7 @@ export class PlaceComponent implements OnInit{
     }
 
     fulldetails(id:any){
-      this.service.getsingleplace(id).subscribe({
-        next:(res)=>{
-          if(res.success){
-            this.service.singleplace.next(res.data)
-            this.rounter.navigate(['/agency/placedetails'])
-            console.log(res);
-          }
-        },
-        error:(err)=>{
-
-        }
-      })
+      this.rounter.navigate([`/agency/placedetails/${id}`])
     }
 
    

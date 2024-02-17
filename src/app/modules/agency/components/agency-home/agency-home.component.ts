@@ -34,9 +34,7 @@ export class AgencyHomeComponent implements OnInit , OnDestroy{
 
     this.placeSubscription$= this.service.gettingplace().subscribe({
       next:(res)=>{
-        console.log(res);
         this.data= res.data
-        console.log(res.message);
       },
       error:(err)=>{
         console.log(err);
@@ -46,9 +44,7 @@ export class AgencyHomeComponent implements OnInit , OnDestroy{
 
     this.guideSubscription$ =this.service.gettingguides().subscribe({
       next:(res)=>{
-        console.log(res);
         this.guide= res.data
-        console.log(res.message);
       },
       error:(err)=>{
         console.log(err);
