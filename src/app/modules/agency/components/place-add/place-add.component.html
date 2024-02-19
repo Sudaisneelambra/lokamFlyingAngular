@@ -28,7 +28,8 @@
       <input type="text" id="location" formControlName="location" class="form-control">
     </div>
   <div class="flex justify-evenly">
-    <button type="submit"  class="btn btn-primary" (click)="onSubmit()" [disabled]="!placeForm.valid">Submit</button>
+    <button type="submit"  class="btn btn-primary" (click)="onSubmit()" [disabled]="!placeForm.valid" *ngIf="!placedata">Add</button>
+    <button type="submit"  class="btn btn-primary"  (click)="edit()" [disabled]="!placeForm.valid" *ngIf="placedata">edit</button>
     <button type="submit" class="btn btn-primary" (click)="back()">back</button>
   </div>
   <h1 class="text-red-500">{{message}}</h1>

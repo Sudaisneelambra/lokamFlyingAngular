@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgencyRoutes } from './routes/agency-routing.module';
 import { ProfileAddComponent } from './components/profile-add/profile-add.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PackageAddComponent } from './components/package-add/package-add.component';
 import { PlaceAddComponent } from './components/place-add/place-add.component';
@@ -35,7 +35,7 @@ import { GuideFulldetailes } from './components/agency-home/guide/guidefulldetai
     AgencyMainHome,
     GuideFulldetailes
     ],
-  imports: [CommonModule,AgencyRoutes, ReactiveFormsModule, HttpClientModule],
+  imports: [CommonModule,AgencyRoutes, ReactiveFormsModule, HttpClientModule, FormsModule],
   exports: [],
   providers: [],
 })

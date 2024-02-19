@@ -12,9 +12,8 @@ import { Subscription } from 'rxjs';
 })
 export class AgencyHomeComponent implements OnInit , OnDestroy{
 
-  profileSubscription$!: Subscription;
-  placeSubscription$!: Subscription;
-  guideSubscription$!: Subscription;
+  placeSubscription$ = new Subscription;
+  guideSubscription$ =new Subscription;
   name!:string
   data:any
   guide:any
@@ -23,15 +22,8 @@ export class AgencyHomeComponent implements OnInit , OnDestroy{
   constructor(private service: agencyService, private router: Router) {}
   
   ngOnInit(){
-    this.profileSubscription$ = this.service.getingprofile().subscribe({
-      next:(res)=>{
-        this.name=res.user.name
-      },
-      error:(err)=>{
-        console.log(err);
-      }
-    })
 
+    // all place getting api
     this.placeSubscription$= this.service.gettingplace().subscribe({
       next:(res)=>{
         this.data= res.data
@@ -42,6 +34,7 @@ export class AgencyHomeComponent implements OnInit , OnDestroy{
       }
     })
 
+    //all place getting api
     this.guideSubscription$ =this.service.gettingguides().subscribe({
       next:(res)=>{
         this.guide= res.data
@@ -53,17 +46,11 @@ export class AgencyHomeComponent implements OnInit , OnDestroy{
     })
 
   }
-  bool: boolean = true;
 
-  toggle() {
-    if (this.bool) {
-      this.bool = false;
-    } else {
-      this.bool = true;
-    }
-  }
-  
+  // logout
   logout() {
+
+  // logout and token delete
     this.service.agencylogout().subscribe({
       next: (res) => {
         console.log(res);
@@ -77,9 +64,8 @@ export class AgencyHomeComponent implements OnInit , OnDestroy{
   }
 
 
-
+// page distroying
   ngOnDestroy(): void {
-    this.profileSubscription$.unsubscribe()
 
     this.placeSubscription$.unsubscribe()
 

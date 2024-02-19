@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 })
 
 export class AgencyMainHome{
-    profileSubscription$!: Subscription;
+    profileSubscription$ = new Subscription;
     name!:string
     data:any
     guide:any
@@ -20,7 +20,8 @@ export class AgencyMainHome{
     constructor(private service: agencyService, private router: Router) {}
     
     ngOnInit(){
-      this.profileSubscription$ = this.service.getingprofile().subscribe({
+      // getting profile name 
+      this.profileSubscription$ = this.service.getingprofilename().subscribe({
         next:(res)=>{
           this.name=res.user.name
           
@@ -29,6 +30,8 @@ export class AgencyMainHome{
           console.log(err);
         }
       })
+
+      // url check
       if(this.router.url === '/agency'){
         this.router.navigate(['/agency/home'])
 
@@ -40,6 +43,7 @@ export class AgencyMainHome{
 
     bool: boolean = false;
   
+    // nav bar reponsive
     toggle() {
       if (this.bool) {
         this.bool = false;
@@ -48,6 +52,7 @@ export class AgencyMainHome{
       }
     }
     
+    // logout
     logout() {
       this.service.agencylogout().subscribe({
         next: (res) => {
@@ -60,13 +65,8 @@ export class AgencyMainHome{
       console.log('logouted');
       this.router.navigate(['authentication']);
     }
-    showSide:Boolean=false;
-
-    showSideBar(){
-      this.showSide=!this.showSide;
-      console.log('btn clicked');
-    }
   
+    // destroying component
     ngOnDestroy(): void {
       this.profileSubscription$.unsubscribe()
     }

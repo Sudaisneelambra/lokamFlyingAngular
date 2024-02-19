@@ -17,34 +17,33 @@ export class GuideComponent implements OnInit{
 
   ngOnInit(): void {
 
+      // discription piping
       this.aboutguide =this.slittedDiscription(this.guide.aboutguide)
   }
 
+  //getting all details button
   getguide(id:any){
-    this.service.getsingleguide(id).subscribe({
-      next:(res)=>{
-        console.log(res);
-        this.service.singleguide.next(res.data)
-        this.router.navigate(['/agency/guidedetails'])
-      },
-      error:(err)=>{
-        console.log(err);
-        console.log(err.message);
-      }
-    })
+    
+    //navigate to guide details with params
+        this.router.navigate([`/agency/guidedetails/${id}`])
   }
 
+  // piping function
   onMouseEnter(){
     this.aboutguide=this.fulldetails(this.guide.aboutguide)
   }
+
+  // piping function
   onMouseLeave(){
     this.aboutguide=this.slittedDiscription(this.guide.aboutguide)
   }
 
+  // piping function
   private slittedDiscription(value:string){
     return value.length>55 ? `${value.substring(0,55)}...` :value;
   }
 
+  // piping function
   private fulldetails(value:string){
     return value
   }

@@ -27,6 +27,7 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
     
     this.route.params.subscribe(params => {
         const id = params['id'];
+        // getting all detials of specific place
         this.service.getsingleplace(id).subscribe({
             next:(res)=>{
                 console.log(res);
@@ -42,14 +43,17 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
         })
       });
 
+    // auto carosel
     if(this.val){
         this.auto()
       }
   }
 
+  // delete button function
   delete(id:any){
     const confirmed = confirm('Are you sure you want to delete?');
    if(confirmed){
+    // deleting place from database
     this.service.deletingPlace(id).subscribe({
         next:(res)=>{
             if(res.success){
@@ -61,20 +65,23 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
             }
         },
         error:(err)=>{
-
+          console.log(err);   
         }
     })
    }
   }
 
+  // edit button triggered
   edit(id:any){
-    this.router.navigate([`/agency/profileadd/${id}`])
+    this.router.navigate([`/agency/placeadd`], { queryParams: { id: id } })
   }
 
-
+// carosel function
   selectimge(index: number) {
     this.selectedIndex = index;
   }
+
+  // carosel preview button function
   onprevclick() {
     if (this.selectedIndex === 0) {
       this.selectedIndex = this.images?.length - 1;
@@ -82,6 +89,8 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
       this.selectedIndex--;
     }
   }
+
+  // carosel next button function
   onnextclick() {
     if (this.selectedIndex === this.images?.length - 1) {
       this.selectedIndex = 0;
@@ -89,15 +98,20 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
       this.selectedIndex++;
     }
   }
+
+  // auto acrosel
   auto(){
     setInterval(()=>{
       this.onnextclick()
     },5000)
   }
 
+  // back to previous location
   back() {
     this.location.back();
   }
+
+  // distroing component
   ngOnDestroy(): void {
   }
 }

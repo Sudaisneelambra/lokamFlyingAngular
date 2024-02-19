@@ -14,10 +14,12 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  // signuping post data
   userSignupPost(data: any) {
     return this.http.post(`${this.userapi}/user/signup`, data, httpOptions);
   }
 
+  // otp verification 
   userOtpverification(data: any): Observable<any> {
     console.log(data);
     return this.http.post(
@@ -27,14 +29,17 @@ export class UserService {
     );
   }
 
+  // user login
   userLogin(data: login): Observable<any> {
     return this.http.post(`${this.userapi}/user/login`, data, httpOptions);
   }
 
+  // token check
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token'); // Check if JWT token exists in localStorage
   }
 
+  // type user check
   gettypeuser() {
     const type = localStorage.getItem('type');
     console.log(type);
@@ -45,6 +50,7 @@ export class UserService {
     }
   }
 
+  // type agency check
   gettypeagency() {
     const type = localStorage.getItem('type');
     console.log(type);

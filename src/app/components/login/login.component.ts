@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/commonSignup.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+
   // creation of a variable
   already: any;
   otp: any = '';
@@ -20,14 +21,14 @@ export class LoginComponent {
   loginmessage!: string;
   error!: string;
 
-  // injecting formbuilder
+  // dependency injecting
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router
   ) {}
 
-  // create scheme using form group
+  // create scheme using form group for signup
   ngOnInit(): void {
     this.userForm = this.fb.group({
       username: ['', [Validators.required, Validators.pattern('^[a-z]*$')]],
@@ -52,6 +53,9 @@ export class LoginComponent {
       ),
     });
 
+
+  // create scheme using form group for login
+
     this.login = this.fb.group({
       mail: ['', [Validators.required, Validators.email]],
       pass: [
@@ -67,6 +71,8 @@ export class LoginComponent {
     });
   }
 
+
+  // getting all form controls of login form
   get l() {
     return this.login.controls;
   }
@@ -82,12 +88,12 @@ export class LoginComponent {
     return null;
   }
 
-  // get all controls of the form group
+  // get all controls of the signup form
   get f() {
     return this.userForm.controls;
   }
 
-  // submittision of form
+  // submittision of signup form
   onSubmit(): void {
     this.submitted = true;
 
@@ -116,9 +122,13 @@ export class LoginComponent {
     });
   }
 
+  // otp conponets if case value
+
   boool(data: any) {
     this.bool = data;
   }
+
+  // logining login form
 
   logins() {
     console.log(this.login.value);
@@ -201,6 +211,8 @@ export class LoginComponent {
 
   hidePassword = true;
 
+  // pawword hiding function
+  
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
   }

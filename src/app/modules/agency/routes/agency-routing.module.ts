@@ -40,7 +40,7 @@ const routes: Routes = [
           component:PlaceFulldetails
         },
         {
-          path:'guidedetails',
+          path:'guidedetails/:id',
           component:GuideFulldetailes
         },
     ]

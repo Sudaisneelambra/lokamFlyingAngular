@@ -1,22 +1,26 @@
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { agencyService } from '../../services/agency.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-place-add',
   templateUrl: './place-add.component.html',
   styleUrls: ['./place-add.component.css']
 })
-export class PlaceAddComponent {
+export class PlaceAddComponent implements OnInit,OnDestroy{
 
   placeForm: FormGroup;
   maxImagesAllowed: number = 5;
   message!:string
   selectedImages: File[] = [];
+  placedata!:any
+  singleplace$=new Subscription
+  id:any
 
-  constructor(private formBuilder: FormBuilder ,private router:Router ,private location :Location , private service:agencyService) {
+  constructor(private formBuilder: FormBuilder ,private router:Router ,private location :Location , private service:agencyService ,private route:ActivatedRoute) {
     // Initialize the form
     this.placeForm = this.formBuilder.group({
       placeName: ['', Validators.required],
@@ -27,8 +31,32 @@ export class PlaceAddComponent {
       location: ['', Validators.required]
     });
   }
+  ngOnInit(): void {
+    // getting queryparams
+    this.route.queryParams.subscribe(params => {
+      this.id = params['id'];
+      console.log('ID from query params:', this.id);
+      if(this.id){
+        // deleting place from database
+        this.singleplace$ =this.service.getsingleplace(this.id).subscribe({
+          next:(res)=>{
+            this.placedata=res.data
+            this.placeForm.get('placeName')?.patchValue(this.placedata.placeName)
+            this.placeForm.get('placeDescription')?.patchValue(this.placedata.placeDescription)
+            this.placeForm.get('openingTime')?.patchValue(this.placedata.openingTime)
+            this.placeForm.get('closingTime')?.patchValue(this.placedata.closingTime)
+            this.placeForm.get('entryFee')?.patchValue(this.placedata.entryFee)
+            this.placeForm.get('location')?.patchValue(this.placedata.location)
+          },
+          error:(err)=>{
+            console.log(err);
+          }
+        })
+      }
+    });
+  }
 
-  // Handle form submission
+//  place form submitting
   onSubmit() {
     if(this.selectedImages.length < 5){
       this.message="please select minimum and maximum 5photos"
@@ -49,6 +77,7 @@ export class PlaceAddComponent {
         formData.append('images', image);
       }
 
+      // add place api
       this.service.addplace(formData).subscribe({
         next:(res)=>{
           console.log(res);
@@ -73,6 +102,54 @@ export class PlaceAddComponent {
     }
   }
 
+  // edit button triggered
+  edit(){
+    if(this.selectedImages.length < 5){
+      this.message="please select minimum and maximum 5photos"
+      
+    }else if (this.placeForm.valid) {
+      const formData = new FormData();
+      formData.append('placeName', this.placeForm.value.placeName);
+      formData.append('placeDescription', this.placeForm.value.placeDescription);
+      formData.append('openingTime', this.placeForm.value.openingTime);
+      formData.append('closingTime', this.placeForm.value.closingTime);
+      formData.append('entryFee', this.placeForm.value.entryFee);
+      formData.append('location', this.placeForm.value.location);
+      formData.append('id', this.id);
+
+      
+      // Append selected images
+
+      for (const image of this.selectedImages) {
+        formData.append('images', image);
+      }
+      
+      // edit place api
+      this.service.editplace(formData).subscribe({
+        next:(res)=>{
+          console.log(res);
+          if(res.success){
+            this.message=res.message
+            setTimeout(() => {
+              this.message=''
+              this.router.navigate(['agency/home'])
+            }, 2000);
+          }else {
+            this.message=res.message
+          }          
+        },
+        error:(err)=>{
+          console.log(err);
+        }
+      })
+
+
+    } else {
+      console.log('Form is invalid or no images selected');
+    }
+  }
+
+  // images file changing dettection
   onImageChange(event: any) {
     if (event.target.files && event.target.files.length > 0) {
 
@@ -90,8 +167,13 @@ export class PlaceAddComponent {
     
   }
 
-
+// back to previous location
   back(){
       this.location.back()
+  }
+
+  
+  ngOnDestroy(): void {
+    this.singleplace$?.unsubscribe()
   }
 }

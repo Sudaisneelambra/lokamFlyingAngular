@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { agencyService } from '../../services/agency.service';
 
 @Component({
   selector: 'app-package-add',
@@ -8,18 +9,20 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '
   styleUrls: ['./package-add.component.css']
 })
 export class PackageAddComponent {
-
+  
   packageForm!: FormGroup;
   booleanvalue:boolean =false
-  guideForm!: FormGroup;
-  placeform!:FormGroup;
-  guides: { id: number, name: string ,age:number}[] = [];
-  places: { id: number, name: string ,age:number}[] = [];
+  guides!:any[];
+  places!:any[];
+  selectedplace: any;
+  arrivalTime!: any;
+  returntime: any;
+  addedplaces:any[]=[]
+  selectedGuides: any[] = [];
+  
 
+  constructor(private fb: FormBuilder, private location:Location , private service:agencyService) { 
 
-  constructor(private fb: FormBuilder, private location:Location) { }
-
-  ngOnInit(): void {
     this.packageForm = this.fb.group({
       packageName: ['', Validators.required],
       aboutPackage: ['',Validators.required],
@@ -41,89 +44,15 @@ export class PackageAddComponent {
       maximumCapacity: ['', Validators.required],
       availableSlot: ['', Validators.required]
     });
+   
+  }
 
 
-
-
-    this.guideForm = this.fb.group({
-      selectedGuides: this.fb.array([])
-    });
-
-    this.placeform = this.fb.group({
-      selectedPlaces: this.fb.array([])
-    });
+  ngOnInit(): void {
     
-    this.guides=[
-      // {
-      //   id:1,
-      //   name:"sudais",
-      //   age:21
-      // },
-      // {
-      //   id:2,
-      //   name:"sudais",
-      //   age:21
-      // },
-      {
-        id:3,
-        name:"sudais",
-        age:21
-      },
-      {
-        id:4,
-        name:"sudais",
-        age:21
-      },
-      {
-          id:5,
-        name:"sudais",
-        age:21
-      },
-    ]
-
-
-    this.places=[
-      {
-        id:1,
-        name:"sudais",
-        age:21
-      },
-      {
-        id:2,
-        name:"sudais",
-        age:21
-      },
-      // {
-      //   id:3,
-      //   name:"sin",
-      //   age:21
-      // },
-      // {
-      //   id:4,
-      //   name:"sinn",
-      //   age:21
-      // },
-      // {
-      //     id:5,
-      //   name:"kunaa",
-      //   age:21
-      // },
-    ]
-
-    this.addCheckboxes()
-    this.addPlaceCheckboxes()
   }
 
-   addCheckboxes() {
-    const selectedGuidesArray = this.guideForm.get('selectedGuides') as FormArray;
-    this.guides.forEach(() => selectedGuidesArray.push(this.fb.control('')));
-  }
-
-  addPlaceCheckboxes() {
-    const selectedplacesArray = this.placeform.get('selectedPlaces') as FormArray;
-    this.guides.forEach(() => selectedplacesArray.push(this.fb.control('')));
-  }
-
+  // required atleast one
   requireAtLeastOneFacility(control: AbstractControl): { [key: string]: boolean } | null {
     const facilities = Object.values(control.value);
     const isAtLeastOneSelected = facilities.some(value => value);
@@ -131,38 +60,30 @@ export class PackageAddComponent {
   }
 
   onSubmit() {
-    // if (this.packageForm.valid) {
-    //   console.log(this.packageForm.value); // You can do whatever you want with the form data here
-    // } else {
-    //   console.error('Form is invalid');
-    // }
-
-    const selectedGuideIds = this.guideForm.value.selectedGuides
-      .map((checked:any, i:any) => checked ? this.guides[i].id : null)
-      .filter((v:any) => v !== null);
-    console.log('Selected Guide Ids:', selectedGuideIds);
-
-    const selectedplacesId = this.placeform.value.selectedPlaces
-    .map((checked:any, i:any) => checked ? this.places[i].id : null)
-    .filter((v:any) => v !== null);
-  console.log('Selected place Ids:', selectedplacesId);
-
-    console.log(this.guideForm.value);
-    console.log(this.guideForm.value);
     console.log(this.packageForm.value);
+    console.log(this.addedplaces);
+    console.log(this.selectedGuides);
+    if(!this.packageForm.valid || this.addedplaces && this.addedplaces.length<1 || this.selectedGuides && this.selectedGuides.length<1){
+      alert('choose the required datas')
+    } else {
+      const fulldata= {mainform:this.packageForm.value,places:this.addedplaces,guid:this.selectedGuides}
+      console.log(fulldata);
+      this.service.addpackage(fulldata).subscribe({
+        next:(res)=>{
+          console.log(res.message);
+        },
+        error:(err)=>{
+          console.log(err);
+          
+        }
+      })
+    }
+    
+    
     
   }
 
-  updateService(serviceName: string, event: any) {
-    // if (event.target.checked) {
-    //   this.agencyForm.get(`services.${serviceName}`)?.setValue(true);
-    // } else {
-    //   this.agencyForm.get(`services.${serviceName}`)?.setValue(false);
-    // }
-  }
-
- 
-
+  // checking offer is valid
   onOfferChange(event:any,boolean:string){
         if(boolean=='yes'){
           this.booleanvalue=true
@@ -171,18 +92,97 @@ export class PackageAddComponent {
         }
     }
 
+// update fecility
+  updatefecility(serviceName: string, event: any) {
+    if (event.target.checked) {
+      this.packageForm.get(`fecilities.${serviceName}`)?.setValue(true);
+    } else {
+      this.packageForm.get(`fecilities.${serviceName}`)?.setValue(false);
+    }
+  }
 
-    updatefecility(serviceName: string, event: any) {
-      if (event.target.checked) {
-        this.packageForm.get(`fecilities.${serviceName}`)?.setValue(true);
-      } else {
-        this.packageForm.get(`fecilities.${serviceName}`)?.setValue(false);
+// back to previous page
+back(){
+  this.location.back()
+}
+
+// getting all places
+getplace(){
+  this.service.gettingplace().subscribe({
+    next:(res)=>{
+      this.places=res.data
+    },
+    error:(err)=>{
+      console.log(err);
+    }
+  })
+  }
+
+  guidess(){
+    this.service.gettingguides().subscribe({
+      next:(res)=>{
+        this.guides=res.data
+      },
+      error:(err)=>{
+        console.log(err);
       }
+    })
+  }
+
+  selectPlace(place: any) {
+
+    const filter = this.addedplaces.filter((m)=>{
+      return m.placename == place.placeName
+    })
+    if(filter && filter.length>0){
+      alert('you already selected this place ..choose athother place')
+      this.selectedplace=null
+    }else{
+      console.log(filter);
+      this.selectedplace = place;
+      console.log(this.selectedplace);
     }
+   
+    
+  }
 
-
-    back(){
-      this.location.back()
-
+  adding(){
+    if(this.selectPlace==null || this.arrivalTime==null || this.returntime ==null){
+      alert('please add the fields')
+    }else{
+      const place ={
+        placeId:this.selectedplace._id,
+        placename:this.selectedplace.placeName,
+        arrivingtime:this.arrivalTime,
+        returntime:this.returntime
+      }
+      this.addedplaces.push(place)
+      this.selectedplace= null
+      this.arrivalTime =null
+      this.returntime =null
+  
+      console.log(this.addedplaces);
     }
+    
+  }
+
+  toggleGuideSelection(guide: any) {
+    const index = this.selectedGuides.findIndex(selectedGuide => selectedGuide._id === guide._id);
+    console.log(index);
+    
+    if (index > -1) {
+      console.log('nthoss');
+      
+      // If the guide is already selected, remove it from the selectedGuides array
+      this.selectedGuides.splice(index, 1);
+    } else {
+      console.log('koyppella');
+      const guides={id:guide._id,name:guide.guidename}
+      // If the guide is not selected, add it to the selectedGuides array
+      this.selectedGuides.push(guides);
+    }
+    console.log(this.selectedGuides);
+    
+  }
+  
 }

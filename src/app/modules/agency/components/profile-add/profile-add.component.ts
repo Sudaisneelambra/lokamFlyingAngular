@@ -19,7 +19,7 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
   formdata = new FormData();
   photosArray: File[] = [];
   datas!:any
-  profileSubscription$!: Subscription;
+  profileSubscription$ = new Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -50,7 +50,10 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
       location: ['', Validators.required],
     });
   }
+
   ngOnInit() {
+
+  // getting profile all data
    this.profileSubscription$ = this.agency.getingprofile().subscribe({
     next:(res)=>{
       this.datas=res.user
@@ -78,7 +81,7 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
   }
 
 
-
+// image file change dettector
   changing(event: any) {
     const files = event.target.files;
     if (files && files.length > 0) {
@@ -92,13 +95,15 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
     console.log(this.formdata.getAll('files'));
   }
 
+  // logo file change dettector
   changingLogo(event: any) {
-    const file = event.target.files[0]; // Assuming only one file is selected for logo
+    const file = event.target.files[0]; 
     if (file) {
       this.formdata.append('logo', file);
     }
   }
 
+  // services updates when the checkbox select
   updateService(serviceName: string, event: any) {
     if (event.target.checked) {
       this.agencyForm.get(`services.${serviceName}`)?.setValue(true);
@@ -107,12 +112,14 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
     }
   }
 
+  // require atleast one selection
   requireAtLeastOneService(control: AbstractControl): { [key: string]: boolean } | null {
     const services = Object.values(control.value);
     const isAtLeastOneSelected = services.some(value => value);
     return isAtLeastOneSelected ? null : { 'atLeastOneFacilityRequired': true };
   }
 
+  // profile add or update submission
   onSubmit() {
     console.log('submitted');
     console.log(this.agencyForm.value);
@@ -132,7 +139,8 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
       this.formdata.append('closingTime', one.closingTime);
       this.formdata.append('location', one.location);
       console.log(this.agencyForm.value);
-      // Make HTTP POST request to the server
+
+      // profile adding or updating
       this.agency.addProfile(this.formdata).subscribe(
         (response) => {
           console.log('Response from server:', response);
@@ -148,6 +156,7 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
     this.formdata = new FormData();
   }
 
+  // logout and token delete
   logout() {
     this.service.agencylogout().subscribe({
       next: (res) => {

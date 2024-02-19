@@ -1,17 +1,20 @@
 .form-container {
-    max-width: 500px;
+    width: 60%;
+    padding: 20px;
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 30px;
+    border: 1px dotted;
+    border-radius: 5px;
   }
   @media (max-width:550px){
     .form-container{
-        max-width:350px;
+       width: 80%;
     }
   }
   @media (max-width:400px){
     .form-container{
-        max-width:280px;
+      width: 90%;
     }
   }
   
@@ -75,4 +78,17 @@
   .fecility input[type="checkbox"]:checked + label {
     font-weight: bold;
   }
-  
+  .btns :disabled{
+    background-color: #ccc;
+    cursor:not-allowed;
+  }
+
+  .nab{
+    padding: 2px 24px;
+    font-weight: 700;
+    background-color: #a81616;
+  }
+
+  .nuna{
+    padding: 10rem;
+  }

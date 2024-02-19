@@ -19,7 +19,8 @@
       </div>
     </div>
     <div class="flex justify-evenly">
-        <button type="submit" [disabled]="!guideForm.valid" (click)="onSubmit()">Submit</button>
+        <button type="submit" [disabled]="!guideForm.valid" (click)="onSubmit()" *ngIf="!guidedata">Submit</button>
+        <button type="submit"  (click)="edit()" [disabled]="!guideForm.valid" *ngIf="guidedata">edit</button>
         <button (click)="back()">back</button>
     </div>
     <h1 class="text-red-500 text-center">{{message}}</h1>
