@@ -17,6 +17,11 @@ import { guideDiscriptionPipe } from './pipes/guideDiscription.pipe';
 import { PlaceFulldetails } from './components/agency-home/places/placesfulldetails/placesfulldetails.component';
 import { AgencyMainHome } from './components/home.component';
 import { GuideFulldetailes } from './components/agency-home/guide/guidefulldetails/guidefulldetails.component';
+import { EditConformation } from './components/agency-home/places/placesfulldetails/editconformation/editconformation.component';
+import { DeleteConformation } from './components/agency-home/places/placesfulldetails/deleteconformation/deleteconformation.component';
+import { DuideDeleteConformation } from './components/agency-home/guide/guidefulldetails/guidedeleteconformation/guidedeleteconformation.component';
+import { GuideEditConfirmationComponent } from './components/agency-home/guide/guidefulldetails/guideeditconfirmation/guideeditconfirmation.component';
+import { PackagefullComponent } from './components/agency-home/package/packagefulldetails/packagefulldetails.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,12 @@ import { GuideFulldetailes } from './components/agency-home/guide/guidefulldetai
     guideDiscriptionPipe,
     PlaceFulldetails,
     AgencyMainHome,
-    GuideFulldetailes
+    GuideFulldetailes,
+    EditConformation,
+    DeleteConformation,
+    DuideDeleteConformation,
+    GuideEditConfirmationComponent,
+    PackagefullComponent
     ],
   imports: [CommonModule,AgencyRoutes, ReactiveFormsModule, HttpClientModule, FormsModule],
   exports: [],

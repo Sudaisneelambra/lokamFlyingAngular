@@ -17,6 +17,10 @@ export class GuideFulldetailes implements OnInit,OnDestroy{
     singleguidedetails$ = new Subscription
     singleguide!:any
     msg!:string
+    modalview!:any
+    modalviewedit!:any
+    deleteId!:any
+    editId!:any
     
     ngOnInit(): void {
         this.route.params.subscribe(params=>{
@@ -36,29 +40,27 @@ export class GuideFulldetailes implements OnInit,OnDestroy{
 
     // deleteing guide 
     delete(id:any){
-        const confirmed = confirm('Are you sure you want to delete?');
-        if(confirmed){
-         // deleting place from database
-         this.service.deletingGuide(id).subscribe({
-             next:(res)=>{
-                 if(res.success){
-                     this.msg=res.message
-                     setTimeout(() => {
-                         this.msg=''
-                         this.router.navigate(['/agency/home'])
-                     }, 2000);
-                 }
-             },
-             error:(err)=>{
-               console.log(err);   
-             }
-         })
-        }
+        this.modalview=true
+        this.deleteId=id
+    }
+
+    cancelling(event:any){
+        this.modalview=event
+    }
+
+    message(event:any){
+        this.msg=event
     }
 
     // edit button triggered
   edit(id:any){
-    this.router.navigate([`/agency/guideadd`], { queryParams: { id: id } })
+    this.modalviewedit=true
+    this.editId=id
+   
+  }
+
+  modalclose(event:any){
+    this.modalviewedit=event
   }
 
     // back to previous location

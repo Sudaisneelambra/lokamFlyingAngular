@@ -1,257 +1,264 @@
-<div class="container">
-  <h2>Agency Profile Form</h2>
-  <form
-    [formGroup]="agencyForm"
-    enctype="multipart/form-data"
-  >
-    <!-- Agency Name -->
-    <div>
-      <label for="agency_name">Agency Name:</label>
-      <input
-        type="text"
-        id="agency_name"
-        name="agency_name"
-        formControlName="agency_name"
-        required
-      />
-      <label class="label-required" for="">required<sup>*</sup></label>
-    </div>
-
-    <!-- Description -->
-    <div>
-      <label for="description">Description:</label>
-      <textarea
-        id="description"
-        name="description"
-        rows="4"
-        formControlName="description"
-        required
-      ></textarea>
-      <label class="label-required" for="">required<sup>*</sup></label>
-    </div>
-
-    <!-- Services -->
-    <div class="services">
-      <label><span style="font-weight: 400">Services</span>: (required)</label
-      ><br />
-
-      <div class="service">
+<div class="" *ngIf="!expiry ; else expired">
+  <div class="container">
+    <h2>Agency Profile Form</h2>
+    <form
+      [formGroup]="agencyForm"
+      enctype="multipart/form-data"
+    >
+      <!-- Agency Name -->
+      <div>
+        <label for="agency_name">Agency Name:</label>
         <input
-          type="checkbox"
-          id="Tourpackage"
-          name="Tourpackage"
-          (change)="updateService('Tourpackage', $event)"
+          type="text"
+          id="agency_name"
+          name="agency_name"
+          formControlName="agency_name"
+          required
         />
-        <label for="Tourpackage">Tour Package</label>
+        <label class="label-required" for="">required<sup>*</sup></label>
       </div>
-
-      <div class="service">
-        <input
-          type="checkbox"
-          id="CustomerSupport"
-          name="CustomerSupport"
-          (change)="updateService('CustomerSupport', $event)"
-        />
-        <label for="CustomerSupport">Customer Support</label>
+  
+      <!-- Description -->
+      <div>
+        <label for="description">Description:</label>
+        <textarea
+          id="description"
+          name="description"
+          rows="4"
+          formControlName="description"
+          required
+        ></textarea>
+        <label class="label-required" for="">required<sup>*</sup></label>
       </div>
-
-      <div class="service">
-        <input
-          type="checkbox"
-          id="TransportationServices"
-          name="TransportationServices"
-          (change)="updateService('TransportationServices', $event)"
-        />
-        <label for="TransportationServices">Transportation Services</label>
-      </div>
-
-      <div class="service">
-        <input
-          type="checkbox"
-          id="HotelReservationServices"
-          name="HotelReservationServices"
-          (change)="updateService('HotelReservationServices', $event)"
-        />
-        <label for="HotelReservationServices">Hotel Reservation Services</label>
-      </div>
-
-      <div class="service">
-        <input
-          type="checkbox"
-          id="TravelConsultationandAdvice"
-          name="TravelConsultationandAdvice"
-          (change)="updateService('TravelConsultationandAdvice', $event)"
-        />
-        <label for="TravelConsultationandAdvice"
-          >Travel Consultation and Advice</label
-        >
-      </div>
-      <label class="label-required" for="">required<sup>*</sup></label>
-    </div>
-    <!-- Contact Numbers -->
-    <div class="contact-numbers">
-      <div class="">
-        <label>Contact Numbers:1</label><br />
-        <div class="contact-number">
+  
+      <!-- Services -->
+      <div class="services">
+        <label><span style="font-weight: 400">Services</span>: (required)</label
+        ><br />
+  
+        <div class="service">
           <input
-            type="tel"
-            id="contact_number1"
-            name="contact_number1"
-            formControlName="contactNumber1"
-            pattern="[0-9]{10}"
-            required
+            type="checkbox"
+            id="Tourpackage"
+            name="Tourpackage"
+            (change)="updateService('Tourpackage', $event)"
           />
+          <label for="Tourpackage">Tour Package</label>
+        </div>
+  
+        <div class="service">
+          <input
+            type="checkbox"
+            id="CustomerSupport"
+            name="CustomerSupport"
+            (change)="updateService('CustomerSupport', $event)"
+          />
+          <label for="CustomerSupport">Customer Support</label>
+        </div>
+  
+        <div class="service">
+          <input
+            type="checkbox"
+            id="TransportationServices"
+            name="TransportationServices"
+            (change)="updateService('TransportationServices', $event)"
+          />
+          <label for="TransportationServices">Transportation Services</label>
+        </div>
+  
+        <div class="service">
+          <input
+            type="checkbox"
+            id="HotelReservationServices"
+            name="HotelReservationServices"
+            (change)="updateService('HotelReservationServices', $event)"
+          />
+          <label for="HotelReservationServices">Hotel Reservation Services</label>
+        </div>
+  
+        <div class="service">
+          <input
+            type="checkbox"
+            id="TravelConsultationandAdvice"
+            name="TravelConsultationandAdvice"
+            (change)="updateService('TravelConsultationandAdvice', $event)"
+          />
+          <label for="TravelConsultationandAdvice"
+            >Travel Consultation and Advice</label
+          >
         </div>
         <label class="label-required" for="">required<sup>*</sup></label>
       </div>
-      <div class="">
-        <label>Contact Numbers:2</label><br />
-        <div class="contact-number">
-          <input
-            type="tel"
-            id="contact_number2"
-            name="contact_number2"
-            formControlName="contactNumber2"
-            pattern="[0-9]{10}"
-            required
-          />
+      <!-- Contact Numbers -->
+      <div class="contact-numbers">
+        <div class="">
+          <label>Contact Numbers:1</label><br />
+          <div class="contact-number">
+            <input
+              type="tel"
+              id="contact_number1"
+              name="contact_number1"
+              formControlName="contactNumber1"
+              pattern="[0-9]{10}"
+              required
+            />
+          </div>
+          <label class="label-required" for="">required<sup>*</sup></label>
         </div>
+        <div class="">
+          <label>Contact Numbers:2</label><br />
+          <div class="contact-number">
+            <input
+              type="tel"
+              id="contact_number2"
+              name="contact_number2"
+              formControlName="contactNumber2"
+              pattern="[0-9]{10}"
+              required
+            />
+          </div>
+          <label class="label-required" for="">required<sup>*</sup></label>
+        </div>
+      </div>
+  
+      <!-- About Agency -->
+      <div>
+        <label for="about_agency">About Agency:</label>
+        <textarea
+          id="about_agency"
+          name="about_agency"
+          rows="4"
+          formControlName="aboutAgency"
+          required
+        ></textarea>
         <label class="label-required" for="">required<sup>*</sup></label>
       </div>
-    </div>
-
-    <!-- About Agency -->
-    <div>
-      <label for="about_agency">About Agency:</label>
-      <textarea
-        id="about_agency"
-        name="about_agency"
-        rows="4"
-        formControlName="aboutAgency"
-        required
-      ></textarea>
-      <label class="label-required" for="">required<sup>*</sup></label>
-    </div>
-
-    <!-- Photos -->
-    <div class="photos">
-      <label for="photos">Photos:</label><br />
-      <div class="photo">
+  
+      <!-- Photos -->
+      <div class="photos">
+        <label for="photos">Photos:</label><br />
+        <div class="photo">
+          <input
+            type="file"
+            id="photos"
+            name="photos"
+            accept="image/*"
+            (change)="changing($event)"
+          />
+        </div>
+        <div class="photo">
+          <input
+            type="file"
+            id="photos"
+            name="photos"
+            accept="image/*"
+            (change)="changing($event)"
+          />
+        </div>
+        <div class="photo">
+          <input
+            type="file"
+            id="photos"
+            name="photos"
+            accept="image/*"
+            (change)="changing($event)"
+          />
+        </div>
+        <div class="photo">
+          <input
+            type="file"
+            id="photos"
+            name="photos"
+            accept="image/*"
+            (change)="changing($event)"
+          />
+        </div>
+        <div class="photo">
+          <input
+            type="file"
+            id="photos"
+            name="photos"
+            accept="image/*"
+            (change)="changing($event)"
+          />
+        </div>
+      </div>
+  
+      <!-- Logo -->
+      <div>
+        <label for="logo">Logo:</label><br />
         <input
           type="file"
-          id="photos"
-          name="photos"
+          id="logo"
+          name="logo"
           accept="image/*"
-          (change)="changing($event)"
+          (change)="changingLogo($event)"
         />
       </div>
-      <div class="photo">
+  
+      <!-- Email -->
+      <div>
+        <label for="email">Email:</label>
         <input
-          type="file"
-          id="photos"
-          name="photos"
-          accept="image/*"
-          (change)="changing($event)"
+          type="email"
+          id="email"
+          name="email"
+          formControlName="email"
+          required
         />
+        <label class="label-required" for="">required<sup>*</sup></label>
       </div>
-      <div class="photo">
+  
+      <!-- Opening Time -->
+      <div>
+        <label for="opening_time">Opening Time:</label>
         <input
-          type="file"
-          id="photos"
-          name="photos"
-          accept="image/*"
-          (change)="changing($event)"
+          type="time"
+          id="opening_time"
+          name="openingtime"
+          formControlName="openingTime"
+          required
         />
+        <label class="label-required" for="">required<sup>*</sup></label>
       </div>
-      <div class="photo">
+  
+      <!-- Closing Time -->
+      <div>
+        <label for="closing_time">Closing Time:</label>
         <input
-          type="file"
-          id="photos"
-          name="photos"
-          accept="image/*"
-          (change)="changing($event)"
+          type="time"
+          id="closing_time"
+          name="closingtime"
+          formControlName="closingTime"
+          required
         />
+        <label class="label-required" for="">required<sup>*</sup></label>
       </div>
-      <div class="photo">
+  
+      <!-- Location -->
+      <div>
+        <label for="location">Location:</label>
         <input
-          type="file"
-          id="photos"
-          name="photos"
-          accept="image/*"
-          (change)="changing($event)"
+          type="text"
+          id="location"
+          name="location"
+          formControlName="location"
+          required
         />
+        <label class="label-required" for="">required<sup>*</sup></label>
       </div>
-    </div>
-
-    <!-- Logo -->
-    <div>
-      <label for="logo">Logo:</label><br />
-      <input
-        type="file"
-        id="logo"
-        name="logo"
-        accept="image/*"
-        (change)="changingLogo($event)"
-      />
-    </div>
-
-    <!-- Email -->
-    <div>
-      <label for="email">Email:</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        formControlName="email"
-        required
-      />
-      <label class="label-required" for="">required<sup>*</sup></label>
-    </div>
-
-    <!-- Opening Time -->
-    <div>
-      <label for="opening_time">Opening Time:</label>
-      <input
-        type="time"
-        id="opening_time"
-        name="openingtime"
-        formControlName="openingTime"
-        required
-      />
-      <label class="label-required" for="">required<sup>*</sup></label>
-    </div>
-
-    <!-- Closing Time -->
-    <div>
-      <label for="closing_time">Closing Time:</label>
-      <input
-        type="time"
-        id="closing_time"
-        name="closingtime"
-        formControlName="closingTime"
-        required
-      />
-      <label class="label-required" for="">required<sup>*</sup></label>
-    </div>
-
-    <!-- Location -->
-    <div>
-      <label for="location">Location:</label>
-      <input
-        type="text"
-        id="location"
-        name="location"
-        formControlName="location"
-        required
-      />
-      <label class="label-required" for="">required<sup>*</sup></label>
-    </div>
-
-    <div class="flex justify-evenly mt-5">
-      <button class="sub"  [disabled]="!agencyForm.valid" type="submit"(click)="onSubmit()">Submit</button>
-      <input type="submit" value="Back" (click)="back()" *ngIf="datas !== null" />
-      <input type="submit" value="back to login" (click)="logout()" *ngIf="datas == null" />
-    </div>
-  </form>
-  <p class="text-red-600">{{ message }}</p>
+  
+      <div class="flex justify-evenly mt-5">
+        <button class="sub"  [disabled]="!agencyForm.valid" type="submit"(click)="onSubmit()">Submit</button>
+        <input type="submit" value="Back" (click)="back()" *ngIf="datas !== undefined && datas !== null" />
+        <input type="submit" value="back to login" (click)="logout()" *ngIf="datas == null && datas== undefined" />
+      </div>
+    </form>
+    <p class="text-red-600">{{ message }}</p>
+  </div>
+  
 </div>
+
+<ng-template #expired>
+  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">tocken expired.. please login</h1>
+</ng-template>

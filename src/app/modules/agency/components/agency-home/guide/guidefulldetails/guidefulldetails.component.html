@@ -1,3 +1,5 @@
+<app-guidedelete *ngIf="modalview"  [id]="deleteId" (canceldelete)="cancelling($event)" (msg)="message($event)"></app-guidedelete>
+<app-editconfirmation *ngIf="modalviewedit" [id]="editId" (editcancel)="modalclose($event)"></app-editconfirmation>
 <div class="guide-details">
     <div class=" flex">
         <img src="{{singleguide?.guideurl}}" alt="Logo" class="logo ">

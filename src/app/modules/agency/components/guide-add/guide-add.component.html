@@ -1,4 +1,5 @@
-<form [formGroup]="guideForm" >
+<div class="" *ngIf="!expiry ; else expired">
+  <form [formGroup]="guideForm" >
     <div>
       <label for="guideName">Guide Name</label>
       <input type="text" formControlName="guideName" id="guideName">
@@ -26,3 +27,8 @@
     <h1 class="text-red-500 text-center">{{message}}</h1>
   </form>
   
+
+</div>
+<ng-template #expired>
+  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">tocken expired.. please login</h1>
+</ng-template>

@@ -19,6 +19,7 @@ export class PlaceAddComponent implements OnInit,OnDestroy{
   placedata!:any
   singleplace$=new Subscription
   id:any
+  expiry: any;
 
   constructor(private formBuilder: FormBuilder ,private router:Router ,private location :Location , private service:agencyService ,private route:ActivatedRoute) {
     // Initialize the form
@@ -32,6 +33,20 @@ export class PlaceAddComponent implements OnInit,OnDestroy{
     });
   }
   ngOnInit(): void {
+
+    this.service.gettoken().subscribe({
+      next:(res)=>{
+        if(res.expiry){
+          console.log(res.expiry);
+          this.expiry=res.expiry          
+        }  
+      },
+      error:(err)=>{
+        console.log(err);
+        
+      }
+    })
+
     // getting queryparams
     this.route.queryParams.subscribe(params => {
       this.id = params['id'];
@@ -85,7 +100,7 @@ export class PlaceAddComponent implements OnInit,OnDestroy{
             this.message=res.message
             setTimeout(() => {
               this.message=''
-              this.router.navigate(['agency'])
+              this.router.navigate(['agency/home'])
             }, 2000);
           }else {
             this.message=res.message

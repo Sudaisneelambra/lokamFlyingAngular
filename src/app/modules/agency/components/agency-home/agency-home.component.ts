@@ -14,10 +14,13 @@ export class AgencyHomeComponent implements OnInit , OnDestroy{
 
   placeSubscription$ = new Subscription;
   guideSubscription$ =new Subscription;
+  packageSubscription$ =new Subscription;
   name!:string
   data:any
   guide:any
+  package:any
   booleanvalue:boolean=true
+  expiry!:any
 
   constructor(private service: agencyService, private router: Router) {}
   
@@ -27,6 +30,11 @@ export class AgencyHomeComponent implements OnInit , OnDestroy{
     this.placeSubscription$= this.service.gettingplace().subscribe({
       next:(res)=>{
         this.data= res.data
+        if(res.expiry){
+          console.log(res.expiry);
+          this.expiry=res.expiry          
+        }
+        
       },
       error:(err)=>{
         console.log(err);
@@ -38,12 +46,33 @@ export class AgencyHomeComponent implements OnInit , OnDestroy{
     this.guideSubscription$ =this.service.gettingguides().subscribe({
       next:(res)=>{
         this.guide= res.data
+        if(res.expiry){
+          console.log(res.expiry);  
+          this.expiry=res.expiry          
+        }
       },
       error:(err)=>{
         console.log(err);
         console.log(err.message);
       }
     })
+
+    //all package getting api
+    this.packageSubscription$ =this.service.gettingpackages().subscribe({
+      next:(res)=>{
+        this.package= res.data
+        if(res.expiry){
+          console.log(res.expiry);
+          this.expiry=res.expiry          
+        }      
+      },
+      error:(err)=>{
+        console.log(err);
+        console.log(err.message);
+      }
+    })
+
+
 
   }
 
@@ -70,5 +99,6 @@ export class AgencyHomeComponent implements OnInit , OnDestroy{
     this.placeSubscription$.unsubscribe()
 
     this.guideSubscription$.unsubscribe()
+    this.packageSubscription$.unsubscribe()
   }
 }

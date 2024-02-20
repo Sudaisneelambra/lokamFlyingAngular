@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class guideDiscriptionPipe implements PipeTransform {
     transform(value: string): string {
-                  return value.length>60 ? `${value.substring(0,60)}...` :value
+                  return value.length>120 ? `${value.substring(0,120)}...` :value
      }	
    }	

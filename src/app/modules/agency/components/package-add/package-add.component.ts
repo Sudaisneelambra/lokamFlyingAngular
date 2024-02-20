@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { agencyService } from '../../services/agency.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-package-add',
@@ -16,12 +17,16 @@ export class PackageAddComponent {
   places!:any[];
   selectedplace: any;
   arrivalTime!: any;
-  returntime: any;
+  arrivalDate!:any
+  returnTime!: any;
+  returnDate!:any
   addedplaces:any[]=[]
   selectedGuides: any[] = [];
+  message!:any
+  expiry: any;
   
 
-  constructor(private fb: FormBuilder, private location:Location , private service:agencyService) { 
+  constructor(private fb: FormBuilder, private location:Location , private service:agencyService ,private router:Router) { 
 
     this.packageForm = this.fb.group({
       packageName: ['', Validators.required],
@@ -49,6 +54,27 @@ export class PackageAddComponent {
 
 
   ngOnInit(): void {
+    this.service.gettoken().subscribe({
+      next:(res)=>{
+        if(res.expiry){
+          console.log(res.expiry);
+          this.expiry=res.expiry          
+        }  
+      },
+      error:(err)=>{
+        console.log(err);
+        
+      }
+    })
+  }
+
+
+  deleteAddedPlace(id:any){
+    const indexToRemove = this.addedplaces.findIndex(m => m.placeId === id);
+    if (indexToRemove !== -1) {
+      this.addedplaces.splice(indexToRemove, 1);
+  }
+  console.log(this.addedplaces);
     
   }
 
@@ -71,6 +97,11 @@ export class PackageAddComponent {
       this.service.addpackage(fulldata).subscribe({
         next:(res)=>{
           console.log(res.message);
+          this.message=res.message
+          setTimeout(()=>{
+            this.message=''
+            this.router.navigate(['agency/home'])
+          },3000)
         },
         error:(err)=>{
           console.log(err);
@@ -89,6 +120,7 @@ export class PackageAddComponent {
           this.booleanvalue=true
         } else if( boolean ='no'){
           this.booleanvalue=false
+          this.packageForm.get('offerRate')?.patchValue('')
         }
     }
 
@@ -147,19 +179,23 @@ getplace(){
   }
 
   adding(){
-    if(this.selectPlace==null || this.arrivalTime==null || this.returntime ==null){
+    if(this.selectPlace==null || this.arrivalTime==null || this.returnTime ==null || this.returnDate ==null && this.arrivalDate==null ){
       alert('please add the fields')
     }else{
       const place ={
         placeId:this.selectedplace._id,
         placename:this.selectedplace.placeName,
+        arrivalDate:this.arrivalDate,
         arrivingtime:this.arrivalTime,
-        returntime:this.returntime
+        returnDate:this.returnDate,
+        returntime:this.returnTime,
       }
       this.addedplaces.push(place)
       this.selectedplace= null
       this.arrivalTime =null
-      this.returntime =null
+      this.returnTime =null
+      this.arrivalDate=null
+      this.returnDate=null
   
       console.log(this.addedplaces);
     }

@@ -20,7 +20,7 @@ export class GuideAddComponent implements OnInit,OnDestroy{
   id:any
   singleguide$ = new Subscription
   guidedata!:any
- 
+  expiry!:any
   constructor(private formBuilder: FormBuilder, private location:Location, private agencyservice:agencyService , private router:Router ,private route:ActivatedRoute) {
     this.guideForm = this.formBuilder.group({
       guideName: ['', Validators.required],
@@ -30,6 +30,19 @@ export class GuideAddComponent implements OnInit,OnDestroy{
    }
 
   ngOnInit(): void {
+
+    this.agencyservice.gettoken().subscribe({
+      next:(res)=>{
+        if(res.expiry){
+          console.log(res.expiry);
+          this.expiry=res.expiry          
+        }  
+      },
+      error:(err)=>{
+        console.log(err);
+        
+      }
+    })
      // getting queryparams
      this.route.queryParams.subscribe(params => {
       this.id = params['id'];

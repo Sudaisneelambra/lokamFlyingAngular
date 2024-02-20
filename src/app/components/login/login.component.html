@@ -1,78 +1,256 @@
-<app-otp class="otp" *ngIf="bool" [boolee]="bool"  (out)="boool($event)" [formdata]="data"></app-otp>
+<app-otp
+  class="otp"
+  *ngIf="bool"
+  [boolee]="bool"
+  (out)="boool($event)"
+  [formdata]="data"
+></app-otp>
 <body>
-	<div class="main">  	
-		<input type="checkbox" id="chk" aria-hidden="true">
+  <div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true" />
 
-			<div class="signup flex flex-col ">
-				<form action="" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-					<div class="w-full flex pt-3">
-                        <label for="chk" aria-hidden="true" class="sin text-[30px] text-white w-full text-center font-bold">Sign up</label>
-                    </div>
-					<div class=" h-[55px] flex flex-col items-center mt-4">
-                        <input class="inputs" type="text" name="txt" placeholder="User name" formControlName="username" >
-                        <label class="label-required" for="" *ngIf="submitted && f['username'].errors && f['username'].errors['required']" >username required</label>
-                        <label class="label-required" for="" *ngIf="f['username'].errors && f['username'].errors['pattern']" >username must in the lowercase only</label>
-                    </div>
-					<div class=" h-[55px] flex flex-col items-center">
-                        <input class="inputs" type="email" name="email" placeholder="Email"  formControlName="email">
-                        <label class="label-required" for="" *ngIf="submitted && f['email'].errors && f['email'].errors['required']" >email required</label>
-                        <label class="label-required" for="" *ngIf="f['email'].errors && f['email'].errors['email']" >enter the email in correct formate</label>
-                    </div>
-					<div class=" pb-[15px] flex flex-col items-center ">
-                        <div class="password-input-container flex  items-center w-[78%] bg-white rounded">
-                            <input type="{{ hidePassword ? 'password' : 'text' }}" formControlName="password" name="password" id="password" placeholder="Password" class="inputss w-full">
-                            <span class="passlabel  toggle-password fas" [ngClass]="{'fa-eye-slash': hidePassword, 'fa-eye': !hidePassword}" (click)="togglePasswordVisibility()"></span>
-                        </div>
-                        <label class="label-required" for="" *ngIf="submitted && f['password'].errors && f['password'].errors['required']" >password required</label>
-                        <label class="label-required" for="" *ngIf="f['password'].errors && f['password'].errors['pattern']" >password must have 8 charecter and it includes uppercase and special charector also</label>
-                    </div>
-					<div class="h-[55px] flex flex-col items-center">
-                        <input class="inputs" type="number" name="phonenumber" placeholder="phonenumber"  formControlName="phoneNumber">
-                        <label class="label-required" for="" *ngIf="submitted && f['phoneNumber'].errors && f['phoneNumber'].errors['required']" >phonenumber required</label>
-                        <label class="label-required" for="" *ngIf="f['phoneNumber'].errors && f['phoneNumber'].errors['minlength']">Phone Number must be at least 10 digits</label>
-                    </div>
-                    <div class="w-full  flex items-center flex-col ">
-                        <div class="input  w-[78%] flex justify-between text-white ">
-                            <label class="text-[15px] ">Role</label>
-                            <div class="check-box flex  gap-1">
-                                    <input type="radio" id="user" name="role" value="user" (change)="onCheckboxChange($event, 'user')">
-                                    <label for="user">user</label>
-                                    <input type="radio" id="agency" name="role" value="agency" (change)="onCheckboxChange($event, 'agency')">
-                                    <label for="agency">agency</label>
-                            </div>
-                        </div>
-                        <label class="label-required" *ngIf="submitted && userForm.get('role')?.errors?.['roleRequired']">This field is required</label>
-                    </div>
-                    
-					<button>Sign up</button>
-                    <p style="color: red;margin-top: 10px;text-align: center;font-size: 11px;">{{already}}</p>
-                    <p  [ngClass]="{'green-text': otp.otpsend}">{{otp.message}}</p>
-				</form>
-			</div>
+    <div class="signup flex flex-col">
+      <form action="" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="w-full flex pt-3">
+          <label
+            for="chk"
+            aria-hidden="true"
+            class="sin text-[30px] text-white w-full text-center font-bold"
+            >Sign up</label
+          >
+        </div>
+        <div class="h-[55px] flex flex-col items-center mt-4">
+          <input
+            class="inputs"
+            type="text"
+            name="txt"
+            placeholder="User name"
+            formControlName="username"
+          />
+          <label
+            class="label-required"
+            for=""
+            *ngIf="
+              submitted &&
+              f['username'].errors &&
+              f['username'].errors['required']
+            "
+            >username required</label
+          >
+          <label
+            class="label-required"
+            for=""
+            *ngIf="f['username'].errors && f['username'].errors['pattern']"
+            >username must in the lowercase only</label
+          >
+        </div>
+        <div class="h-[55px] flex flex-col items-center">
+          <input
+            class="inputs"
+            type="email"
+            name="email"
+            placeholder="Email"
+            formControlName="email"
+          />
+          <label
+            class="label-required"
+            for=""
+            *ngIf="
+              submitted && f['email'].errors && f['email'].errors['required']
+            "
+            >email required</label
+          >
+          <label
+            class="label-required"
+            for=""
+            *ngIf="f['email'].errors && f['email'].errors['email']"
+            >enter the email in correct formate</label
+          >
+        </div>
+        <div class="pb-[15px] flex flex-col items-center">
+          <div
+            class="password-input-container flex items-center w-[78%] bg-white rounded"
+          >
+            <input
+              type="{{ hidePassword ? 'password' : 'text' }}"
+              formControlName="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              class="inputss w-full"
+            />
+            <span
+              class="passlabel toggle-password fas"
+              [ngClass]="{
+                'fa-eye-slash': hidePassword,
+                'fa-eye': !hidePassword
+              }"
+              (click)="togglePasswordVisibility()"
+            ></span>
+          </div>
+          <label
+            class="label-required"
+            for=""
+            *ngIf="
+              submitted &&
+              f['password'].errors &&
+              f['password'].errors['required']
+            "
+            >password required</label
+          >
+          <label
+            class="label-required"
+            for=""
+            *ngIf="f['password'].errors && f['password'].errors['pattern']"
+            >password must have 8 charecter and it includes uppercase and
+            special charector also</label
+          >
+        </div>
+        <div class="h-[55px] flex flex-col items-center">
+          <input
+            class="inputs"
+            type="number"
+            name="phonenumber"
+            placeholder="phonenumber"
+            formControlName="phoneNumber"
+          />
+          <label
+            class="label-required"
+            for=""
+            *ngIf="
+              submitted &&
+              f['phoneNumber'].errors &&
+              f['phoneNumber'].errors['required']
+            "
+            >phonenumber required</label
+          >
+          <label
+            class="label-required"
+            for=""
+            *ngIf="
+              f['phoneNumber'].errors && f['phoneNumber'].errors['minlength']
+            "
+            >Phone Number must be at least 10 digits</label
+          >
+        </div>
+        <div class="w-full flex items-center flex-col">
+          <div class="input w-[78%] flex justify-between text-white">
+            <label class="text-[15px]">Role</label>
+            <div class="check-box flex gap-1">
+              <input
+                type="radio"
+                id="user"
+                name="role"
+                value="user"
+                (change)="onCheckboxChange($event, 'user')"
+              />
+              <label for="user">user</label>
+              <input
+                type="radio"
+                id="agency"
+                name="role"
+                value="agency"
+                (change)="onCheckboxChange($event, 'agency')"
+              />
+              <label for="agency">agency</label>
+            </div>
+          </div>
+          <label
+            class="label-required"
+            *ngIf="submitted && userForm.get('role')?.errors?.['roleRequired']"
+            >This field is required</label
+          >
+        </div>
 
+        <button>Sign up</button>
+        <p
+          style="
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 11px;
+          "
+        >
+          {{ already }}
+        </p>
+        <p [ngClass]="{ 'green-text': otp.otpsend }">{{ otp.message }}</p>
+      </form>
+    </div>
 
-			<div class="login">
-				<form action="" [formGroup]="login" (ngSubmit)="logins()" class="w-full flex flex-col items-center">
-					<label for="chk" aria-hidden="true">Login</label>
-                   <div class="fun">
-                        <div class=" h-[55px] flex flex-col items-center">
-                            <input class="inputss" type="email" name="email" placeholder="Email"  formControlName="mail">
-                            <label class="label-requirede" for="" *ngIf="submitted && l['mail'].errors && l['mail'].errors['required']" >email required</label>
-                            <label class="label-requirede" for="" *ngIf="l['mail'].errors && l['mail'].errors['email']" >enter the email in correct formate</label>
-                        </div>
-                        <div class=" pb-[15px] flex flex-col items-center ">
-                            <div class="password-input-container2 flex  items-center w-[78%] bg-white rounded">
-                                <input type="{{ hidePassword ? 'password' : 'text' }}" formControlName="pass" name="password" id="password" placeholder="Password" class="inputss w-full">
-                                <span class="passlabel  toggle-password fas" [ngClass]="{'fa-eye-slash': hidePassword, 'fa-eye': !hidePassword}" (click)="togglePasswordVisibility()"></span>
-                            </div>
-                            <label class="label-requirede" for="" *ngIf="submitted && l['pass'].errors && l['pass'].errors['required']" >password required</label>
-                            <label class="label-requirede" for="" *ngIf="l['pass'].errors && l['pass'].errors['pattern']" >password must have 8 charecter and it includes uppercase and special charector also</label>
-                        </div>
-                   </div>
-                   <p class="text-[12px] text-green-600">{{loginmessage}}</p>
-                   <p class="text-[12px] text-red-600">{{error}}</p>
-                    <button >Login</button>
-				</form>
-			</div>
-	</div>
+    <div class="login">
+      <form
+        action=""
+        [formGroup]="login"
+        (ngSubmit)="logins()"
+        class="w-full flex flex-col items-center"
+      >
+        <label for="chk" aria-hidden="true">Login</label>
+        <div class="fun">
+          <div class="h-[55px] flex flex-col items-center">
+            <input
+              class="inputss"
+              type="email"
+              name="email"
+              placeholder="Email"
+              formControlName="mail"
+            />
+            <label
+              class="label-requirede"
+              for=""
+              *ngIf="
+                submitted && l['mail'].errors && l['mail'].errors['required']
+              "
+              >email required</label
+            >
+            <label
+              class="label-requirede"
+              for=""
+              *ngIf="l['mail'].errors && l['mail'].errors['email']"
+              >enter the email in correct formate</label
+            >
+          </div>
+          <div class="pb-[15px] flex flex-col items-center">
+            <div
+              class="password-input-container2 flex items-center w-[78%] bg-white rounded"
+            >
+              <input
+                type="{{ hidePassword ? 'password' : 'text' }}"
+                formControlName="pass"
+                name="password"
+                id="password"
+                placeholder="Password"
+                class="inputss w-full"
+              />
+              <span
+                class="passlabel toggle-password fas"
+                [ngClass]="{
+                  'fa-eye-slash': hidePassword,
+                  'fa-eye': !hidePassword
+                }"
+                (click)="togglePasswordVisibility()"
+              ></span>
+            </div>
+            <label
+              class="label-requirede"
+              for=""
+              *ngIf="
+                submitted && l['pass'].errors && l['pass'].errors['required']
+              "
+              >password required</label
+            >
+            <label
+              class="label-requirede"
+              for=""
+              *ngIf="l['pass'].errors && l['pass'].errors['pattern']"
+              >password must have 8 charecter and it includes uppercase and
+              special charector also</label
+            >
+          </div>
+        </div>
+        <p class="text-[12px] text-green-600">{{ loginmessage }}</p>
+        <p class="text-[12px] text-red-600">{{ error }}</p>
+        <button>Login</button>
+      </form>
+    </div>
+  </div>
 </body>

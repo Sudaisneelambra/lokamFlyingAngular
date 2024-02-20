@@ -20,10 +20,11 @@ export class AgencyMainHome{
     constructor(private service: agencyService, private router: Router) {}
     
     ngOnInit(){
+      
       // getting profile name 
       this.profileSubscription$ = this.service.getingprofilename().subscribe({
         next:(res)=>{
-          this.name=res.user.name
+          this.name=res.user?.name
           
         },
         error:(err)=>{
@@ -41,7 +42,7 @@ export class AgencyMainHome{
   
     }
 
-    bool: boolean = false;
+    bool: boolean = true;
   
     // nav bar reponsive
     toggle() {

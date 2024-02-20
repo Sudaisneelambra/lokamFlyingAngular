@@ -1,0 +1,97 @@
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.package-details {
+    font-family: Arial, sans-serif;
+    border: 2px solid #3498db;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+}
+
+.package-details h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.package-details p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.facilities {
+    margin-bottom: 10px;
+}
+
+.facilities h3 {
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.facilities ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.facilities li {
+    margin-bottom: 5px;
+}
+
+.places {
+    margin-bottom: 10px;
+}
+
+.places h3 {
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.places ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.place {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.place .place-info {
+    display: flex;
+    align-items: center;
+}
+
+.place img.place-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.place-details p {
+    margin: 0;
+    color: #555;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .package-details {
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+    
+    .place img.place-image {
+        width: 80px; /* Reduce image size for smaller screens */
+        height: 80px;
+        margin-right: 8px; /* Adjust margin for smaller screens */
+    }
+}

@@ -22,6 +22,10 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
   val = true;
   images:any
   msg!:string
+  modaldelete!:boolean
+  modalEdit!:boolean
+  deleteId!:any
+  editId!:any
 
   ngOnInit(): void {
     
@@ -42,7 +46,6 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
             }
         })
       });
-
     // auto carosel
     if(this.val){
         this.auto()
@@ -50,30 +53,27 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
   }
 
   // delete button function
+
+  deleteconfirmvalue(event:any){
+    this.modaldelete=event
+  }
+
   delete(id:any){
-    const confirmed = confirm('Are you sure you want to delete?');
-   if(confirmed){
-    // deleting place from database
-    this.service.deletingPlace(id).subscribe({
-        next:(res)=>{
-            if(res.success){
-                this.msg=res.message
-                setTimeout(() => {
-                    this.msg=''
-                    this.router.navigate(['/agency/home'])
-                }, 2000);
-            }
-        },
-        error:(err)=>{
-          console.log(err);   
-        }
-    })
-   }
+    this.modaldelete=true
+    this.deleteId=id
+  }
+  cancellingedit(event:any){
+    this.modalEdit=event
   }
 
   // edit button triggered
   edit(id:any){
-    this.router.navigate([`/agency/placeadd`], { queryParams: { id: id } })
+    this.modalEdit=true
+    this.editId=id
+  }
+
+  message(event:any){
+    this.msg=event
   }
 
 // carosel function

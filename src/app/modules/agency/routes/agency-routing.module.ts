@@ -9,6 +9,7 @@ import { GuideAddComponent } from '../components/guide-add/guide-add.component';
 import { PlaceFulldetails } from '../components/agency-home/places/placesfulldetails/placesfulldetails.component';
 import { AgencyMainHome } from '../components/home.component';
 import { GuideFulldetailes } from '../components/agency-home/guide/guidefulldetails/guidefulldetails.component';
+import { PackagefullComponent } from '../components/agency-home/package/packagefulldetails/packagefulldetails.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
         {
           path:'guidedetails/:id',
           component:GuideFulldetailes
+        },
+        {
+          path:'packagedetails/:id',
+          component:PackagefullComponent
         },
     ]
   },

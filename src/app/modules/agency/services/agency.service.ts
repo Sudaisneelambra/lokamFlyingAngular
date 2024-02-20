@@ -11,9 +11,6 @@ export class agencyService {
   private api = 'http://localhost:3000';
   
   private userapi = 'http://localhost:3000';
- 
-  singleguide= new BehaviorSubject(null)
-
 
   // getting profile name
   getingprofilename():Observable<any>{
@@ -82,7 +79,21 @@ export class agencyService {
     console.log(data);
     return this.http.post(`${this.api}/agency/packageadd`,data)
   }
+
+  //all package getting api
+  gettingpackages():Observable<any>{
+    return this.http.get(`${this.api}/agency/getpackage`)
+  }
+  // token check
+  gettoken():Observable<any>{
+    return this.http.get(`${this.api}/agency/gettoken`)
+  }
+
+  // packagesingle check
   
+  getsinglepackage(id:any):Observable<any>{
+    return this.http.get(`${this.api}/agency/getsinglepackage/${id}`)
+  }
 
   // logout and token delete
   agencylogout(): Observable<any> {

@@ -20,6 +20,7 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
   photosArray: File[] = [];
   datas!:any
   profileSubscription$ = new Subscription;
+  expiry: any;
 
   constructor(
     private fb: FormBuilder,
@@ -53,6 +54,20 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
+    this.service.gettoken().subscribe({
+      next:(res)=>{
+        if(res.expiry){
+          console.log(res.expiry);
+          this.expiry=res.expiry          
+        }  
+      },
+      error:(err)=>{
+        console.log(err);
+        
+      }
+    })
+    console.log(this.datas);
+    
   // getting profile all data
    this.profileSubscription$ = this.agency.getingprofile().subscribe({
     next:(res)=>{

@@ -1,0 +1,43 @@
+<div class="package-details">
+    <h2>Package Name : {{singlepackage?.packageName}}</h2>
+    <p class="price-details">About: {{singlepackage?.aboutPackage}}</p>
+    <p class="price-details">Price: ₹{{singlepackage?.packagePrice}}</p>
+    <div class="facilities">
+        <h3>Facilities</h3>
+        <ul>
+            <li>Transportation:{{ singlepackage?.fecilities?.Transportation ? 'Included' : 'Not included' }}</li>
+            <li>Accommodation: {{ singlepackage?.fecilities?.Accommodation ? 'Included' : 'Not included' }}</li>
+            <li>Meals: Breakfast and dinner</li>
+            <li>ProfessionalGuides: Included</li>
+            <li>LanguageSupport: Included</li>
+            <li>TravelInsurance: Breakfast and dinner</li>
+            <li>CustomerSupport: Breakfast and dinner</li>
+        </ul>
+    </div>
+    <p class="date-details">Start Date: 2024-03-10</p>
+    <p class="date-details">End Date: 2024-03-15</p>
+    <p class="offer-details">Offer: Early bird discount</p>
+    <p class="offer-details">Offer Rate: 10% off</p>
+    <p class="capacity-details">Maximum Capacity: 20</p>
+    <p class="capacity-details">Available Slot: 15</p>
+    <div class="places">
+        <h3>Places</h3>
+        <ul>
+            <li class="place">
+                <div class="place-info">
+                    <img
+                        class="place-image"
+                        src=""
+                        alt="Placeholder image for place"
+                        data-place-image-url="https://path/to/actual/image.jpg"
+                    />
+                    <div class="place-details">
+                        <p>Place Name: Placeholder name</p>
+                        <p>Arriving Time: 10:00 AM</p>
+                        <p>Return Time: 5:00 PM</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

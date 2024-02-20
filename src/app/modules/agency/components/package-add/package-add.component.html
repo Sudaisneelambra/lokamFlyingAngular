@@ -1,3 +1,4 @@
+<div class="" *ngIf="!expiry ; else expired">
 <div class="form-container ">
     <form [formGroup]="packageForm"  class="mt-12"> 
       <div class="form-group">
@@ -13,6 +14,16 @@
       <div class="form-group">
         <label>Package Price:</label>
         <input type="number" formControlName="packagePrice">
+      </div>
+
+      <div class="form-group">
+        <label>Start Date:</label>
+        <input type="date" formControlName="startDate">
+      </div>
+  
+      <div class="form-group">
+        <label>End Date:</label>
+        <input type="date" formControlName="endDate">
       </div>
   
       <button class="btns" type="button" class="mb-4" (click)="getplace()" [disabled]="places && places.length > 0">Get all place</button>
@@ -31,12 +42,12 @@
               <td class="p-5">{{ i + 1 }}</td>
               <td class="p-5">{{ place.placename }}</td>
               <td class="p-5">
-                <button class="nab">Delete</button>
+                <button class="nab" (click)="deleteAddedPlace(place.placeId)">Delete</button>
               </td>
             </tr>
           </tbody>
         </table>
-      </div>
+      </div>  
 
       <div *ngIf="places" class="flex w-[100%] flex-wrap  gap-10  ">
         <div *ngFor="let place of places; " class="flex md:w-[40%] w-full">
@@ -48,14 +59,22 @@
       <div *ngIf="selectedplace">
         <form class="mt-10 space-y-4">
           <h3 class="font-semibold text-[#e94c7b]">Add Arrival & Return Time for {{ selectedplace?.placeName }}</h3>
-         <div class="">
-          <label for="arrivalTime">Arrival Time:</label>
-          <input type="time" id="arrivalTime" name="arrivalTime" [(ngModel)]="arrivalTime">
-         </div>
-         <div class="">
-          <label for="returntime">Arrival Time:</label>
-          <input type="time" id="returntime" name="returntime" [(ngModel)]="returntime">
-         </div>
+          <div class="">
+            <label for="arrivalDate">Arrival Date:</label>
+            <input type="date" id="arrivalDate" name="arrivalDate" [(ngModel)]="arrivalDate">
+        </div>
+        <div class="">
+            <label for="arrivalTime">Arrival Time:</label>
+            <input type="time" id="arrivalTime" name="arrivalTime" [(ngModel)]="arrivalTime">
+        </div>
+        <div class="">
+            <label for="returnDate">Return Date:</label>
+            <input type="date" id="returnDate" name="returnDate" [(ngModel)]="returnDate">
+        </div>
+        <div class="">
+            <label for="returnTime">Return Time:</label>
+            <input type="time" id="returnTime" name="returnTime" [(ngModel)]="returnTime">
+        </div>
           <!-- Add other input fields for additional details -->
           <button type="submit" (click)="adding()" class="nab">Add</button>
         </form>
@@ -99,16 +118,6 @@
         </div>
       </div>
   
-      <div class="form-group">
-        <label>Start Date:</label>
-        <input type="date" formControlName="startDate">
-      </div>
-  
-      <div class="form-group">
-        <label>End Date:</label>
-        <input type="date" formControlName="endDate">
-      </div>
-  
       <div class="form-group border-[1px] border-[#ccc] p-2 rounded-[4px]">
         <label>Offer:</label><br>
         <div class="offer-radio flex gap-4  ">
@@ -149,6 +158,10 @@
         <button type="submit" [disabled]="!packageForm.valid" (click)="onSubmit()">Submit</button>
         <button type="submit" class="btn btn-primary" (click)="back()">back</button>
       </div>
+      <p>{{message}}</p>
     </form>
-  </div>
-  
+  </div>  
+</div>
+<ng-template #expired>
+  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">tocken expired.. please login</h1>
+</ng-template>
