@@ -1,43 +1,137 @@
-<div class="package-details">
-    <h2>Package Name : {{singlepackage?.packageName}}</h2>
-    <p class="price-details">About: {{singlepackage?.aboutPackage}}</p>
-    <p class="price-details">Price: ₹{{singlepackage?.packagePrice}}</p>
-    <div class="facilities">
-        <h3>Facilities</h3>
-        <ul>
-            <li>Transportation:{{ singlepackage?.fecilities?.Transportation ? 'Included' : 'Not included' }}</li>
-            <li>Accommodation: {{ singlepackage?.fecilities?.Accommodation ? 'Included' : 'Not included' }}</li>
-            <li>Meals: Breakfast and dinner</li>
-            <li>ProfessionalGuides: Included</li>
-            <li>LanguageSupport: Included</li>
-            <li>TravelInsurance: Breakfast and dinner</li>
-            <li>CustomerSupport: Breakfast and dinner</li>
-        </ul>
-    </div>
-    <p class="date-details">Start Date: 2024-03-10</p>
-    <p class="date-details">End Date: 2024-03-15</p>
-    <p class="offer-details">Offer: Early bird discount</p>
-    <p class="offer-details">Offer Rate: 10% off</p>
-    <p class="capacity-details">Maximum Capacity: 20</p>
-    <p class="capacity-details">Available Slot: 15</p>
-    <div class="places">
-        <h3>Places</h3>
-        <ul>
-            <li class="place">
-                <div class="place-info">
-                    <img
-                        class="place-image"
-                        src=""
-                        alt="Placeholder image for place"
-                        data-place-image-url="https://path/to/actual/image.jpg"
-                    />
-                    <div class="place-details">
-                        <p>Place Name: Placeholder name</p>
-                        <p>Arriving Time: 10:00 AM</p>
-                        <p>Return Time: 5:00 PM</p>
-                    </div>
-                </div>
-            </li>
-        </ul>
+<div class=""  *ngIf="!expiry; else expired">
+    <div class="w-full flex justify-center items-center">
+        <div class="package-details" ngFor="let pack of singlepackage">
+            <h2 class="package-name">{{singlepackage?.packageName | uppercase}} <span class="text-[10px] text-black font-light">explore with us..</span></h2>
+            <p class="price-details font-semibold">{{singlepackage?.aboutPackage}}</p>
+            <p class="price-details font-bold text-[20px] !text-[#ef4343]" >Package Price: ₹{{singlepackage?.packagePrice}}</p>
+            <div class="facilities p-3 ">
+                <h3 class="font-bold text-[20px] !text-[black] !mb-[20px]">Facilities</h3>
+                <table class="facilities-table">
+                  <tbody>
+                    <tr>
+                      <th>Facility</th>
+                      <th>Included</th>
+                    </tr>
+                    <tr>
+                      <td>Transportation</td>
+                      <td>{{ singlepackage?.fecilities?.Transportation ? 'Yes' : 'No' }}</td>
+                    </tr>
+                    <tr>
+                      <td>Accommodation</td>
+                      <td>{{ singlepackage?.fecilities?.Accommodation ? 'Yes' : 'No' }}</td>
+                    </tr>
+                    <tr>
+                        <td>Meals</td>
+                        <td>{{ singlepackage?.fecilities?.Meals ? 'Yes' : 'No' }}</td>
+                      </tr>
+                      <tr>
+                        <td>ProfessionalGuides</td>
+                        <td>{{ singlepackage?.fecilities?.ProfessionalGuides ? 'Yes' : 'No' }}</td>
+                      </tr>
+                      <tr>
+                        <td>LanguageSupport</td>
+                        <td>{{ singlepackage?.fecilities?.LanguageSupport ? 'Yes' : 'No' }}</td>
+                      </tr>
+                      <tr>
+                        <td>TravelInsurance</td>
+                        <td>{{ singlepackage?.fecilities?.TravelInsurance ? 'Yes' : 'No' }}</td>
+                      </tr>
+                      <tr>
+                        <td>CustomerSupport</td>
+                        <td>{{ singlepackage?.fecilities?.CustomerSupport ? 'Yes' : 'No' }}</td>
+                      </tr>
+                    </tbody>
+                </table>
+              </div>
+              <table class="package-details">
+                <tbody>
+                  <tr>
+                    <th>Start Date</th>
+                    <td>
+                      <span>{{ singlepackage?.startDate }}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>End Date</th>
+                    <td>
+                      <span>{{ singlepackage?.endDate }}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Offer</th>
+                    <td>
+                      {{ singlepackage?.offer }}
+                    </td>
+                  </tr>
+                  <tr *ngIf="singlepackage?.offer === 'yes'">
+                    <th>Offer Rate</th>
+                    <td>
+                      <span class="offer-rate">{{ singlepackage?.offerRate }}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Maximum Capacity</th>
+                    <td>
+                      <span>{{ singlepackage?.maximumCapacity }}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Available Slot</th>
+                    <td>
+                      <span>{{ singlepackage?.availableSlot }}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>              
+            <h3>Places</h3>
+            <ng-container class="places" *ngFor="let pls of result">
+                <ul>
+                    <li class="place">
+                        <div class="place-info">
+                            <div class="place-div relative">
+                                <img
+                                class="place-image"
+                                src="{{pls?.placeurl[0]}}"
+                                alt="Placeholder image for place"
+                                data-place-image-url="https://path/to/actual/image.jpg"
+                            />
+                            <h1 class="more-text hidden">more...</h1>
+                            </div>
+                            <div class="place-details">
+                                <p>{{pls?.placename}}</p>
+                                <p>Arriving Time: {{pls?.arrivingtime}} ({{pls?.arrivalDate}})</p>
+                                <p>Return Time: {{pls?.returntime}} ({{pls?.returnDate}})</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </ng-container>
+            <h3>Guides</h3>
+            <ng-container class="places" *ngFor="let gd of guide">
+                <ul>
+                    <li class="place">
+                        <div class="place-info">
+                            <div class="place-div relative">
+                                <img
+                                class="place-image"
+                                src="{{gd?.guideurl}}"
+                                alt="Placeholder image for place"
+                                data-place-image-url="https://path/to/actual/image.jpg"
+                            />
+                            <h1 class="more-text hidden" (click)="guideget(gd._id)">more...</h1>
+                            </div>
+                            <div class="place-details">
+                                <p>{{gd?.guidename}}</p>
+                                <p>Expirience: {{gd?.experience}} years</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </ng-container>
+            <button (click)="back()">back</button>
+        </div>
     </div>
 </div>
+<ng-template #expired>
+    <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">tocken expired.. please login</h1>
+  </ng-template>
