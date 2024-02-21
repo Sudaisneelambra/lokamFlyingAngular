@@ -1,30 +1,29 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Router } from "@angular/router";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-    selector:'app-packageedit',
-    templateUrl:'./packageeditconfirmation.component.html',
-    styleUrls:['./packageeditconfirmation.component.css']
+  selector: 'app-packageedit',
+  templateUrl: './packageeditconfirmation.component.html',
+  styleUrls: ['./packageeditconfirmation.component.css'],
 })
+export class PackageEditConfirmationComponent implements OnInit {
 
-export class PackageEditConfirmationComponent implements OnInit{
+  @Input() id!: any;
+  @Output() editcancel = new EventEmitter();
 
+  constructor(private router: Router) {}
 
+  ngOnInit(): void {}
 
-    @Input() id!:any
-    @Output() editcancel= new EventEmitter()
+//   editting button conformaion
+  confirmboolean() {
+    this.router.navigate([`/agency/packageadd`], {
+      queryParams: { id: this.id },
+    });
+  }
 
-    constructor(private router:Router){}
-    ngOnInit(): void {
-        console.log(this.id);
-        
-    }
-
-    confirmboolean(){
-         this.router.navigate([`/agency/packageadd`], { queryParams: { id: this.id } })
-    }
-
-    cancel(){
-        this.editcancel.emit(false)
-    }
+//   editting cancel emit to parent
+  cancel() {
+    this.editcancel.emit(false);
+  }
 }

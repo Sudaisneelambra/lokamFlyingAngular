@@ -6,77 +6,84 @@ import { agencyService } from 'src/app/modules/agency/services/agency.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
-
 @Component({
   selector: 'app-placefulldetails',
   templateUrl: './placesfulldetails.component.html',
   styleUrls: ['./placesfulldetails.component.css'],
 })
 export class PlaceFulldetails implements OnInit, OnDestroy {
-  constructor(private service: agencyService, private location: Location, private router:Router ,private route:ActivatedRoute) {}
 
+  
   singlePlacedata!: any;
   selectedIndex = 0;
   bool = true;
   control = true;
   val = true;
-  images:any
-  msg!:string
-  modaldelete!:boolean
-  modalEdit!:boolean
-  deleteId!:any
-  editId!:any
+  images: any;
+  msg!: string;
+  modaldelete!: boolean;
+  modalEdit!: boolean;
+  deleteId!: any;
+  editId!: any;
+  
+  // constructor for injecting services
+  constructor(
+    private service: agencyService,
+    private location: Location,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
+
+  // oninit for getting single place
   ngOnInit(): void {
-    
-    this.route.params.subscribe(params => {
-        const id = params['id'];
-        // getting all detials of specific place
-        this.service.getsingleplace(id).subscribe({
-            next:(res)=>{
-                console.log(res);
-                this.singlePlacedata=res.data
-                this.images=res.data.placeurl
-                console.log(this.singlePlacedata);
-                
-            },
-            error:(err)=>{
-                console.log(err.message);
-                this.router.navigate(['/error']) 
-            }
-        })
+    this.route.params.subscribe((params) => {
+      const id = params['id'];
+      // getting all detials of specific place
+      this.service.getsingleplace(id).subscribe({
+        next: (res) => {
+          this.singlePlacedata = res.data;
+          this.images = res.data.placeurl;
+        },
+        error: (err) => {
+          this.router.navigate(['/error']);
+        },
       });
+    });
     // auto carosel
-    if(this.val){
-        this.auto()
-      }
+    if (this.val) {
+      this.auto();
+    }
   }
 
-  // delete button function
-
-  deleteconfirmvalue(event:any){
-    this.modaldelete=event
+  // delete   cancel modal output emmitter
+  deleteconfirmvalue(event: any) {
+    this.modaldelete = event;
   }
 
-  delete(id:any){
-    this.modaldelete=true
-    this.deleteId=id
+  // delete button
+  delete(id: any) {
+    this.modaldelete = true;
+    this.deleteId = id;
   }
-  cancellingedit(event:any){
-    this.modalEdit=event
+
+  // cancel edit  output emmitter
+  cancellingedit(event: any) {
+    this.modalEdit = event;
   }
 
   // edit button triggered
-  edit(id:any){
-    this.modalEdit=true
-    this.editId=id
+  edit(id: any) {
+    this.modalEdit = true;
+    this.editId = id;
   }
 
-  message(event:any){
-    this.msg=event
+  // message output emmitter
+  message(event: any) {
+    this.msg = event;
   }
 
-// carosel function
+  // carosel function
   selectimge(index: number) {
     this.selectedIndex = index;
   }
@@ -100,10 +107,10 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
   }
 
   // auto acrosel
-  auto(){
-    setInterval(()=>{
-      this.onnextclick()
-    },5000)
+  auto() {
+    setInterval(() => {
+      this.onnextclick();
+    }, 5000);
   }
 
   // back to previous location
@@ -112,6 +119,5 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
   }
 
   // distroing component
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 }

@@ -19,9 +19,8 @@ export class UserService {
     return this.http.post(`${this.userapi}/user/signup`, data, httpOptions);
   }
 
-  // otp verification 
+  // otp verification
   userOtpverification(data: any): Observable<any> {
-    console.log(data);
     return this.http.post(
       `${this.userapi}/user/signup/otpverification`,
       data,
@@ -42,7 +41,6 @@ export class UserService {
   // type user check
   gettypeuser() {
     const type = localStorage.getItem('type');
-    console.log(type);
     if (type == 'user') {
       return true;
     } else {
@@ -53,7 +51,6 @@ export class UserService {
   // type agency check
   gettypeagency() {
     const type = localStorage.getItem('type');
-    console.log(type);
     if (type == 'agency') {
       return true;
     } else {

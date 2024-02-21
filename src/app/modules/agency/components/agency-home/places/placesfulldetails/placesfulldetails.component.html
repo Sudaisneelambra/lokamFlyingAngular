@@ -1,5 +1,14 @@
-<app-deleteconformation *ngIf="modaldelete" (daleteconformationdelete)="deleteconfirmvalue($event)" [id]="deleteId" (msg)="message($event)"></app-deleteconformation>
-<edit-conformation *ngIf="modalEdit" (cancelvalue)="cancellingedit($event)" [id]="editId"></edit-conformation>
+<app-deleteconformation
+  *ngIf="modaldelete"
+  (daleteconformationdelete)="deleteconfirmvalue($event)"
+  [id]="deleteId"
+  (msg)="message($event)"
+></app-deleteconformation>
+<edit-conformation
+  *ngIf="modalEdit"
+  (cancelvalue)="cancellingedit($event)"
+  [id]="editId"
+></edit-conformation>
 <body class="relative">
   <div class="sin">
     <div class="place-info">
@@ -58,7 +67,7 @@
         <button (click)="delete(singlePlacedata._id)">Delete place</button>
         <button (click)="back()">Back</button>
       </div>
-      <p class="text-center text-green-700">{{msg}}</p>
+      <p class="text-center text-green-700">{{ msg }}</p>
     </div>
   </div>
 </body>

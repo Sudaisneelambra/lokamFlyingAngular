@@ -1,21 +1,29 @@
-<app-guidedelete *ngIf="modalview"  [id]="deleteId" (canceldelete)="cancelling($event)" (msg)="message($event)"></app-guidedelete>
-<app-editconfirmation *ngIf="modalviewedit" [id]="editId" (editcancel)="modalclose($event)"></app-editconfirmation>
+<app-guidedelete
+  *ngIf="modalview"
+  [id]="deleteId"
+  (canceldelete)="cancelling($event)"
+  (msg)="message($event)"
+></app-guidedelete>
+<app-editconfirmation
+  *ngIf="modalviewedit"
+  [id]="editId"
+  (editcancel)="modalclose($event)"
+></app-editconfirmation>
 <div class="guide-details">
-    <div class=" flex">
-        <img src="{{singleguide?.guideurl}}" alt="Logo" class="logo ">
-        <div class="content ">
-            <h2>{{singleguide?.guidename}}</h2>
-            <div class="about-guide">{{singleguide?.aboutguide}}</div>
-            <div class="experience">Experience: {{singleguide?.experience}} year</div>
-        </div>
+  <div class="flex">
+    <img src="{{ singleguide?.guideurl }}" alt="Logo" class="logo" />
+    <div class="content">
+      <h2>{{ singleguide?.guidename }}</h2>
+      <div class="about-guide">{{ singleguide?.aboutguide }}</div>
+      <div class="experience">
+        Experience: {{ singleguide?.experience }} year
+      </div>
     </div>
-    <div class="flex p-10 justify-between">
-        <button (click)="edit(singleguide?._id)">edit</button>
-        <button (click)="delete(singleguide?._id)">delete</button>
-        <button (click)="back()">back</button>
-    </div>
-    <p class="text-center text-green-700">{{msg}}</p>
+  </div>
+  <div class="flex p-10 justify-between">
+    <button (click)="edit(singleguide?._id)">edit</button>
+    <button (click)="delete(singleguide?._id)">delete</button>
+    <button (click)="back()">back</button>
+  </div>
+  <p class="text-center text-green-700">{{ msg }}</p>
 </div>
-
-
-  

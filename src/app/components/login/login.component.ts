@@ -9,7 +9,6 @@ import { UserService } from 'src/app/services/commonSignup.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-
   // creation of a variable
   already: any;
   otp: any = '';
@@ -52,10 +51,7 @@ export class LoginComponent {
         { validators: this.roleRequiredValidator }
       ),
     });
-
-
-  // create scheme using form group for login
-
+    // create scheme using form group for login
     this.login = this.fb.group({
       mail: ['', [Validators.required, Validators.email]],
       pass: [
@@ -70,7 +66,6 @@ export class LoginComponent {
       ],
     });
   }
-
 
   // getting all form controls of login form
   get l() {
@@ -108,8 +103,6 @@ export class LoginComponent {
           }, 6000);
         } else {
           this.already = res.message;
-          console.log('sudais');
-
           setTimeout(() => {
             this.already = '';
           }, 4000);
@@ -123,13 +116,11 @@ export class LoginComponent {
   }
 
   // otp conponets if case value
-
   boool(data: any) {
     this.bool = data;
   }
 
   // logining login form
-
   logins() {
     console.log(this.login.value);
     this.userService.userLogin(this.login.value).subscribe({
@@ -139,8 +130,6 @@ export class LoginComponent {
             this.loginmessage = res.message;
             localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
             localStorage.setItem('type', res.type);
-            console.log('Logged in successfully');
-            console.log(res.token);
             setTimeout(() => {
               this.loginmessage = '';
               this.router.navigate(['user']);
@@ -149,8 +138,6 @@ export class LoginComponent {
             this.loginmessage = res.message;
             localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
             localStorage.setItem('type', res.type);
-            console.log('Logged in successfully');
-            console.log(res.token);
             setTimeout(() => {
               console.log('admin');
               this.loginmessage = '';
@@ -159,15 +146,12 @@ export class LoginComponent {
             this.loginmessage = res.message;
             localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
             localStorage.setItem('type', res.type);
-            console.log('Logged in successfully');
-            console.log(res.token);
             if (res.profileadd) {
               this.router.navigate(['/agency']);
             } else {
               this.router.navigate(['/agency/profileadd']);
             }
             setTimeout(() => {
-              console.log('resisterde agency');
               this.loginmessage = '';
             }, 2000);
           } else if (!res.resistered) {
@@ -176,18 +160,15 @@ export class LoginComponent {
               alert(
                 'dear costomer ,your verification message send to the admin,but he didnt verified your mail, wait for verification'
               );
-              console.log('not resisterde agency');
               this.error = '';
             }, 2000);
           }
         } else {
           this.error = res.message;
           setTimeout(() => {
-            console.log('user not found');
             this.error = '';
           }, 2000);
         }
-        console.log(res);
       },
       error: (err) => {},
     });
@@ -206,13 +187,11 @@ export class LoginComponent {
         roleForm.get('user')!.setValue(false);
       }
     }
-    console.log(this.userForm.value);
   }
 
   hidePassword = true;
 
   // pawword hiding function
-  
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
   }

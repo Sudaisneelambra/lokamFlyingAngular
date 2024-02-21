@@ -2,17 +2,21 @@
   class="one w-[230px] h-[300px] border-[1px] overflow-hidden bg-[#fff] relative rounded-md"
 >
   <img
-    src="{{guide.guideurl}}"
-    style="width: 100%;
-      height: 100% ;
-      border: 2px;
-    "
+    src="{{ guide.guideurl }}"
+    style="width: 100%; height: 100%; border: 2px"
     alt=""
   />
-  <div class="sin w-full h-[35%] absolute bottom-0 bg-[#808080d7]" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
-    <h1 class="name px-[6px] text-center font-bold text-[16px]">{{guide.guidename | uppercase}}</h1>
-    <button class=" hidden px-4 my-4" (click)="getguide(guide._id)">view full details</button>
+  <div
+    class="sin w-full h-[35%] absolute bottom-0 bg-[#808080d7]"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()"
+  >
+    <h1 class="name px-[6px] text-center font-bold text-[16px]">
+      {{ guide.guidename | uppercase }}
+    </h1>
+    <button class="hidden px-4 my-4" (click)="getguide(guide._id)">
+      view full details
+    </button>
     <h1 class="about px-[6px] text-center">{{ aboutguide }}</h1>
   </div>
 </div>
-

@@ -10,76 +10,66 @@ import { Subscription } from 'rxjs';
   templateUrl: './agency-home.component.html',
   styleUrls: ['./agency-home.component.css'],
 })
-export class AgencyHomeComponent implements OnInit , OnDestroy{
+export class AgencyHomeComponent implements OnInit, OnDestroy {
 
-  placeSubscription$ = new Subscription;
-  guideSubscription$ =new Subscription;
-  packageSubscription$ =new Subscription;
-  name!:string
-  data:any
-  guide:any
-  package:any
-  booleanvalue:boolean=true
-  expiry!:any
+  placeSubscription$ = new Subscription();
+  guideSubscription$ = new Subscription();
+  packageSubscription$ = new Subscription();
+  name!: string;
+  data: any;
+  guide: any;
+  package: any;
+  booleanvalue: boolean = true;
+  expiry!: any;
 
+  // constructor for injecting services
   constructor(private service: agencyService, private router: Router) {}
-  
-  ngOnInit(){
 
+  // on init getting place and guid and package
+  ngOnInit() {
     // all place getting api
-    this.placeSubscription$= this.service.gettingplace().subscribe({
-      next:(res)=>{
-        this.data= res.data
-        if(res.expiry){
-          console.log(res.expiry);
-          this.expiry=res.expiry          
+    this.placeSubscription$ = this.service.gettingplace().subscribe({
+      next: (res) => {
+        this.data = res.data;
+        if (res.expiry) {
+          this.expiry = res.expiry;
         }
-        
       },
-      error:(err)=>{
-        console.log(err);
+      error: (err) => {
         console.log(err.message);
-      }
-    })
+      },
+    });
 
     //all place getting api
-    this.guideSubscription$ =this.service.gettingguides().subscribe({
-      next:(res)=>{
-        this.guide= res.data
-        if(res.expiry){
-          console.log(res.expiry);  
-          this.expiry=res.expiry          
+    this.guideSubscription$ = this.service.gettingguides().subscribe({
+      next: (res) => {
+        this.guide = res.data;
+        if (res.expiry) {
+          this.expiry = res.expiry;
         }
       },
-      error:(err)=>{
-        console.log(err);
+      error: (err) => {
         console.log(err.message);
-      }
-    })
+      },
+    });
 
     //all package getting api
-    this.packageSubscription$ =this.service.gettingpackages().subscribe({
-      next:(res)=>{
-        this.package= res.data
-        if(res.expiry){
-          console.log(res.expiry);
-          this.expiry=res.expiry          
-        }      
+    this.packageSubscription$ = this.service.gettingpackages().subscribe({
+      next: (res) => {
+        this.package = res.data;
+        if (res.expiry) {
+          this.expiry = res.expiry;
+        }
       },
-      error:(err)=>{
-        console.log(err);
+      error: (err) => {
         console.log(err.message);
-      }
-    })
-
-
-
+      },
+    });
   }
 
   // logout
   logout() {
-
-  // logout and token delete
+    // logout and token delete
     this.service.agencylogout().subscribe({
       next: (res) => {
         console.log(res);
@@ -88,17 +78,14 @@ export class AgencyHomeComponent implements OnInit , OnDestroy{
         console.log(err);
       },
     });
-    console.log('logouted');
     this.router.navigate(['authentication']);
   }
 
-
-// page distroying
+  // page distroying
   ngOnDestroy(): void {
+    this.placeSubscription$.unsubscribe();
 
-    this.placeSubscription$.unsubscribe()
-
-    this.guideSubscription$.unsubscribe()
-    this.packageSubscription$.unsubscribe()
+    this.guideSubscription$.unsubscribe();
+    this.packageSubscription$.unsubscribe();
   }
 }

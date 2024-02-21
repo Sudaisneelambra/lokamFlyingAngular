@@ -1,16 +1,18 @@
-<div class="one w-[270px] h-[330px] border-[1px]  relative rounded-md bg-gradient-to-t from-[#bebe70] to-[violet] text-center p-1 flex justify-between items-center flex-col py-3">
+<div
+  class="one w-[270px] h-[330px] border-[1px] relative rounded-md bg-gradient-to-t from-[#bebe70] to-[violet] text-center p-1 flex justify-between items-center flex-col py-3"
+>
   <!-- Displaying package name -->
   <h1 class="name pl-1 font-bold text-[23px] text-[#d55a5a] text-center">
     {{ package.packageName | uppercase }}
   </h1>
-  
+
   <!-- Displaying package description -->
   <h2 class="disc pl-1 font-medium text-[#3a1c1c] text-center">
-    {{ package.aboutPackage | guidediscription}}
+    {{ package.aboutPackage | guidediscription }}
   </h2>
 
   <!-- Displaying start date -->
-  <p class="pl-1 font-medium text-[#ffffff] text-center ">
+  <p class="pl-1 font-medium text-[#ffffff] text-center">
     Start Date: {{ package.startDate | date }}
   </p>
 
@@ -20,8 +22,10 @@
   </p>
 
   <!-- Adding a button to view full details -->
-  <button class="px-4 py-2 my-4  bg-gradient-to-r from-purple-400 to-indigo-500 text-white font-semibold rounded-md shadow-md hover:bg-indigo-600 transition duration-300 ease-in-out"
-  (click)="getpackage(package._id)">
+  <button
+    class="px-4 py-2 my-4 bg-gradient-to-r from-purple-400 to-indigo-500 text-white font-semibold rounded-md shadow-md hover:bg-indigo-600 transition duration-300 ease-in-out"
+    (click)="getpackage(package._id)"
+  >
     View Full Details
   </button>
 </div>

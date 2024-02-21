@@ -1,32 +1,40 @@
-<div class="" *ngIf="!expiry ; else expired">
-<div class="form-container ">
-    <form [formGroup]="packageForm"  class="mt-12"> 
+<div class="" *ngIf="!expiry; else expired">
+  <div class="form-container">
+    <form [formGroup]="packageForm" class="mt-12">
       <div class="form-group">
         <label>Package Name:</label>
-        <input type="text" formControlName="packageName">
+        <input type="text" formControlName="packageName" />
       </div>
-  
+
       <div class="form-group">
         <label>About Package:</label>
         <textarea formControlName="aboutPackage"></textarea>
       </div>
-  
+
       <div class="form-group">
         <label>Package Price:</label>
-        <input type="number" formControlName="packagePrice">
+        <input type="number" formControlName="packagePrice" />
       </div>
 
       <div class="form-group">
         <label>Start Date:</label>
-        <input type="date" formControlName="startDate">
+        <input type="date" formControlName="startDate" />
       </div>
-  
+
       <div class="form-group">
         <label>End Date:</label>
-        <input type="date" formControlName="endDate">
+        <input type="date" formControlName="endDate" />
       </div>
-  
-      <button class="btns" type="button" class="mb-4" (click)="getplace()" [disabled]="places && places.length > 0">Get all place</button>
+
+      <button
+        class="btns"
+        type="button"
+        class="mb-4"
+        (click)="getplace()"
+        [disabled]="places && places.length > 0"
+      >
+        Get all place
+      </button>
       <div class="mb-10" *ngIf="addedplaces && addedplaces.length > 0">
         <h1 class="p-5 text-[25px] font-bold text-[green]">Selected places</h1>
         <table class="w-full border-2 text-center">
@@ -42,127 +50,233 @@
               <td class="p-5">{{ i + 1 }}</td>
               <td class="p-5">{{ place.placename }}</td>
               <td class="p-5">
-                <button class="nab" (click)="deleteAddedPlace(place.placeId)">Delete</button>
+                <button class="nab" (click)="deleteAddedPlace(place.placeId)">
+                  Delete
+                </button>
               </td>
             </tr>
           </tbody>
         </table>
-      </div>  
+      </div>
 
-      <div *ngIf="places" class="flex w-[100%] flex-wrap  gap-10  ">
-        <div *ngFor="let place of places; " class="flex md:w-[40%] w-full">
-          <input type="radio" name="place" (change)="selectPlace(place)" >
+      <div *ngIf="places" class="flex w-[100%] flex-wrap gap-10">
+        <div *ngFor="let place of places" class="flex md:w-[40%] w-full">
+          <input type="radio" name="place" (change)="selectPlace(place)" />
           <label>{{ place?.placeName }}</label>
         </div>
       </div>
 
       <div *ngIf="selectedplace">
         <form class="mt-10 space-y-4">
-          <h3 class="font-semibold text-[#e94c7b]">Add Arrival & Return Time for {{ selectedplace?.placeName }}</h3>
+          <h3 class="font-semibold text-[#e94c7b]">
+            Add Arrival & Return Time for {{ selectedplace?.placeName }}
+          </h3>
           <div class="">
             <label for="arrivalDate">Arrival Date:</label>
-            <input type="date" id="arrivalDate" name="arrivalDate" [(ngModel)]="arrivalDate">
-        </div>
-        <div class="">
+            <input
+              type="date"
+              id="arrivalDate"
+              name="arrivalDate"
+              [(ngModel)]="arrivalDate"
+            />
+          </div>
+          <div class="">
             <label for="arrivalTime">Arrival Time:</label>
-            <input type="time" id="arrivalTime" name="arrivalTime" [(ngModel)]="arrivalTime">
-        </div>
-        <div class="">
+            <input
+              type="time"
+              id="arrivalTime"
+              name="arrivalTime"
+              [(ngModel)]="arrivalTime"
+            />
+          </div>
+          <div class="">
             <label for="returnDate">Return Date:</label>
-            <input type="date" id="returnDate" name="returnDate" [(ngModel)]="returnDate">
-        </div>
-        <div class="">
+            <input
+              type="date"
+              id="returnDate"
+              name="returnDate"
+              [(ngModel)]="returnDate"
+            />
+          </div>
+          <div class="">
             <label for="returnTime">Return Time:</label>
-            <input type="time" id="returnTime" name="returnTime" [(ngModel)]="returnTime">
-        </div>
+            <input
+              type="time"
+              id="returnTime"
+              name="returnTime"
+              [(ngModel)]="returnTime"
+            />
+          </div>
           <!-- Add other input fields for additional details -->
           <button type="submit" (click)="adding()" class="nab">Add</button>
         </form>
       </div>
 
-      <div class="fecilities border-[1px] border-[#ccc] p-2 rounded-[4px] mt-10">
-        <label class="font-bold text-[20px]">fecilities:</label><br>
-      
+      <div
+        class="fecilities border-[1px] border-[#ccc] p-2 rounded-[4px] mt-10"
+      >
+        <label class="font-bold text-[20px]">fecilities:</label><br />
+
         <div class="fecility">
-          <input type="checkbox" id="Transportation" name="Transportation" (change)="updatefecility('Transportation', $event)">
+          <input
+            type="checkbox"
+            id="Transportation"
+            name="Transportation"
+            (change)="updatefecility('Transportation', $event)"
+          />
           <label for="Transportation">Transportation</label>
         </div>
-        
+
         <div class="fecility">
-          <input type="checkbox" id="Accommodation" name="Accommodation" (change)="updatefecility('Accommodation', $event)">
+          <input
+            type="checkbox"
+            id="Accommodation"
+            name="Accommodation"
+            (change)="updatefecility('Accommodation', $event)"
+          />
           <label for="Accommodation">Accommodation</label>
         </div>
-        
+
         <div class="fecility">
-          <input type="checkbox" id="Meals" name="Meals" (change)="updatefecility('Meals', $event)">
+          <input
+            type="checkbox"
+            id="Meals"
+            name="Meals"
+            (change)="updatefecility('Meals', $event)"
+          />
           <label for="Meals">Meals</label>
         </div>
 
         <div class="fecility">
-          <input type="checkbox" id="ProfessionalGuides" name="ProfessionalGuides:" (change)="updatefecility('ProfessionalGuides:', $event)">
+          <input
+            type="checkbox"
+            id="ProfessionalGuides"
+            name="ProfessionalGuides:"
+            (change)="updatefecility('ProfessionalGuides:', $event)"
+          />
           <label for="ProfessionalGuides:">ProfessionalGuides</label>
         </div>
-        
+
         <div class="fecility">
-          <input type="checkbox" id="LanguageSupport" name="LanguageSupport" (change)="updatefecility('LanguageSupport', $event)">
+          <input
+            type="checkbox"
+            id="LanguageSupport"
+            name="LanguageSupport"
+            (change)="updatefecility('LanguageSupport', $event)"
+          />
           <label for="LanguageSupport">LanguageSupport</label>
         </div>
 
         <div class="fecility">
-            <input type="checkbox" id="TravelInsurance" name="TravelInsurance" (change)="updatefecility('TravelInsurance', $event)">
-            <label for="TravelInsurance">TravelInsurance</label>
+          <input
+            type="checkbox"
+            id="TravelInsurance"
+            name="TravelInsurance"
+            (change)="updatefecility('TravelInsurance', $event)"
+          />
+          <label for="TravelInsurance">TravelInsurance</label>
         </div>
         <div class="fecility">
-            <input type="checkbox" id="CustomerSupport" name="CustomerSupport" (change)="updatefecility('CustomerSupport', $event)">
-            <label for="CustomerSupport">CustomerSupport</label>
+          <input
+            type="checkbox"
+            id="CustomerSupport"
+            name="CustomerSupport"
+            (change)="updatefecility('CustomerSupport', $event)"
+          />
+          <label for="CustomerSupport">CustomerSupport</label>
         </div>
       </div>
-  
+
       <div class="form-group border-[1px] border-[#ccc] p-2 rounded-[4px]">
-        <label>Offer:</label><br>
-        <div class="offer-radio flex gap-4  ">
-          <input type="radio" id="offerYes" name="offer" formControlName="offer" value="Yes" (change)="onOfferChange($event,'yes')">
+        <label>Offer:</label><br />
+        <div class="offer-radio flex gap-4">
+          <input
+            type="radio"
+            id="offerYes"
+            name="offer"
+            formControlName="offer"
+            value="Yes"
+            (change)="onOfferChange($event, 'yes')"
+          />
           <label for="offerYes">Yes</label>
-        
-          <input type="radio" id="offerNo" name="offer" formControlName="offer" value="No" (change)="onOfferChange($event,'no')" >
+
+          <input
+            type="radio"
+            id="offerNo"
+            name="offer"
+            formControlName="offer"
+            value="No"
+            (change)="onOfferChange($event, 'no')"
+          />
           <label for="offerNo">No</label>
         </div>
       </div>
-  
+
       <div class="form-group" *ngIf="booleanvalue">
         <label>Offer Rate:</label>
-        <input type="number" formControlName="offerRate">
+        <input type="number" formControlName="offerRate" />
       </div>
-  
-      <button type="button" class="mb-4" (click)="guidess()"  [disabled]="guides && guides.length > 0">get all guide</button>
+
+      <button
+        type="button"
+        class="mb-4"
+        (click)="guidess()"
+        [disabled]="guides && guides.length > 0"
+      >
+        get all guide
+      </button>
 
       <div *ngIf="guides && guides.length > 0" class="space-y-3 mb-10">
         <h3>Select Guides</h3>
         <div *ngFor="let guide of guides" class="flex gap-3">
-          <input type="checkbox" id="{{guide._id}}" name="{{guide.guidename}}" (change)="toggleGuideSelection(guide)">
-          <label for="{{guide.id}}">{{guide.guidename}}</label>
+          <input
+            type="checkbox"
+            id="{{ guide._id }}"
+            name="{{ guide.guidename }}"
+            (change)="toggleGuideSelection(guide)"
+          />
+          <label for="{{ guide.id }}">{{ guide.guidename }}</label>
         </div>
       </div>
 
       <div class="form-group">
         <label>Maximum Capacity:</label>
-        <input type="number" formControlName="maximumCapacity">
+        <input type="number" formControlName="maximumCapacity" />
       </div>
-  
+
       <div class="form-group">
         <label>Available Slot:</label>
-        <input type="number" formControlName="availableSlot">
+        <input type="number" formControlName="availableSlot" />
       </div>
-  
-      <div class=" flex justify-evenly">
-        <button type="submit" [disabled]="!packageForm.valid" (click)="onSubmit()" *ngIf="!package">Submit</button>
-        <button type="submit"  class="btn btn-primary"  (click)="edit()" [disabled]="!packageForm.valid" *ngIf="package">edit</button>
-        <button type="submit" class="btn btn-primary" (click)="back()">back</button>
+
+      <div class="flex justify-evenly">
+        <button
+          type="submit"
+          [disabled]="!packageForm.valid"
+          (click)="onSubmit()"
+          *ngIf="!package"
+        >
+          Submit
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="edit()"
+          [disabled]="!packageForm.valid"
+          *ngIf="package"
+        >
+          edit
+        </button>
+        <button type="submit" class="btn btn-primary" (click)="back()">
+          back
+        </button>
       </div>
-      <p>{{message}}</p>
+      <p>{{ message }}</p>
     </form>
-  </div>  
+  </div>
 </div>
 <ng-template #expired>
-  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">tocken expired.. please login</h1>
+  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">
+    tocken expired.. please login
+  </h1>
 </ng-template>

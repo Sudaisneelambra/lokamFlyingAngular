@@ -22,13 +22,14 @@ export class OtpComponent implements OnChanges {
   @Output() out = new EventEmitter<boolean>();
   lastThreeNumbers!: any;
   message!: any;
-  otpDigits: string[] = []; // Array to hold individual OTP digits
+  otpDigits: string[] = []; 
 
+  // getting last phone number for displaying
   ngOnChanges(changes: SimpleChanges): void {
     this.lastThreeNumbers = this.formdata.phoneNumber.toString().slice(-3);
-    console.log(changes);
   }
 
+  // otp form submitting
   onSubmit() {
     const newformdata = { otp: this.otpDigits, ...this.formdata };
 
@@ -42,9 +43,7 @@ export class OtpComponent implements OnChanges {
         next: (res) => {
           if (res.success && res.user) {
             this.message = res.message;
-            console.log(res.token);
             localStorage.setItem('tokenuser', res.token);
-            console.log(res);
             setTimeout(() => {
               this.router.navigate(['home']);
             }, 3000);
@@ -55,7 +54,6 @@ export class OtpComponent implements OnChanges {
                 'verification message send to admin ,after the verification of admin you can use the agency dashboard only'
               );
             }, 1000);
-            console.log(res);
             setTimeout(() => {
               this.out.emit(false);
             }, 4000);
@@ -70,10 +68,10 @@ export class OtpComponent implements OnChanges {
       });
     }
   }
-
+  
+// back button from otp component
   display() {
     this.out.emit(false);
-    console.log(this.formdata);
     this.formdata = '';
   }
 }

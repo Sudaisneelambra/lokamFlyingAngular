@@ -5,26 +5,19 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-package',
   templateUrl: './package.component.html',
-  styleUrls: ['./package.component.css']
+  styleUrls: ['./package.component.css'],
 })
-export class PackageComponent implements OnInit{
+export class PackageComponent implements OnInit {
+  
+  constructor(private service: agencyService, private router: Router) {}
 
-
-  constructor(private service:agencyService, private router:Router){}
-  @Input() package!:any
-
+  @Input() package!: any;
 
   ngOnInit(): void {
-  
-      console.log(this.package);
-      
+    console.log(this.package);
   }
 
-
-  getpackage(id:any){
-    this.router.navigate([`/agency/packagedetails/${id}`])
+  getpackage(id: any) {
+    this.router.navigate([`/agency/packagedetails/${id}`]);
   }
-
-
-
 }

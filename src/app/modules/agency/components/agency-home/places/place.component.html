@@ -1,21 +1,25 @@
 <div
   class="one w-[230px] h-[300px] border-[1px] overflow-hidden bg-[#fff] relative rounded-md"
 >
-  <div class="place-image  h-full">
-    <div  *ngIf="images && images.length >0" class="son">
-      <img  alt="erwee" *ngFor="let image of images; let i=index"
-      [src]="image"
-      [ngClass]="{'image-active':selectedIndex === i }"
-      class="fade"
-      >
-  
+  <div class="place-image h-full">
+    <div *ngIf="images && images.length > 0" class="son">
+      <img
+        alt="erwee"
+        *ngFor="let image of images; let i = index"
+        [src]="image"
+        [ngClass]="{ 'image-active': selectedIndex === i }"
+        class="fade"
+      />
+
       <div class="love" *ngIf="bool">
-          <span *ngFor="let dot of images; let i=index" class="dot"
-          [ngClass]="{'active':selectedIndex===i}"
+        <span
+          *ngFor="let dot of images; let i = index"
+          class="dot"
+          [ngClass]="{ active: selectedIndex === i }"
           (click)="selectimge(i)"
-          ></span>
+        ></span>
       </div>
-  </div>
+    </div>
   </div>
   <div
     class="sin w-full h-[35%] absolute bottom-0 bg-[#808080d7]"

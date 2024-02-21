@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./profile-add.component.css'],
 })
 export class ProfileAddComponent implements OnInit, OnDestroy {
+
   message!: string;
   agencyForm: FormGroup;
   formdata = new FormData();
@@ -22,6 +23,7 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
   profileSubscription$ = new Subscription;
   expiry: any;
 
+  // constructor for injecting packages and agency form creation
   constructor(
     private fb: FormBuilder,
     private agency: agencyService,
@@ -51,13 +53,11 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
       location: ['', Validators.required],
     });
   }
-
+// ng oninit  getting profile if it is availabe and checking token exired
   ngOnInit() {
-
     this.service.gettoken().subscribe({
       next:(res)=>{
         if(res.expiry){
-          console.log(res.expiry);
           this.expiry=res.expiry          
         }  
       },
@@ -72,7 +72,6 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
    this.profileSubscription$ = this.agency.getingprofile().subscribe({
     next:(res)=>{
       this.datas=res.user
-      console.log(this.datas);
 
       this.agencyForm.get('agency_name')?.patchValue(res.user.name)
       this.agencyForm.get('description')?.patchValue(res.user.description)
@@ -84,7 +83,6 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
       this.agencyForm.get('closingTime')?.patchValue(res.user.closingTime)
       this.agencyForm.get('location')?.patchValue(res?.user?.location)
       
-
     },
     error:(err)=>{
       console.log(err);
@@ -92,9 +90,7 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
     }
    })
    
-
   }
-
 
 // image file change dettector
   changing(event: any) {
@@ -102,12 +98,9 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
     if (files && files.length > 0) {
       for (let i = 0; i < files.length; i++) {
         const fileName = files[i].name;
-        console.log(fileName);
         this.formdata.append('files', files[i]);
       }
     }
-
-    console.log(this.formdata.getAll('files'));
   }
 
   // logo file change dettector
@@ -136,11 +129,8 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
 
   // profile add or update submission
   onSubmit() {
-    console.log('submitted');
-    console.log(this.agencyForm.value);
 
     if (this.agencyForm.valid) {
-      console.log('valid');
 
       const one = this.agencyForm.value;
       this.formdata.append('name', one.agency_name);
@@ -153,12 +143,10 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
       this.formdata.append('openingTime', one.openingTime);
       this.formdata.append('closingTime', one.closingTime);
       this.formdata.append('location', one.location);
-      console.log(this.agencyForm.value);
 
       // profile adding or updating
       this.agency.addProfile(this.formdata).subscribe(
         (response) => {
-          console.log('Response from server:', response);
           this.router.navigate(['/agency']);
         },
         (error) => {
@@ -181,14 +169,15 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
         console.log(err);
       },
     });
-    console.log('logouted');
     this.router.navigate(['authentication']);
   }
 
+  // back to previous page
   back(){
     this.location.back()
   }
 
+  // on distroy
   ngOnDestroy(): void {
       this.profileSubscription$.unsubscribe();
   }

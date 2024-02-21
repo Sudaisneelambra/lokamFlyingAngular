@@ -1,42 +1,97 @@
-<div class="" *ngIf="!expiry ; else expired">
-<form [formGroup]="placeForm"  class="place-form ">
+<div class="" *ngIf="!expiry; else expired">
+  <form [formGroup]="placeForm" class="place-form">
     <div class="form-group">
       <label for="placeName">Place Name:</label>
-      <input type="text" id="placeName" formControlName="placeName" class="form-control">
+      <input
+        type="text"
+        id="placeName"
+        formControlName="placeName"
+        class="form-control"
+      />
     </div>
     <div class="form-group">
       <label for="placeDescription">Place Description:</label>
-      <textarea id="placeDescription" formControlName="placeDescription" class="form-control"></textarea>
+      <textarea
+        id="placeDescription"
+        formControlName="placeDescription"
+        class="form-control"
+      ></textarea>
     </div>
     <div class="form-group">
-        <label for="images">Images:</label>
-        <input type="file" id="images" class="form-control" accept="image/*" multiple (change)="onImageChange($event)">
+      <label for="images">Images:</label>
+      <input
+        type="file"
+        id="images"
+        class="form-control"
+        accept="image/*"
+        multiple
+        (change)="onImageChange($event)"
+      />
     </div>
     <div class="form-group">
       <label for="openingTime">Opening Time:</label>
-      <input type="time" id="openingTime" formControlName="openingTime" class="form-control">
+      <input
+        type="time"
+        id="openingTime"
+        formControlName="openingTime"
+        class="form-control"
+      />
     </div>
     <div class="form-group">
       <label for="closingTime">Closing Time:</label>
-      <input type="time" id="closingTime" formControlName="closingTime" class="form-control">
+      <input
+        type="time"
+        id="closingTime"
+        formControlName="closingTime"
+        class="form-control"
+      />
     </div>
     <div class="form-group">
       <label for="entryFee">Entry Fee:</label>
-      <input type="number" id="entryFee" formControlName="entryFee" class="form-control">
+      <input
+        type="number"
+        id="entryFee"
+        formControlName="entryFee"
+        class="form-control"
+      />
     </div>
     <div class="form-group">
       <label for="location">Location:</label>
-      <input type="text" id="location" formControlName="location" class="form-control">
+      <input
+        type="text"
+        id="location"
+        formControlName="location"
+        class="form-control"
+      />
     </div>
-  <div class="flex justify-evenly">
-    <button type="submit"  class="btn btn-primary" (click)="onSubmit()" [disabled]="!placeForm.valid" *ngIf="!placedata">Add</button>
-    <button type="submit"  class="btn btn-primary"  (click)="edit()" [disabled]="!placeForm.valid" *ngIf="placedata">edit</button>
-    <button type="submit" class="btn btn-primary" (click)="back()">back</button>
-  </div>
-  <h1 class="text-red-500">{{message}}</h1>
-
+    <div class="flex justify-evenly">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="onSubmit()"
+        [disabled]="!placeForm.valid"
+        *ngIf="!placedata"
+      >
+        Add
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="edit()"
+        [disabled]="!placeForm.valid"
+        *ngIf="placedata"
+      >
+        edit
+      </button>
+      <button type="submit" class="btn btn-primary" (click)="back()">
+        back
+      </button>
+    </div>
+    <h1 class="text-red-500">{{ message }}</h1>
   </form>
 </div>
-  <ng-template #expired>
-    <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">tocken expired.. please login</h1>
-  </ng-template>
+<ng-template #expired>
+  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">
+    tocken expired.. please login
+  </h1>
+</ng-template>

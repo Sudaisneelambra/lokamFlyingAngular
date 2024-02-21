@@ -1,8 +1,8 @@
-<div class="" *ngIf="!expiry ; else expired">
-  <form [formGroup]="guideForm" >
+<div class="" *ngIf="!expiry; else expired">
+  <form [formGroup]="guideForm">
     <div>
       <label for="guideName">Guide Name</label>
-      <input type="text" formControlName="guideName" id="guideName">
+      <input type="text" formControlName="guideName" id="guideName" />
     </div>
     <div>
       <label for="aboutGuide">About Guide</label>
@@ -10,25 +10,45 @@
     </div>
     <div>
       <label for="experience">Experience</label>
-      <input type="text" formControlName="experience" id="experience">
+      <input type="text" formControlName="experience" id="experience" />
     </div>
     <div>
       <label for="image">Upload Image</label>
       <div class="flex">
-        <input type="file" (change)="onFileChange($event)" id="image" accept="image/*" multiple>
-        <input value="delete" class="but" type="button" (click)="del()">
+        <input
+          type="file"
+          (change)="onFileChange($event)"
+          id="image"
+          accept="image/*"
+          multiple
+        />
+        <input value="delete" class="but" type="button" (click)="del()" />
       </div>
     </div>
     <div class="flex justify-evenly">
-        <button type="submit" [disabled]="!guideForm.valid" (click)="onSubmit()" *ngIf="!guidedata">Submit</button>
-        <button type="submit"  (click)="edit()" [disabled]="!guideForm.valid" *ngIf="guidedata">edit</button>
-        <button (click)="back()">back</button>
+      <button
+        type="submit"
+        [disabled]="!guideForm.valid"
+        (click)="onSubmit()"
+        *ngIf="!guidedata"
+      >
+        Submit
+      </button>
+      <button
+        type="submit"
+        (click)="edit()"
+        [disabled]="!guideForm.valid"
+        *ngIf="guidedata"
+      >
+        edit
+      </button>
+      <button (click)="back()">back</button>
     </div>
-    <h1 class="text-red-500 text-center">{{message}}</h1>
+    <h1 class="text-red-500 text-center">{{ message }}</h1>
   </form>
-  
-
 </div>
 <ng-template #expired>
-  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">tocken expired.. please login</h1>
+  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">
+    tocken expired.. please login
+  </h1>
 </ng-template>

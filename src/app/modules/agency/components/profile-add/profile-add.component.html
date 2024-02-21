@@ -1,10 +1,7 @@
-<div class="" *ngIf="!expiry ; else expired">
+<div class="" *ngIf="!expiry; else expired">
   <div class="container">
     <h2>Agency Profile Form</h2>
-    <form
-      [formGroup]="agencyForm"
-      enctype="multipart/form-data"
-    >
+    <form [formGroup]="agencyForm" enctype="multipart/form-data">
       <!-- Agency Name -->
       <div>
         <label for="agency_name">Agency Name:</label>
@@ -17,7 +14,7 @@
         />
         <label class="label-required" for="">required<sup>*</sup></label>
       </div>
-  
+
       <!-- Description -->
       <div>
         <label for="description">Description:</label>
@@ -30,12 +27,12 @@
         ></textarea>
         <label class="label-required" for="">required<sup>*</sup></label>
       </div>
-  
+
       <!-- Services -->
       <div class="services">
         <label><span style="font-weight: 400">Services</span>: (required)</label
         ><br />
-  
+
         <div class="service">
           <input
             type="checkbox"
@@ -45,7 +42,7 @@
           />
           <label for="Tourpackage">Tour Package</label>
         </div>
-  
+
         <div class="service">
           <input
             type="checkbox"
@@ -55,7 +52,7 @@
           />
           <label for="CustomerSupport">Customer Support</label>
         </div>
-  
+
         <div class="service">
           <input
             type="checkbox"
@@ -65,7 +62,7 @@
           />
           <label for="TransportationServices">Transportation Services</label>
         </div>
-  
+
         <div class="service">
           <input
             type="checkbox"
@@ -73,9 +70,11 @@
             name="HotelReservationServices"
             (change)="updateService('HotelReservationServices', $event)"
           />
-          <label for="HotelReservationServices">Hotel Reservation Services</label>
+          <label for="HotelReservationServices"
+            >Hotel Reservation Services</label
+          >
         </div>
-  
+
         <div class="service">
           <input
             type="checkbox"
@@ -120,7 +119,7 @@
           <label class="label-required" for="">required<sup>*</sup></label>
         </div>
       </div>
-  
+
       <!-- About Agency -->
       <div>
         <label for="about_agency">About Agency:</label>
@@ -133,7 +132,7 @@
         ></textarea>
         <label class="label-required" for="">required<sup>*</sup></label>
       </div>
-  
+
       <!-- Photos -->
       <div class="photos">
         <label for="photos">Photos:</label><br />
@@ -183,7 +182,7 @@
           />
         </div>
       </div>
-  
+
       <!-- Logo -->
       <div>
         <label for="logo">Logo:</label><br />
@@ -195,7 +194,7 @@
           (change)="changingLogo($event)"
         />
       </div>
-  
+
       <!-- Email -->
       <div>
         <label for="email">Email:</label>
@@ -208,7 +207,7 @@
         />
         <label class="label-required" for="">required<sup>*</sup></label>
       </div>
-  
+
       <!-- Opening Time -->
       <div>
         <label for="opening_time">Opening Time:</label>
@@ -221,7 +220,7 @@
         />
         <label class="label-required" for="">required<sup>*</sup></label>
       </div>
-  
+
       <!-- Closing Time -->
       <div>
         <label for="closing_time">Closing Time:</label>
@@ -234,7 +233,7 @@
         />
         <label class="label-required" for="">required<sup>*</sup></label>
       </div>
-  
+
       <!-- Location -->
       <div>
         <label for="location">Location:</label>
@@ -247,18 +246,36 @@
         />
         <label class="label-required" for="">required<sup>*</sup></label>
       </div>
-  
+
       <div class="flex justify-evenly mt-5">
-        <button class="sub"  [disabled]="!agencyForm.valid" type="submit"(click)="onSubmit()">Submit</button>
-        <input type="submit" value="Back" (click)="back()" *ngIf="datas !== undefined && datas !== null" />
-        <input type="submit" value="back to login" (click)="logout()" *ngIf="datas == null && datas== undefined" />
+        <button
+          class="sub"
+          [disabled]="!agencyForm.valid"
+          type="submit"
+          (click)="onSubmit()"
+        >
+          Submit
+        </button>
+        <input
+          type="submit"
+          value="Back"
+          (click)="back()"
+          *ngIf="datas !== undefined && datas !== null"
+        />
+        <input
+          type="submit"
+          value="back to login"
+          (click)="logout()"
+          *ngIf="datas == null && datas == undefined"
+        />
       </div>
     </form>
     <p class="text-red-600">{{ message }}</p>
   </div>
-  
 </div>
 
 <ng-template #expired>
-  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">tocken expired.. please login</h1>
+  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">
+    tocken expired.. please login
+  </h1>
 </ng-template>

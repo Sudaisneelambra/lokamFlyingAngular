@@ -1,28 +1,30 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Router } from "@angular/router";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-    selector:'edit-conformation',
-    templateUrl:'./editconformation.component.html',
-    styleUrls:['./editconformation.component.css']
+  selector: 'edit-conformation',
+  templateUrl: './editconformation.component.html',
+  styleUrls: ['./editconformation.component.css'],
 })
+export class EditConformation implements OnInit {
+  @Output() cancelvalue = new EventEmitter();
+  @Input() id!: any;
 
-export class EditConformation implements OnInit{
-    
-    @Output() cancelvalue= new EventEmitter()
-    @Input() id!:any
-    
+  constructor(private router: Router) {}
 
-    constructor(private router:Router){}
+//  ng on init 
+  ngOnInit(): void {
+  }
 
-    ngOnInit(): void {
-        console.log(this.id);
-    }
+//   cancel emtting event to parent
+  cancel() {
+    this.cancelvalue.emit(false);
+  }
 
-    cancel(){
-        this.cancelvalue.emit(false)
-    }
-    confirmboolean(){
-    this.router.navigate([`/agency/placeadd`], { queryParams: { id: this.id } })
-    }
+// edit butoon triggered and navigate to place add
+  confirmboolean() {
+    this.router.navigate([`/agency/placeadd`], {
+      queryParams: { id: this.id },
+    });
+  }
 }

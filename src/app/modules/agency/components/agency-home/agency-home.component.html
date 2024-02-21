@@ -1,36 +1,47 @@
 <div class="" *ngIf="!expiry; else expired">
-  <h1 class=" font-bold text-[30px] pl-11 my-10">{{'places' | uppercase}}</h1>
-<div class="w-full gap-12 flex flex-wrap justify-center " *ngIf="data; else noData">
-  <app-places *ngFor="let dt of data" [data]="dt" ></app-places>
-</div >
-<ng-template #noData>
-  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">No place data available..</h1>
-</ng-template>
+  <h1 class="font-bold text-[30px] pl-11 my-10">{{ "places" | uppercase }}</h1>
+  <div
+    class="w-full gap-12 flex flex-wrap justify-center"
+    *ngIf="data; else noData"
+  >
+    <app-places *ngFor="let dt of data" [data]="dt"></app-places>
+  </div>
+  <ng-template #noData>
+    <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">
+      No place data available..
+    </h1>
+  </ng-template>
 
+  <h1 class="font-bold text-[30px] pl-11 my-10">{{ "guides" | uppercase }}</h1>
+  <div
+    class="w-full gap-12 flex flex-wrap justify-center"
+    *ngIf="guide; else noGuide"
+  >
+    <app-guide *ngFor="let dt of guide" [guide]="dt"></app-guide>
+  </div>
+  <ng-template #noGuide>
+    <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">
+      No Guide data available..
+    </h1>
+  </ng-template>
 
-
-<h1 class=" font-bold text-[30px] pl-11 my-10">{{'guides' | uppercase}}</h1>
-<div class="w-full gap-12 flex flex-wrap justify-center " *ngIf="guide; else noGuide">
-  <app-guide  *ngFor="let dt of guide" [guide]="dt"></app-guide>
-</div >
-<ng-template #noGuide>
-  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">No Guide data available..</h1>
-</ng-template>
-
-
-<h1 class=" font-bold text-[30px] pl-11 my-10">{{'packages' | uppercase}}</h1>
-<div class="w-full gap-12 flex flex-wrap justify-center " *ngIf="package; else nopackage">
-  <app-package  *ngFor="let dt of package" [package]="dt"></app-package>
-</div >
-<ng-template #nopackage>
-  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">No package data available..</h1>
-</ng-template>
+  <h1 class="font-bold text-[30px] pl-11 my-10">
+    {{ "packages" | uppercase }}
+  </h1>
+  <div
+    class="w-full gap-12 flex flex-wrap justify-center"
+    *ngIf="package; else nopackage"
+  >
+    <app-package *ngFor="let dt of package" [package]="dt"></app-package>
+  </div>
+  <ng-template #nopackage>
+    <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">
+      No package data available..
+    </h1>
+  </ng-template>
 </div>
 <ng-template #expired>
-  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">tocken expired.. please login</h1>
+  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">
+    tocken expired.. please login
+  </h1>
 </ng-template>
-
-
-
-
-
