@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { agencyService } from 'src/app/modules/agency/services/agency.service';
+import { GuideService } from 'src/app/modules/agency/services/guid.service';
 
 @Component({
   selector: 'app-guidfulldetails',
@@ -22,7 +23,7 @@ export class GuideFulldetailes implements OnInit, OnDestroy {
     
     // injecting services
     constructor(
-      private service: agencyService,
+      private guideservice: GuideService,
       private route: ActivatedRoute,
       private router: Router,
       private location: Location
@@ -32,7 +33,7 @@ export class GuideFulldetailes implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const id = params['id'];
-      this.singleguidedetails$ = this.service.getsingleguide(id).subscribe({
+      this.singleguidedetails$ = this.guideservice.getsingleguide(id).subscribe({
         next: (res) => {
           this.singleguide = res.data;
         },

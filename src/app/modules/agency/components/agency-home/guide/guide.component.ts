@@ -13,7 +13,7 @@ export class GuideComponent implements OnInit {
   aboutguide: any;
   fullguide!: any;
 
-  constructor(private service: agencyService, private router: Router) {}
+  constructor(private router: Router) {}
   
 // discription piping
   ngOnInit(): void {

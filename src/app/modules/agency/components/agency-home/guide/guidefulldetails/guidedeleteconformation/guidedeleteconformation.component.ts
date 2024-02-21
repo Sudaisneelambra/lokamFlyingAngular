@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { agencyService } from 'src/app/modules/agency/services/agency.service';
+import { GuideService } from 'src/app/modules/agency/services/guid.service';
 
 @Component({
   selector: 'app-guidedelete',
@@ -13,7 +14,7 @@ export class GuideDeleteConformation implements OnInit {
       @Output() canceldelete = new EventEmitter();
       @Output() msg = new EventEmitter();
 
-  constructor(private service: agencyService, private router: Router) {}
+  constructor(private router: Router ,private guideservices:GuideService) {}
 
 
   ngOnInit(): void {}
@@ -21,7 +22,7 @@ export class GuideDeleteConformation implements OnInit {
 // confirm delete and call delete api
   confirmboolean() {
     // deleting place from database
-    this.service.deletingGuide(this.id).subscribe({
+    this.guideservices.deletingGuide(this.id).subscribe({
       next: (res) => {
         if (res.success) {
           this.msg.emit(res.message);

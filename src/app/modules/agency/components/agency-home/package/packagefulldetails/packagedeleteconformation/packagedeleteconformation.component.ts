@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { agencyService } from 'src/app/modules/agency/services/agency.service';
+import { packageService } from 'src/app/modules/agency/services/package.service';
 
 @Component({
   selector: 'app-packageedelete',
@@ -8,7 +9,7 @@ import { agencyService } from 'src/app/modules/agency/services/agency.service';
   styleUrls: ['./packagedeleteconformation.component.css'],
 })
 export class PackageDeleteConformation implements OnInit {
-  constructor(private service: agencyService, private router: Router) {}
+  constructor(private router: Router, private packageservice:packageService) {}
 
   @Input() id!: any;
   @Output() canceldelete = new EventEmitter();
@@ -19,7 +20,7 @@ export class PackageDeleteConformation implements OnInit {
 //   deleting confirm and call the delete api
   confirmboolean() {
     // deleting place from database
-    this.service.deletingPackage(this.id).subscribe({
+    this.packageservice.deletingPackage(this.id).subscribe({
       next: (res) => {
         if (res.success) {
           this.msg.emit(res.message);

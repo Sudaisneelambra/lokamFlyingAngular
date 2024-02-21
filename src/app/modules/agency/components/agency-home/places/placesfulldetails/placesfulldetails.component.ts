@@ -5,6 +5,7 @@ import { Carousel, initTE } from 'tw-elements';
 import { agencyService } from 'src/app/modules/agency/services/agency.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { PlaceService } from 'src/app/modules/agency/services/place.service';
 
 @Component({
   selector: 'app-placefulldetails',
@@ -29,6 +30,7 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
   // constructor for injecting services
   constructor(
     private service: agencyService,
+    private placeservice: PlaceService,
     private location: Location,
     private router: Router,
     private route: ActivatedRoute
@@ -40,7 +42,7 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       const id = params['id'];
       // getting all detials of specific place
-      this.service.getsingleplace(id).subscribe({
+      this.placeservice.getsingleplace(id).subscribe({
         next: (res) => {
           this.singlePlacedata = res.data;
           this.images = res.data.placeurl;

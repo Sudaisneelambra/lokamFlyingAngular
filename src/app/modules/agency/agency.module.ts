@@ -24,6 +24,7 @@ import { GuideEditConfirmationComponent } from './components/agency-home/guide/g
 import { PackagefullComponent } from './components/agency-home/package/packagefulldetails/packagefulldetails.component';
 import { PackageDeleteConformation } from './components/agency-home/package/packagefulldetails/packagedeleteconformation/packagedeleteconformation.component';
 import { PackageEditConfirmationComponent } from './components/agency-home/package/packagefulldetails/packageeditconfirmation/packageeditconfirmation.component';
+import { StrictDelete } from './components/agency-home/places/placesfulldetails/deleteconformation/strictdelete/strictdelete.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { PackageEditConfirmationComponent } from './components/agency-home/packa
     GuideEditConfirmationComponent,
     PackagefullComponent,
     PackageDeleteConformation,
-    PackageEditConfirmationComponent
+    PackageEditConfirmationComponent,
+    StrictDelete
     ],
   imports: [CommonModule,AgencyRoutes, ReactiveFormsModule, HttpClientModule, FormsModule],
   exports: [],

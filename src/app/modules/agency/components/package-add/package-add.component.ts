@@ -9,6 +9,9 @@ import {
 } from '@angular/forms';
 import { agencyService } from '../../services/agency.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GuideService } from '../../services/guid.service';
+import { PlaceService } from '../../services/place.service';
+import { packageService } from '../../services/package.service';
 
 @Component({
   selector: 'app-package-add',
@@ -39,6 +42,9 @@ export class PackageAddComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private location: Location,
     private service: agencyService,
+    private guideservice: GuideService,
+    private placeservice: PlaceService,
+    private packageservice:packageService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -86,7 +92,7 @@ export class PackageAddComponent implements OnInit, OnDestroy {
       console.log('ID from query params:', this.id);
       if (this.id) {
         // deleting place from database
-        this.singlePackage$ = this.service.getsinglepackage(this.id).subscribe({
+        this.singlePackage$ = this.packageservice.getsinglepackage(this.id).subscribe({
           next: (res) => {
             this.package = res.package;
             this.packageForm
@@ -151,7 +157,7 @@ export class PackageAddComponent implements OnInit, OnDestroy {
         places: this.addedplaces,
         guid: this.selectedGuides,
       };
-      this.service.addpackage(fulldata).subscribe({
+      this.packageservice.addpackage(fulldata).subscribe({
         next: (res) => {
           this.message = res.message;
           setTimeout(() => {
@@ -192,7 +198,7 @@ export class PackageAddComponent implements OnInit, OnDestroy {
 
   // getting all places
   getplace() {
-    this.service.gettingplace().subscribe({
+    this.placeservice.gettingplace().subscribe({
       next: (res) => {
         this.places = res.data;
       },
@@ -204,7 +210,7 @@ export class PackageAddComponent implements OnInit, OnDestroy {
 
   // getting guides
   guidess() {
-    this.service.gettingguides().subscribe({
+    this.guideservice.gettingguides().subscribe({
       next: (res) => {
         this.guides = res.data;
       },
@@ -287,7 +293,7 @@ export class PackageAddComponent implements OnInit, OnDestroy {
         guid: this.selectedGuides,
         id: this.id,
       };
-      this.service.edipackage(fulldata).subscribe({
+      this.packageservice.edipackage(fulldata).subscribe({
         next: (res) => {
           this.message = res.message;
           setTimeout(() => {

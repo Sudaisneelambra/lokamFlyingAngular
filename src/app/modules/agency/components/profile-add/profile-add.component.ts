@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/commonSignup.service';
 import { useservice } from 'src/app/modules/user/services/user.service';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-profile-add',
@@ -26,9 +27,9 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
   // constructor for injecting packages and agency form creation
   constructor(
     private fb: FormBuilder,
-    private agency: agencyService,
     private router: Router,
     private service: agencyService,
+    private profileservice:ProfileService,
     private location:Location
   ) {
     this.agencyForm = this.fb.group({
@@ -53,6 +54,7 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
       location: ['', Validators.required],
     });
   }
+
 // ng oninit  getting profile if it is availabe and checking token exired
   ngOnInit() {
     this.service.gettoken().subscribe({
@@ -69,7 +71,7 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
     console.log(this.datas);
     
   // getting profile all data
-   this.profileSubscription$ = this.agency.getingprofile().subscribe({
+   this.profileSubscription$ = this.profileservice.getingprofile().subscribe({
     next:(res)=>{
       this.datas=res.user
 
@@ -145,7 +147,7 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
       this.formdata.append('location', one.location);
 
       // profile adding or updating
-      this.agency.addProfile(this.formdata).subscribe(
+      this.profileservice.addProfile(this.formdata).subscribe(
         (response) => {
           this.router.navigate(['/agency']);
         },

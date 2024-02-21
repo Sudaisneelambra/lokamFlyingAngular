@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { agencyService } from '../services/agency.service';
 import { Router } from '@angular/router';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-homeagency',
@@ -15,20 +16,26 @@ export class AgencyMainHome {
   guide: any;
   booleanvalue: boolean = true;
 
-  constructor(private service: agencyService, private router: Router) {}
-  
+  constructor(
+    private service: agencyService,
+    private router: Router,
+    private profileservice: ProfileService
+  ) {}
+
   bool: boolean = true;
   // oninit
   ngOnInit() {
     // getting profile name
-    this.profileSubscription$ = this.service.getingprofilename().subscribe({
-      next: (res) => {
-        this.name = res.user?.name;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    this.profileSubscription$ = this.profileservice
+      .getingprofilename()
+      .subscribe({
+        next: (res) => {
+          this.name = res.user?.name;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
 
     // url check
     if (this.router.url === '/agency') {

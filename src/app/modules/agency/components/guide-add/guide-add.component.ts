@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { agencyService } from '../../services/agency.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { GuideService } from '../../services/guid.service';
 
 @Component({
   selector: 'app-guide-add',
@@ -26,6 +27,7 @@ export class GuideAddComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private location: Location,
     private agencyservice: agencyService,
+    private guidservice:GuideService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -53,7 +55,7 @@ export class GuideAddComponent implements OnInit, OnDestroy {
       this.id = params['id'];
       if (this.id) {
         // deleting place from database
-        this.singleguide$ = this.agencyservice
+        this.singleguide$ = this.guidservice
           .getsingleguide(this.id)
           .subscribe({
             next: (res) => {
@@ -94,7 +96,7 @@ export class GuideAddComponent implements OnInit, OnDestroy {
         }
 
         // adding guide api
-        this.agencyservice.addguide(formdata).subscribe({
+        this.guidservice.addguide(formdata).subscribe({
           next: (data) => {
             if (data.success) {
               this.message = data.message;
@@ -152,7 +154,7 @@ export class GuideAddComponent implements OnInit, OnDestroy {
         }
 
         // editing guide api
-        this.agencyservice.editguide(formdata).subscribe({
+        this.guidservice.editguide(formdata).subscribe({
           next: (data) => {
             if (data.success) {
               this.message = data.message;

@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { agencyService } from 'src/app/modules/agency/services/agency.service';
+import { packageService } from 'src/app/modules/agency/services/package.service';
 
 @Component({
   selector: 'app-fullpackage',
@@ -29,7 +30,7 @@ export class PackagefullComponent implements OnInit, OnDestroy {
 //   constructor for injecting services
   constructor(
     private rout: ActivatedRoute,
-    private service: agencyService,
+    private packageservice: packageService,
     private router: Router,
     private location: Location
 ) {}
@@ -38,27 +39,24 @@ export class PackagefullComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.rout.params.subscribe((params) => {
       const id = params['id'];
-      this.singlepackagedetails$ = this.service.getsinglepackage(id).subscribe({
+      this.singlepackagedetails$ = this.packageservice.getsinglepackage(id).subscribe({
         next: (res) => {
           if (res.expiry) {
             this.expiry = res.expiry;
           }
           this.singlepackage = res.package;
+          
           this.places = res.place;
           this.objplace = this.singlepackage.places;
           this.guide = res.guide;
-
-          if (this.objplace.length === this.places.length) {
-            this.result = [];
-
-            for (let i = 0; i < this.objplace.length; i++) {
-              let joinedObject = { ...this.objplace[i], ...this.places[i] };
-              this.result.push(joinedObject);
+          
+          for(let i=0; i< this.places.length; i++){
+            for(let j=0; j<this.places.length;j++){
+              if(this.places[i]._id === this.objplace[j].placeid){
+                let joinedObject = { ...this.places[i], ...this.objplace[j] };
+                this.result.push(joinedObject);
+              }
             }
-          } else {
-            console.log(
-              'Arrays a and b must have the same length for joining.'
-            );
           }
         },
         error: (err) => {

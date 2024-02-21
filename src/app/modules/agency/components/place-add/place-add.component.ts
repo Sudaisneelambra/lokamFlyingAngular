@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { agencyService } from '../../services/agency.service';
 import { Subscription } from 'rxjs';
+import { PlaceService } from '../../services/place.service';
 
 @Component({
   selector: 'app-place-add',
@@ -26,6 +27,7 @@ export class PlaceAddComponent implements OnInit, OnDestroy {
     private router: Router,
     private location: Location,
     private service: agencyService,
+    private placeservice: PlaceService,
     private route: ActivatedRoute
   ) {
     // Initialize the form
@@ -57,7 +59,7 @@ export class PlaceAddComponent implements OnInit, OnDestroy {
       this.id = params['id'];
       if (this.id) {
         // deleting place from database
-        this.singleplace$ = this.service.getsingleplace(this.id).subscribe({
+        this.singleplace$ = this.placeservice.getsingleplace(this.id).subscribe({
           next: (res) => {
             this.placedata = res.data;
             this.placeForm
@@ -107,7 +109,7 @@ export class PlaceAddComponent implements OnInit, OnDestroy {
       }
 
       // add place api
-      this.service.addplace(formData).subscribe({
+      this.placeservice.addplace(formData).subscribe({
         next: (res) => {
           if (res.success) {
             this.message = res.message;
@@ -152,7 +154,7 @@ export class PlaceAddComponent implements OnInit, OnDestroy {
       }
 
       // edit place api
-      this.service.editplace(formData).subscribe({
+      this.placeservice.editplace(formData).subscribe({
         next: (res) => {
           if (res.success) {
             this.message = res.message;

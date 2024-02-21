@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./place.component.css'],
 })
 export class PlaceComponent implements OnInit {
-  constructor(private service: agencyService, private rounter: Router) {}
+  constructor( private rounter: Router) {}
 
   @Input() data: any;
   isHovered: boolean = false;
