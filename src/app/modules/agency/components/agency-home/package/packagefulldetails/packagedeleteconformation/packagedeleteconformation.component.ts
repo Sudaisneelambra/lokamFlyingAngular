@@ -3,12 +3,12 @@ import { Router } from "@angular/router";
 import { agencyService } from "src/app/modules/agency/services/agency.service";
 
 @Component({
-    selector:'app-guidedelete',
-    templateUrl:'./guidedeleteconformation.component.html',
-    styleUrls:['./guidedeleteconformation.component.css']
+    selector:'app-packageedelete',
+    templateUrl:'./packagedeleteconformation.component.html',
+    styleUrls:['./packagedeleteconformation.component.css']
 })
 
-export class GuideDeleteConformation implements OnInit{
+export class PackageDeleteConformation implements OnInit{
 
 
     constructor(private service:agencyService, private router:Router){}
@@ -22,7 +22,7 @@ export class GuideDeleteConformation implements OnInit{
     }
     confirmboolean(){
          // deleting place from database
-         this.service.deletingGuide(this.id).subscribe({
+         this.service.deletingPackage(this.id).subscribe({
              next:(res)=>{
                  if(res.success){
                     this.msg.emit(res.message)

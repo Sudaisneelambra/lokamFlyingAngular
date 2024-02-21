@@ -1,4 +1,6 @@
 <div class=""  *ngIf="!expiry; else expired">
+    <app-packageedelete *ngIf="modalview" [id]="deletedid" (canceldelete)="canceldelete($event)" (msg)="success($event)"></app-packageedelete>
+    <app-packageedit *ngIf="modelEdit"  [id]="editId" (editcancel)="calceledit($event)"></app-packageedit>
     <div class="w-full flex justify-center items-center">
         <div class="package-details" ngFor="let pack of singlepackage">
             <h2 class="package-name">{{singlepackage?.packageName | uppercase}} <span class="text-[10px] text-black font-light">explore with us..</span></h2>
@@ -43,7 +45,7 @@
                     </tbody>
                 </table>
               </div>
-              <table class="package-details">
+              <table class="package-detailss">
                 <tbody>
                   <tr>
                     <th>Start Date</th>
@@ -83,52 +85,59 @@
                   </tr>
                 </tbody>
               </table>              
-            <h3>Places</h3>
-            <ng-container class="places" *ngFor="let pls of result">
-                <ul>
-                    <li class="place">
-                        <div class="place-info">
-                            <div class="place-div relative">
-                                <img
-                                class="place-image"
-                                src="{{pls?.placeurl[0]}}"
-                                alt="Placeholder image for place"
-                                data-place-image-url="https://path/to/actual/image.jpg"
-                            />
-                            <h1 class="more-text hidden">more...</h1>
+            <div class="places">
+               <h3 class="font-black text-[30px] !my-5 !text-[#438c43]">Places</h3>
+                <ng-container class="" *ngFor="let pls of result">
+                    <ul>
+                        <li class="place">
+                            <div class="place-info">
+                                <div class="place-div relative">
+                                    <img
+                                    class="place-image"
+                                    src="{{pls?.placeurl[0]}}"
+                                    alt="Placeholder image for place"
+                                    data-place-image-url="https://path/to/actual/image.jpg"
+                                />
+                                <h1 class="more-text hidden">more...</h1>
+                                </div>
+                                <div class="place-details">
+                                    <p class="text-[18px] font-bold !text-[#ffaf4d]">{{pls?.placename | uppercase}}</p>
+                                    <p class="text-[18px] font-bold">Arriving Time: {{pls?.arrivingtime}} ({{pls?.arrivalDate}})</p>
+                                    <p class="text-[18px] font-bold">Return Time: {{pls?.returntime}} ({{pls?.returnDate}})</p>
+                                </div>
                             </div>
-                            <div class="place-details">
-                                <p>{{pls?.placename}}</p>
-                                <p>Arriving Time: {{pls?.arrivingtime}} ({{pls?.arrivalDate}})</p>
-                                <p>Return Time: {{pls?.returntime}} ({{pls?.returnDate}})</p>
+                        </li>
+                    </ul>
+                </ng-container>
+                <h3 class="font-black text-[30px] !my-5 !text-[#438c43]">Guides</h3>
+                <ng-container class="places" *ngFor="let gd of guide">
+                    <ul>
+                        <li class="place">
+                            <div class="place-info">
+                                <div class="place-div relative">
+                                    <img
+                                    class="place-image"
+                                    src="{{gd?.guideurl}}"
+                                    alt="Placeholder image for place"
+                                    data-place-image-url="https://path/to/actual/image.jpg"
+                                />
+                                <h1 class="more-text hidden" (click)="guideget(gd._id)">more...</h1>
+                                </div>
+                                <div class="place-details">
+                                    <p class="font-extrabold text-[18px] !text-[#801100]">{{gd?.guidename | uppercase}}</p>
+                                    <p class="font-bold text-[18px]">Expirience: {{gd?.experience}} years</p>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
-            </ng-container>
-            <h3>Guides</h3>
-            <ng-container class="places" *ngFor="let gd of guide">
-                <ul>
-                    <li class="place">
-                        <div class="place-info">
-                            <div class="place-div relative">
-                                <img
-                                class="place-image"
-                                src="{{gd?.guideurl}}"
-                                alt="Placeholder image for place"
-                                data-place-image-url="https://path/to/actual/image.jpg"
-                            />
-                            <h1 class="more-text hidden" (click)="guideget(gd._id)">more...</h1>
-                            </div>
-                            <div class="place-details">
-                                <p>{{gd?.guidename}}</p>
-                                <p>Expirience: {{gd?.experience}} years</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </ng-container>
-            <button (click)="back()">back</button>
+                        </li>
+                    </ul>
+                </ng-container>
+           </div>
+           <div class=" m-10 flex justify-evenly">
+                <button (click)="edit(singlepackage?._id)" class="m-[15px]">edit</button>
+                <button (click)="delete(singlepackage?._id)" class="m-[15px]">delete</button>
+                <button (click)="back()" class="m-[15px]">back</button>
+           </div>
+           <h1 class="text-center text-[green]" >{{message}}</h1>
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -95,6 +95,17 @@ export class agencyService {
     return this.http.get(`${this.api}/agency/getsinglepackage/${id}`)
   }
 
+  // deleting package
+
+  deletingPackage(id:any):Observable<any>{
+    return this.http.delete(`${this.api}/agency/deletepackage/${id}`)
+  }
+  
+  // editpackage
+
+  edipackage(data:any):Observable<any>{
+    return this.http.put(`${this.api}/agency/editpackage`,data)
+  }
   // logout and token delete
   agencylogout(): Observable<any> {
     const one = localStorage.getItem('token');

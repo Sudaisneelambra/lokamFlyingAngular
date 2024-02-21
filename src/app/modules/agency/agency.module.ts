@@ -19,9 +19,11 @@ import { AgencyMainHome } from './components/home.component';
 import { GuideFulldetailes } from './components/agency-home/guide/guidefulldetails/guidefulldetails.component';
 import { EditConformation } from './components/agency-home/places/placesfulldetails/editconformation/editconformation.component';
 import { DeleteConformation } from './components/agency-home/places/placesfulldetails/deleteconformation/deleteconformation.component';
-import { DuideDeleteConformation } from './components/agency-home/guide/guidefulldetails/guidedeleteconformation/guidedeleteconformation.component';
+import { GuideDeleteConformation } from './components/agency-home/guide/guidefulldetails/guidedeleteconformation/guidedeleteconformation.component';
 import { GuideEditConfirmationComponent } from './components/agency-home/guide/guidefulldetails/guideeditconfirmation/guideeditconfirmation.component';
 import { PackagefullComponent } from './components/agency-home/package/packagefulldetails/packagefulldetails.component';
+import { PackageDeleteConformation } from './components/agency-home/package/packagefulldetails/packagedeleteconformation/packagedeleteconformation.component';
+import { PackageEditConfirmationComponent } from './components/agency-home/package/packagefulldetails/packageeditconfirmation/packageeditconfirmation.component';
 
 @NgModule({
   declarations: [
@@ -41,9 +43,11 @@ import { PackagefullComponent } from './components/agency-home/package/packagefu
     GuideFulldetailes,
     EditConformation,
     DeleteConformation,
-    DuideDeleteConformation,
+    GuideDeleteConformation,
     GuideEditConfirmationComponent,
-    PackagefullComponent
+    PackagefullComponent,
+    PackageDeleteConformation,
+    PackageEditConfirmationComponent
     ],
   imports: [CommonModule,AgencyRoutes, ReactiveFormsModule, HttpClientModule, FormsModule],
   exports: [],

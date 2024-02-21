@@ -1,15 +1,15 @@
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { agencyService } from '../../services/agency.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-package-add',
   templateUrl: './package-add.component.html',
   styleUrls: ['./package-add.component.css']
 })
-export class PackageAddComponent {
+export class PackageAddComponent implements OnInit, OnDestroy{
   
   packageForm!: FormGroup;
   booleanvalue:boolean =false
@@ -24,9 +24,13 @@ export class PackageAddComponent {
   selectedGuides: any[] = [];
   message!:any
   expiry: any;
+
+  id:any
+  singlePackage$:any
+  package:any
   
 
-  constructor(private fb: FormBuilder, private location:Location , private service:agencyService ,private router:Router) { 
+  constructor(private fb: FormBuilder, private location:Location , private service:agencyService ,private router:Router ,private route:ActivatedRoute) { 
 
     this.packageForm = this.fb.group({
       packageName: ['', Validators.required],
@@ -53,19 +57,53 @@ export class PackageAddComponent {
   }
 
 
+
   ngOnInit(): void {
     this.service.gettoken().subscribe({
       next:(res)=>{
         if(res.expiry){
           console.log(res.expiry);
           this.expiry=res.expiry          
-        }  
+        }
+        console.log(res);
+          
       },
       error:(err)=>{
         console.log(err);
         
       }
     })
+
+     // getting queryparams
+     this.route.queryParams.subscribe(params => {
+      this.id = params['id'];
+      console.log('ID from query params:', this.id);
+      if(this.id){
+        // deleting place from database
+        this.singlePackage$ =this.service.getsinglepackage(this.id).subscribe({
+          next:(res)=>{
+            this.package=res.package
+            this.packageForm.get('packageName')?.patchValue(this.package.packageName)
+            this.packageForm.get('aboutPackage')?.patchValue(this.package.aboutPackage)
+            this.packageForm.get('packagePrice')?.patchValue(this.package.packagePrice)
+            this.packageForm.get('startDate')?.patchValue(this.package.startDate)
+            this.packageForm.get('endDate')?.patchValue(this.package.endDate)
+            this.packageForm.get('maximumCapacity')?.patchValue(this.package.maximumCapacity)
+            this.packageForm.get('availableSlot')?.patchValue(this.package.availableSlot)
+            this.packageForm.get('offer')?.patchValue(this.package.offer)
+            
+            console.log(res);
+            
+          },
+          error:(err)=>{
+            console.log(err);
+          }
+        })
+      }
+    });
+
+
+
   }
 
 
@@ -219,6 +257,35 @@ getplace(){
     }
     console.log(this.selectedGuides);
     
+  }
+  edit(){
+    console.log(this.packageForm.value);
+    console.log(this.addedplaces);
+    console.log(this.selectedGuides);
+    if(!this.packageForm.valid || this.addedplaces && this.addedplaces.length<1 || this.selectedGuides && this.selectedGuides.length<1){
+      alert('choose the required datas')
+    } else {
+      const fulldata= {mainform:this.packageForm.value,places:this.addedplaces,guid:this.selectedGuides,id:this.id}
+      console.log(fulldata);
+      this.service.edipackage(fulldata).subscribe({
+        next:(res)=>{
+          console.log(res.message);
+          this.message=res.message
+          setTimeout(()=>{
+            this.message=''
+            this.router.navigate(['agency/home'])
+          },3000)
+        },
+        error:(err)=>{
+          console.log(err);
+          
+        }
+      })
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.singlePackage$?.unsubscribe()
   }
   
 }

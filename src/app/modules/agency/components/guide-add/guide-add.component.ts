@@ -138,6 +138,7 @@ export class GuideAddComponent implements OnInit,OnDestroy{
         formdata.append('guidename', data.guideName)
         formdata.append('aboutguide', data.aboutGuide)
         formdata.append('experience', data.experience)
+        formdata.append('id', this.id)
   
         for (const image of this.selecterfile) {
           formdata.append('guideimages', image);

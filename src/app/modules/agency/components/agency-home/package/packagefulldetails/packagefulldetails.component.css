@@ -1,4 +1,4 @@
-/* Base styles */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -22,7 +22,7 @@ body {
     padding: 20px;
     margin-bottom: 20px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
     width: 90%;
     margin-top: 20px;
 }
@@ -129,75 +129,79 @@ body {
 }
 
 button {
-    /* Common properties for most buttons: */
-    background-color: #3498db; /* Blue color */
-    color: white; /* White text */
-    padding: 10px 20px; /* Add some padding */
-    border: none; /* Remove default border */
-    font-size: 16px; /* Adjust font size */
-    cursor: pointer; /* Indicate clickable element */
+   
+    background-color: #3498db; 
+    color: white;
+    padding: 10px 30px;
+    border: none; 
+    font-size: 16px;
+    cursor: pointer; 
   
-    /* Add some visual enhancement: */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+ 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   }
 
   .facilities-table {
-    border-collapse: collapse; /* Remove default spacing between cells */
-    width: 100%; /* Use full width container */
-    table-layout: fixed; /* Ensure equal column widths */
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed; 
   }
   
   .facilities-table th, .facilities-table td {
-    padding: 8px; /* Add some padding */
-    text-align: left; /* Set text alignment */
-    border: 1px solid #ddd; /* Add borders */
+    padding: 8px;
+    text-align: left;
   }
   
   .facilities-table th {
-    font-weight: bold; /* Bold for headers */
+    font-weight: bold; 
   }
   
-  .package-details {
-  /* Overall table styling */
-  border-collapse: collapse; /* Remove default spacing between cells */
-  width: 100%; /* Use full width container */
-  border: 1px solid #ddd; /* Add a border */
-  font-family: sans-serif; /* Set a basic font family */
+  .package-detailss {
+  border-collapse: collapse; 
+  width: 70%; 
+  font-family: sans-serif;
+  margin-left: 15px; 
+}
+.package-detailss th{
+font-size: 18px;
 }
 
-.package-details th,
-.package-details td {
-  /* Common styling for cells */
-  padding: 8px; /* Add some padding */
-  text-align: left; /* Set text alignment */
-  border: 1px solid #ddd; /* Add borders */
+.package-detailss th,
+.package-detailss td {
+  padding: 8px; 
+  text-align: left;
+  border-bottom: 1px solid rgba(180, 168, 168, 0.225);
 }
 
-.package-details th {
-  /* Style headers */
-  font-weight: bold; /* Make headers bold */
-  background-color: #f5f5f5; /* Light background for headers */
+.package-detailss th {
+  font-weight: bold;
 }
 
 .offer-rate {
-  /* Style offer rate separately if needed */
-  color: #ff0000; /* Red for offer rate */
+  
+  color: #ff0000; 
 }
 
-/* Optional responsive styles */
+.places{
+    margin-left: 15px;
+}
+
 @media (max-width: 768px) {
   .package-details {
-    font-size: 16px; /* Adjust font size for smaller screens */
+    font-size: 16px;
   }
 }
 
 
-/* Responsiveness */
+
 @media (max-width: 768px) {
     .package-details {
-        padding: 15px; /* Adjust padding for smaller screens */
+        padding: 15px; 
     }
+    .package-detailss {
+        width: 100%; 
+      }
     
    
 }

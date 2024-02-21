@@ -155,7 +155,8 @@
       </div>
   
       <div class=" flex justify-evenly">
-        <button type="submit" [disabled]="!packageForm.valid" (click)="onSubmit()">Submit</button>
+        <button type="submit" [disabled]="!packageForm.valid" (click)="onSubmit()" *ngIf="!package">Submit</button>
+        <button type="submit"  class="btn btn-primary"  (click)="edit()" [disabled]="!packageForm.valid" *ngIf="package">edit</button>
         <button type="submit" class="btn btn-primary" (click)="back()">back</button>
       </div>
       <p>{{message}}</p>
