@@ -1,4 +1,4 @@
-<div class="" *ngIf="!expiry; else expired">
+<div class="">
   <h1 class="font-bold text-[30px] pl-11 my-10">{{ "places" | uppercase }}</h1>
   <div
     class="w-full gap-12 flex flex-wrap justify-center"
@@ -40,8 +40,4 @@
     </h1>
   </ng-template>
 </div>
-<ng-template #expired>
-  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">
-    tocken expired.. please login
-  </h1>
-</ng-template>
+

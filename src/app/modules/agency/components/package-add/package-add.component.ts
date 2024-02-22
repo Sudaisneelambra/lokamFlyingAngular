@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GuideService } from '../../services/guid.service';
 import { PlaceService } from '../../services/place.service';
 import { packageService } from '../../services/package.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-package-add',
@@ -34,8 +35,13 @@ export class PackageAddComponent implements OnInit, OnDestroy {
   expiry: any;
 
   id: any;
-  singlePackage$: any;
   package: any;
+  singlePackage$ =new Subscription();
+  addpackage$ =new Subscription()
+  getplace$ =new Subscription()
+  getguide$ =new Subscription()
+  editpackage$=new Subscription()
+
 
   // constructor for injecting services and creating package form
   constructor(
@@ -44,7 +50,7 @@ export class PackageAddComponent implements OnInit, OnDestroy {
     private service: agencyService,
     private guideservice: GuideService,
     private placeservice: PlaceService,
-    private packageservice:packageService,
+    private packageservice: packageService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -75,53 +81,49 @@ export class PackageAddComponent implements OnInit, OnDestroy {
 
   // ng on init token expiry checking
   ngOnInit(): void {
-    this.service.gettoken().subscribe({
-      next: (res) => {
-        if (res.expiry) {
-          this.expiry = res.expiry;
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-
     // getting queryparams
     this.route.queryParams.subscribe((params) => {
       this.id = params['id'];
       console.log('ID from query params:', this.id);
       if (this.id) {
         // deleting place from database
-        this.singlePackage$ = this.packageservice.getsinglepackage(this.id).subscribe({
-          next: (res) => {
-            this.package = res.package;
-            this.packageForm
-              .get('packageName')
-              ?.patchValue(this.package.packageName);
-            this.packageForm
-              .get('aboutPackage')
-              ?.patchValue(this.package.aboutPackage);
-            this.packageForm
-              .get('packagePrice')
-              ?.patchValue(this.package.packagePrice);
-            this.packageForm
-              .get('startDate')
-              ?.patchValue(this.package.startDate);
-            this.packageForm.get('endDate')?.patchValue(this.package.endDate);
-            this.packageForm
-              .get('maximumCapacity')
-              ?.patchValue(this.package.maximumCapacity);
-            this.packageForm
-              .get('availableSlot')
-              ?.patchValue(this.package.availableSlot);
-            this.packageForm.get('offer')?.patchValue(this.package.offer);
-
-            console.log(res);
-          },
-          error: (err) => {
-            console.log(err);
-          },
-        });
+        this.singlePackage$ = this.packageservice
+          .getsinglepackage(this.id)
+          .subscribe({
+            next: (res) => {
+              if (res.expiry) {
+                alert('session expired please login');
+                this.service.agencylogout();
+              } else {
+                this.package = res.package;
+                this.packageForm
+                  .get('packageName')
+                  ?.patchValue(this.package.packageName);
+                this.packageForm
+                  .get('aboutPackage')
+                  ?.patchValue(this.package.aboutPackage);
+                this.packageForm
+                  .get('packagePrice')
+                  ?.patchValue(this.package.packagePrice);
+                this.packageForm
+                  .get('startDate')
+                  ?.patchValue(this.package.startDate);
+                this.packageForm
+                  .get('endDate')
+                  ?.patchValue(this.package.endDate);
+                this.packageForm
+                  .get('maximumCapacity')
+                  ?.patchValue(this.package.maximumCapacity);
+                this.packageForm
+                  .get('availableSlot')
+                  ?.patchValue(this.package.availableSlot);
+                this.packageForm.get('offer')?.patchValue(this.package.offer);
+              }
+            },
+            error: (err) => {
+              console.log(err);
+            },
+          });
       }
     });
   }
@@ -157,13 +159,18 @@ export class PackageAddComponent implements OnInit, OnDestroy {
         places: this.addedplaces,
         guid: this.selectedGuides,
       };
-      this.packageservice.addpackage(fulldata).subscribe({
+     this.addpackage$= this.packageservice.addpackage(fulldata).subscribe({
         next: (res) => {
-          this.message = res.message;
-          setTimeout(() => {
-            this.message = '';
-            this.router.navigate(['agency/home']);
-          }, 3000);
+          if (res.expiry) {
+            alert('session expired please login')
+            this.service.agencylogout()
+          } else{
+            this.message = res.message;
+            setTimeout(() => {
+              this.message = '';
+              this.router.navigate(['agency/home']);
+            }, 3000);
+          }
         },
         error: (err) => {
           console.log(err);
@@ -198,9 +205,14 @@ export class PackageAddComponent implements OnInit, OnDestroy {
 
   // getting all places
   getplace() {
-    this.placeservice.gettingplace().subscribe({
+   this.getplace$= this.placeservice.gettingplace().subscribe({
       next: (res) => {
-        this.places = res.data;
+        if (res.expiry) {
+          alert('session expired please login')
+          this.service.agencylogout()
+        } else{
+          this.places = res.data;
+        }
       },
       error: (err) => {
         console.log(err);
@@ -210,9 +222,14 @@ export class PackageAddComponent implements OnInit, OnDestroy {
 
   // getting guides
   guidess() {
-    this.guideservice.gettingguides().subscribe({
+   this.getguide$= this.guideservice.gettingguides().subscribe({
       next: (res) => {
-        this.guides = res.data;
+        if (res.expiry) {
+          alert('session expired please login')
+          this.service.agencylogout()
+        } else{
+          this.guides = res.data;
+        }
       },
       error: (err) => {
         console.log(err);
@@ -268,7 +285,6 @@ export class PackageAddComponent implements OnInit, OnDestroy {
     console.log(index);
 
     if (index > -1) {
-
       // If the guide is already selected, remove it from the selectedGuides array
       this.selectedGuides.splice(index, 1);
     } else {
@@ -293,13 +309,18 @@ export class PackageAddComponent implements OnInit, OnDestroy {
         guid: this.selectedGuides,
         id: this.id,
       };
-      this.packageservice.edipackage(fulldata).subscribe({
+     this.editpackage$= this.packageservice.edipackage(fulldata).subscribe({
         next: (res) => {
-          this.message = res.message;
-          setTimeout(() => {
-            this.message = '';
-            this.router.navigate(['agency/home']);
-          }, 3000);
+          if (res.expiry) {
+            alert('session expired please login')
+            this.service.agencylogout()
+          } else{
+            this.message = res.message;
+            setTimeout(() => {
+              this.message = '';
+              this.router.navigate(['agency/home']);
+            }, 3000);
+          }
         },
         error: (err) => {
           console.log(err);
@@ -311,5 +332,10 @@ export class PackageAddComponent implements OnInit, OnDestroy {
   // on destroy
   ngOnDestroy(): void {
     this.singlePackage$?.unsubscribe();
+    this.addpackage$?.unsubscribe()
+    this.getplace$?.unsubscribe()
+    this.getguide$?.unsubscribe()
+    this.editpackage$?.unsubscribe()
+
   }
 }

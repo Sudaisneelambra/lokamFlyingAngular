@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { agencyService } from '../../../services/agency.service';
 import { Router } from '@angular/router';
 
@@ -10,13 +10,15 @@ import { Router } from '@angular/router';
 export class PackageComponent implements OnInit {
   
   constructor(private service: agencyService, private router: Router) {}
-
+  
   @Input() package!: any;
-
+  
   ngOnInit(): void {
     console.log(this.package);
+    console.log(this.package.places.length);
+    
   }
-
+  
   getpackage(id: any) {
     this.router.navigate([`/agency/packagedetails/${id}`]);
   }

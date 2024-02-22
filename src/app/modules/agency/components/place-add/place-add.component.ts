@@ -17,9 +17,13 @@ export class PlaceAddComponent implements OnInit, OnDestroy {
   message!: string;
   selectedImages: File[] = [];
   placedata!: any;
-  singleplace$ = new Subscription();
   id: any;
   expiry: any;
+  singleplace$ = new Subscription();
+  placeadd$ = new Subscription();
+  placeedit$ = new Subscription();
+
+
 
   // constructor for injecting srvices and creating place form
   constructor(
@@ -43,17 +47,6 @@ export class PlaceAddComponent implements OnInit, OnDestroy {
 
   // ng oninit token verification
   ngOnInit(): void {
-    this.service.gettoken().subscribe({
-      next: (res) => {
-        if (res.expiry) {
-          this.expiry = res.expiry;
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-
     // getting queryparams
     this.route.queryParams.subscribe((params) => {
       this.id = params['id'];
@@ -61,21 +54,27 @@ export class PlaceAddComponent implements OnInit, OnDestroy {
         // deleting place from database
         this.singleplace$ = this.placeservice.getsingleplace(this.id).subscribe({
           next: (res) => {
-            this.placedata = res.data;
-            this.placeForm
-              .get('placeName')
-              ?.patchValue(this.placedata.placeName);
-            this.placeForm
-              .get('placeDescription')
-              ?.patchValue(this.placedata.placeDescription);
-            this.placeForm
-              .get('openingTime')
-              ?.patchValue(this.placedata.openingTime);
-            this.placeForm
-              .get('closingTime')
-              ?.patchValue(this.placedata.closingTime);
-            this.placeForm.get('entryFee')?.patchValue(this.placedata.entryFee);
-            this.placeForm.get('location')?.patchValue(this.placedata.location);
+            if (res.expiry) {
+              this.expiry = res.expiry;
+              alert('session expired please login')
+              this.service.agencylogout()
+            } else{
+              this.placedata = res.data;
+              this.placeForm
+                .get('placeName')
+                ?.patchValue(this.placedata.placeName);
+              this.placeForm
+                .get('placeDescription')
+                ?.patchValue(this.placedata.placeDescription);
+              this.placeForm
+                .get('openingTime')
+                ?.patchValue(this.placedata.openingTime);
+              this.placeForm
+                .get('closingTime')
+                ?.patchValue(this.placedata.closingTime);
+              this.placeForm.get('entryFee')?.patchValue(this.placedata.entryFee);
+              this.placeForm.get('location')?.patchValue(this.placedata.location);
+            }
           },
           error: (err) => {
             console.log(err);
@@ -109,17 +108,23 @@ export class PlaceAddComponent implements OnInit, OnDestroy {
       }
 
       // add place api
-      this.placeservice.addplace(formData).subscribe({
+      this.placeadd$ = this.placeservice.addplace(formData).subscribe({
         next: (res) => {
-          if (res.success) {
-            this.message = res.message;
-            setTimeout(() => {
-              this.message = '';
-              this.router.navigate(['agency/home']);
-            }, 2000);
-          } else {
-            this.message = res.message;
+          if (res.expiry) {
+            alert('session expired please login')
+            this.service.agencylogout()
+          } else{
+            if (res.success) {
+              this.message = res.message;
+              setTimeout(() => {
+                this.message = '';
+                this.router.navigate(['agency/home']);
+              }, 2000);
+            } else {
+              this.message = res.message;
+            }
           }
+          
         },
         error: (err) => {
           console.log(err);
@@ -154,16 +159,21 @@ export class PlaceAddComponent implements OnInit, OnDestroy {
       }
 
       // edit place api
-      this.placeservice.editplace(formData).subscribe({
+      this.placeedit$= this.placeservice.editplace(formData).subscribe({
         next: (res) => {
-          if (res.success) {
-            this.message = res.message;
-            setTimeout(() => {
-              this.message = '';
-              this.router.navigate(['agency/home']);
-            }, 2000);
-          } else {
-            this.message = res.message;
+          if (res.expiry) {
+            alert('session expired please login')
+            this.service.agencylogout()
+          } else{
+            if (res.success) {
+              this.message = res.message;
+              setTimeout(() => {
+                this.message = '';
+                this.router.navigate(['agency/home']);
+              }, 2000);
+            } else {
+              this.message = res.message;
+            }
           }
         },
         error: (err) => {
@@ -197,5 +207,7 @@ export class PlaceAddComponent implements OnInit, OnDestroy {
   // ondistroy
   ngOnDestroy(): void {
     this.singleplace$?.unsubscribe();
+    this.placeadd$?.unsubscribe()
+    this.placeedit$?.unsubscribe()
   }
 }

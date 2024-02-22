@@ -26,6 +26,8 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
   modalEdit!: boolean;
   deleteId!: any;
   editId!: any;
+
+  singleplace$= new Subscription()
   
   // constructor for injecting services
   constructor(
@@ -42,10 +44,15 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       const id = params['id'];
       // getting all detials of specific place
-      this.placeservice.getsingleplace(id).subscribe({
+     this.singleplace$ = this.placeservice.getsingleplace(id).subscribe({
         next: (res) => {
-          this.singlePlacedata = res.data;
-          this.images = res.data.placeurl;
+          if (res.expiry) {
+            alert('session expired please login')
+            this.service.agencylogout()
+          } else {
+            this.singlePlacedata = res.data;
+            this.images = res.data.placeurl;
+          }
         },
         error: (err) => {
           this.router.navigate(['/error']);
@@ -121,5 +128,7 @@ export class PlaceFulldetails implements OnInit, OnDestroy {
   }
 
   // distroing component
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.singleplace$?.unsubscribe()
+  }
 }

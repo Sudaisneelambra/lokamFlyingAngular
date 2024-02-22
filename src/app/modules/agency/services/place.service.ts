@@ -41,7 +41,7 @@ export class PlaceService{
     return this.http.get(`${this.api}/agency/confirmation/${id}`)
   }
 
-  packageplacedelete(id:any){
+  packageplacedelete(id:any):Observable<any>{
     return this.http.delete(`${this.api}/agency/deletepackageplace/${id}`)
   }
 

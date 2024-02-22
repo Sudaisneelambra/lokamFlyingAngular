@@ -37,4 +37,12 @@ export class GuideService{
     return this.http.get(`${this.api}/agency/getsingleguide/${id}`)
   }
 
+  // delete conformation
+  confirmation(id:any):Observable<any>{
+    return this.http.get(`${this.api}/agency/confirmationguid/${id}`)
+  }
+
+  packageguidedelete(id:any):Observable<any>{
+    return this.http.delete(`${this.api}/agency/deletepackageguide/${id}`)
+  }
 }

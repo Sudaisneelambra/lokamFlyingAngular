@@ -12,22 +12,23 @@ import { GuideService } from '../../services/guid.service';
   styleUrls: ['./guide-add.component.css'],
 })
 export class GuideAddComponent implements OnInit, OnDestroy {
-
   guideForm!: FormGroup;
   maximumValue: number = 1;
   selecterfile: File[] = [];
   message!: string;
   id: any;
-  singleguide$ = new Subscription();
   guidedata!: any;
   expiry!: any;
+  singleguide$ = new Subscription();
+  addguid$ = new Subscription();
+  editguid$ = new Subscription()
 
   // constructor for injecting services and guid form creation
   constructor(
     private formBuilder: FormBuilder,
     private location: Location,
     private agencyservice: agencyService,
-    private guidservice:GuideService,
+    private guidservice: GuideService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -40,25 +41,17 @@ export class GuideAddComponent implements OnInit, OnDestroy {
 
   // ng oninit token verifying and guid data getting and patchinto form
   ngOnInit(): void {
-    this.agencyservice.gettoken().subscribe({
-      next: (res) => {
-        if (res.expiry) {
-          this.expiry = res.expiry;
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
     // getting queryparams
     this.route.queryParams.subscribe((params) => {
       this.id = params['id'];
       if (this.id) {
         // deleting place from database
-        this.singleguide$ = this.guidservice
-          .getsingleguide(this.id)
-          .subscribe({
-            next: (res) => {
+        this.singleguide$ = this.guidservice.getsingleguide(this.id).subscribe({
+          next: (res) => {
+            if (res.expiry) {
+              alert('session expired please login');
+              this.agencyservice.agencylogout();
+            } else {
               this.guidedata = res.data;
               this.guideForm
                 .get('guideName')
@@ -69,11 +62,12 @@ export class GuideAddComponent implements OnInit, OnDestroy {
               this.guideForm
                 .get('experience')
                 ?.patchValue(this.guidedata.experience);
-            },
-            error: (err) => {
-              console.log(err);
-            },
-          });
+            }
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
       }
     });
   }
@@ -96,17 +90,22 @@ export class GuideAddComponent implements OnInit, OnDestroy {
         }
 
         // adding guide api
-        this.guidservice.addguide(formdata).subscribe({
+        this.addguid$ = this.guidservice.addguide(formdata).subscribe({
           next: (data) => {
-            if (data.success) {
-              this.message = data.message;
-              setTimeout(() => {
-                this.message = '';
-                this.router.navigate(['agency/home']);
-              }, 2000);
+            if (data.expiry) {
+              alert('session expired please login');
+              this.agencyservice.agencylogout();
             } else {
-              this.message = data.message;
-              console.log(this.message);
+              if (data.success) {
+                this.message = data.message;
+                setTimeout(() => {
+                  this.message = '';
+                  this.router.navigate(['agency/home']);
+                }, 2000);
+              } else {
+                this.message = data.message;
+                console.log(this.message);
+              }
             }
           },
           error: (err) => {
@@ -116,7 +115,6 @@ export class GuideAddComponent implements OnInit, OnDestroy {
       }
     }
   }
-
 
   // guide image adding changes dettection
   onFileChange(event: any) {
@@ -132,7 +130,6 @@ export class GuideAddComponent implements OnInit, OnDestroy {
       }
     }
   }
-
 
   // guide editting
   edit() {
@@ -154,16 +151,21 @@ export class GuideAddComponent implements OnInit, OnDestroy {
         }
 
         // editing guide api
-        this.guidservice.editguide(formdata).subscribe({
+       this.editguid$= this.guidservice.editguide(formdata).subscribe({
           next: (data) => {
-            if (data.success) {
-              this.message = data.message;
-              setTimeout(() => {
-                this.message = '';
-                this.router.navigate(['agency/home']);
-              }, 2000);
+            if (data.expiry) {
+              alert('session expired please login');
+              this.agencyservice.agencylogout();
             } else {
-              this.message = data.message;
+              if (data.success) {
+                this.message = data.message;
+                setTimeout(() => {
+                  this.message = '';
+                  this.router.navigate(['agency/home']);
+                }, 2000);
+              } else {
+                this.message = data.message;
+              }
             }
           },
           error: (err) => {
@@ -173,7 +175,6 @@ export class GuideAddComponent implements OnInit, OnDestroy {
       }
     }
   }
-
 
   // deleting added image file
   del() {
@@ -196,6 +197,8 @@ export class GuideAddComponent implements OnInit, OnDestroy {
 
   // on destroy
   ngOnDestroy(): void {
-    this.singleguide$.unsubscribe();
+    this.singleguide$?.unsubscribe();
+    this.addguid$?.unsubscribe();
+    this.editguid$?.unsubscribe()
   }
 }

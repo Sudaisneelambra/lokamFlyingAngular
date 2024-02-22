@@ -14,9 +14,11 @@ import { packageService } from '../../services/package.service';
   styleUrls: ['./agency-home.component.css'],
 })
 export class AgencyHomeComponent implements OnInit, OnDestroy {
+  
   placeSubscription$ = new Subscription();
   guideSubscription$ = new Subscription();
   packageSubscription$ = new Subscription();
+
   name!: string;
   data: any;
   guide: any;
@@ -38,10 +40,13 @@ export class AgencyHomeComponent implements OnInit, OnDestroy {
     // all place getting api
     this.placeSubscription$ = this.placeservice.gettingplace().subscribe({
       next: (res) => {
-        this.data = res.data;
         if (res.expiry) {
-          this.expiry = res.expiry;
+          alert('session expired please login')
+          this.service.agencylogout()
+        } else {
+          this.data = res.data;
         }
+       
       },
       error: (err) => {
         console.log(err.message);
@@ -51,9 +56,11 @@ export class AgencyHomeComponent implements OnInit, OnDestroy {
     //all place getting api
     this.guideSubscription$ = this.guideservice.gettingguides().subscribe({
       next: (res) => {
-        this.guide = res.data;
         if (res.expiry) {
-          this.expiry = res.expiry;
+          alert('session expired please login')
+          this.service.agencylogout()
+        } else {
+          this.guide = res.data;
         }
       },
       error: (err) => {
@@ -66,9 +73,11 @@ export class AgencyHomeComponent implements OnInit, OnDestroy {
       .gettingpackages()
       .subscribe({
         next: (res) => {
-          this.package = res.data;
           if (res.expiry) {
-            this.expiry = res.expiry;
+            alert('session expired please login')
+            this.service.agencylogout()
+          } else {
+          this.package = res.data;
           }
         },
         error: (err) => {
@@ -80,21 +89,12 @@ export class AgencyHomeComponent implements OnInit, OnDestroy {
   // logout
   logout() {
     // logout and token delete
-    this.service.agencylogout().subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-    this.router.navigate(['authentication']);
+   this.service.agencylogout()
   }
 
   // page distroying
   ngOnDestroy(): void {
     this.placeSubscription$.unsubscribe();
-
     this.guideSubscription$.unsubscribe();
     this.packageSubscription$.unsubscribe();
   }

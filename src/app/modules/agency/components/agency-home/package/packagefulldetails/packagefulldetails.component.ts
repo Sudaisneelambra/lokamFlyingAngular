@@ -32,7 +32,8 @@ export class PackagefullComponent implements OnInit, OnDestroy {
     private rout: ActivatedRoute,
     private packageservice: packageService,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private agencyservice:agencyService
 ) {}
 
 //on init for geting all data of package 
@@ -42,19 +43,21 @@ export class PackagefullComponent implements OnInit, OnDestroy {
       this.singlepackagedetails$ = this.packageservice.getsinglepackage(id).subscribe({
         next: (res) => {
           if (res.expiry) {
-            this.expiry = res.expiry;
-          }
-          this.singlepackage = res.package;
-          
-          this.places = res.place;
-          this.objplace = this.singlepackage.places;
-          this.guide = res.guide;
-          
-          for(let i=0; i< this.places.length; i++){
-            for(let j=0; j<this.places.length;j++){
-              if(this.places[i]._id === this.objplace[j].placeid){
-                let joinedObject = { ...this.places[i], ...this.objplace[j] };
-                this.result.push(joinedObject);
+            alert('session expired please login');
+            this.agencyservice.agencylogout();
+          } else {
+            this.singlepackage = res.package;
+            
+            this.places = res.place;
+            this.objplace = this.singlepackage.places;
+            this.guide = res.guide;
+            
+            for(let i=0; i< this.places.length; i++){
+              for(let j=0; j<this.places.length;j++){
+                if(this.places[i]._id === this.objplace[j].placeid){
+                  let joinedObject = { ...this.places[i], ...this.objplace[j] };
+                  this.result.push(joinedObject);
+                }
               }
             }
           }
@@ -106,6 +109,6 @@ export class PackagefullComponent implements OnInit, OnDestroy {
 
 //   page distroy
   ngOnDestroy(): void {
-    this.singlepackagedetails$.unsubscribe();
+    this.singlepackagedetails$?.unsubscribe();
   }
 }

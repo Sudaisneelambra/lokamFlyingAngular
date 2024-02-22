@@ -30,7 +30,12 @@ export class AgencyMainHome {
       .getingprofilename()
       .subscribe({
         next: (res) => {
-          this.name = res.user?.name;
+          if (res.expiry) {
+            alert('session expired please login')
+            this.service.agencylogout()
+          } else{
+            this.name = res.user?.name;
+          }
         },
         error: (err) => {
           console.log(err);
@@ -54,20 +59,11 @@ export class AgencyMainHome {
 
   // logout
   logout() {
-    this.service.agencylogout().subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-    console.log('logouted');
-    this.router.navigate(['authentication']);
+    this.service.agencylogout()
   }
 
   // destroying component
   ngOnDestroy(): void {
-    this.profileSubscription$.unsubscribe();
+    this.profileSubscription$?.unsubscribe();
   }
 }

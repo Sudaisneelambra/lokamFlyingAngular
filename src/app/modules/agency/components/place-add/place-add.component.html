@@ -1,4 +1,4 @@
-<div class="" *ngIf="!expiry; else expired">
+<div class="" >
   <form [formGroup]="placeForm" class="place-form">
     <div class="form-group">
       <label for="placeName">Place Name:</label>
@@ -90,8 +90,3 @@
     <h1 class="text-red-500">{{ message }}</h1>
   </form>
 </div>
-<ng-template #expired>
-  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">
-    tocken expired.. please login
-  </h1>
-</ng-template>

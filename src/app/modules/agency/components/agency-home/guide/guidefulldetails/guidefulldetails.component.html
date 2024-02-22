@@ -10,7 +10,7 @@
   (editcancel)="modalclose($event)"
 ></app-editconfirmation>
 <div class="guide-details">
-  <div class="flex">
+  <div class="main flex">
     <img src="{{ singleguide?.guideurl }}" alt="Logo" class="logo" />
     <div class="content">
       <h2>{{ singleguide?.guidename }}</h2>
@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-  <div class="flex p-10 justify-between">
+  <div class="btns flex mt-5 justify-between">
     <button (click)="edit(singleguide?._id)">edit</button>
     <button (click)="delete(singleguide?._id)">delete</button>
     <button (click)="back()">back</button>

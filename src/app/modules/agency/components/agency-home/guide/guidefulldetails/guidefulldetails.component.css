@@ -43,3 +43,18 @@ button{
     font-weight: 600;
     font-size: 22px;
 }
+
+@media (max-width:500px){
+    .main{
+        flex-direction: column;
+    }
+    .logo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+    .btns{
+        padding: 0px;
+    }
+}

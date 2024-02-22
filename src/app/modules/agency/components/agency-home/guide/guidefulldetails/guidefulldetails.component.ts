@@ -26,7 +26,8 @@ export class GuideFulldetailes implements OnInit, OnDestroy {
       private guideservice: GuideService,
       private route: ActivatedRoute,
       private router: Router,
-      private location: Location
+      private location: Location,
+      private agencyservice:agencyService
     ) {}
 
 // getting full details
@@ -35,7 +36,12 @@ export class GuideFulldetailes implements OnInit, OnDestroy {
       const id = params['id'];
       this.singleguidedetails$ = this.guideservice.getsingleguide(id).subscribe({
         next: (res) => {
-          this.singleguide = res.data;
+          if (res.expiry) {
+            alert('session expired please login');
+            this.agencyservice.agencylogout();
+          } else {
+            this.singleguide = res.data;
+          }
         },
         error: (err) => {
           console.log(err);
@@ -78,6 +84,6 @@ export class GuideFulldetailes implements OnInit, OnDestroy {
 
 //   page distroy
   ngOnDestroy(): void {
-    this.singleguidedetails$.unsubscribe();
+    this.singleguidedetails$?.unsubscribe();
   }
 }

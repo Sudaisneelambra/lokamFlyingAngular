@@ -25,6 +25,7 @@ import { PackagefullComponent } from './components/agency-home/package/packagefu
 import { PackageDeleteConformation } from './components/agency-home/package/packagefulldetails/packagedeleteconformation/packagedeleteconformation.component';
 import { PackageEditConfirmationComponent } from './components/agency-home/package/packagefulldetails/packageeditconfirmation/packageeditconfirmation.component';
 import { StrictDelete } from './components/agency-home/places/placesfulldetails/deleteconformation/strictdelete/strictdelete.component';
+import { StrictDeleteGuid } from './components/agency-home/guide/guidefulldetails/guidedeleteconformation/strictdeleteguid/strictdeleteguid.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { StrictDelete } from './components/agency-home/places/placesfulldetails/
     PackagefullComponent,
     PackageDeleteConformation,
     PackageEditConfirmationComponent,
-    StrictDelete
+    StrictDelete,
+    StrictDeleteGuid
     ],
   imports: [CommonModule,AgencyRoutes, ReactiveFormsModule, HttpClientModule, FormsModule],
   exports: [],

@@ -2,31 +2,27 @@ import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { agencyService } from 'src/app/modules/agency/services/agency.service';
-import { PlaceService } from 'src/app/modules/agency/services/place.service';
+import { GuideService } from 'src/app/modules/agency/services/guid.service';
 
 @Component({
-  selector: 'app-strictdelete',
-  templateUrl: './strictdelete.component.html',
-  styleUrls: ['strictdelete.component.css'],
+  selector: 'app-strictdeleteguid',
+  templateUrl: './strictdeleteguid.component.html',
+  styleUrls: ['strictdeleteguid.component.css'],
 })
-export class StrictDelete implements OnDestroy{
-
-  @Input() id: any;
-  @Output() cancel = new EventEmitter();
-  packageplacedelete$ =new Subscription()
+export class StrictDeleteGuid implements OnDestroy{
   
-  constructor(
-    private placeservice: PlaceService,
-    private router: Router,
-    private agencyservice: agencyService
-  ) {}
+  @Input() id: any;
+  @Output() cancels = new EventEmitter();
+  guidedelete$ =new Subscription()
+  
+  constructor(private guideservice: GuideService, private router: Router , private agencyservice:agencyService) {}
   
   cancelation() {
-    this.cancel.emit(false);
+    this.cancels.emit(false);
   }
-  
+
   delete() {
-    this.packageplacedelete$ =this.placeservice.packageplacedelete(this.id).subscribe({
+   this.guidedelete$ = this.guideservice.packageguidedelete(this.id).subscribe({
       next: (res) => {
         if (res.expiry) {
           alert('session expired please login');
@@ -34,7 +30,7 @@ export class StrictDelete implements OnDestroy{
         } else {
           if (res.success) {
             console.log('strictly confirmed and deleted');
-
+  
             setTimeout(() => {
               this.router.navigate(['/agency/home']);
             }, 1000);
@@ -48,6 +44,6 @@ export class StrictDelete implements OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.packageplacedelete$?.unsubscribe()
+    this.guidedelete$.unsubscribe()
   }
 }

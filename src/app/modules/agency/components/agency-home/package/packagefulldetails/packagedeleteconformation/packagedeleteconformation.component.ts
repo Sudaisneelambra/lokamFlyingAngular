@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { agencyService } from 'src/app/modules/agency/services/agency.service';
 import { packageService } from 'src/app/modules/agency/services/package.service';
 
@@ -8,12 +9,15 @@ import { packageService } from 'src/app/modules/agency/services/package.service'
   templateUrl: './packagedeleteconformation.component.html',
   styleUrls: ['./packagedeleteconformation.component.css'],
 })
-export class PackageDeleteConformation implements OnInit {
-  constructor(private router: Router, private packageservice:packageService) {}
+export class PackageDeleteConformation implements OnInit ,OnDestroy {
 
+  constructor(private router: Router, private packageservice:packageService, private agencyservice:agencyService) {}
+  
   @Input() id!: any;
   @Output() canceldelete = new EventEmitter();
   @Output() msg = new EventEmitter();
+  
+  deletepackage$ = new Subscription()
 
   ngOnInit(): void {}
 
@@ -22,13 +26,18 @@ export class PackageDeleteConformation implements OnInit {
     // deleting place from database
     this.packageservice.deletingPackage(this.id).subscribe({
       next: (res) => {
-        if (res.success) {
-          this.msg.emit(res.message);
-          this.canceldelete.emit(false);
-          setTimeout(() => {
-            this.msg.emit('');
-            this.router.navigate(['/agency/home']);
-          }, 2000);
+        if (res.expiry) {
+          alert('session expired please login');
+          this.agencyservice.agencylogout();
+        } else {
+          if (res.success) {
+            this.msg.emit(res.message);
+            this.canceldelete.emit(false);
+            setTimeout(() => {
+              this.msg.emit('');
+              this.router.navigate(['/agency/home']);
+            }, 2000);
+          }
         }
       },
       error: (err) => {
@@ -36,9 +45,13 @@ export class PackageDeleteConformation implements OnInit {
       },
     });
   }
-
-//   delete cancel emit
+  
+  //   delete cancel emit
   cancel() {
     this.canceldelete.emit(false);
+  }
+
+  ngOnDestroy(): void {
+    this.deletepackage$?.unsubscribe()
   }
 }

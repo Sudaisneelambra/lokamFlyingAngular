@@ -1,4 +1,4 @@
-<div class="" *ngIf="!expiry; else expired">
+<div class="">
   <div class="container">
     <h2>Agency Profile Form</h2>
     <form [formGroup]="agencyForm" enctype="multipart/form-data">
@@ -274,8 +274,4 @@
   </div>
 </div>
 
-<ng-template #expired>
-  <h1 class="w-full text-[30px] font-bold text-center text-[#b14a4a]">
-    tocken expired.. please login
-  </h1>
-</ng-template>
+
