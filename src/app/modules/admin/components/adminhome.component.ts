@@ -28,4 +28,16 @@ export class AdminHome {
   gotoagency(){
     this.router.navigate(['/admin/agency-list'])
   }
+
+  gotoBlockedAgency(){
+    this.router.navigate(['/admin/blocked-agency'])
+  }
+
+  gotoblockedusers(){
+    this.router.navigate(['/admin/blocked-user'])
+  }
+
+  requests(){
+    this.router.navigate(['/admin/requests'])
+  }
 }

@@ -3,6 +3,9 @@ import { RouterModule, Routes } from "@angular/router";
 import { AdminHome } from "../components/adminhome.component";
 import { UserList } from "../components/userlist/userlist.component";
 import { AgencyList } from "../components/agencylist/agencylist.component";
+import { BlockedAngency } from "../components/blockedagency/blockedagency.component";
+import { Blockeduser } from "../components/blockedusers/blockedusers.component";
+import { RequestComponent } from "../components/requests/request.component";
 
 
 const routes: Routes = [
@@ -17,6 +20,18 @@ const routes: Routes = [
         {
             path:'agency-list',
             component:AgencyList
+        },
+        {
+            path:'blocked-agency',
+            component:BlockedAngency
+        },
+        {
+            path:'blocked-user',
+            component:Blockeduser
+        },
+        {
+            path:'requests',
+            component:RequestComponent
         }
       ]
     },
