@@ -21,6 +21,11 @@ const routes: Routes = [
       import('./modules/user/user.module').then((m) => m.UserModule),
   },
   {
+    path: 'admin',
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
     path: 'agency',
     // canActivate:[gotoaddprofile],
     loadChildren: () =>

@@ -1,0 +1,278 @@
+<!-- for header part -->
+<header class="">
+  <div class="logosec">
+    <div class="logo">Lokama Flying</div>
+    <div class="sin w-[45px] h-[45px] bg-white rounded-lg hidden">
+      <img 
+        src="https://media.geeksforgeeks.org/wp-content/uploads/20221210182541/Untitled-design-(30).png"
+        class="icn menuicn"
+        id="menuicn"
+        alt="menu-icon"
+        (click)="boolean()"
+        />
+    </div>
+  </div>
+
+  <div class="searchbar">
+    <input type="text" placeholder="Search" />
+    <div class="searchbtn">
+      <img
+        src="https://media.geeksforgeeks.org/wp-content/uploads/20221210180758/Untitled-design-(28).png"
+        class="icn srchicn"
+        alt="search-icon"
+      />
+    </div>
+  </div>
+
+  <div class="message">
+    <div class="circle"></div>
+    <img
+      src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183322/8.png"
+      class="icn"
+      alt=""
+    />
+    <div class="dp">
+      <img
+        src="https://media.geeksforgeeks.org/wp-content/uploads/20221210180014/profile-removebg-preview.png"
+        class="dpicn"
+        alt="dp"
+      />
+    </div>
+  </div>
+</header>
+
+<div class="main-container">
+  <div class="sidebar w-[35%]">
+    <div class="navcontainer" [hidden]="one">
+      <nav class="nav">
+        <div class="nav-upper-options">
+          <div class="option2 nav-option" (click)="gotouser()">
+            <div
+              class="w-[45px] h-[45px] grid place-items-center bg-white rounded-lg"
+            >
+              <img
+                src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183322/9.png"
+                class="nav-img"
+                alt="articles"
+              />
+            </div>
+            <h3>Users</h3>
+          </div>
+
+          <div class="nav-option option3" (click)="gotoagency()">
+            <div
+              class="w-[45px] h-[45px] grid place-items-center bg-white rounded-lg"
+            >
+              <img
+                src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183320/5.png"
+                class="nav-img"
+                alt="report"
+              />
+            </div>
+            <h3>Agencies</h3>
+          </div>
+
+          <div class="nav-option option4">
+            <div
+              class="w-[45px] h-[45px] grid place-items-center bg-white rounded-lg"
+            >
+              <img
+                src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183320/5.png"
+                class="nav-img"
+                alt="report"
+              />
+            </div>
+            <h3>Blocked Users</h3>
+          </div>
+
+          <div class="nav-option option5">
+            <div
+              class="w-[45px] h-[45px] grid place-items-center bg-white rounded-lg"
+            >
+              <img
+                src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183320/5.png"
+                class="nav-img"
+                alt="report"
+              />
+            </div>
+            <h3>Blocked User</h3>
+          </div>
+
+          <div class="nav-option option6">
+            <div
+              class="w-[45px] h-[45px] grid place-items-center bg-white rounded-lg"
+            >
+              <img
+                src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183320/5.png"
+                class="nav-img"
+                alt="report"
+              />
+            </div>
+            <h3>Requests</h3>
+          </div>
+
+          <div class="nav-option logout">
+            <div
+              class="w-[45px] h-[45px] grid place-items-center bg-white rounded-lg"
+            >
+              <img
+                src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183320/5.png"
+                class="nav-img"
+                alt="report"
+              />
+            </div>
+            <h3>Logout</h3>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="main">
+    <div class="melebox">
+      <div class="box-container">
+        <div class="box box1">
+          <div class="text">
+            <h2 class="topic-heading">60.5k</h2>
+            <h2 class="topic">Packages</h2>
+          </div>
+
+          <img
+            src="/assets/images/tour-package-glyph-circle-icon-vector.jpg"
+            alt="Views"
+            style="border-radius: 10px;"/>
+        </div>
+
+        <div class="box box2">
+          <div class="text">
+            <h2 class="topic-heading">150</h2>
+            <h2 class="topic">Places</h2>
+          </div>
+
+          <img
+            src="/assets/images/places.png"
+            alt="likes"
+            style="border-radius: 10px;"/>
+        </div>
+
+        <div class="box box3">
+          <div class="text">
+            <h2 class="topic-heading">320</h2>
+            <h2 class="topic">Reviwes</h2>
+          </div>
+
+          <img
+            src="/assets/images/reviews.webp"
+            alt="comments"
+          style="border-radius: 10px;" />
+        </div>
+
+        <div class="box box4">
+          <div class="text">
+            <h2 class="topic-heading">70</h2>
+            <h2 class="topic">Published</h2>
+          </div>
+
+          <img
+            src="https://media.geeksforgeeks.org/wp-content/uploads/20221210185029/13.png"
+            alt="published"
+            style="border-radius: 10px;"/>
+        </div>
+      </div>
+    </div>
+    <div class="thazhe max-h-[600px] mb-10">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="report-container">
+    <div class="report-header">
+      <h1 class="recent-Articles">Recent Articles</h1>
+      <button class="view">View All</button>
+    </div>
+
+    <div class="report-body">
+      <div class="report-topic-heading">
+        <h3 class="t-op">Article</h3>
+        <h3 class="t-op">Views</h3>
+        <h3 class="t-op">Comments</h3>
+        <h3 class="t-op">Status</h3>
+      </div>
+
+      <div class="items">
+        <div class="item1">
+          <h3 class="t-op-nextlvl">Article 73</h3>
+          <h3 class="t-op-nextlvl">2.9k</h3>
+          <h3 class="t-op-nextlvl">210</h3>
+          <h3 class="t-op-nextlvl label-tag">Published</h3>
+        </div>
+
+        <div class="item1">
+          <h3 class="t-op-nextlvl">Article 72</h3>
+          <h3 class="t-op-nextlvl">1.5k</h3>
+          <h3 class="t-op-nextlvl">360</h3>
+          <h3 class="t-op-nextlvl label-tag">Published</h3>
+        </div>
+
+        <div class="item1">
+          <h3 class="t-op-nextlvl">Article 71</h3>
+          <h3 class="t-op-nextlvl">1.1k</h3>
+          <h3 class="t-op-nextlvl">150</h3>
+          <h3 class="t-op-nextlvl label-tag">Published</h3>
+        </div>
+
+        <div class="item1">
+          <h3 class="t-op-nextlvl">Article 70</h3>
+          <h3 class="t-op-nextlvl">1.2k</h3>
+          <h3 class="t-op-nextlvl">420</h3>
+          <h3 class="t-op-nextlvl label-tag">Published</h3>
+        </div>
+
+        <div class="item1">
+          <h3 class="t-op-nextlvl">Article 69</h3>
+          <h3 class="t-op-nextlvl">2.6k</h3>
+          <h3 class="t-op-nextlvl">190</h3>
+          <h3 class="t-op-nextlvl label-tag">Published</h3>
+        </div>
+
+        <div class="item1">
+          <h3 class="t-op-nextlvl">Article 68</h3>
+          <h3 class="t-op-nextlvl">1.9k</h3>
+          <h3 class="t-op-nextlvl">390</h3>
+          <h3 class="t-op-nextlvl label-tag">Published</h3>
+        </div>
+
+        <div class="item1">
+          <h3 class="t-op-nextlvl">Article 67</h3>
+          <h3 class="t-op-nextlvl">1.2k</h3>
+          <h3 class="t-op-nextlvl">580</h3>
+          <h3 class="t-op-nextlvl label-tag">Published</h3>
+        </div>
+
+        <div class="item1">
+          <h3 class="t-op-nextlvl">Article 66</h3>
+          <h3 class="t-op-nextlvl">3.6k</h3>
+          <h3 class="t-op-nextlvl">160</h3>
+          <h3 class="t-op-nextlvl label-tag">Published</h3>
+        </div>
+
+        <div class="item1">
+          <h3 class="t-op-nextlvl">Article 65</h3>
+          <h3 class="t-op-nextlvl">1.3k</h3>
+          <h3 class="t-op-nextlvl">220</h3>
+          <h3 class="t-op-nextlvl label-tag">Published</h3>
+        </div>
+      </div>
+    </div>
+  </div> -->
