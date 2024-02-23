@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { agencyService } from '../services/agency.service';
 import { Router } from '@angular/router';
@@ -9,12 +9,13 @@ import { ProfileService } from '../services/profile.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class AgencyMainHome {
+export class AgencyMainHome implements DoCheck{
   profileSubscription$ = new Subscription();
   name!: string;
   data: any;
   guide: any;
   booleanvalue: boolean = true;
+  profileckecks: any;
 
   constructor(
     private service: agencyService,
@@ -25,6 +26,19 @@ export class AgencyMainHome {
   bool: boolean = true;
   // oninit
   ngOnInit() {
+
+   
+ 
+    this.service.findprofilecollection().subscribe({
+      next:(res)=>{
+        this.profileckecks=res.profileadd
+        
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
+    
     // getting profile name
     this.profileSubscription$ = this.profileservice
       .getingprofilename()
@@ -34,18 +48,14 @@ export class AgencyMainHome {
             alert('session expired please login')
             this.service.agencylogout()
           } else{
-            this.name = res.user?.name;
+            this.name = res?.user?.name;
           }
         },
         error: (err) => {
           console.log(err);
         },
       });
-
-    // url check
-    if (this.router.url === '/agency') {
-      this.router.navigate(['/agency/home']);
-    }
+   
   }
 
   // nav bar reponsive
@@ -65,5 +75,15 @@ export class AgencyMainHome {
   // destroying component
   ngOnDestroy(): void {
     this.profileSubscription$?.unsubscribe();
+  }
+
+  ngDoCheck() {
+    if(this.router.url !== '/agency/home' && this.router.url !== '/agency/profileadd'){
+      
+      if(!this.profileckecks){
+        
+        this.router.navigate(['/agency/profileadd'])
+      }
+    }
   }
 }

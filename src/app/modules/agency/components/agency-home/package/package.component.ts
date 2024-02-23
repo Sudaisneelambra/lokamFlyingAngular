@@ -14,8 +14,6 @@ export class PackageComponent implements OnInit {
   @Input() package!: any;
   
   ngOnInit(): void {
-    console.log(this.package);
-    console.log(this.package.places.length);
     
   }
   

@@ -10,10 +10,6 @@ export class AppComponent implements OnInit{
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
-    if(!token) {
-      this.router.navigateByUrl('/authentication')
-    }
   }
   title = 'lokamaflying';
 }

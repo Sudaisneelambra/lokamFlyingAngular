@@ -14,7 +14,7 @@ import { packageService } from '../../services/package.service';
   styleUrls: ['./agency-home.component.css'],
 })
 export class AgencyHomeComponent implements OnInit, OnDestroy {
-  
+
   placeSubscription$ = new Subscription();
   guideSubscription$ = new Subscription();
   packageSubscription$ = new Subscription();
@@ -25,6 +25,7 @@ export class AgencyHomeComponent implements OnInit, OnDestroy {
   package: any;
   booleanvalue: boolean = true;
   expiry!: any;
+  profileckecks: any;
 
   // constructor for injecting services
   constructor(
@@ -37,6 +38,7 @@ export class AgencyHomeComponent implements OnInit, OnDestroy {
 
   // on init getting place and guid and package
   ngOnInit() {
+
     // all place getting api
     this.placeSubscription$ = this.placeservice.gettingplace().subscribe({
       next: (res) => {
@@ -91,6 +93,8 @@ export class AgencyHomeComponent implements OnInit, OnDestroy {
     // logout and token delete
    this.service.agencylogout()
   }
+
+ 
 
   // page distroying
   ngOnDestroy(): void {

@@ -13,16 +13,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class backtoLoginAuthGuard implements CanActivate {
-  constructor(private authService: UserService, private router: Router) {}
+  
+  constructor(private userservice: UserService, private router: Router) {}
 
   canActivate(): boolean {
-    if (!this.authService.isLoggedIn()) {
+    if (!this.userservice.isLoggedIn()) {
       return true; // User not logged in, allow access
-    } else if (this.authService.gettypeuser()) {
+    } else if (this.userservice.gettypeuser()) {
       this.router.navigate(['user']);
       return false; // User is of type 'user', deny access
-    } else if (this.authService.gettypeagency()) {
-      this.router.navigate(['agency']);
+    } else if (this.userservice.gettypeagency()) {
+      this.router.navigate(['agency/home']);
       return false; // User is of type 'agency', deny access
     }
     return false; // Fallback return statement

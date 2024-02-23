@@ -122,7 +122,6 @@ export class LoginComponent {
 
   // logining login form
   logins() {
-    console.log(this.login.value);
     this.userService.userLogin(this.login.value).subscribe({
       next: (res) => {
         if (res.success) {
@@ -146,11 +145,7 @@ export class LoginComponent {
             this.loginmessage = res.message;
             localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
             localStorage.setItem('type', res.type);
-            if (res.profileadd) {
-              this.router.navigate(['/agency']);
-            } else {
-              this.router.navigate(['/agency/profileadd']);
-            }
+            this.router.navigate(['/agency/home'])
             setTimeout(() => {
               this.loginmessage = '';
             }, 2000);

@@ -7,10 +7,12 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 const routes: Routes = [
   {
     path: '',
+    canActivate:[backtoLoginAuthGuard],
     component: LoginComponent,
   },
   {
     path: 'authentication',
+    canActivate:[backtoLoginAuthGuard],
     component: LoginComponent,
   },
   {
@@ -20,6 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'agency',
+    // canActivate:[gotoaddprofile],
     loadChildren: () =>
       import('./modules/agency/agency.module').then((m) => m.agencyModule),
   },

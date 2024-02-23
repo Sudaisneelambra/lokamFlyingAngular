@@ -66,7 +66,6 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
 
   // ng oninit  getting profile if it is availabe and checking token exired
   ngOnInit() {
-    console.log(this.datas);
 
     // getting profile all data
     this.profileSubscription$ = this.profileservice.getingprofile().subscribe({
@@ -76,20 +75,20 @@ export class ProfileAddComponent implements OnInit, OnDestroy {
           alert('session expired please login')
           this.agencyservice.agencylogout()
         } else {
-          this.datas = res.user;
+          this.datas = res?.user;
 
-          this.agencyForm.get('agency_name')?.patchValue(res.user.name);
-          this.agencyForm.get('description')?.patchValue(res.user.description);
+          this.agencyForm.get('agency_name')?.patchValue(res?.user?.name);
+          this.agencyForm.get('description')?.patchValue(res?.user?.description);
           this.agencyForm
             .get('contactNumber1')
-            ?.patchValue(res.user.contactNumber1);
+            ?.patchValue(res?.user?.contactNumber1);
           this.agencyForm
             .get('contactNumber2')
-            ?.patchValue(res.user.contactNumber2);
-          this.agencyForm.get('aboutAgency')?.patchValue(res.user.aboutAgency);
-          this.agencyForm.get('email')?.patchValue(res.user.email);
-          this.agencyForm.get('openingTime')?.patchValue(res.user.openingTime);
-          this.agencyForm.get('closingTime')?.patchValue(res.user.closingTime);
+            ?.patchValue(res?.user?.contactNumber2);
+          this.agencyForm.get('aboutAgency')?.patchValue(res?.user?.aboutAgency);
+          this.agencyForm.get('email')?.patchValue(res?.user?.email);
+          this.agencyForm.get('openingTime')?.patchValue(res?.user?.openingTime);
+          this.agencyForm.get('closingTime')?.patchValue(res?.user?.closingTime);
           this.agencyForm.get('location')?.patchValue(res?.user?.location);
         }
       },

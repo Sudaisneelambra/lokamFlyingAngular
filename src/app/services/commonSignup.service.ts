@@ -57,6 +57,20 @@ export class UserService {
       return false;
     }
   }
+
+  getprofileadd() {
+    const one = localStorage.getItem('profileadd');
+    console.log(one);
+    
+    if (one) {
+      if (one === 'true') {
+        return true;
+      } else if (one === 'false') {
+        return false;
+      }
+    }
+    return false;
+  }
 }
 
 interface login {

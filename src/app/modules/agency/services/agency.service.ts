@@ -16,6 +16,11 @@ export class agencyService {
     return this.http.get(`${this.api}/agency/gettoken`)
   }
 
+
+  findprofilecollection():Observable<any>{
+    return this.http.get(`${this.api}/agency/profileckeck`)
+  }
+
   // logout and token delete
   agencylogout(){
     const one = localStorage.getItem('token');

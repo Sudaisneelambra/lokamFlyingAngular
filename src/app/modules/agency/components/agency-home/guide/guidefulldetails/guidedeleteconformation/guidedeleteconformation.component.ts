@@ -26,12 +26,10 @@ export class GuideDeleteConformation implements OnInit  ,OnDestroy{
 // confirm delete and call delete api
   confirmboolean() {
     // deleting place from database
-    console.log('sudais');
     
     this.deleteconfirmation$ = this.guideservices.confirmation(this.id).subscribe({
       next:(res)=>{
         if(res.strict){
-          console.log(res);
           this.strictness=true
           this.strictid=this.id
         } else{
