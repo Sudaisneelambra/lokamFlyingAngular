@@ -97,7 +97,7 @@
               {{ singlepackage?.offer }}
             </td>
           </tr>
-          <tr *ngIf="singlepackage?.offer === 'yes'">
+          <tr *ngIf="singlepackage?.offer">
             <th>Offer Rate</th>
             <td>
               <span class="offer-rate">{{ singlepackage?.offerRate }}</span>

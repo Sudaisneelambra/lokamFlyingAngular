@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { admincommon } from "../services/admincommon.service";
 
 @Component({
     selector:'app-adminhome',
@@ -11,7 +12,7 @@ export class AdminHome {
 
     one=true
 
-    constructor(private router:Router){}
+    constructor(private router:Router, private adminmain:admincommon){}
 
   boolean(){
     if(this.one){
@@ -35,6 +36,13 @@ export class AdminHome {
 
   gotoblockedusers(){
     this.router.navigate(['/admin/blocked-user'])
+  }
+
+  logout(){
+    const confirm = window.confirm('are you sure to logout')
+   if(confirm){
+    this.adminmain.agencylogout()
+   }
   }
 
   requests(){

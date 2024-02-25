@@ -58,6 +58,16 @@ export class UserService {
     }
   }
 
+   // type admin check
+   gettypeadmin() {
+    const type = localStorage.getItem('type');
+    if (type == 'admin') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   getprofileadd() {
     const one = localStorage.getItem('profileadd');
     console.log(one);

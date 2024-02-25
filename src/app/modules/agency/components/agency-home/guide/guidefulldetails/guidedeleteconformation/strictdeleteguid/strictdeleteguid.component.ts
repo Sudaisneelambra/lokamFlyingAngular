@@ -44,6 +44,6 @@ export class StrictDeleteGuid implements OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.guidedelete$.unsubscribe()
+    this.guidedelete$?.unsubscribe()
   }
 }

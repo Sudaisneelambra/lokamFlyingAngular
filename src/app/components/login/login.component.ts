@@ -136,10 +136,13 @@ export class LoginComponent {
           } else if (res.admin) {
             this.loginmessage = res.message;
             localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
+            console.log(res.token);
+            
             localStorage.setItem('type', res.type);
             setTimeout(() => {
               console.log('admin');
               this.loginmessage = '';
+              this.router.navigate(['/admin']);
             }, 2000);
           } else if (res.resistered) {
             this.loginmessage = res.message;

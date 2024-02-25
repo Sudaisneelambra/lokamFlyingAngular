@@ -98,8 +98,8 @@ export class AgencyHomeComponent implements OnInit, OnDestroy {
 
   // page distroying
   ngOnDestroy(): void {
-    this.placeSubscription$.unsubscribe();
-    this.guideSubscription$.unsubscribe();
-    this.packageSubscription$.unsubscribe();
+    this.placeSubscription$?.unsubscribe();
+    this.guideSubscription$?.unsubscribe();
+    this.packageSubscription$?.unsubscribe();
   }
 }

@@ -1,155 +1,41 @@
 <h1 class="text-[24px] font-bold">Agency List</h1>
+<app-agencyblock *ngIf="modalview" [id]="blockid" (cancelview)="cancelling($event)"></app-agencyblock>
 <div class="love testimonials">
   <div class="row max-h-[500px] overflow-auto flex flex-col gap-4 border-2 p-3 rounded-sm">
-    <div class="flex flex-col items-center md:flex-row  bg-red-500 p-3">
-      <div class="md:w-1/4 mr-4">
+    <ng-container *ngIf="data?.length>0 ;else nodata">
+      <div class="flex flex-col items-center md:flex-row  bg-[#8080806c] rounded-xl p-3" *ngFor="let dt of data">
+      <div class="md:w-1/5 mr-4">
         <a href="#">
           <img
-            class="w-24 h-24 rounded-full object-cover"
-            src="https://bootdey.com/img/Content/user_3.jpg"
+            class="w-24 h-24 rounded-full object-cover "
+            src="{{dt?.fulldetails[0]?.logo_url ? dt.fulldetails[0].logo_url : '/assets/images/userpng.png'}}"
             alt="Taylor Otwell"
           />
         </a>
       </div>
 
-      <div class="one flex justify-between w-3/4">
+      <div class="one flex justify-between w-4/5">
         <div class="flex flex-col">
             <h4 class="text-xl font-bold mb-2">
-              <a href="#m" >Name of agency</a>
+              <a href="#m" >{{dt?.fulldetails[0]?.name || 'agency not added their profile'}}</a>
             </h4>
-            <p class="text-gray-600">mail address</p>
+            <p class="text-gray-600">{{dt?.email}}</p>
           </div>
           <div class="flex flex-col">
             <h4 class="text-xl font-bold mb-2">
               <a href="#m" >Block Status</a>
             </h4>
-            <p class="text-gray-600">true</p>
+            <p class="text-gray-600">{{dt?.blockstatus}}</p>
           </div>
           <div class="">
-            <button class="bg-green-700 px-[10px] py-[5px] rounded-md font-black">block</button>
+            <button class="bg-green-700 px-[10px] py-[5px] rounded-md font-black" (click)="block(dt?._id)">block</button>
           </div>
       </div>
     </div>
+    </ng-container>
 
-    <div class="flex flex-col items-center md:flex-row  bg-red-500 p-3">
-        <div class="md:w-1/4 mr-4">
-          <a href="#">
-            <img
-              class="w-24 h-24 rounded-full object-cover"
-              src="https://bootdey.com/img/Content/user_3.jpg"
-              alt="Taylor Otwell"
-            />
-          </a>
-        </div>
-  
-        <div class="one flex justify-between w-3/4">
-          <div class="flex flex-col">
-              <h4 class="text-xl font-bold mb-2">
-                <a href="#m" >Name of agency</a>
-              </h4>
-              <p class="text-gray-600">mail address</p>
-            </div>
-            <div class="flex flex-col">
-              <h4 class="text-xl font-bold mb-2">
-                <a href="#m" >Block Status</a>
-              </h4>
-              <p class="text-gray-600">true</p>
-            </div>
-            <div class="">
-              <button class="bg-green-700 px-[10px] py-[5px] rounded-md font-black">block</button>
-            </div>
-        </div>
-      </div>
-   
-
-      <div class="flex flex-col items-center md:flex-row  bg-red-500 p-3">
-        <div class="md:w-1/4 mr-4">
-          <a href="#">
-            <img
-              class="w-24 h-24 rounded-full object-cover"
-              src="https://bootdey.com/img/Content/user_3.jpg"
-              alt="Taylor Otwell"
-            />
-          </a>
-        </div>
-  
-        <div class="one flex justify-between w-3/4">
-          <div class="flex flex-col">
-              <h4 class="text-xl font-bold mb-2">
-                <a href="#m" >Name of agency</a>
-              </h4>
-              <p class="text-gray-600">mail address</p>
-            </div>
-            <div class="flex flex-col">
-              <h4 class="text-xl font-bold mb-2">
-                <a href="#m" >Block Status</a>
-              </h4>
-              <p class="text-gray-600">true</p>
-            </div>
-            <div class="">
-              <button class="bg-green-700 px-[10px] py-[5px] rounded-md font-black">block</button>
-            </div>
-        </div>
-      </div>
-
-      <div class="one flex flex-col items-center md:flex-row  bg-red-500 p-3">
-        <div class="md:w-1/4 mr-4">
-          <a href="#">
-            <img
-              class="w-24 h-24 rounded-full object-cover"
-              src="https://bootdey.com/img/Content/user_3.jpg"
-              alt="Taylor Otwell"
-            />
-          </a>
-        </div>
-  
-        <div class="one flex justify-between w-3/4">
-          <div class="flex flex-col">
-              <h4 class="text-xl font-bold mb-2">
-                <a href="#m" >Name of agency</a>
-              </h4>
-              <p class="text-gray-600">mail address</p>
-            </div>
-            <div class="flex flex-col">
-              <h4 class="text-xl font-bold mb-2">
-                <a href="#m" >Block Status</a>
-              </h4>
-              <p class="text-gray-600">true</p>
-            </div>
-            <div class="">
-              <button class="bg-green-700 px-[10px] py-[5px] rounded-md font-black">block</button>
-            </div>
-        </div>
-      </div>
-
-      <div class="flex flex-col items-center md:flex-row  bg-red-500 p-3">
-        <div class="md:w-1/4 mr-4">
-          <a href="#">
-            <img
-              class="w-24 h-24 rounded-full object-cover"
-              src="https://bootdey.com/img/Content/user_3.jpg"
-              alt="Taylor Otwell"
-            />
-          </a>
-        </div>
-  
-        <div class="one flex justify-between w-3/4">
-          <div class="flex flex-col">
-              <h4 class="text-xl font-bold mb-2">
-                <a href="#m" >Name of agency</a>
-              </h4>
-              <p class="text-gray-600">mail address</p>
-            </div>
-            <div class="flex flex-col">
-              <h4 class="text-xl font-bold mb-2">
-                <a href="#m" >Block Status</a>
-              </h4>
-              <p class="text-gray-600">true</p>
-            </div>
-            <div class="">
-              <button class="bg-green-700 px-[10px] py-[5px] rounded-md font-black">block</button>
-            </div>
-        </div>
-      </div>
+    <ng-template #nodata>
+      <h1 class="font-bold text-[20px] text-red-400">no agency found</h1>
+    </ng-template>
   </div>
 </div>

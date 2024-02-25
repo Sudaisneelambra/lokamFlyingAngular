@@ -280,8 +280,10 @@ export class PackageAddComponent implements OnInit, OnDestroy {
   // guide selection
   toggleGuideSelection(guide: any) {
     const index = this.selectedGuides.findIndex(
-      (selectedGuide) => selectedGuide._id === guide._id
+      (selectedGuide) => selectedGuide.id === guide._id
     );
+    console.log(this.selectedGuides);
+    
     console.log(index);
 
     if (index > -1) {
