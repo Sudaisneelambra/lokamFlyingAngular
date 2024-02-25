@@ -6,6 +6,7 @@ import { AgencyList } from "../components/agencylist/agencylist.component";
 import { blockedagency } from "../components/blockedagency/blockedagency.component";
 import { RequestComponent } from "../components/requests/request.component";
 import { Blockeduser } from "../components/blockedusers/blockedusers.component";
+import { AgencyFullDetails } from "../components/agencyfulldetails/agencyfulldetails.component";
 
 
 const routes: Routes = [
@@ -32,6 +33,10 @@ const routes: Routes = [
         {
             path:'requests',
             component:RequestComponent
+        },
+        {
+            path:'agencydetails',
+            component:AgencyFullDetails
         }
       ]
     },

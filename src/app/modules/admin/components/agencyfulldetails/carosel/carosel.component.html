@@ -1,0 +1,25 @@
+<div  *ngIf="image && image.length >0" class="son">
+    <img  alt="erwee" *ngFor="let image of image; let i=index"
+    [src]="image"
+    [ngClass]="{'image-active':selectedIndex === i }"
+    class="fade"
+    >
+
+    <div class="love" *ngIf="bool">
+        <span *ngFor="let dot of image; let i=index" class="dot"
+        [ngClass]="{'active':selectedIndex===i}"
+        (click)="selectimge(i)"
+        ></span>
+    </div>
+
+    <button class="chin btn-prev" *ngIf="control">
+        <i class="fas fa-arrow-circle-left btn-carousel icon-prev"
+        (click)="onprevclick()"
+        ></i>
+    </button>
+    <button class="chin btn-next" *ngIf="control">
+        <i class="fas fa-arrow-circle-right btn-carousel icon-next"
+        (click)="onnextclick()"
+        ></i>
+    </button>
+</div>

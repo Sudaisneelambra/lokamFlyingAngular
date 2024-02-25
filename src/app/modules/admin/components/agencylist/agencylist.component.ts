@@ -44,6 +44,10 @@ export class AgencyList{
     cancelling(event:any){
         this.modalview=event
     }
+
+    fulldetails(id:any){
+        this.router.navigate(['/admin/agencydetails'], { queryParams: { id: id} })
+    }
     
     ngOnDestroy(): void {
       this.agencylist$?.unsubscribe()

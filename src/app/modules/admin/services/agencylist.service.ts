@@ -31,4 +31,9 @@ export class agencylist {
     return this.http.get(`${this.api}/admin/getblockedagencylist`)
   }
 
+  getagencyfulldetais(id:any):Observable<any>{
+    console.log(id);
+    return this.http.get(`${this.api}/admin/getagencyfulldetais/${id}`)
+  }
+
 } 

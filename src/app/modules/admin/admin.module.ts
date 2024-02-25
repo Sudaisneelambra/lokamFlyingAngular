@@ -13,6 +13,8 @@ import { agencyblockconformation } from "./components/agencylist/agencyblockconf
 import { blockedagency } from "./components/blockedagency/blockedagency.component";
 import { agencyunblockconformation } from "./components/blockedagency/agencyunblockconformation/agencyunblockconformation.component";
 import { approveconformation } from "./components/requests/approveconformation/approveconformation.component";
+import { AgencyFullDetails } from "./components/agencyfulldetails/agencyfulldetails.component";
+import { CaroselComponet } from "./components/agencyfulldetails/carosel/carosel.component";
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { approveconformation } from "./components/requests/approveconformation/a
         unblockconformation,
         agencyblockconformation,
         agencyunblockconformation,
-        approveconformation
+        approveconformation,
+        AgencyFullDetails,
+        CaroselComponet
     ],
     imports:[CommonModule,AgencyRoutes,HttpClientModule],
     providers:[]

@@ -1,0 +1,55 @@
+<div class="cont mb-6">
+    <div class="card rounded-lg shadow-md ">
+     <ng-container *ngIf="agency; else noagency">
+        <div class="card-body mt-6 ">
+            <h3 class="card-title text-2xl font-bold">{{agency?.name}}</h3>
+            <h6 class="card-subtitle text-gray-500">{{agency?.description}}</h6>
+            <h6 class="card-subtitle  mt-4 text-black">{{agency?.email}}</h6>
+            <app-carosel [image]="agency?.file_urls"></app-carosel>
+            <div class="flex flex-wrap">
+              <div class="w-full  p-4">
+                <h4 class="text-xl font-semibold mt-5">description</h4>
+                <p class="text-gray-600 w-full" >{{agency?.aboutAgency}}</p>
+                <table class="mt-10 lg:w-[60%] w-full text-gray-600 font-bold  ">
+                    <tbody>
+                        <tr class="border-b-2">
+                            <th class="text-left font-medium">Contact 1</th>
+                            <td class="text-right">{{agency?.contactNumber1}}</td>
+                        </tr>
+                        <tr class="border-b-2">
+                            <th class="text-left font-medium">Contact 2</th>
+                            <td class="text-right">{{agency?.contactNumber2}}</td>
+                        </tr>
+                        <tr class="border-b-2">
+                            <th class="text-left font-medium">Opening Time</th>
+                            <td class="text-right">{{agency?.openingTime}}</td>
+                        </tr>
+                        <tr class="border-b-2">
+                            <th class="text-left font-medium">Closing Time</th>
+                            <td class="text-right">{{agency?.closingTime}}</td>
+                        </tr>
+                        <tr class="border-b-2">
+                            <th class="text-left font-medium">Location</th>
+                            <td class="text-right">{{agency?.location}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 class="text-xl font-semibold mt-5">Services</h3>
+                <ul class="list-disc list-unstyled text-black mt-4">
+                    <li *ngFor="let service of agency?.services | keyvalue">
+                        <ng-container *ngIf="service.value">
+                            {{ service.key }}
+                          </ng-container>
+                      </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <button class="grid place-items-center px-3 py-2 my-5 rounded-md bg-blue-600" (click)="back()">back</button>
+     </ng-container>
+     <ng-template #noagency>
+        <h1 class="mt-9 text-[30px] font-bold">This agency not added their profile</h1>
+     </ng-template>
+    </div>
+  </div>
+  
