@@ -35,7 +35,7 @@ const routes: Routes = [
             component:RequestComponent
         },
         {
-            path:'agencydetails',
+            path:'agencydetails/:id',
             component:AgencyFullDetails
         }
       ]

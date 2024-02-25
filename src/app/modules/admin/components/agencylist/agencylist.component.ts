@@ -46,7 +46,7 @@ export class AgencyList{
     }
 
     fulldetails(id:any){
-        this.router.navigate(['/admin/agencydetails'], { queryParams: { id: id} })
+        this.router.navigate(['/admin/agencydetails',id])
     }
     
     ngOnDestroy(): void {

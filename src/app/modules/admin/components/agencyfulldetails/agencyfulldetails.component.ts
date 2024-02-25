@@ -21,7 +21,7 @@ export class AgencyFullDetails implements OnInit,OnDestroy{
     constructor(private adminagency:agencylist,  private activateroute:ActivatedRoute ,private location:Location) {}
 
     ngOnInit(): void {
-        this.quryparams$ = this.activateroute.queryParams.subscribe((params:any)=>{
+        this.quryparams$ = this.activateroute.params.subscribe((params:any)=>{
             if(params){
                 const id =params.id
                 this.agencyfulldetails$ =this.adminagency.getagencyfulldetais(id).subscribe({
