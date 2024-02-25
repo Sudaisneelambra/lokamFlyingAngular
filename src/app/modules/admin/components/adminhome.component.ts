@@ -37,6 +37,13 @@ export class AdminHome {
   gotoblockedusers(){
     this.router.navigate(['/admin/blocked-user'])
   }
+  gotopackage(){
+    this.router.navigate(['/admin/packages'])
+  }
+
+  gotoplace(){
+    this.router.navigate(['/admin/places'])
+  }
 
   logout(){
     const confirm = window.confirm('are you sure to logout')

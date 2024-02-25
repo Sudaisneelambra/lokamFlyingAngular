@@ -15,6 +15,10 @@ import { agencyunblockconformation } from "./components/blockedagency/agencyunbl
 import { approveconformation } from "./components/requests/approveconformation/approveconformation.component";
 import { AgencyFullDetails } from "./components/agencyfulldetails/agencyfulldetails.component";
 import { CaroselComponet } from "./components/agencyfulldetails/carosel/carosel.component";
+import { Packages } from "./components/packges/packages.component";
+import { packageblock } from "./components/packges/packageblock/packageblock.component";
+import { packageunblock } from "./components/packges/packageunblock copy/packageunblock.component";
+import { PlacesComponent } from "./components/places/places.component";
 
 
 @NgModule({
@@ -31,7 +35,11 @@ import { CaroselComponet } from "./components/agencyfulldetails/carosel/carosel.
         agencyunblockconformation,
         approveconformation,
         AgencyFullDetails,
-        CaroselComponet
+        CaroselComponet,
+        Packages,
+        packageblock,
+        packageunblock,
+        PlacesComponent
     ],
     imports:[CommonModule,AgencyRoutes,HttpClientModule],
     providers:[]

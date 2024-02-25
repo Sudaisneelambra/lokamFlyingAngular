@@ -7,6 +7,8 @@ import { blockedagency } from "../components/blockedagency/blockedagency.compone
 import { RequestComponent } from "../components/requests/request.component";
 import { Blockeduser } from "../components/blockedusers/blockedusers.component";
 import { AgencyFullDetails } from "../components/agencyfulldetails/agencyfulldetails.component";
+import { Packages } from "../components/packges/packages.component";
+import { PlacesComponent } from "../components/places/places.component";
 
 
 const routes: Routes = [
@@ -37,6 +39,14 @@ const routes: Routes = [
         {
             path:'agencydetails/:id',
             component:AgencyFullDetails
+        },
+        {
+            path:'packages',
+            component:Packages
+        },
+        {
+            path:'places',
+            component:PlacesComponent
         }
       ]
     },

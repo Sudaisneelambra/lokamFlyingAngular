@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { agencyService } from "src/app/modules/agency/services/agency.service";
 import { agencylist } from "../../services/agencylist.service";
 import { Location } from "@angular/common";
+import { admincommon } from "../../services/admincommon.service";
 
 @Component({
     selector:'app-fulldetailsofagency',
@@ -18,7 +19,7 @@ export class AgencyFullDetails implements OnInit,OnDestroy{
     agencyfulldetails$ =new Subscription()
     agency:any
 
-    constructor(private adminagency:agencylist,  private activateroute:ActivatedRoute ,private location:Location) {}
+    constructor(private adminagency:agencylist,private service:admincommon,  private activateroute:ActivatedRoute ,private location:Location , private router:Router) {}
 
     ngOnInit(): void {
         this.quryparams$ = this.activateroute.params.subscribe((params:any)=>{
@@ -26,11 +27,15 @@ export class AgencyFullDetails implements OnInit,OnDestroy{
                 const id =params.id
                 this.agencyfulldetails$ =this.adminagency.getagencyfulldetais(id).subscribe({
                     next:(res)=>{
-                        this.agency=res.agency
-                        console.log(this.agency);
+                        if(res.expiry){
+                            alert('session expired or internal error please login')
+                            this.service.agencylogout()
+                           } else{
+                               this.agency=res.agency
+                               console.log(this.agency);
+                            }
                     },
                     error:(err)=>{
-
                     }
                 })
             }
@@ -44,6 +49,7 @@ export class AgencyFullDetails implements OnInit,OnDestroy{
 
     ngOnDestroy(): void {
         this.quryparams$?.unsubscribe()
+        this.agencyfulldetails$.unsubscribe()
     }
 
 }

@@ -1,0 +1,66 @@
+<h1 class="text-[24px] font-bold" >package List</h1>
+<app-packageblock *ngIf="modalview" [id]="blockid" (cancelview)="cancelling($event)"></app-packageblock>
+<app-packageunblock *ngIf="modalviewun" [id]="unblockid" (cancelview)="cancellingun($event)"></app-packageunblock>
+<div class="container mt-3 mb-4">
+<div class="col-lg-9 mt-4 mt-lg-0">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm max-h-[500px] overflow-auto rounded-lg">
+            <table class="table-auto border-collapse w-full">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2 font-medium text-left border-b border-gray-200">package name & provided agency</th>
+                        <th class="px-4 py-2 font-medium text-center border-b border-gray-200">price</th>
+                        <th class="px-4 py-2 font-medium text-center border-b border-gray-200">blockstatus</th>
+                        <th class="px-4 py-2 font-medium text-center border-b border-gray-200">Action</th>
+                    </tr>
+                </thead>
+            <tbody>
+               <ng-container *ngIf="package?.length>0; else nodata">
+                <tr class="candidates-list" *ngFor="let dt of package">
+                    <td class="px-4 py-4 flex items-center cursor-pointer">
+                        <div class="flex flex-col space-y-2">
+                            <div class="font-medium text-lg">
+                                <p>{{dt?.packageName}}</p>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <p>provide :- {{dt?.agencydetails[0].name}}</p>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                               <p>start :- {{dt?.startDate}}</p>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <p>end :- {{dt?.endDate}}</p>
+                            </div>
+                        </div>
+                    </td>
+                
+                    <td class="text-center px-4 py-4">
+                        <span class="inline-flex items-center space-x-2">
+                            <span class="font-medium text-gray-500">💶{{dt?.packagePrice}}</span>
+                        </span>
+                    </td>
+
+                    <td class="text-center px-4 py-4">
+                        <span class="inline-flex items-center space-x-2">
+                            <span class="font-medium text-gray-500">{{dt?.blockstatus}}</span>
+                        </span>
+                    </td>
+                
+                    <td class="px-4 py-4 text-center ">
+                       <button class="font-black bg-red-500 px-[10px] py-[6px] rounded-lg" (click)="blockpackage(dt?._id)" *ngIf="!dt.blockstatus">Block</button>
+                       <button class="font-black bg-red-500 px-[10px] py-[6px] rounded-lg" (click)="unblockpackage(dt?._id)" *ngIf="dt.blockstatus">Unblock</button>
+                    </td>
+                </tr>
+               </ng-container>
+               <ng-template #nodata>
+                    <h1 class="font-bold mt-5 text-[20px] text-red-500">No users found </h1>
+               </ng-template>
+            </tbody>
+          </table>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
