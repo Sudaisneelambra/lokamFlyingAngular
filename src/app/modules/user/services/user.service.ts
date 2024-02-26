@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 const httpOptions = {
@@ -10,18 +11,17 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class useservice {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router:Router ) {}
 
   private userapi = 'http://localhost:3000';
 
-  userlogout(): Observable<any> {
+   // logout and token delete
+   agencylogout(){
     const one = localStorage.getItem('token');
     console.log(one);
 
     localStorage.clear()
-
-    return this.http.get(`${this.userapi}/user/logout`);
-    const tow = localStorage.getItem('token');
-    console.log(tow);
+    this.router.navigate(['/authentication'])
+    
   }
 }

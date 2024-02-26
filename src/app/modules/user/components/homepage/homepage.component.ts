@@ -11,18 +11,4 @@ import { useservice } from '../../services/user.service';
 export class HomepageComponent {
   constructor(private service: useservice, private router: Router) {}
 
-  logout() {
-    const one = localStorage.getItem('tokenuser');
-    console.log(one);
-    this.service.userlogout().subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-    console.log('logouted');
-    this.router.navigate(['authentication']);
-  }
 }

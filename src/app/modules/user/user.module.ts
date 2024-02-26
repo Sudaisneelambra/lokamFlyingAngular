@@ -8,16 +8,16 @@ import { PopularPackagesComponent } from './components/homepage/popular-packages
 import { BannerComponent } from './components/homepage/banner/banner.component';
 import { AboutAgenncyComponent } from './components/homepage/about-agenncy/about-agenncy.component';
 import { FooterComponent } from './components/homepage/footer/footer.component';
-import { UserRoutes } from './routes/user.routing.module';
+import { UserRoutes } from './routes/user.routing';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { BookTour } from './components/booktour/booktour.component';
+import { MainHome } from './components/main.component';
+import { NavBarComponent } from './components/navbar/navbar.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileAdd } from './components/profileadd/profileadd.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
-// const routes:Routes=[
-//   {
-//       path:'',
-//       component:HomepageComponent
-//   }
-// ]
 
 @NgModule({
   declarations: [
@@ -29,8 +29,13 @@ import { HttpClientModule } from '@angular/common/http';
     BannerComponent,
     AboutAgenncyComponent,
     FooterComponent,
+    BookTour,
+    MainHome,
+    NavBarComponent,
+    ProfileComponent,
+    ProfileAdd
   ],
-  imports: [CommonModule, UserRoutes, HttpClientModule],
+  imports: [CommonModule, UserRoutes, HttpClientModule,ReactiveFormsModule],
   exports: [],
   providers: [],
 })
