@@ -1,0 +1,54 @@
+<h1 class="text-[24px] font-bold" >Guides List</h1>
+<div class="container mt-3 mb-4">
+<div class="col-lg-9 mt-4 mt-lg-0">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm max-h-[500px] overflow-auto rounded-lg">
+            <table class="table-auto border-collapse w-full">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2 font-medium text-left border-b border-gray-200">User Name and Email</th>
+                        <th class="px-4 py-2 font-medium text-center border-b border-gray-200">Expirience</th>
+                        <th class="px-4 py-2 font-medium text-center border-b border-gray-200">agency Name</th>
+                    </tr>
+                </thead>
+            <tbody>
+               <ng-container *ngIf="guides?.length>0; else nodata">
+                <tr class="candidates-list" *ngFor="let dt of guides">
+                    <td class="px-4 py-4 flex items-center cursor-pointer" (click)="singleguide(dt?._id)">
+                        <div class="w-16 h-16 mr-4 rounded-full overflow-hidden">
+                            <img class="w-full h-full object-cover" src="{{dt?.guideurl}}" alt="">
+                        </div>
+                
+                        <div class="flex flex-col space-y-2">
+                            <div class="font-medium text-lg">
+                                <p>{{dt?.guidename}}</p>
+                            </div>
+                        </div>
+                    </td>
+                
+                    <td class="text-center px-4 py-4">
+                        <span class="inline-flex items-center space-x-2">
+                            <span class="font-medium text-gray-500">{{dt?.experience}} years</span>
+                        </span>
+                    </td>
+                    <td class="text-center px-4 py-4">
+                        <span class="inline-flex items-center space-x-2">
+                            <ng-container *ngFor="let agency of dt?.agencydetails">
+                                <span class="font-medium text-gray-500">{{agency?.name}}</span>
+                            </ng-container>
+                        </span>
+                    </td>
+                </tr>
+               </ng-container>
+               <ng-template #nodata>
+                    <h1 class="font-bold mt-5 text-[20px] text-red-500">No Guides found </h1>
+               </ng-template>
+            </tbody>
+          </table>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

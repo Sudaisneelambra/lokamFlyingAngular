@@ -3,7 +3,7 @@
   <div class="row max-h-[500px] flex flex-col gap-4 border-2 p-3 rounded-sm">
     <ng-container *ngIf="places?.length>0 ;else nodata" >
         <div class="flex flex-col items-center md:flex-row bg-[gray] rounded-xl p-3 cursor-pointer" *ngFor="let dt of places">
-            <div class="md:w-1/5 mr-4 ">
+            <div class="md:w-1/5 mr-4 " (click)="gettingsingleplace(dt?._id)">
               <img
                 class="w-24 h-24 rounded-full object-cover"
                 src="{{dt?.placeurl[0]}}"
@@ -11,7 +11,7 @@
               />
             </div>
           
-            <div class="one flex justify-between w-4/5  md:gap-4">
+            <div class="one flex justify-between w-4/5  md:gap-4" (click)="gettingsingleplace(dt?._id)">
               <div class="flex flex-col">
                 <h4 class="text-xl font-bold mb-2">
                   <p>{{dt?.placeName}}</p>

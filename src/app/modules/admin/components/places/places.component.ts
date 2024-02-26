@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { placesService } from "../../services/adminplace.service";
 import { Subscription } from "rxjs";
 import { admincommon } from "../../services/admincommon.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector:'app-places',
@@ -13,7 +14,7 @@ export class PlacesComponent implements OnInit,OnDestroy{
 
     getallplace$ =new Subscription()
     places: any;
-    constructor (private placeservice: placesService, private service:admincommon) {}
+    constructor (private placeservice: placesService, private service:admincommon, private router:Router) {}
 
 
     ngOnInit(): void {
@@ -35,7 +36,11 @@ export class PlacesComponent implements OnInit,OnDestroy{
             }
         })
     }
-
+   
+    gettingsingleplace(id:any){
+        this.router.navigate(['/admin/placedetails',id])
+    }
+    
     ngOnDestroy(): void {
         this.getallplace$?.unsubscribe()
     }

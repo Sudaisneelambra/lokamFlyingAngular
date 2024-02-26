@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { admincommon } from "../../services/admincommon.service";
 import { packagelistservice } from "../../services/packages.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector:'app-package',
@@ -19,7 +20,7 @@ export class Packages implements OnInit, OnDestroy{
     modalview=false
     modalviewun=false
 
-    constructor(private packageservice: packagelistservice, private service:admincommon) {}
+    constructor(private packageservice: packagelistservice, private service:admincommon, private router:Router) {}
 
     ngOnInit(): void {
         this.packages$ = this.packageservice.gettingpackages().subscribe({
@@ -57,6 +58,10 @@ export class Packages implements OnInit, OnDestroy{
     }
     cancellingun(event:any){
         this.modalviewun=event
+    }
+
+    gettingsinglepackage(id:any){
+        this.router.navigate(['/admin/packagefulldetails',id])
     }
 
     ngOnDestroy(): void {

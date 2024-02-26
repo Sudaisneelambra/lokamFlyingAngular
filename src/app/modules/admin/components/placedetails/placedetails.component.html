@@ -1,0 +1,59 @@
+<body class="relative !mt-10">
+  <div class="sin">
+    <div class="place-info">
+      <h1 class="font-bold text-[#ff5500] text-[30px] mb-[20px]">
+        {{ singlePlacedata?.placeName | uppercase }}
+      </h1>
+      <div class="" *ngIf="images && images.length > 0" class="son">
+        <img
+          alt="erwee"
+          *ngFor="let image of images; let i = index"
+          [src]="image"
+          [ngClass]="{ 'image-active': selectedIndex === i }"
+          class="fade"
+        />
+
+        <div class="love" *ngIf="bool">
+          <span
+            *ngFor="let dot of images; let i = index"
+            class="dot"
+            [ngClass]="{ active: selectedIndex === i }"
+            (click)="selectimge(i)"
+          ></span>
+        </div>
+
+        <button class="chin btn-prev" *ngIf="control">
+          <i
+            class="fas fa-arrow-circle-left btn-carousel icon-prev"
+            (click)="onprevclick()"
+          ></i>
+        </button>
+        <button class="chin btn-next" *ngIf="control">
+          <i
+            class="fas fa-arrow-circle-right btn-carousel icon-next"
+            (click)="onnextclick()"
+          ></i>
+        </button>
+      </div>
+      <div class="place-details">
+        <p class="mt-[20px]">
+          <strong>About the Place:</strong
+          >{{ singlePlacedata?.placeDescription }}
+        </p>
+        <p><strong>Opening Time:</strong> {{ singlePlacedata?.openingTime }}</p>
+        <p><strong>Closing Time:</strong> {{ singlePlacedata?.closingTime }}</p>
+        <p>
+          <strong>Entry Fee:</strong
+          ><i class="fa-solid fa-indian-rupee-sign text-[14px] ml-4"></i>
+          {{ singlePlacedata?.entryFee }}
+        </p>
+        <p class="place-location">
+          <strong>Location:</strong>{{ singlePlacedata?.location }}
+        </p>
+      </div>
+      <div class="p-2.5 flex justify-evenly mt-5">
+        <button (click)="back()">Back</button>
+      </div>
+    </div>
+  </div>
+</body>

@@ -25,6 +25,9 @@ export class backtoLoginAuthGuard implements CanActivate {
     } else if (this.userservice.gettypeagency()) {
       this.router.navigate(['agency/home']);
       return false; // User is of type 'agency', deny access
+    } else if (this.userservice.gettypeadmin()) {
+      this.router.navigate(['/admin']);
+      return false; // User is of type 'agency', deny access
     }
     return false; // Fallback return statement
   }

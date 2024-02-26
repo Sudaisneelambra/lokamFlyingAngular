@@ -9,6 +9,10 @@ import { Blockeduser } from "../components/blockedusers/blockedusers.component";
 import { AgencyFullDetails } from "../components/agencyfulldetails/agencyfulldetails.component";
 import { Packages } from "../components/packges/packages.component";
 import { PlacesComponent } from "../components/places/places.component";
+import { guidescomponent } from "../components/guides/guides.component";
+import { packagefulldetails } from "../components/packagefulldetails/packagefulldetails.component";
+import { guidedetails } from "../components/guidedetails/guidedetails.component";
+import { placedetails } from "../components/placedetails/placedetails.component";
 
 
 const routes: Routes = [
@@ -47,7 +51,25 @@ const routes: Routes = [
         {
             path:'places',
             component:PlacesComponent
+        },
+        {
+            path:'guides',
+            component:guidescomponent
+        },
+        {
+            path:'packagefulldetails/:id',
+            component:packagefulldetails
+        },
+        {
+            path:'guidedetails/:id',
+            component:guidedetails
+        },
+        {
+            path:'placedetails/:id',
+            component:placedetails
         }
+        
+        
       ]
     },
 ]

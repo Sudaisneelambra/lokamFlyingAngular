@@ -10,6 +10,7 @@
                 <thead>
                     <tr>
                         <th class="px-4 py-2 font-medium text-left border-b border-gray-200">package name & provided agency</th>
+                        <th class="px-4 py-2 font-medium text-center border-b border-gray-200">places</th>
                         <th class="px-4 py-2 font-medium text-center border-b border-gray-200">price</th>
                         <th class="px-4 py-2 font-medium text-center border-b border-gray-200">blockstatus</th>
                         <th class="px-4 py-2 font-medium text-center border-b border-gray-200">Action</th>
@@ -18,13 +19,13 @@
             <tbody>
                <ng-container *ngIf="package?.length>0; else nodata">
                 <tr class="candidates-list" *ngFor="let dt of package">
-                    <td class="px-4 py-4 flex items-center cursor-pointer">
+                    <td class="px-4 py-4 flex items-center cursor-pointer" (click)="gettingsinglepackage(dt?._id)">
                         <div class="flex flex-col space-y-2">
                             <div class="font-medium text-lg">
                                 <p>{{dt?.packageName}}</p>
                             </div>
                             <div class="flex items-center text-sm text-gray-500">
-                                <p>provide :- {{dt?.agencydetails[0].name}}</p>
+                                <p>provide :- {{dt?.agencydetails[0]?.name}}</p>
                             </div>
                             <div class="flex items-center text-sm text-gray-500">
                                <p>start :- {{dt?.startDate}}</p>
@@ -35,6 +36,14 @@
                         </div>
                     </td>
                 
+                    <td class=" px-4 py-4" (click)="gettingsinglepackage(dt?._id)">
+                        <span class=" flex-col">
+                            <ng-container *ngFor="let pls of dt?.places">
+                                <li class="font-medium text-gray-500 ">{{pls?.placename}}</li>
+                            </ng-container>
+                        </span>
+                    </td>
+
                     <td class="text-center px-4 py-4">
                         <span class="inline-flex items-center space-x-2">
                             <span class="font-medium text-gray-500">💶{{dt?.packagePrice}}</span>

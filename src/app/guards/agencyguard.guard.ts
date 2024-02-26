@@ -19,10 +19,12 @@ import {
     canActivate(): boolean {
         if(this.userservice.isLoggedIn() && this.userservice.gettypeagency()){
             return true
-        } else if( this.userservice.gettypeuser()){
+        } else if(this.userservice.isLoggedIn() &&  this.userservice.gettypeuser()){
             this.router.navigate(['/user'])
-        } else if (this.userservice.gettypeadmin()){
+        } else if (this.userservice.isLoggedIn() && this.userservice.gettypeadmin()){
             this.router.navigate(['/admin'])
+        } else if (!this.userservice.isLoggedIn()){
+          this.router.navigate(['/authentication'])
         }
      return false
     }

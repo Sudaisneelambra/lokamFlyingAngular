@@ -44,6 +44,9 @@ export class AdminHome {
   gotoplace(){
     this.router.navigate(['/admin/places'])
   }
+  gotoguides(){
+    this.router.navigate(['/admin/guides'])
+  }
 
   logout(){
     const confirm = window.confirm('are you sure to logout')

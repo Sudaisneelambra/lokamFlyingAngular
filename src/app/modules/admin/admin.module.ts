@@ -19,6 +19,10 @@ import { Packages } from "./components/packges/packages.component";
 import { packageblock } from "./components/packges/packageblock/packageblock.component";
 import { packageunblock } from "./components/packges/packageunblock copy/packageunblock.component";
 import { PlacesComponent } from "./components/places/places.component";
+import { guidescomponent } from "./components/guides/guides.component";
+import { packagefulldetails } from "./components/packagefulldetails/packagefulldetails.component";
+import { guidedetails } from "./components/guidedetails/guidedetails.component";
+import { placedetails } from "./components/placedetails/placedetails.component";
 
 
 @NgModule({
@@ -39,7 +43,11 @@ import { PlacesComponent } from "./components/places/places.component";
         Packages,
         packageblock,
         packageunblock,
-        PlacesComponent
+        PlacesComponent,
+        guidescomponent,
+        packagefulldetails,
+        guidedetails,
+        placedetails
     ],
     imports:[CommonModule,AgencyRoutes,HttpClientModule],
     providers:[]
