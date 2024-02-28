@@ -4,7 +4,7 @@
     class="places w-full overflow-auto flex gap-x-16 px-10 pb-10 pt-3 h-[350px]"
   >
  <ng-container *ngIf="place">
-  <div class="place min-w-[225px] flex justify-center items-center relative cursor-pointer" *ngFor="let data of place.slice(0, 5)">
+  <div class="place min-w-[225px] flex justify-center items-center relative cursor-pointer" *ngFor="let data of place.slice(0, 5)" (click)="gotoplaces(data?._id)">
     <img src="{{data?.placeurl[index]}}" alt="" class="absolute h-full image-transition">
     <h1 class="text-[30px] font-extrabold text-center z-10 bg-[#0000006a] text-[white] w-full py-1 shadow-md">{{ data?.placeName }}</h1>
   </div>

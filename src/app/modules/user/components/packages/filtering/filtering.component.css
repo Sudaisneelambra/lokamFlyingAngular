@@ -1,0 +1,14 @@
+.gradient-text {
+    background-image: linear-gradient(to right, #ff7e5f, #feb47b, #ff7e5f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+@media(max-width:650px){
+    .explore{
+        display: none;
+    }
+}

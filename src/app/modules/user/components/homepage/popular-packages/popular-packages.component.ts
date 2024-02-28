@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'popular-packages',
@@ -9,8 +10,11 @@ export class PopularPackagesComponent {
 
   @Input() package:any
 
+  constructor(private router:Router) {}
 
-  showAllPlaces(){
-    
+ 
+  singlepackage(id:any){
+    this.router.navigate(['/user/singlepackage',id])
+
   }
 }

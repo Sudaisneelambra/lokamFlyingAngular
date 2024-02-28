@@ -25,4 +25,9 @@ export class PopularPlacesComponent implements OnInit{
     this.router.navigate(['/user/places'])
     
   }
+
+  gotoplaces(id:any){
+    this.router.navigate(['/user/places/singleplace',id])
+
+  }
 }

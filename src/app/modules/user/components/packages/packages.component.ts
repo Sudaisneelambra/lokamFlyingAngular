@@ -13,6 +13,7 @@ export class PackagesComponent implements OnInit, OnDestroy{
 
 
     packages:any
+    data:any
     packageget$ = new Subscription()
 
     constructor(private userpackage:UserPackageService, private service:useservice) {}
@@ -26,6 +27,7 @@ export class PackagesComponent implements OnInit, OnDestroy{
               } else {
                 if (res.success) {
                   this.packages = res.data;
+                  this.data=this.packages
                   console.log(this.packages);
                 } else {
                   console.log(res.message);
@@ -37,8 +39,25 @@ export class PackagesComponent implements OnInit, OnDestroy{
             },
           });
 
+          
     }
 
+    filtering(event:any){
+       if(event==='all'){
+            this.packages=this.data
+       }else{  
+            let values = event.split("-")
+            console.log(values);
+            this.packages= this.data.filter((filter:any)=>{
+                console.log(filter.packagePrice);
+                return filter.packagePrice >= parseInt(values[0]) && filter.packagePrice <= parseInt(values[1])
+            }) 
+
+            console.log(this.packages);
+       }
+
+        
+    }
 
     ngOnDestroy(): void {
         this.packageget$?.unsubscribe()

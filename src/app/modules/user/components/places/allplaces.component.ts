@@ -56,7 +56,6 @@ export class AllPlacesComponent implements OnInit,OnDestroy{
     }
 
     searching(query:any){
-      console.log(query);
       
       if (query.trim() !== '') {
         

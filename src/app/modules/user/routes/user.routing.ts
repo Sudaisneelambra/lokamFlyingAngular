@@ -10,6 +10,7 @@ import { AllPlacesComponent } from '../components/places/allplaces.component';
 import { LokamaPlaceDescriptionComponent } from '../components/places/lokamaplacedescription/lokamaplacedescription.component';
 import { SinglePlaceComponent } from '../components/places/singleplace/singleplace.component';
 import { PackagesComponent } from '../components/packages/packages.component';
+import { SinglePackegeComponent } from '../components/singlepackage/singlepackage.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
       {
         path:'packages',
         component:PackagesComponent
+      },
+      {
+        path:'singlepackage/:id',
+        component:SinglePackegeComponent
       }
     ]
   },

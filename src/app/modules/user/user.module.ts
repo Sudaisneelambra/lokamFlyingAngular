@@ -16,7 +16,7 @@ import { MainHome } from './components/main.component';
 import { NavBarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileAdd } from './components/profileadd/profileadd.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { agencyabout } from './pipes/agencyabout.pipe';
 import { bookingtripcomponent } from './components/bookingtrip/bookingtrip.component';
 import { AllPlacesComponent } from './components/places/allplaces.component';
@@ -25,6 +25,8 @@ import { LokamaPlaceDescriptionComponent } from './components/places/lokamaplace
 import { SinglePlaceComponent } from './components/places/singleplace/singleplace.component';
 import { PackagesComponent } from './components/packages/packages.component';
 import { PackageComponet } from './components/packages/package/package.component';
+import { FilteringComponent } from './components/packages/filtering/filtering.component';
+import { SinglePackegeComponent } from './components/singlepackage/singlepackage.component';
 
 
 @NgModule({
@@ -49,9 +51,11 @@ import { PackageComponet } from './components/packages/package/package.component
     LokamaPlaceDescriptionComponent,
     SinglePlaceComponent,
     PackagesComponent,
-    PackageComponet
+    PackageComponet,
+    FilteringComponent,
+    SinglePackegeComponent
   ],
-  imports: [CommonModule, UserRoutes, HttpClientModule,ReactiveFormsModule],
+  imports: [CommonModule, UserRoutes, HttpClientModule,ReactiveFormsModule,FormsModule],
   exports: [],
   providers: [],
 })
