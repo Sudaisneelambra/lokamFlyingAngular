@@ -10,18 +10,23 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class useservice {
+export class userprofileservice {
+
   constructor(private http: HttpClient, private router:Router ) {}
 
-  private userapi = 'http://localhost:3000';
+  private api = 'http://localhost:3000';
 
-   // logout and token delete
-   userlogout(){
-    const one = localStorage.getItem('token');
-    console.log(one);
-
-    localStorage.clear()
-    this.router.navigate(['/authentication'])
-    
+  postuserdata(data:any):Observable<any>{
+    return this.http.post(`${this.api}/user/profileuser`,data)
   }
+
+  getprofile():Observable<any>{
+    return this.http.get(`${this.api}/user/getprofile`)
+  }
+
+  getprof(id:any):Observable<any>{
+    return this.http.get(`${this.api}/user/getprof/${id}`)
+  }
+ 
+ 
 }

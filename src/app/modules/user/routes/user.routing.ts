@@ -5,6 +5,10 @@ import { BookTour } from '../components/booktour/booktour.component';
 import { MainHome } from '../components/main.component';
 import { ProfileComponent } from '../components/profile/profile.component';
 import { ProfileAdd } from '../components/profileadd/profileadd.component';
+import { bookingtripcomponent } from '../components/bookingtrip/bookingtrip.component';
+import { AllPlacesComponent } from '../components/places/allplaces.component';
+import { LokamaPlaceDescriptionComponent } from '../components/places/lokamaplacedescription/lokamaplacedescription.component';
+import { SinglePlaceComponent } from '../components/places/singleplace/singleplace.component';
 
 const routes: Routes = [
   {
@@ -26,6 +30,24 @@ const routes: Routes = [
       {
         path:'profileadd',
         component:ProfileAdd
+      },
+      {
+        path:'bookng-trip',
+        component:bookingtripcomponent
+      },
+      {
+        path:'places',
+        component:AllPlacesComponent,
+        children:[
+          {
+            path:'lokamdescription',
+            component:LokamaPlaceDescriptionComponent
+          },
+          {
+            path:'singleplace/:id',
+            component:SinglePlaceComponent
+          }
+        ]
       }
     ]
   },

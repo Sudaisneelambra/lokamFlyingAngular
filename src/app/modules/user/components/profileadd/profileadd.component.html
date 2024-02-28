@@ -1,12 +1,233 @@
-<form [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
-  <h2>User Profile</h2>
+<div class="container mx-auto my-7">
+  <form
+    [formGroup]="userProfileForm"
+    class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+    action=" "
+    method="post"
+    id="contact_form"
+  >
+    <!-- Form Name -->
+    <legend class="text-xl mb-4 font-bold text-center">
+      {{ "User profile" | uppercase }}
+    </legend>
 
-  <div class="form-group row">
-    <label for="fullName" class="col-sm-2 col-form-label">Full Name:</label>
-    <div class="col-sm-10">
-        <input type="text" id="fullName" formControlName="fullName" class="form-control" />
-    </div>
+    <!-- Text input-->
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="Full"
+        >Full Name</label
+      >
+      <input
+        formControlName="fullName"
+        name="Full_name"
+        id="Full_name"
+        placeholder="Full Name"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="text"
+      />
     </div>
 
-  <button type="submit" class="btn btn-primary" [disabled]="userProfileForm.invalid">Submit</button>
-</form>
+    <!-- Text input-->
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="email"
+        >E-Mail</label
+      >
+      <input
+        formControlName="emailAddress"
+        name="email"
+        id="email"
+        placeholder="E-Mail Address"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="email"
+      />
+    </div>
+
+    <!-- Radio checks -->
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2">Gender</label>
+      <div>
+        <label class="inline-flex items-center">
+          <input type="radio" formControlName="gender" name="gender" value="male" class="form-radio" />
+          <span class="ml-2">Male</span>
+        </label>
+      </div>
+      <div>
+        <label class="inline-flex items-center">
+          <input type="radio" formControlName="gender" name="gender" value="female" class="form-radio" />
+          <span class="ml-2">Female</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Text input-->
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="address"
+        >Address</label
+      >
+      <input
+        formControlName="address"
+        name="address"
+        id="address"
+        placeholder="Address"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="text"
+      />
+    </div>
+
+    <!-- Text input-->
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="phone"
+        >Phone Number</label
+      >
+      <input
+        formControlName="phoneNumber"
+        name="phone"
+        id="phone"
+        placeholder="phone number"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="number"
+      />
+    </div>
+
+    <!-- Text input-->
+
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="nationality"
+        >Nationality</label
+      >
+      <input
+        formControlName="nationality"
+        name="nationality"
+        id="nationality"
+        placeholder="Nationality"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="text"
+      />
+    </div>
+
+    <!-- Text input-->
+
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="date_of_birth"
+        >Date of birth</label
+      >
+      <input
+        formControlName="dateOfBirth"
+        name="date_of_birth"
+        id="date_of_birth"
+        placeholder="date_of_birth"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="date"
+      />
+    </div>
+
+    <!-- Text input-->
+
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="house_number"
+        >House No</label
+      >
+      <input
+        formControlName="houseNo"
+        name="house_number"
+        id="house_number"
+        placeholder="house_number"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="number"
+      />
+    </div>
+
+    <!-- Select Basic -->
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="street"
+        >Street</label
+      >
+      <input
+        formControlName="street"
+        name="street"
+        id="street"
+        placeholder="street"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="text"
+      />
+    </div>
+
+    <!-- Text input-->
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="zip"
+        >Zip Code</label
+      >
+      <input
+        formControlName="zipCode"
+        name="zip"
+        id="zip"
+        placeholder="Zip Code"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="number"
+      />
+    </div>
+
+    <!-- Text area -->
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="district"
+        >District</label
+      >
+      <input
+        formControlName="district"
+        name="district"
+        id="district"
+        placeholder="district"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="text"
+      />
+    </div>
+
+    <!-- Text area -->
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="state"
+        >State</label
+      >
+      <input
+        formControlName="state"
+        name="state"
+        id="state"
+        placeholder="state"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="text"
+      />
+    </div>
+
+    <!-- Button -->
+    <div class="flex justify-around">
+      <button
+        type="submit"
+        class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        (click)="submit()"
+        [disabled]="!userProfileForm.valid"
+      >
+        Submit
+      </button>
+      <button
+        type="submit"
+        class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        (click)="back()"
+      >
+        Back
+      </button>
+    </div>
+    <p class="text-center text-green-500">{{msg}}</p>
+  </form>
+</div>

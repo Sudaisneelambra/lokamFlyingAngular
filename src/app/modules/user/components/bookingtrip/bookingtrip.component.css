@@ -1,0 +1,22 @@
+.headers{
+    background-image: url('/assets/images/banner.avif');
+    height:100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width:100%;
+    border: 2px solid black;
+    display: grid;
+    place-items: center;
+}
+@media(max-width:900px){
+    .booking{
+        width: 80%;
+    }
+}
+
+@media(max-width:600px){
+    .booking{
+        width: 90%;
+    }
+}

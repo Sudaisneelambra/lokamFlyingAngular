@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'site-service',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./site-service.component.css']
 })
 export class SiteServiceComponent {
+
+  constructor(private router:Router){}
+
+  bookingpage(){
+    this.router.navigate(['/user/bookng-trip'])
+  }
 
 }

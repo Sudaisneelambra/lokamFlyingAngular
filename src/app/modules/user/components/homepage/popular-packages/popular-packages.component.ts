@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'popular-packages',
@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class PopularPackagesComponent {
 
+  @Input() package:any
+
+
+  showAllPlaces(){
+    
+  }
 }

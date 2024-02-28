@@ -1,0 +1,54 @@
+.place{
+    box-shadow:inset 0px 0 17px 5px gray;
+    border-radius: 10px;
+}
+.sin::-webkit-scrollbar {
+    width: 1px; /* Change this value to adjust the scrollbar width */
+
+  }
+  
+  /* CSS for scrollbar track color */
+  .sin::-webkit-scrollbar-track {
+    background-color: #edf2f7; /* Change this value to adjust the scrollbar track color */
+  }
+  
+  /* CSS for scrollbar thumb color */
+  .sin::-webkit-scrollbar-thumb {
+    background-color: #cbd5e0; /* Change this value to adjust the scrollbar thumb color */
+  }
+
+  @media(max-width:1100px){
+    .placename{
+        font-size: 18px;
+    }
+  }
+  @media(max-width:900px){
+    .placename{
+        font-size: 15px;
+    }
+  }
+
+  @media(max-width:800px){
+    .love{
+        flex-direction: column;
+        height: 100%;
+    }
+    .sin{
+        min-height: 80px;
+        width: 100%;
+        display: flex;
+        gap: 10px;
+    }
+    .place{
+        min-width: 180px;
+        height: 100%;
+        height: 80px;
+    }
+    .placediscription{
+        width: 100%;
+    }
+    .sin::-webkit-scrollbar {
+        height: 1px; /* Change this value to adjust the scrollbar width */
+        
+      }
+  }

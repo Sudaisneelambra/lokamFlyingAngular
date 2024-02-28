@@ -1,22 +1,20 @@
-<section class="mt-5">
+<section class="mt-10">
   <h1 class="trending-h1 ml-7 font-black text-[30px]">POPULAR PLACES</h1>
   <div
     class="places w-full overflow-auto flex gap-x-16 px-10 pb-10 pt-3 h-[350px]"
   >
-    <div class="place min-w-[225px] flex justify-center items-center">
-      <h1 class="text-[30px] font-extrabold">MUNNAR</h1>
-    </div>
-    <div class="place min-w-[225px] flex justify-center items-center">
-      <h1 class="text-[30px] font-extrabold">MUNNAR</h1>
-    </div>
-    <div class="place min-w-[225px] flex justify-center items-center">
-      <h1 class="text-[30px] font-extrabold">MUNNAR</h1>
-    </div>
-    <div class="place min-w-[225px] flex justify-center items-center">
-      <h1 class="text-[30px] font-extrabold">MUNNAR</h1>
-    </div>
-    <div class="place min-w-[225px] flex justify-center items-center">
-      <h1 class="text-[30px] font-extrabold">MUNNAR</h1>
-    </div>
+ <ng-container *ngIf="place">
+  <div class="place min-w-[225px] flex justify-center items-center relative cursor-pointer" *ngFor="let data of place.slice(0, 5)">
+    <img src="{{data?.placeurl[index]}}" alt="" class="absolute h-full image-transition">
+    <h1 class="text-[30px] font-extrabold text-center z-10 bg-[#0000006a] text-[white] w-full py-1 shadow-md">{{ data?.placeName }}</h1>
+  </div>
+ </ng-container>
+
+  <!-- Show the "More" button if there are more than 4 places -->
+<ng-container *ngIf="place">
+  <div class="min-w-[225px] flex justify-center items-center bg-gradient-to-r from-[#404a403e] to-[#715f623a] rounded-md" *ngIf="place.length > 5" (click)="showAllPlaces()">
+    <h1 class="text-[30px] font-extrabold">more..</h1>
+  </div>
+</ng-container>
   </div>
 </section>

@@ -24,7 +24,6 @@ import { JwtInterceptor } from './common.intecepter';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    
   ],
   providers: [
     UserService,

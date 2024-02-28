@@ -10,57 +10,57 @@
             <tbody >
                 <tr>
                     <td class="px-4 py-4 text-gray-700">Full Name</td>
-                    <td class="px-4 py-4 text-gray-700">John Doe</td>
+                    <td class="px-4 py-4 text-gray-700">{{data?.fullName || 'not added'}}</td>
                 </tr>
                 <tr>
                     <td class="px-4 py-4 text-gray-700">Email Address</td>
-                    <td class="px-4 py-4 text-gray-700">johndoe@example.com</td>
+                    <td class="px-4 py-4 text-gray-700">{{data?.emailAddress || 'not added'}}</td>
                 </tr>
                 <tr>
                     <td class="px-4 py-4 text-gray-700">Gender</td>
-                    <td class="px-4 py-4 text-gray-700">John Doe</td>
+                    <td class="px-4 py-4 text-gray-700">{{data?.gender || 'not added'}}</td>
                 </tr>
                 <tr>
                     <td class="px-4 py-4 text-gray-700">Address</td>
-                    <td class="px-4 py-4 text-gray-700">+123-456-7890</td>
+                    <td class="px-4 py-4 text-gray-700">{{data?.address || 'not added'}}</td>
                 </tr>
                 <tr>
                     <td class="px-4 py-4 text-gray-700">Phone Number</td>
-                    <td class="px-4 py-4 text-gray-700">+123-456-7890</td>
+                    <td class="px-4 py-4 text-gray-700">{{data?.phoneNumber || 'not added'}}</td>
                 </tr>
                 <tr>
                     <td class="px-4 py-4 text-gray-700">nationality</td>
-                    <td class="px-4 py-4 text-gray-700">johndoe@example.com</td>
+                    <td class="px-4 py-4 text-gray-700">{{data?.nationality || 'not added'}}</td>
                 </tr>
                 <tr>
                     <td class="px-4 py-4 text-gray-700">Date of birth</td>
-                    <td class="px-4 py-4 text-gray-700">johndoe@example.com</td>
+                    <td class="px-4 py-4 text-gray-700">{{data?.dateOfBirth || 'not added'}}</td>
                 </tr>
                 <tr>
                     <td class="px-4 py-4 text-gray-700">house no</td>
-                    <td class="px-4 py-4 text-gray-700">+123-456-7890</td>
+                    <td class="px-4 py-4 text-gray-700">{{data?.houseNo || 'not added'}}</td>
                 </tr>
                 <tr>
                     <td class="px-4 py-4 text-gray-700">Street</td>
-                    <td class="px-4 py-4 text-gray-700">+123-456-7890</td>
+                    <td class="px-4 py-4 text-gray-700">{{data?.street || 'not added'}}</td>
                 </tr>
                 <tr>
                     <td class="px-4 py-4 text-gray-700">Zipcode</td>
-                    <td class="px-4 py-4 text-gray-700">+123-456-7890</td>
+                    <td class="px-4 py-4 text-gray-700">{{data?.zipCode || 'not added'}}</td>
                 </tr>
                 <tr>
                     <td class="px-4 py-4 text-gray-700">district</td>
-                    <td class="px-4 py-4 text-gray-700">+123-456-7890</td>
+                    <td class="px-4 py-4 text-gray-700">{{data?.district || 'not added'}}</td>
                 </tr>
                 <tr>
                     <td class="px-4 py-4 text-gray-700">state</td>
-                    <td class="px-4 py-4 text-gray-700">+123-456-7890</td>
+                    <td class="px-4 py-4 text-gray-700">{{data?.state || 'not added'}}</td>
                 </tr>
             </tbody>
             <div class="w-full  flex justify-around my-6">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" (click)="add()">Add</button>
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Edit</button>
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Back</button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" (click)="add()" *ngIf="!data">Add</button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" (click)="edit(data?._id)"  *ngIf="data">Edit</button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" (click)="back()">Back</button>
             </div>
         </table>
     </div>

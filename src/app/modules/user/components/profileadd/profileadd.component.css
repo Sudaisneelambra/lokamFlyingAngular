@@ -1,0 +1,4 @@
+button:disabled{
+    cursor: not-allowed;
+    background: #453f3f95;
+}

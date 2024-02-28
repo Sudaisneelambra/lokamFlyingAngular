@@ -22,6 +22,6 @@ export class NavBarComponent{
     }
 
     logout(){
-        this.userservice.agencylogout()
+        this.userservice.userlogout()
     }
 }

@@ -1,11 +1,12 @@
 <section class="mt-5">
   <h1 class="trending-h1 ml-7 font-black text-[30px]">POPULAR PACKAGES</h1>
   <div
-    class="packages w-full overflow-scroll flex gap-x-16 px-10 pb-10 pt-3 h-[350px]"
+    class="packages w-full flex justify-center items-center gap-10 md:gap-[60px] px-10 pb-10 pt-3  flex-wrap"
   >
-    <div class="package min-w-[225px]">
+ <ng-container *ngIf="package">
+    <div class="package min-w-[400px] h-[400px] cursor-pointer" *ngFor="let data of package.slice(0,4)">
       <div class="package-image h-[65%] w-full"></div>
-      <div class="package-about w-full h-[35%] pl-4">
+      <div class="package-about w-full h-[35%] pl-4 md:space-y-[5px]">
         <h1 class="package-h1 flex justify-between items-center">
           <p>
             <i class="fa-solid fa-star text-[13px]"></i
@@ -15,108 +16,20 @@
             ><i class="fa-solid fa-star text-[13px]"></i
             ><span class="text-[10px]">(200reviews)</span>
           </p>
-          <p class="text-[10px] pr-2">$78</p>
+          <p class="text-[18px] pr-2">₹ {{data?.packagePrice}}</p>
         </h1>
-        <p class="text-white text-[10px]">lisbon,maldives</p>
-        <p class="text-white text-[10px]">3 night, 2 day</p>
-        <h1 class="text-white text-[10px] flex justify-between">
+        <p class="text-white md:text-[20px] font-bold">{{data?.packageName}}</p>
+        <h1 class="flex gap-4   ">
+          <p class="text-white text-[15px]">{{data?.startDate}}</p>
+          <p class="text-black text-[15px] font-bold ">TO</p>
+          <p class="text-white text-[15px]">{{data?.endDate}}</p>
+        </h1>
+        <h1 class="text-white text-[15px] flex justify-between">
           <p class="">provided :-</p>
-          <p class="pr-2">akbar travels</p>
+          <p class="pr-2">{{data?.agencydetails[0].name}}</p>
         </h1>
-        <button>Book the tour</button>
       </div>
     </div>
-    <div class="package min-w-[225px]">
-      <div class="package-image h-[65%] w-full"></div>
-      <div class="package-about w-full h-[35%] pl-4">
-        <h1 class="flex justify-between items-center">
-          <p>
-            <i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><span class="text-[10px]">(200reviews)</span>
-          </p>
-          <p class="text-[10px] pr-2">$78</p>
-        </h1>
-        <p class="text-white text-[10px]">lisbon,maldives</p>
-        <p class="text-white text-[10px]">3 night, 2 day</p>
-        <h1 class="text-white text-[10px] flex justify-between">
-          <p class="">provided :-</p>
-          <p class="pr-2">akbar travels</p>
-        </h1>
-        <button>Book the tour</button>
-      </div>
-    </div>
-    <div class="package min-w-[225px]">
-      <div class="package-image h-[65%] w-full"></div>
-      <div class="package-about w-full h-[35%] pl-4">
-        <h1 class="flex justify-between items-center">
-          <p>
-            <i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><span class="text-[10px]">(200reviews)</span>
-          </p>
-          <p class="text-[10px] pr-2">$78</p>
-        </h1>
-        <p class="text-white text-[10px]">lisbon,maldives</p>
-        <p class="text-white text-[10px]">3 night, 2 day</p>
-        <h1 class="text-white text-[10px] flex justify-between">
-          <p class="">provided :-</p>
-          <p class="pr-2">akbar travels</p>
-        </h1>
-        <button>Book the tour</button>
-      </div>
-    </div>
-    <div class="package min-w-[225px]">
-      <div class="package-image h-[65%] w-full"></div>
-      <div class="package-about w-full h-[35%] pl-4">
-        <h1 class="flex justify-between items-center">
-          <p>
-            <i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><span class="text-[10px]">(200reviews)</span>
-          </p>
-          <p class="text-[10px] pr-2">$78</p>
-        </h1>
-        <p class="text-white text-[10px]">lisbon,maldives</p>
-        <p class="text-white text-[10px]">3 night, 2 day</p>
-        <h1 class="text-white text-[10px] flex justify-between">
-          <p class="">provided :-</p>
-          <p class="pr-2">akbar travels</p>
-        </h1>
-        <button>Book the tour</button>
-      </div>
-    </div>
-    <div class="package min-w-[225px]">
-      <div class="package-image h-[65%] w-full"></div>
-      <div class="package-about w-full h-[35%] pl-4">
-        <h1 class="flex justify-between items-center">
-          <p>
-            <i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><i class="fa-solid fa-star text-[13px]"></i
-            ><span class="text-[10px]">(200reviews)</span>
-          </p>
-          <p class="text-[10px] pr-2">$78</p>
-        </h1>
-        <p class="text-white text-[10px]">lisbon,maldives</p>
-        <p class="text-white text-[10px]">3 night, 2 day</p>
-        <h1 class="text-white text-[10px] flex justify-between">
-          <p class="">provided :-</p>
-          <p class="pr-2">akbar travels</p>
-        </h1>
-        <button>Book the tour</button>
-      </div>
-    </div>
+  </ng-container>
   </div>
 </section>

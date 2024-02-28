@@ -1,0 +1,32 @@
+<margue-in-place></margue-in-place>
+<section class="love w-full h-screen flex">
+  <div class="sin w-[25%] h-full md:space-y-1 overflow-auto">
+    <div
+      class="place w-full h-[100px] flex"
+      *ngFor="let pls of places; let i = index"
+      (click)="singleplace(pls?._id)"
+    >
+      <h1 class="w-[20%] h-full grid place-items-center font-bold text-[20px]">
+        {{ i + 1 }}
+      </h1>
+      <h1 class="w-[80%] flex flex-col justify-center items-center text-center">
+        <h1
+          class="placename font-bold text-[22px] bg-gradient-to-r from-[red] to-[navy] text-transparent bg-clip-text"
+        >
+          {{ pls?.placeName | uppercase }}
+        </h1>
+        <h1>idukki</h1>
+      </h1>
+    </div>
+  </div>
+  <div class="placediscription w-[75%] h-full">
+    <router-outlet></router-outlet>
+  </div>
+</section>
+<h1 class="w-full grid place-items-center">
+  <button class="px-10 py-1 bg-slate-600 rounded-lg font-bold text-[20px] mt-6"
+  (click)="back()"
+  >
+    back
+  </button>
+</h1>

@@ -3,65 +3,13 @@
   <div
     class="agencies w-full overflow-auto flex gap-x-16 px-10 pb-10 pt-3 h-[350px]"
   >
-    <div class="agency min-w-[225px] flex items-end">
-      <div class="agency-about w-full h-[35%] pl-4 space-y-1">
-        <h1 class="font-bold text-white text-[20px] mt-2">Akbar travals</h1>
-        <p class="text-white">explore with the best ones</p>
+    <div class="agency min-w-[225px] flex items-end relative cursor-pointer"*ngFor="let data of agency">
+      <img src="{{data?.logo_url}}" alt="" class="absolute h-full">
+      <div class="agency-about w-full h-[35%] pl-4 space-y-1 z-10">
+        <h1 class="font-bold text-white text-[20px] mt-2">{{data?.name | uppercase}}</h1>
+        <p class="text-white">{{data?.description | agencyabout}}</p>
         <p class="text-white">
-          <i class="fa-solid fa-location-dot"></i> pantheerankavu, calicut
-        </p>
-      </div>
-    </div>
-    <div class="agency min-w-[225px] flex items-end">
-      <div class="agency-about w-full h-[35%] pl-4 space-y-1">
-        <h1 class="font-bold text-white text-[20px] mt-2">Akbar travals</h1>
-        <p class="text-white">explore with the best ones</p>
-        <p class="text-white">
-          <i class="fa-solid fa-location-dot"></i> pantheerankavu, calicut
-        </p>
-      </div>
-    </div><div class="agency min-w-[225px] flex items-end">
-      <div class="agency-about w-full h-[35%] pl-4 space-y-1">
-        <h1 class="font-bold text-white text-[20px] mt-2">Akbar travals</h1>
-        <p class="text-white">explore with the best ones</p>
-        <p class="text-white">
-          <i class="fa-solid fa-location-dot"></i> pantheerankavu, calicut
-        </p>
-      </div>
-    </div>
-    <div class="agency min-w-[225px] flex items-end">
-      <div class="agency-about w-full h-[35%] pl-4 space-y-1">
-        <h1 class="font-bold text-white text-[20px] mt-2">Akbar travals</h1>
-        <p class="text-white">explore with the best ones</p>
-        <p class="text-white">
-          <i class="fa-solid fa-location-dot"></i> pantheerankavu, calicut
-        </p>
-      </div>
-    </div>
-    <div class="agency min-w-[225px] flex items-end">
-      <div class="agency-about w-full h-[35%] pl-4 space-y-1">
-        <h1 class="font-bold text-white text-[20px] mt-2">Akbar travals</h1>
-        <p class="text-white">explore with the best ones</p>
-        <p class="text-white">
-          <i class="fa-solid fa-location-dot"></i> pantheerankavu, calicut
-        </p>
-      </div>
-    </div>
-    <div class="agency min-w-[225px] flex items-end">
-      <div class="agency-about w-full h-[35%] pl-4 space-y-1">
-        <h1 class="font-bold text-white text-[20px] mt-2">Akbar travals</h1>
-        <p class="text-white">explore with the best ones</p>
-        <p class="text-white">
-          <i class="fa-solid fa-location-dot"></i> pantheerankavu, calicut
-        </p>
-      </div>
-    </div>
-    <div class="agency min-w-[225px] flex items-end">
-      <div class="agency-about w-full h-[35%] pl-4 space-y-1">
-        <h1 class="font-bold text-white text-[20px] mt-2">Akbar travals</h1>
-        <p class="text-white">explore with the best ones</p>
-        <p class="text-white">
-          <i class="fa-solid fa-location-dot"></i> pantheerankavu, calicut
+          <i class="fa-solid fa-location-dot"></i>  {{data?.location}}
         </p>
       </div>
     </div>

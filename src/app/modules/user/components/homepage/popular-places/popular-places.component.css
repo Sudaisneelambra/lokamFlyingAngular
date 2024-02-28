@@ -32,7 +32,6 @@
     background-color:#555555b3;
 }
 .place{
-    background-image: url(/assets/images/banner.avif);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -48,3 +47,8 @@
     scale: 1.02;
 
 }
+
+.image-transition{
+    transition: opacity 2s ease; 
+}
+
