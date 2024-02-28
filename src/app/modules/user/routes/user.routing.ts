@@ -9,6 +9,7 @@ import { bookingtripcomponent } from '../components/bookingtrip/bookingtrip.comp
 import { AllPlacesComponent } from '../components/places/allplaces.component';
 import { LokamaPlaceDescriptionComponent } from '../components/places/lokamaplacedescription/lokamaplacedescription.component';
 import { SinglePlaceComponent } from '../components/places/singleplace/singleplace.component';
+import { PackagesComponent } from '../components/packages/packages.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,10 @@ const routes: Routes = [
             component:SinglePlaceComponent
           }
         ]
+      },
+      {
+        path:'packages',
+        component:PackagesComponent
       }
     ]
   },

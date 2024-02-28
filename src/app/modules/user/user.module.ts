@@ -23,6 +23,8 @@ import { AllPlacesComponent } from './components/places/allplaces.component';
 import { MargueInPlaceComponent } from './components/places/marqueeinplaces/marqueeinplaces.component';
 import { LokamaPlaceDescriptionComponent } from './components/places/lokamaplacedescription/lokamaplacedescription.component';
 import { SinglePlaceComponent } from './components/places/singleplace/singleplace.component';
+import { PackagesComponent } from './components/packages/packages.component';
+import { PackageComponet } from './components/packages/package/package.component';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { SinglePlaceComponent } from './components/places/singleplace/singleplac
     AllPlacesComponent,
     MargueInPlaceComponent,
     LokamaPlaceDescriptionComponent,
-    SinglePlaceComponent
+    SinglePlaceComponent,
+    PackagesComponent,
+    PackageComponet
   ],
   imports: [CommonModule, UserRoutes, HttpClientModule,ReactiveFormsModule],
   exports: [],

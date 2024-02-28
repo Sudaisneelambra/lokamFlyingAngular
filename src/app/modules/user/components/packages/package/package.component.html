@@ -1,0 +1,29 @@
+<div class="main w-full h-[400px]  flex my-5" *ngFor="let dt of package; let i=index">
+  <div
+    class="one h-full w-[50%] grid place-items-center "
+    [ngClass]="{'order-2': (i+1)%2 == 0}" 
+    >
+    <img src="/assets/images/testination.jpeg" alt="" class="w-[90%] h-[90%]" />
+  </div>
+  <div class="two h-full w-[50%] bg-[#d7d4d49f] grid place-items-center">
+    <h1 class="font-bold text-[30px] text-center font-serif text-[#50a441]">{{dt?.packageName}}</h1>
+    <p class="text-center text-[gray] text-[19px]">{{dt?.aboutPackage}}</p>
+    <div class="three w-full">
+        <table class="w-full">
+          <tr>
+            <td class="pl-7 font-bold">Price</td>
+            <td>₹ {{dt?.packagePrice}}</td>
+          </tr>
+          <tr>
+            <td class="pl-7 font-bold">Places</td>
+            <td *ngFor="let pls of dt?.places">{{pls?.placename}}</td>
+          </tr>
+          <tr>
+            <td class="pl-7 font-bold">Available Slots</td>
+            <td>{{dt?.availableSlot}}</td>
+          </tr>
+        </table>
+      </div>      
+    <button class="bg-gray-700 py-2 px-7 font-bold text-[20px] text-[white] rounded-lg  hover:text-[black] hover:bg-slate-500">more..</button>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+@media(max-width:600px){
+    .one{
+        flex-direction: column;
+    }
+    .one-two{
+        width: 100%;
+    }
+    .one-one{
+        width: 100%;
+        height: 300px;
+    }
+
+}

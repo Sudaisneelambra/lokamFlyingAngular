@@ -4,7 +4,7 @@
     class="packages w-full flex justify-center items-center gap-10 md:gap-[60px] px-10 pb-10 pt-3  flex-wrap"
   >
  <ng-container *ngIf="package">
-    <div class="package min-w-[400px] h-[400px] cursor-pointer" *ngFor="let data of package.slice(0,4)">
+    <div class="package min-w-[400px] h-[400px] cursor-pointer" *ngFor="let data of package">
       <div class="package-image h-[65%] w-full"></div>
       <div class="package-about w-full h-[35%] pl-4 md:space-y-[5px]">
         <h1 class="package-h1 flex justify-between items-center">

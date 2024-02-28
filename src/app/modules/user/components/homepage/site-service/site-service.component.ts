@@ -14,4 +14,8 @@ export class SiteServiceComponent {
     this.router.navigate(['/user/bookng-trip'])
   }
 
+  gotopackages(){
+    this.router.navigate(['/user/packages'])
+  }
+
 }
