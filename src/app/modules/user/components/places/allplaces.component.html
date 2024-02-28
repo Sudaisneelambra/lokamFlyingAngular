@@ -1,7 +1,20 @@
 <margue-in-place></margue-in-place>
+
+<div class="flex justify-center  ">
+  <div class="flex">
+      <div class="relative  my-4">
+        <input #searchinput type="search" (keyup)="searching(searchinput.value)" id="form1" placeholder="Search" class="search w-[500px] border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 rounded-md px-3 py-2 focus:outline-none" />
+      </div>
+      <button type="button" class="btn btn-primary ml-2" (click)="searching(searchinput.value)">
+        <i class="fas fa-search"></i>
+      </button>
+  </div>
+  </div>
+
 <section class="love w-full h-screen flex">
   <div class="sin w-[25%] h-full md:space-y-1 overflow-auto">
-    <div
+    <ng-container *ngIf="places && places.length>0; else noplace">
+      <div
       class="place w-full h-[100px] flex"
       *ngFor="let pls of places; let i = index"
       (click)="singleplace(pls?._id)"
@@ -15,9 +28,13 @@
         >
           {{ pls?.placeName | uppercase }}
         </h1>
-        <h1>idukki</h1>
+        <h1>{{pls?.location}}</h1>
       </h1>
     </div>
+    </ng-container>
+    <ng-template #noplace>
+        <h1 class="place flex justify-center items-center w-full h-[100px] font-bold text-[22px] bg-gradient-to-r from-[red] to-[navy] text-transparent bg-clip-text">No Places Found</h1>
+    </ng-template>
   </div>
   <div class="placediscription w-[75%] h-full">
     <router-outlet></router-outlet>

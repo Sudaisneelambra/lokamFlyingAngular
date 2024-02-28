@@ -10,6 +10,10 @@
     <p class="text-center text-[gray] text-[19px]">{{dt?.aboutPackage}}</p>
     <div class="three w-full">
         <table class="w-full">
+            <tr>
+                <td class="pl-7 font-bold">provide</td>
+                <td class="font-bold text-[red]">{{dt?.agencydetails[0].name | uppercase}}</td>
+              </tr>
           <tr>
             <td class="pl-7 font-bold">Price</td>
             <td>₹ {{dt?.packagePrice}}</td>

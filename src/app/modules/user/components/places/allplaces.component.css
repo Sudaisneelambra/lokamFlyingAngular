@@ -51,4 +51,15 @@
         height: 1px; /* Change this value to adjust the scrollbar width */
         
       }
+      
+    .search{
+      width: 300px;
   }
+  }
+
+  @media(max-width:400px){
+    .search{
+        width: 200px;
+    }
+
+}

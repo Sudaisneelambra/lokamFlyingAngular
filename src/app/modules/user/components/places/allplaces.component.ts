@@ -12,6 +12,7 @@ import { Router } from "@angular/router";
 
 export class AllPlacesComponent implements OnInit,OnDestroy{
 
+    data:any
     places:any
     placeget$ = new Subscription();
 
@@ -32,7 +33,8 @@ export class AllPlacesComponent implements OnInit,OnDestroy{
                 this.service.userlogout();
               } else {
                 if (res.success) {
-                  this.places = res.data;
+                  this.data=res.data
+                  this.places =  this.data;
                   console.log(this.places);
                 } else {
                   console.log(res.message);
@@ -51,6 +53,20 @@ export class AllPlacesComponent implements OnInit,OnDestroy{
 
     singleplace(id:any) {
       this.router.navigate(['/user/places/singleplace',id])
+    }
+
+    searching(query:any){
+      console.log(query);
+      
+      if (query.trim() !== '') {
+        
+        this.places = this.places.filter((place:any)=>{
+         return  place.placeName.toLowerCase().includes(query.toLowerCase())
+          
+        })
+      } else{
+        this.places=this.data
+      }
     }
     ngOnDestroy(): void {
         this.placeget$?.unsubscribe()
