@@ -27,6 +27,7 @@ import { PackagesComponent } from './components/packages/packages.component';
 import { PackageComponet } from './components/packages/package/package.component';
 import { FilteringComponent } from './components/packages/filtering/filtering.component';
 import { SinglePackegeComponent } from './components/singlepackage/singlepackage.component';
+import { AgneciesComponent } from './components/agencies/agencies.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { SinglePackegeComponent } from './components/singlepackage/singlepackage
     PackagesComponent,
     PackageComponet,
     FilteringComponent,
-    SinglePackegeComponent
+    SinglePackegeComponent,
+    AgneciesComponent
   ],
   imports: [CommonModule, UserRoutes, HttpClientModule,ReactiveFormsModule,FormsModule],
   exports: [],

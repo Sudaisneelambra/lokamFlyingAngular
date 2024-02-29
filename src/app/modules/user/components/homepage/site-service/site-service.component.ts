@@ -17,5 +17,8 @@ export class SiteServiceComponent {
   gotopackages(){
     this.router.navigate(['/user/packages'])
   }
+  gotoagencies(){
+    this.router.navigate(['/user/agencies'])
+  }
 
 }

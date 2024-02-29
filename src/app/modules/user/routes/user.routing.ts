@@ -11,6 +11,7 @@ import { LokamaPlaceDescriptionComponent } from '../components/places/lokamaplac
 import { SinglePlaceComponent } from '../components/places/singleplace/singleplace.component';
 import { PackagesComponent } from '../components/packages/packages.component';
 import { SinglePackegeComponent } from '../components/singlepackage/singlepackage.component';
+import { AgneciesComponent } from '../components/agencies/agencies.component';
 
 const routes: Routes = [
   {
@@ -58,6 +59,10 @@ const routes: Routes = [
       {
         path:'singlepackage/:id',
         component:SinglePackegeComponent
+      },
+      {
+        path:'agencies',
+        component:AgneciesComponent
       }
     ]
   },

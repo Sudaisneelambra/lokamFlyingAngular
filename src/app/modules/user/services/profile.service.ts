@@ -27,6 +27,10 @@ export class userprofileservice {
   getprof(id:any):Observable<any>{
     return this.http.get(`${this.api}/user/getprof/${id}`)
   }
+
+  getusername():Observable<any>{
+    return this.http.get(`${this.api}/user/username`)
+  }
  
  
 }

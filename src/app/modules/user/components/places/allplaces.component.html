@@ -1,7 +1,7 @@
 <margue-in-place></margue-in-place>
 
-<div class="flex justify-center  ">
-  <div class="flex">
+<div class="flex justify-between items-center shadow-lg">
+  <div class="flex w-[90%] justify-center">
       <div class="relative  my-4">
         <input #searchinput type="search" (keyup)="searching(searchinput.value)" id="form1" placeholder="Search" class="search w-[500px] border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 rounded-md px-3 py-2 focus:outline-none" />
       </div>
@@ -9,6 +9,7 @@
         <i class="fas fa-search"></i>
       </button>
   </div>
+  <h1 class="text-[30px] w-[10%]"><i class="fa-solid fa-xmark" (click)="back()"></i></h1>
   </div>
 
 <section class="love w-full h-screen flex">
@@ -41,9 +42,4 @@
   </div>
 </section>
 <h1 class="w-full grid place-items-center">
-  <button class="px-10 py-1 bg-slate-600 rounded-lg font-bold text-[20px] mt-6"
-  (click)="back()"
-  >
-    back
-  </button>
 </h1>

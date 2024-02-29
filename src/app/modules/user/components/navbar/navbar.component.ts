@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { useservice } from "../../services/user.service";
 
 @Component({
@@ -10,6 +10,7 @@ import { useservice } from "../../services/user.service";
 export class NavBarComponent{
 
     bool= false
+    @Input() name:any
 
     constructor(private userservice:useservice){}
 

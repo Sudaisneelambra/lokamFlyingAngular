@@ -11,8 +11,10 @@ body {
     color: transparent !important; 
     font-size: 40px;
     font-weight: 900;
-    width: auto;
     background-clip: text;
+    padding: 10px;
+    width: 100%; 
+    overflow-wrap: break-word;
 }
 
 .package-details {
@@ -22,7 +24,7 @@ body {
     margin-bottom: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-    width: 90%;
+    width: 100%;
     margin-top: 20px;
 }
 
@@ -196,7 +198,8 @@ font-size: 18px;
 
 @media (max-width: 768px) {
     .package-details {
-        padding: 15px; 
+        padding: 10px; 
+        
     }
     .package-detailss {
         width: 100%; 
@@ -212,5 +215,8 @@ font-size: 18px;
         border-radius: 50%;
         overflow: hidden;
     
+    }
+    .package-details{
+        width: 100%;
     }
 }
