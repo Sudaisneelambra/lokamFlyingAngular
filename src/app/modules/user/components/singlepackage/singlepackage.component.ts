@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { packageService } from 'src/app/modules/agency/services/package.service';
 import { useservice } from '../../services/user.service';
 import { Location } from '@angular/common';
+import { UserWishlistService } from '../../services/userwishlist.service';
 
 @Component({
   selector: 'app-singlepackage',
@@ -12,23 +13,30 @@ import { Location } from '@angular/common';
 })
 export class SinglePackegeComponent implements OnInit, OnDestroy {
   singlepackage$ = new Subscription();
+  userwishlist$ = new Subscription();
   singlepackage: any;
   places: any;
   objplace: any;
   guide: any;
   result: any[] = [];
-
+  loading: boolean = false;
+  boolean=false
+  msg:any
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private agencypackageservice: packageService,
     private userservice: useservice,
-    private location:Location
+    private location:Location,
+    private wishlistservice:UserWishlistService,
+    private service:useservice
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const id = params['id'];
+      
       if (id) {
         this.singlepackage$ = this.agencypackageservice
           .getsinglepackage(id)
@@ -71,11 +79,50 @@ export class SinglePackegeComponent implements OnInit, OnDestroy {
    this.location.back()
   }
 
+
+  addToWishlist(id:any): void {
+    this.loading = true; // Show loading animation
+    // Simulate loading for 2 seconds (you can replace this with your actual functionality)
+    setTimeout(() => {
+      this.userwishlist$ =this.wishlistservice.addtowishlist(id).subscribe({
+        next:(res)=>{
+          if (res.expiry) {
+            alert('session expired or internal error please login');
+            this.service.userlogout();
+          } else {
+            if(res.success){
+              this.loading = false; // Hide loading animation
+              this.boolean= true
+            } else {
+              this.msg=res.message;
+              this.loading = false; // Hide loading animation
+              setTimeout(()=>{
+                this.msg=''
+              },3000)
+              
+            }
+          }
+
+        },
+        error:(err)=>{
+          console.log(err);
+          
+        }
+      })
+     
+    }, 2000);
+  }
+
   gotoplaces(id: any) {
     this.router.navigate(['/user/places/singleplace',id])
   }
 
+  okey(event:any){
+    this.boolean=event
+  }
+
   ngOnDestroy(): void {
+    this.userwishlist$?.unsubscribe()
     this.singlepackage$?.unsubscribe();
   }
 }

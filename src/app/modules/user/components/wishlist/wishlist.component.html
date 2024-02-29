@@ -1,0 +1,36 @@
+<app-remove *ngIf="bool" [id]="removeid" (canceling)="cancelling($event)" (msg)="messages($event)"></app-remove>
+<ng-container *ngIf="wishitem; else nodata">
+    <div class=" flex justify-between px-4">
+        <h1 class=" my-4 text-[30px] pl-6 font-black">Wishlist</h1>
+        <h1 class="flex items-center"><i class="fa-solid fa-xmark text-[40px]" (click)="back()"></i></h1>
+    </div>
+    <div class="cont mb-4">
+        <div class="grid grid-cols-1 p-5 gap-8">
+            <div class="pb-5">
+            </div>
+            <!-- Wishlist-->
+            <div class="pb-5">
+                <!-- Item-->
+                <div class="cart-item flex justify-between items-center mb-3" *ngFor="let dt of wishitem">
+                    <span class="remove-item"><i class="fa fa-times" (click)="remove(dt?._id)"></i></span>
+                    <div class="px-3 my-3 "  (click)="gotopackage(dt?.packageId)">
+                        <a class="cart-item-product">
+                            <div class="cart-item-product-thumb"><img src="/assets/images/slider_image-1.png" alt="Package"></div>
+                            <div class="cart-item-product-info">
+                                <h4 class="cart-item-product-title">{{dt?.packagedetails[0]?.packageName}}</h4>
+                                <div class="text-lg text-body font-medium pb-1">₹ {{dt?.packagedetails[0]?.packagePrice}}</div>
+                                <span>provided agency: <span class="text-success font-medium">{{dt?.agencydetails[0]?.name}}</span></span>
+                                <span>Available Slote: <span class="text-success font-medium">{{dt?.packagedetails[0]?.availableSlot}}</span></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <h1 class="w-full text-green-500 text-center">{{message}}</h1>
+        </div>
+    </div>
+    
+</ng-container>
+<ng-template #nodata>
+    <h1 class="w-full text-center text-[35px] font-bold text-[red] my-48">packagesNotInWishlist</h1>
+</ng-template>

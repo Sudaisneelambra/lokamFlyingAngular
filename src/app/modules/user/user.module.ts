@@ -30,6 +30,9 @@ import { SinglePackegeComponent } from './components/singlepackage/singlepackage
 import { AgneciesComponent } from './components/agencies/agencies.component';
 import { PackageListComponent } from './components/agencies/agencylist/agencylist.component';
 import { agencydescription } from './pipes/agencydescription.pipe';
+import { SuccessComponent } from './components/singlepackage/success/success.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { RemoveWishlistComponent } from './components/wishlist/removefromwishlist/removefromwishlist.component';
 
 
 @NgModule({
@@ -59,7 +62,10 @@ import { agencydescription } from './pipes/agencydescription.pipe';
     SinglePackegeComponent,
     AgneciesComponent,
     PackageListComponent,
-    agencydescription
+    agencydescription,
+    SuccessComponent,
+    WishlistComponent,
+    RemoveWishlistComponent
   ],
   imports: [CommonModule, UserRoutes, HttpClientModule,ReactiveFormsModule,FormsModule],
   exports: [],
