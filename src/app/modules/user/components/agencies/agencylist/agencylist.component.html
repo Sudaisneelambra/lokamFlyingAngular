@@ -1,0 +1,56 @@
+<ng-container *ngIf="agency && agency.length > 0; else nodata">
+    <div
+      class="main w-full h-[420px] flex my-5"
+     *ngFor="let dt of agency; let i = index"
+    >
+      <div
+        class="one h-[400px] w-[50%] grid place-items-center "
+      [ngClass]="{ 'order-2': i % 2 == 0 }"
+      >
+        <img
+          src="{{dt?.logo_url}}"
+          alt=""
+          class="w-[90%] max-h-[380px]"
+        />
+      </div>
+      <div class="two h-full w-[50%] bg-[#d07f5726] grid place-items-center">
+        <h1 class="font-bold text-[30px] text-center font-serif text-[#50a441]">
+          {{ dt?.name | uppercase }}
+        </h1>
+        <p class="text-center text-[gray] text-[19px]">{{ dt?.description | agencydescription }}</p>
+        <div class="three w-full">
+          <table class="w-full ">
+            <tr>
+              <td class="pl-7 font-bold py-1">Location</td>
+              <td class="font-bold text-[red]">
+                {{ dt?.location | uppercase }}
+              </td>
+            </tr>
+            <tr>
+              <td class="pl-7 font-bold py-1">Opening Time</td>
+              <td>{{ dt?.openingTime }}</td>
+            </tr>
+            <tr>
+                <td class="pl-7 font-bold py-1">Closing Time</td>
+                <td>{{ dt?.closingTime  }}</td>
+              </tr>
+              <tr>
+                <td class="pl-7 font-bold py-1">Contact Number</td>
+                <td> {{ dt?.contactNumber1 }}</td>
+              </tr>
+          </table>
+        </div>
+        <button
+          class="bg-[#4742424c] py-2 px-7 font-bold text-[20px] text-[black] rounded-lg hover:text-[black] hover:bg-slate-500 hover:scale-[1.1] transition-all duration-500"
+          (click)="singlepackage('dt._id')"
+        >
+        Deep Dive
+        </button>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #nodata>
+    <div class="flex items-center justify-center h-full">
+      <h1 class="text-red-500 text-center">No Agencies Found</h1>
+    </div>
+  </ng-template>
