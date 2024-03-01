@@ -34,6 +34,8 @@ import { SuccessComponent } from './components/singlepackage/success/success.com
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { RemoveWishlistComponent } from './components/wishlist/removefromwishlist/removefromwishlist.component';
 import { BookingComponent } from './components/booking/booking.component';
+import { StarRatingModule } from 'angular-star-rating';
+import { StarRattingComponent } from './components/footer/starrating/starrating.component';
 
 
 @NgModule({
@@ -67,9 +69,10 @@ import { BookingComponent } from './components/booking/booking.component';
     SuccessComponent,
     WishlistComponent,
     RemoveWishlistComponent,
-    BookingComponent
+    BookingComponent,
+    StarRattingComponent
   ],
-  imports: [CommonModule, UserRoutes, HttpClientModule,ReactiveFormsModule,FormsModule],
+  imports: [CommonModule, UserRoutes, HttpClientModule,ReactiveFormsModule,FormsModule,StarRatingModule],
   exports: [],
   providers: [],
 })

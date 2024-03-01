@@ -38,5 +38,9 @@ export class useservice {
     return this.http.get(`${this.userapi}/user/checkingalraedybooked/${id}`)
   }
 
+  reviewandrating(data:any):Observable<any>{
+    return this.http.post(`${this.userapi}/user/reviewandrating`,{data})
+  }
+
   
 }

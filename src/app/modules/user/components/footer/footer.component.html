@@ -18,16 +18,12 @@
     <h1 class="">REVIEW..</h1>
     <div class="love flex gap-2">
       <div class="flex">
-        <input type="text" name="" id="" class="text-black" />
+        <input type="text" name="" id="" class="text-black text-[16px] font-light px-2" [(ngModel)]="emty" (keyup)="review(reviews.value)" #reviews/>
       </div>
       <div class="flex">
         <p>rate</p>
-        <p>
-          <i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i
-          ><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i
-          ><i class="fa-regular fa-star"></i>
-        </p>
-        <button class="btn ml-3">submit</button>
+        <app-starrating (rate)="rating($event)"></app-starrating>
+        <button class="btn ml-3" (click)="submitreview()">submit</button>
       </div>
     </div>
   </div>
@@ -78,3 +74,5 @@
     </p>
   </div>
 </div>
+
+

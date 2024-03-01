@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angu
 import { UserWishlistService } from "../../../services/userwishlist.service";
 import { useservice } from "../../../services/user.service";
 import { Subscription } from "rxjs";
-import { NavigationExtras, Router } from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
     selector:'app-remove',

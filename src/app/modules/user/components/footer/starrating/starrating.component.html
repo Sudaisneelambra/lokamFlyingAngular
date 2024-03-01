@@ -1,0 +1,7 @@
+<div class="star-rating space-x-1">
+    <i class="fa-solid fa-star" 
+       *ngFor="let star of stars; let i = index" 
+       (click)="fillStar(i + 1)"
+       [ngClass]="{'filled': i < filledStars}">
+    </i>
+</div>
