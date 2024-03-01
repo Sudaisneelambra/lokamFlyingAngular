@@ -468,7 +468,6 @@ a.list-group-item, .list-group-item-action {
   .cart-item .cart-item-product {
     display: block;
     width: 100%;
-    text-align: center;
   }
   .cart-item .cart-item-product-thumb, .cart-item .cart-item-product-info {
     display: block;

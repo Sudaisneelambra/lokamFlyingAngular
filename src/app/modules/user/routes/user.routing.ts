@@ -13,6 +13,7 @@ import { PackagesComponent } from '../components/packages/packages.component';
 import { SinglePackegeComponent } from '../components/singlepackage/singlepackage.component';
 import { AgneciesComponent } from '../components/agencies/agencies.component';
 import { WishlistComponent } from '../components/wishlist/wishlist.component';
+import { BookingComponent } from '../components/booking/booking.component';
 
 const routes: Routes = [
   {
@@ -68,6 +69,10 @@ const routes: Routes = [
       {
         path:'wishlist',
         component:WishlistComponent
+      },
+      {
+        path:'booking/:id',
+        component:BookingComponent
       }
     ]
   },

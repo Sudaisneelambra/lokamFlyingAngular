@@ -1,0 +1,162 @@
+<div class="main">
+  <div class="testbox">
+    <form action="/">
+      <div class="banner">
+        <h1>Make Your Dream Trip</h1>
+      </div>
+      <div class="">
+        <h4
+          class="w-full text-center font-bold text-[25px] my-5 text-green-500"
+        >
+          USER DETAILS
+        </h4>
+        <div class="item">
+          <div class="name-item w-full">
+            <div class="w-full md:w-[50%]">
+              <p>Name</p>
+              <input
+                [disabled]="true"
+                type="text"
+                name="name"
+                [value]="name"
+                placeholder="Fullname"
+              />
+            </div>
+            <div class="w-full md:w-[50%]">
+              <p>phonenumber</p>
+              <input
+                [disabled]="true"
+                type="number"
+                name="phonenumber"
+                [value]="phonenumber"
+                placeholder="phonenumber"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <p>Email</p>
+          <input [disabled]="true"
+           type="email"
+            name="email" 
+            [value]="email"
+            
+            />
+        </div>
+        <div class="item">
+          <p>Address</p>
+          <textarea type="text"
+          name="address"
+          [disabled]="true"
+          [value]="address"
+          ></textarea>
+        </div>
+
+        <div class="w-full md:flex">
+          <div class="item w-full md:w-[50%]">
+            <p>Streat</p>
+            <input [disabled]="true"
+            type="text"
+            name="Streat" 
+            [value]="street"
+          />
+          </div>
+          <div class="item w-full md:w-[50%]">
+            <p>Housenumber</p>
+            <input [disabled]="true"
+             type="number"
+             name="housenumber"
+            [value]="housenumber"
+            />
+          </div>
+        </div>
+
+        <div class="w-full md:flex">
+          <div class="item w-full md:w-[50%]">
+            <p>Zipcode</p>
+            <input [disabled]="true" type="number" name="Zipcode" [value]="zipcode" />
+          </div>
+          <div class="item w-full md:w-[50%]">
+            <p>district</p>
+            <input [disabled]="true" type="text" name="district" [value]="district"/>
+          </div>
+        </div>
+        <div class="item">
+          <p>state</p>
+          <input [disabled]="true" type="text" name="state" [value]="state" />
+        </div>
+        <p class="w-full text-center"><button class="my-5" (click)="edit(data._id)">Edit</button></p>
+      </div>
+
+      <div class="">
+        <h6
+          class="text-[#ff5e35] w-full text-center font-bold text-[30px] my-7 "
+        >
+          PACKAGE DETAILS
+        </h6>
+        <div class="item">
+          <div class="name-item w-full">
+            <div class="w-full md:w-[50%]">
+              <p>Package name:<span id="packagename" class="font-bold text-[20px] text-[green]"> {{singlepackage?.packageName}}</span></p>
+            </div>
+            <div class="w-full md:w-[50%]">
+              <p>Package price per person: <span id="packageprice" class="font-bold text-[20px] text-[green]"> {{singlepackage?.packagePrice}}</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <p>Provide agency: <span id="agency" class="font-bold text-[20px] text-[red]">{{singlepackage?.agencydetails[0]?.name}}</span></p>
+        </div>
+        <div class="item">
+          <p>About package: <span id="about" class="font-bold text-[15px] text-[green]">{{singlepackage?.aboutPackage }}</span></p>
+        </div>
+
+        <div class="w-full md:flex">
+          <div class="item w-full md:w-[50%]">
+            <p>Start date: <span id="startdate" class="font-bold text-[15px] text-[green]">{{singlepackage?.startDate}}</span></p>
+          </div>
+          <div class="item w-full md:w-[50%]">
+            <p>End date: <span id="enddate" class="font-bold text-[15px] text-[green]">{{singlepackage?.endDate}}</span></p>
+          </div>
+        </div>
+
+        <div class="w-full md:flex">
+          <div class="item w-full md:w-[50%]">
+            <p>Available Slot: <span id="availableslot" class="font-bold text-[15px] text-[green]" class="font-bold text-[15px] text-[green]">{{singlepackage?.availableSlot}}</span></p>
+          </div>
+          <div class="item w-full md:w-[50%]">
+            <p>Guides: <span id="guides" class="font-bold text-[15px] text-[green]" class="font-bold text-[15px] text-[green]" *ngFor="let guide of singlepackage?.guid">{{guide?.name}} , </span></p>
+          </div>
+        </div>
+        <div class="item">
+          <p>Places: <span id="places" class="font-bold text-[15px] text-[green]" *ngFor="let place of singlepackage?.places">{{place?.placename}} , </span></p>
+        </div>
+
+        <div class="">
+          <h4 class="text-black w-full text-center font-bold text-[20px] my-3">
+            Booking
+          </h4>
+          <div class="item">
+            <div class="name-item w-full">
+              <div class="w-full md:w-[50%]">
+                <p>No of peoples</p>
+                <input type="number" name="peoples" placeholder="" (keyup)="adding(numberofpeaople.value)" #numberofpeaople/>
+              </div>
+              <div class="w-full md:w-[50%]">
+                <p>Total Price</p>
+                <input type="number" name="price" placeholder="price" [value]="price" [disabled]="true"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-block">
+        <button type="submit" class="!px-6 !w-auto mt-10 mb-20">
+          finalize Trip Reservation
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>

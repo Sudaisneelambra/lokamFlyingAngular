@@ -33,6 +33,7 @@ import { agencydescription } from './pipes/agencydescription.pipe';
 import { SuccessComponent } from './components/singlepackage/success/success.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { RemoveWishlistComponent } from './components/wishlist/removefromwishlist/removefromwishlist.component';
+import { BookingComponent } from './components/booking/booking.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { RemoveWishlistComponent } from './components/wishlist/removefromwishlis
     agencydescription,
     SuccessComponent,
     WishlistComponent,
-    RemoveWishlistComponent
+    RemoveWishlistComponent,
+    BookingComponent
   ],
   imports: [CommonModule, UserRoutes, HttpClientModule,ReactiveFormsModule,FormsModule],
   exports: [],

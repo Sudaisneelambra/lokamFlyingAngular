@@ -134,7 +134,7 @@ export class ProfileAdd implements OnInit, OnDestroy {
   }
 
   back() {
-    this.location.back();
+    this.router.navigate(['/user/home'])
   }
 
   ngOnDestroy(): void {

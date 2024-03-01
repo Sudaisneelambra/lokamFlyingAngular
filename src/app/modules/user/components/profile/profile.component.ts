@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       },
       error: (err) => {
         console.log(err);
-        console.log(err.message);
+        console.log(err.error.message );
       },
     });
   }

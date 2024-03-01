@@ -18,6 +18,9 @@ export class UserPackageService {
   gettingpackages():Observable<any>{
     return this.http.get(`${this.api}/user/getpackages`)
   }
+  getsinglepackage(id:any):Observable<any>{
+    return this.http.get(`${this.api}/user/getsinglepackage/${id}`)
+  }
 
   
 }

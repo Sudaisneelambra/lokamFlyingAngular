@@ -121,6 +121,10 @@ export class SinglePackegeComponent implements OnInit, OnDestroy {
     this.boolean=event
   }
 
+  booking(id:any){
+    this.router.navigate(['/user/booking',id])
+  }
+
   ngOnDestroy(): void {
     this.userwishlist$?.unsubscribe()
     this.singlepackage$?.unsubscribe();
