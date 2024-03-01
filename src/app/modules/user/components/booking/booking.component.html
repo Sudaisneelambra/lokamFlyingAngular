@@ -140,7 +140,7 @@
             <div class="name-item w-full">
               <div class="w-full md:w-[50%]">
                 <p>No of peoples</p>
-                <input type="number" name="peoples" placeholder="" (keyup)="adding(numberofpeaople.value)" #numberofpeaople/>
+                <input type="number" name="peoples" placeholder="" (keyup)="adding(numberofpeaople.value)" #numberofpeaople />
               </div>
               <div class="w-full md:w-[50%]">
                 <p>Total Price</p>
@@ -151,12 +151,11 @@
         </div>
       </div>
       <div class="btn-block">
-        <button type="submit" class="!px-6 !w-auto mt-10 mb-20">
+        <button type="submit" class="!px-6 !w-auto mt-10 mb-20" (click)="payment()">
           finalize Trip Reservation
         </button>
+        <h6 class="text-[red]">{{message}}</h6>
       </div>
     </form>
   </div>
 </div>
-
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>

@@ -24,4 +24,19 @@ export class useservice {
     this.router.navigate(['/authentication'])
     
   }
+
+
+  createorder(data:any):Observable<any>{
+    return this.http.post(`${this.userapi}/user/create-order`,data)
+  }
+
+  bookingpayment(data:any):Observable<any>{
+    return this.http.post(`${this.userapi}/user/bookingpayment`,data)
+  }
+
+  checkingalraedybooked(id:any):Observable<any>{
+    return this.http.get(`${this.userapi}/user/checkingalraedybooked/${id}`)
+  }
+
+  
 }
