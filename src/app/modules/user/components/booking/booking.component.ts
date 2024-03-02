@@ -30,6 +30,7 @@ export class BookingComponent implements OnInit, OnDestroy {
   prs: any;
   message: any;
   orderid: any;
+  persons:any
   order$ = new Subscription();
   alredybooked$ = new Subscription;
 
@@ -196,7 +197,8 @@ export class BookingComponent implements OnInit, OnDestroy {
     const paymentData = {
       packageid: this.singlepackage._id,
       agencyid: this.singlepackage?.agencydetails[0]?._id,
-      price:this.price
+      price:this.price,
+      Noofpersons:this.persons
     };
     const bookingdata = { ...data, ...paymentData };
 

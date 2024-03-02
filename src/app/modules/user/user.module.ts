@@ -39,6 +39,7 @@ import { StarRattingComponent } from './components/footer/starrating/starrating.
 import { UserLoadingComponent } from './components/userloading/userloading.component';
 import { guidesComponent } from './components/guides/guides.component';
 import { FilteringguideComponent } from './components/guides/filtering/filtering.component';
+import { BookingDetailsComponent } from './components/bookingdetails/bookingdetails.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { FilteringguideComponent } from './components/guides/filtering/filtering
     StarRattingComponent,
     UserLoadingComponent,
     guidesComponent,
-    FilteringguideComponent
+    FilteringguideComponent,
+    BookingDetailsComponent
   ],
   imports: [CommonModule, UserRoutes, HttpClientModule,ReactiveFormsModule,FormsModule,StarRatingModule],
   exports: [],

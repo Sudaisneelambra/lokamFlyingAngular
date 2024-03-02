@@ -49,11 +49,8 @@ export class PackagesComponent implements OnInit, OnDestroy{
             let values = event.split("-")
             console.log(values);
             this.packages= this.data.filter((filter:any)=>{
-                console.log(filter.packagePrice);
                 return filter.packagePrice >= parseInt(values[0]) && filter.packagePrice <= parseInt(values[1])
             }) 
-
-            console.log(this.packages);
        }
 
         

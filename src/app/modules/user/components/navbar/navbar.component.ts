@@ -9,7 +9,7 @@ import { useservice } from "../../services/user.service";
 
 export class NavBarComponent{
 
-    bool= false
+    bool= true
     @Input() name:any
 
     constructor(private userservice:useservice){}

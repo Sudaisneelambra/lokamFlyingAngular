@@ -140,7 +140,7 @@
             <div class="name-item w-full">
               <div class="w-full md:w-[50%]">
                 <p>No of peoples</p>
-                <input type="number" name="peoples" placeholder="" (keyup)="adding(numberofpeaople.value)" #numberofpeaople />
+                <input type="number" name="peoples" placeholder="" (keyup)="adding(numberofpeaople.value)" [(ngModel)]="persons" #numberofpeaople />
               </div>
               <div class="w-full md:w-[50%]">
                 <p>Total Price</p>

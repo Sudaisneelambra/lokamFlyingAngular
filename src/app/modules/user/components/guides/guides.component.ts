@@ -11,6 +11,7 @@ import { useservice } from "../../services/user.service";
 export class guidesComponent implements OnInit, OnDestroy{
 
     guide:any
+    data:any
     gude$ = new Subscription()
     agencies:any
     
@@ -25,6 +26,7 @@ export class guidesComponent implements OnInit, OnDestroy{
                   } else {
                     if(res.success){
                         this.guide=res.data
+                        this.data=res.data
                         console.log(this.guide);
                         this.agencies=res.data
                         
@@ -41,12 +43,32 @@ export class guidesComponent implements OnInit, OnDestroy{
         })
     }
 
-    searching(input:any){
+    filtering(event:any){
+        console.log(event);
+        
+        if(event=='all'){
+            this.guide=this.data
+        } else{
+            this.guide=this.data.filter((m:any)=>{
+                return m.agencydetails[0].name == event
+            })  
+        }
 
     }
-    back(){
 
-    }
+    searching(query:any){
+      
+        if (query.trim() !== '') {
+          
+          this.guide = this.guide.filter((guid:any)=>{
+           return  guid.guidename.toLowerCase().includes(query.toLowerCase())
+            
+          })
+        } else{
+          this.guide=this.data
+        }
+      }
+
     ngOnDestroy(): void {
         this.gude$?.unsubscribe()
     }

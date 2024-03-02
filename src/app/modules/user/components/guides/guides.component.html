@@ -1,8 +1,8 @@
 <div class="sin flex justify-evenly items-center  ">
-    <app-filteringguide [agency]="agencies"></app-filteringguide>
+    <app-filteringguide [agency]="agencies" (filteredvalue)="filtering($event)"></app-filteringguide>
         <div class="flex justify-center  gap-2">
             <div class="relative  ">
-              <input #searchinput type="search" (keyup)="searching(searchinput.value)" id="form1" placeholder="Search" class="search border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 rounded-md px-3 py-2 focus:outline-none" />
+              <input #searchinput type="search" (keyup)="searching(searchinput.value)" id="form1" placeholder="Search guide name" class="search border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 rounded-md px-3 py-2 focus:outline-none" />
             </div>
             <button type="button" class="btn btn-primary " (click)="searching(searchinput.value)">
               <i class="fas fa-search"></i>
@@ -10,23 +10,28 @@
         </div>
 </div>
 
-<div class="main w-full h-screen  flex justify-center mt-8" *ngFor="let dt of guide">
-    <div class="one h-full w-[45%]  ">
-        <div class="w-full h-[80%]  flex items-center">
-            <img src="{{dt?.guideurl}}" alt="" class="guide-image w-[65%] h-[65%] ml-10">
+<ng-container *ngIf="guide && guide?.length >0 ; else noguide">
+    <div class="main w-full h-screen  flex justify-center mt-8" *ngFor="let dt of guide">
+        <div class="one h-full w-[45%]  ">
+            <div class="w-full h-[80%]  flex items-center">
+                <img src="{{dt?.guideurl}}" alt="" class="guide-image w-[65%] h-[65%] ml-10">
+            </div>
+            <div class=" w-full h-[20%]  flex justify-center items-center flex-col text-center">
+                <h1 class="font-[600] text-[28px] text-[green] ">{{dt?.guidename}}</h1>
+                <h1 class="font-bold text-[15px] text-[gray] ">{{dt?.experience}} year expirience</h1>
+                <h1 class="font-bold text-[15px] text-[gray] ">Provide : {{dt?.agencydetails[0].name}}</h1>
+            </div>
         </div>
-        <div class=" w-full h-[20%]  flex justify-center items-center flex-col text-center">
-            <h1 class="font-[600] text-[28px] text-[green] ">{{dt?.guidename}}</h1>
-            <h1 class="font-bold text-[15px] text-[gray] ">{{dt?.experience}} year expirience</h1>
-            <h1 class="font-bold text-[15px] text-[gray] ">Provide : {{dt?.agencydetails[0].name}}</h1>
+        <div class="two h-full w-[45%] ">
+            <div class=" w-full h-[30%]  grid place-items-center">
+                <h1 class="font-thin text-[15px] text-center">{{dt?.aboutguide}}</h1>
+            </div>
+            <div class="w-full h-[70%]  flex items-center justify-center">
+                <img src="{{dt?.agencydetails[0]?.logo_url}}" alt="" class="agency-image w-[230px] h-[230px] ">
+            </div>
         </div>
     </div>
-    <div class="two h-full w-[45%] ">
-        <div class=" w-full h-[30%]  grid place-items-center">
-            <h1 class="font-thin text-[15px] text-center">{{dt?.aboutguide}}</h1>
-        </div>
-        <div class="w-full h-[70%]  flex items-center justify-center">
-            <img src="{{dt?.agencydetails[0]?.logo_url}}" alt="" class="agency-image w-[230px] h-[230px] ">
-        </div>
-    </div>
-</div>
+</ng-container>
+<ng-template #noguide>
+    <h1 class="place flex justify-center items-center w-full h-[100px] font-bold text-[22px] bg-gradient-to-r from-[red] to-[navy] text-transparent bg-clip-text">No guid Found</h1>
+</ng-template>
