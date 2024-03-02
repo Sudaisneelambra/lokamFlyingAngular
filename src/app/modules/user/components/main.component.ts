@@ -13,6 +13,7 @@ export class MainHome implements OnInit, OnDestroy {
 
   $userprifile=new Subscription()
   name:any
+  bool=false
   constructor(private router:Router, private profileservice:userprofileservice ,private service:useservice) {}
 
   ngOnInit(): void {
@@ -24,6 +25,8 @@ export class MainHome implements OnInit, OnDestroy {
       this.router.navigate(['/user/home']);
     }
 
+    this.bool=true
+   setTimeout(() => {
     this.$userprifile = this.profileservice.getusername().subscribe({
       next:(res)=>{
         if (res.expiry) {
@@ -31,6 +34,7 @@ export class MainHome implements OnInit, OnDestroy {
           this.service.userlogout();
         } else {
           if (res.success) {
+            this.bool= false
             this.name=res.data.username 
           } else{
             console.log(res.message);
@@ -42,6 +46,7 @@ export class MainHome implements OnInit, OnDestroy {
         console.log(err);
       }
     })
+   }, 3700);
   }
 
   ngOnDestroy(): void {

@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/commonSignup.service';
 })
 export class LoginComponent {
   // creation of a variable
+  loading = true;
   already: any;
   otp: any = '';
   bool: boolean = false;
@@ -91,7 +92,6 @@ export class LoginComponent {
   // submittision of signup form
   onSubmit(): void {
     this.submitted = true;
-
     this.userService.userSignupPost(this.userForm.value).subscribe({
       next: (res: any) => {
         if (res.otpsend) {
@@ -122,54 +122,62 @@ export class LoginComponent {
 
   // logining login form
   logins() {
-    this.userService.userLogin(this.login.value).subscribe({
-      next: (res) => {
-        if (res.success) {
-          if (res.user) {
-            this.loginmessage = res.message;
-            localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
-            localStorage.setItem('type', res.type);
-            setTimeout(() => {
-              this.loginmessage = '';
-              this.router.navigate(['user']);
-            }, 2000);
-          } else if (res.admin) {
-            this.loginmessage = res.message;
-            localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
-            console.log(res.token);
-            
-            localStorage.setItem('type', res.type);
-            setTimeout(() => {
-              console.log('admin');
-              this.loginmessage = '';
-              this.router.navigate(['/admin']);
-            }, 2000);
-          } else if (res.resistered) {
-            this.loginmessage = res.message;
-            localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
-            localStorage.setItem('type', res.type);
-            this.router.navigate(['/agency/home'])
-            setTimeout(() => {
-              this.loginmessage = '';
-            }, 2000);
-          } else if (!res.resistered) {
+    this.loading = false;
+    setTimeout(() => {
+      this.userService.userLogin(this.login.value).subscribe({
+        next: (res) => {
+          if (res.success) {
+            if (res.user) {
+              this.loginmessage = res.message;
+              localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
+              localStorage.setItem('type', res.type);
+              setTimeout(() => {
+                this.loading=true
+                this.loginmessage = '';
+                this.router.navigate(['user']);
+              }, 1000);
+            } else if (res.admin) {
+              this.loginmessage = res.message;
+              localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
+              console.log(res.token);
+
+              localStorage.setItem('type', res.type);
+              setTimeout(() => {
+                console.log('admin');
+                this.loading=true
+                this.loginmessage = '';
+                this.router.navigate(['/admin']);
+              }, 1000);
+            } else if (res.resistered) {
+              this.loginmessage = res.message;
+              localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
+              localStorage.setItem('type', res.type);
+              this.router.navigate(['/agency/home']);
+              setTimeout(() => {
+                this.loading=true
+                this.loginmessage = '';
+              }, 1000);
+            } else if (!res.resistered) {
+              this.error = res.message;
+              setTimeout(() => {
+                this.loading=true
+                alert(
+                  'dear costomer ,your verification message send to the admin,but he didnt verified your mail, wait for verification'
+                );
+                this.error = '';
+              }, 1000);
+            }
+          } else {
             this.error = res.message;
+            this.loading=true
             setTimeout(() => {
-              alert(
-                'dear costomer ,your verification message send to the admin,but he didnt verified your mail, wait for verification'
-              );
               this.error = '';
             }, 2000);
           }
-        } else {
-          this.error = res.message;
-          setTimeout(() => {
-            this.error = '';
-          }, 2000);
-        }
-      },
-      error: (err) => {},
-    });
+        },
+        error: (err) => {},
+      });
+    }, 2000);
   }
 
   // radio button value storing

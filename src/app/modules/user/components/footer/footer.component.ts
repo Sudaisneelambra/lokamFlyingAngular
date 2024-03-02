@@ -11,10 +11,12 @@ import { Router } from '@angular/router';
 })
 export class FooterComponent implements OnInit, OnDestroy {
   reviewdata: any;
+  fullreview:any
   rate: any;
   review$ = new Subscription();
   profile$ = new Subscription();
-  emty='kjjhjh'
+  reviewget$ = new Subscription();
+  emty=''
 
   constructor(
     private service: useservice,
@@ -23,7 +25,26 @@ export class FooterComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    console.log('sudais');
+    this.reviewget$ = this.service.gettingpagereview().subscribe({
+      next:(res)=>{
+        if (res.expiry) {
+          alert('session expired please login');
+          this.service.userlogout();
+        } else {
+          if(res.success){
+            this.fullreview=res.data
+            console.log(this.fullreview);
+          } else {
+            console.log(res.message);
+            
+          }
+        }
+      },
+      error:(err)=>{
+        console.log(err);
+        
+      }
+    })
 
   }
   rating(event: any) {
@@ -52,6 +73,7 @@ export class FooterComponent implements OnInit, OnDestroy {
                   if (res.success) {
                     alert(res.message);
                     this.emty=''
+                    this.service.starfilling.next(0)
                   } else {
                     alert(res.message);
                   }
@@ -75,5 +97,6 @@ export class FooterComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.review$?.unsubscribe();
     this.profile$?.unsubscribe();
+    this.reviewget$?.unsubscribe()
   }
 }

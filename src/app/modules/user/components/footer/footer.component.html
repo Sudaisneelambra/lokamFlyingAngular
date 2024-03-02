@@ -28,37 +28,16 @@
     </div>
   </div>
   <div class="review w-[90%] flex justify-center gap-5 px-3 flex-wrap mt-5">
-    <div class="rev min-w-[200px] max-w-[200px] h-full">
-      <p class="font-semibold">sushinshyam</p>
+    <div class="rev min-w-[200px] max-w-[200px] h-full" *ngFor="let dt of fullreview">
+      <p class="font-semibold">{{dt?.userdetails[0]?.username}}</p>
       <div class="chat-discription w-full">
-        <p class="text-[13px]">best expirence and good one i ever used</p>
+        <p class="text-[13px]">{{dt?.comment}}</p>
       </div>
       <p class="flex justify-between items-center">
-        rating :- <i class="fa-solid fa-star"></i
-        ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-        ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-      </p>
-    </div>
-    <div class="rev min-w-[200px] max-w-[200px] h-full">
-      <p class="font-semibold">sushinshyam</p>
-      <div class="chat-discription w-full">
-        <p class="text-[13px]">best expirence and good one i ever used</p>
-      </div>
-      <p class="flex justify-between items-center">
-        rating :- <i class="fa-solid fa-star"></i
-        ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-        ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-      </p>
-    </div>
-    <div class="rev min-w-[200px] max-w-[200px] h-full">
-      <p class="font-semibold">sushinshyam</p>
-      <div class="chat-discription w-full">
-        <p class="text-[13px]">best expirence and good one i ever used</p>
-      </div>
-      <p class="flex justify-between items-center">
-        rating :- <i class="fa-solid fa-star"></i
-        ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-        ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        rating :- <i class="fa-solid fa-star" 
+        *ngFor="let b of [1,2,3,4,5] ;let i =index"
+        [ngClass]="{'filled': i < dt?.rating}"
+        ></i>
       </p>
     </div>
   </div>

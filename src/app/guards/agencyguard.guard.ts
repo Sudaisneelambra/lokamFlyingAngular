@@ -20,7 +20,7 @@ import {
         if(this.userservice.isLoggedIn() && this.userservice.gettypeagency()){
             return true
         } else if(this.userservice.isLoggedIn() &&  this.userservice.gettypeuser()){
-            this.router.navigate(['/user'])
+            this.router.navigate(['/user/home'])
         } else if (this.userservice.isLoggedIn() && this.userservice.gettypeadmin()){
             this.router.navigate(['/admin'])
         } else if (!this.userservice.isLoggedIn()){

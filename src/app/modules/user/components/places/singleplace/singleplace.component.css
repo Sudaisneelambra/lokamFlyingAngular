@@ -13,11 +13,9 @@ body {
 
 }
 .place-info {
-    width: 70%;
-    background-color: #fff;
+    width: 90%;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .place-image img {
     width: 100%;

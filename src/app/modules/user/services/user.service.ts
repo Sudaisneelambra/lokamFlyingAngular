@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -25,6 +25,8 @@ export class useservice {
     
   }
 
+   starfilling = new BehaviorSubject(0)
+
 
   createorder(data:any):Observable<any>{
     return this.http.post(`${this.userapi}/user/create-order`,data)
@@ -42,5 +44,12 @@ export class useservice {
     return this.http.post(`${this.userapi}/user/reviewandrating`,{data})
   }
 
+  gettingpagereview():Observable<any>{
+    return this.http.get(`${this.userapi}/user/gettingpagereview`)
+  }
+
+  getguide():Observable<any>{
+    return this.http.get(`${this.userapi}/user/getguide`)
+  }
   
 }

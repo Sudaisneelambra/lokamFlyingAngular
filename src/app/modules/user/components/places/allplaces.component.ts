@@ -15,12 +15,18 @@ export class AllPlacesComponent implements OnInit,OnDestroy{
     data:any
     places:any
     placeget$ = new Subscription();
+    bool=false
 
     constructor(private placeservice:UserPlaceService, private service:useservice, private router:Router){}
 
     ngOnInit(): void {
 
+      this.bool=true
         console.log(this.router.url);
+        
+        setTimeout(() => {
+          this.bool=false
+        }, 3700);
         
         if(this.router.url =='/user/places'){
             this.router.navigate(['/user/places/lokamdescription'])

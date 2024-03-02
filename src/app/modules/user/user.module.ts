@@ -36,6 +36,9 @@ import { RemoveWishlistComponent } from './components/wishlist/removefromwishlis
 import { BookingComponent } from './components/booking/booking.component';
 import { StarRatingModule } from 'angular-star-rating';
 import { StarRattingComponent } from './components/footer/starrating/starrating.component';
+import { UserLoadingComponent } from './components/userloading/userloading.component';
+import { guidesComponent } from './components/guides/guides.component';
+import { FilteringguideComponent } from './components/guides/filtering/filtering.component';
 
 
 @NgModule({
@@ -70,7 +73,10 @@ import { StarRattingComponent } from './components/footer/starrating/starrating.
     WishlistComponent,
     RemoveWishlistComponent,
     BookingComponent,
-    StarRattingComponent
+    StarRattingComponent,
+    UserLoadingComponent,
+    guidesComponent,
+    FilteringguideComponent
   ],
   imports: [CommonModule, UserRoutes, HttpClientModule,ReactiveFormsModule,FormsModule,StarRatingModule],
   exports: [],

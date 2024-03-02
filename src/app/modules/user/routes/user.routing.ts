@@ -14,6 +14,7 @@ import { SinglePackegeComponent } from '../components/singlepackage/singlepackag
 import { AgneciesComponent } from '../components/agencies/agencies.component';
 import { WishlistComponent } from '../components/wishlist/wishlist.component';
 import { BookingComponent } from '../components/booking/booking.component';
+import { guidesComponent } from '../components/guides/guides.component';
 
 const routes: Routes = [
   {
@@ -73,7 +74,11 @@ const routes: Routes = [
       {
         path:'booking/:id',
         component:BookingComponent
-      }
+      },
+      {
+        path:'guides',
+        component:guidesComponent
+      },
     ]
   },
 ];

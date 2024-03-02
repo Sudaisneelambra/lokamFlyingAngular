@@ -49,3 +49,8 @@ button{
     background: gray;
     font-weight: 300;
 }
+
+
+.fa-star.filled {
+    color: yellow; /* Change the color of filled stars as per your design */
+}

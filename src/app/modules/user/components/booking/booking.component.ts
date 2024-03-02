@@ -196,6 +196,7 @@ export class BookingComponent implements OnInit, OnDestroy {
     const paymentData = {
       packageid: this.singlepackage._id,
       agencyid: this.singlepackage?.agencydetails[0]?._id,
+      price:this.price
     };
     const bookingdata = { ...data, ...paymentData };
 
