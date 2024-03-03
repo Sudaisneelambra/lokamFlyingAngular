@@ -51,5 +51,10 @@ export class useservice {
   getguide():Observable<any>{
     return this.http.get(`${this.userapi}/user/getguide`)
   }
+
+  getbooking():Observable<any>{
+    return this.http.get(`${this.userapi}/user/bookingdetails`)
+
+  }
   
 }

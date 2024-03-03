@@ -1,4 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { userprofileservice } from "../../services/profile.service";
+import { useservice } from "../../services/user.service";
+import { Subscription } from "rxjs";
+import { Location } from "@angular/common";
 
 @Component({
     selector:'app-bookingdetails',
@@ -6,6 +10,65 @@ import { Component } from "@angular/core";
     styleUrls:['./bookingdetails.component.css']
 })
 
-export class BookingDetailsComponent{
+export class BookingDetailsComponent implements OnInit,OnDestroy{
+
+    userprof$= new Subscription();
+    data:any
+    userdata:any
+    booking$ = new Subscription();
+    totalPrice: any;
+
     
+
+    constructor(private userprofile:userprofileservice, private service:useservice, private location:Location) {}
+
+
+    ngOnInit(): void {
+        this.userprof$ = this.userprofile.getprofile().subscribe({
+            next: (res) => {
+              if (res.expiry) {
+                alert('session expired or internal error please login');
+                this.service.userlogout();
+              } else {
+                if (res.success) {
+                  this.userdata = res.data;
+                }
+              }
+            },
+            error: (err) => {
+              console.log(err);
+              console.log(err.error.message );
+            },
+          });
+
+
+          this.booking$ = this.service.getbooking().subscribe({
+            next: (res) => {
+              if (res.expiry) {
+                alert('session expired or internal error please login');
+                this.service.userlogout();
+              } else {
+                if (res.success) {
+                  this.data = res.data;
+                   this.totalPrice = this.data.reduce((total:any, item:any) => total + item.price, 0);
+                }
+              }
+            },
+            error: (err) => {
+              console.log(err);
+              console.log(err.error.message );
+            },
+          });
+    }
+
+    back(){
+        this.location.back()
+    }
+    ngOnDestroy(): void {
+        this.userprof$?.unsubscribe()
+        this.booking$?.unsubscribe()
+    }
+
+
+
 }
