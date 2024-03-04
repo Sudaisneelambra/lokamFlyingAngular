@@ -184,7 +184,7 @@ export class BookingComponent implements OnInit, OnDestroy {
       },
       modal: {
         ondismiss: () => {
-          console.log('dismissed');
+          console.log('dismis   sed');
         },
       },
     };

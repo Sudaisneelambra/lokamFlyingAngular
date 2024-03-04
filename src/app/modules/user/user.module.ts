@@ -42,6 +42,7 @@ import { FilteringguideComponent } from './components/guides/filtering/filtering
 import { BookingDetailsComponent } from './components/bookingdetails/bookingdetails.component';
 import { AgencyFulldetailsComponent } from './components/agencyfulldetails/agencyfulldetails.component';
 import { placedescriptionPipe } from './pipes/placesescription.pipe';
+import { aboutpackage } from './pipes/aboutpackage.pipe';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { placedescriptionPipe } from './pipes/placesescription.pipe';
     FilteringguideComponent,
     BookingDetailsComponent,
     AgencyFulldetailsComponent,
-    placedescriptionPipe
+    placedescriptionPipe,
+    aboutpackage
   ],
   imports: [CommonModule, UserRoutes, HttpClientModule,ReactiveFormsModule,FormsModule,StarRatingModule],
   exports: [],
