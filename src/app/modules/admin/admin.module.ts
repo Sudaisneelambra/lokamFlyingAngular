@@ -23,6 +23,7 @@ import { guidescomponent } from "./components/guides/guides.component";
 import { packagefulldetails } from "./components/packagefulldetails/packagefulldetails.component";
 import { guidedetails } from "./components/guidedetails/guidedetails.component";
 import { placedetails } from "./components/placedetails/placedetails.component";
+import { BookingComponent } from "./components/bookingdetails/bookingdetails.component";
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { placedetails } from "./components/placedetails/placedetails.component";
         guidescomponent,
         packagefulldetails,
         guidedetails,
-        placedetails
+        placedetails,
+        BookingComponent
     ],
     imports:[CommonModule,AgencyRoutes,HttpClientModule],
     providers:[]

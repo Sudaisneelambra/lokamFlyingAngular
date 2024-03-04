@@ -13,6 +13,7 @@ import { guidescomponent } from "../components/guides/guides.component";
 import { packagefulldetails } from "../components/packagefulldetails/packagefulldetails.component";
 import { guidedetails } from "../components/guidedetails/guidedetails.component";
 import { placedetails } from "../components/placedetails/placedetails.component";
+import { BookingComponent } from "../components/bookingdetails/bookingdetails.component";
 
 
 const routes: Routes = [
@@ -67,9 +68,11 @@ const routes: Routes = [
         {
             path:'placedetails/:id',
             component:placedetails
-        }
-        
-        
+        },
+        {
+            path:'bookingdetails',
+            component:BookingComponent
+        },
       ]
     },
 ]

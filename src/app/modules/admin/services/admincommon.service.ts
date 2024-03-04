@@ -12,6 +12,7 @@ export class admincommon {
 
     constructor(private http: HttpClient,private router:Router) {}
 
+    private api = 'http://localhost:3000';
 
   // logout and token delete
   agencylogout(){
@@ -21,6 +22,10 @@ export class admincommon {
     localStorage.clear()
     this.router.navigate(['/authentication'])
     
+  }
+
+  getallbooking():Observable<any>{
+    return this.http.get(`${this.api}/admin/getallbooking`)
   }
 
 } 

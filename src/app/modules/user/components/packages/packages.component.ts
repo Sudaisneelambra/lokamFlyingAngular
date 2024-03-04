@@ -15,11 +15,15 @@ export class PackagesComponent implements OnInit, OnDestroy{
     packages:any
     data:any
     packageget$ = new Subscription()
+    bool=false
 
     constructor(private userpackage:UserPackageService, private service:useservice) {}
 
     ngOnInit(): void {
-        this.packageget$ = this.userpackage.gettingpackages().subscribe({
+      this.bool=true
+        setTimeout(() => {
+          this.bool=false
+          this.packageget$ = this.userpackage.gettingpackages().subscribe({
             next: (res) => {
               if (res.expiry) {
                 alert('session expired or internal error please login');
@@ -38,6 +42,7 @@ export class PackagesComponent implements OnInit, OnDestroy{
               console.log(err);
             },
           });
+        }, 3500);
 
           
     }

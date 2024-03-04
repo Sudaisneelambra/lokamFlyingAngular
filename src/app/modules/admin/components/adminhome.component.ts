@@ -47,6 +47,9 @@ export class AdminHome {
   gotoguides(){
     this.router.navigate(['/admin/guides'])
   }
+  gotobookingdetails(){
+    this.router.navigate(['/admin/bookingdetails'])
+  }
 
   logout(){
     const confirm = window.confirm('are you sure to logout')

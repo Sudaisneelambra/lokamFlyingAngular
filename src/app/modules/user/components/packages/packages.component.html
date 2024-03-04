@@ -1,4 +1,6 @@
-<div class="one w-full flex bg-gradient-to-r from-[#59bcea] to-[#afccd2]">
+<app-loading *ngIf="bool"></app-loading>
+<section *ngIf="!bool">
+  <div class="one w-full flex bg-gradient-to-r from-[#59bcea] to-[#afccd2]">
     <div
     class="one-one w-[50%] text-center grid place-items-center font-serif text-[20px] leading-10"
     >
@@ -18,3 +20,4 @@
 </div>
 <app-filtering (filteredvalue)="filtering($event)" ></app-filtering>
 <app-package [package]="packages"></app-package>
+</section>

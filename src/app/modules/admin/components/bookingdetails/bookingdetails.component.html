@@ -1,0 +1,125 @@
+<!-- *ngIf="data && data?.length > 0; else nobooking" -->
+<ng-container >
+<div
+      class=" z-10 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700 "
+      id="checkout"
+    >
+      <div
+        class="flex items-end lg:flex-row flex-col justify-end "
+        id="cart"
+      >
+        <div class="w-full lg:px-8 lg:py-14 md:px-6 px-4 md:py-8 py-4 bg-white overflow-y-auto overflow-x-hidden lg:h-screen h-auto"      id="scroll">
+          <div
+            class="cursor-pointer"
+            *ngFor="let dt of bookings"
+       
+          >
+            <div
+              class="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50 "
+            >
+              <div class="w-full md:w-[50%] flex flex-col items-center justify-center">
+                <img src="/assets/images/userpng.png" alt="" >
+                <div class="">
+                    <p>username : <strong>{{dt?.userdetails[0]?.username}}</strong></p>
+                    <p>email : <strong>{{dt?.userdetails[0]?.email}}</strong></p>
+                    <p>phone : <strong>{{dt?.userdetails[0]?.phoneNumber}}</strong></p>
+                </div>
+              </div>
+              <div
+                class="md:pl-3 w-full md:w-[50%]  flex flex-col justify-center"
+              >
+                <p class="text-xs leading-3 text-gray-800 md:pt-0 pt-4 !text-[20px]"
+                (click)="gotopackage(dt?.packagedetails[0]?._id)"
+                >
+                    <span class="font-bold text-[red] ">Total Price :</span> {{ dt?.price }}
+                </p>
+                <div class="flex items-center justify-between w-full" (click)="gotopackage(dt?.packagedetails[0]?._id)">
+                  <p class="text-base font-black leading-none text-gray-800">
+                    {{ dt?.packagedetails[0]?.packageName }}
+                  </p>
+                  <div
+                    aria-label="Select quantity"
+                    class="py-2 px-2 border border-gray-200 mr-6 focus:outline-none text-[10px]"
+                  >
+                    {{ dt?.Noofpersons }} person
+                  </div>
+                </div>
+                <p class="text-xs leading-3 text-gray-600 pt-2" (click)="gotopackage(dt?.packagedetails[0]?._id)">
+                  Start Date: {{ dt?.packagedetails[0]?.startDate }}
+                </p>
+                <p class="text-xs leading-3 text-gray-600 py-4" (click)="gotopackage(dt?.packagedetails[0]?._id)">
+                  End Date: {{dt?.packagedetails[0]?.endDate }}
+                </p>
+                <p class="w-96 text-xs leading-3 text-gray-600" (click)="gotopackage(dt?.packagedetails[0]?._id)">
+                  Places:
+                 <span *ngFor="let pls of dt.packagedetails[0].places"> {{ pls?.placename}} ,</span>
+                </p>
+                <p class="text-base font-black leading-none text-gray-800 mt-3" (click)="gotoagency(dt.agencydetails[0].userId)">
+                    conducted By : <span class="text-green-700">{{ dt?.agencydetails[0]?.name }}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #nobooking>
+    <h1
+      class="place flex justify-center items-center w-full h-[100px] font-bold text-[22px] bg-gradient-to-r from-[red] to-[navy] text-transparent bg-clip-text"
+    >
+      No booking Found
+    </h1>
+  </ng-template>
+
+
+  
+  <!-- (click)="gottopackage( dt?.packagedetails[0]?._id)" -->
+  
+
+
+
+  <!-- <div class="lg:w-96 w-full bg-gray-100 h-full">
+    <div
+      class="flex flex-col lg:h-screen h-auto lg:px-8 md:px-7 px-4 lg:py-20 md:py-10 py-6 justify-between overflow-y-auto"
+    >
+      <div>
+        <p
+          class="lg:text-4xl text-3xl font-black leading-9 text-gray-800"
+        >
+          Summary
+        </p>
+        <div class="flex items-center justify-between pt-16">
+          <p class="text-base leading-none text-gray-800">
+            total booking packages
+          </p>
+          <p class="text-base leading-none text-gray-800">
+            {{ 'data.length '}} packages
+          </p>
+        </div>
+        <div class="flex items-center justify-between pt-5">
+          <p class="text-base leading-none text-gray-800">total amount</p>
+          <p class="text-base leading-none text-gray-800">
+            {{ 'totalPrice | currency : "INR"' }}
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="flex items-center pb-6 justify-between lg:pt-5 pt-20">
+          <p class="text-2xl leading-normal text-gray-800">Total</p>
+          <p
+            class="text-2xl font-bold leading-normal text-right text-gray-800"
+          >
+            {{ 'totalPrice | currency : "INR" '}} (include tax)
+          </p>
+        </div> -->
+        <!-- <button
+          class="text-base leading-none px-5 py-2 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white"
+          (click)="back()"
+        >
+          back
+        </button> -->
+      <!-- </div>
+    </div>
+  </div> -->
