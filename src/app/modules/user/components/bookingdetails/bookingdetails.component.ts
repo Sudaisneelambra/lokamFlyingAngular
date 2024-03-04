@@ -3,6 +3,7 @@ import { userprofileservice } from "../../services/profile.service";
 import { useservice } from "../../services/user.service";
 import { Subscription } from "rxjs";
 import { Location } from "@angular/common";
+import { Router } from "@angular/router";
 
 @Component({
     selector:'app-bookingdetails',
@@ -20,7 +21,7 @@ export class BookingDetailsComponent implements OnInit,OnDestroy{
 
     
 
-    constructor(private userprofile:userprofileservice, private service:useservice, private location:Location) {}
+    constructor(private userprofile:userprofileservice, private service:useservice, private location:Location, private router:Router) {}
 
 
     ngOnInit(): void {
@@ -63,6 +64,11 @@ export class BookingDetailsComponent implements OnInit,OnDestroy{
 
     back(){
         this.location.back()
+    }
+
+    gottopackage(id:any){
+        this.router.navigate(['/user/singlepackage',id])
+        
     }
     ngOnDestroy(): void {
         this.userprof$?.unsubscribe()

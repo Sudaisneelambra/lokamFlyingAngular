@@ -63,3 +63,13 @@
     }
 
 }
+
+.location{
+  overflow-wrap: break-word; 
+  word-wrap: break-word; 
+}
+.sin{
+  overflow-y: auto;
+  overflow-x: none;
+
+}

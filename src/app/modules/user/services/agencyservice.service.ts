@@ -19,5 +19,9 @@ export class UserAgencyService {
   gettingagencies():Observable<any>{
     return this.http.get(`${this.api}/user/getagencies`)
   }
+
+  getsingleagency(id:any):Observable<any>{
+    return this.http.get(`${this.api}/user/getingsingleagency/${id}`)
+  }
   
 }

@@ -1,0 +1,189 @@
+<div class="lin w-full flex flex-col justify-center items-center h-full">
+  <div class="place-info my-10">
+    <h1 class="font-bold text-[#ff5500] text-[30px] mb-[20px]">
+      {{ singleagencydata?.name | uppercase }}
+    </h1>
+    <div class="" *ngIf="images && images.length > 0" class="son">
+      <img
+        alt="erwee"
+        *ngFor="let image of images; let i = index"
+        [src]="image"
+        [ngClass]="{ 'image-active': selectedIndex === i }"
+        class="fade"
+      />
+
+      <div class="love" *ngIf="bool">
+        <span
+          *ngFor="let dot of images; let i = index"
+          class="dot"
+          [ngClass]="{ active: selectedIndex === i }"
+          (click)="selectimge(i)"
+        ></span>
+      </div>
+
+      <button class="chin btn-prev" *ngIf="control">
+        <i
+          class="fas fa-arrow-circle-left btn-carousel icon-prev"
+          (click)="onprevclick()"
+        ></i>
+      </button>
+      <button class="chin btn-next" *ngIf="control">
+        <i
+          class="fas fa-arrow-circle-right btn-carousel icon-next"
+          (click)="onnextclick()"
+        ></i>
+      </button>
+    </div>
+    <div class="place-details">
+      <p class="mt-[20px]">
+        <strong>About the Agency:</strong>{{ singleagencydata?.description }}
+      </p>
+      <p><strong>Opening Time:</strong> {{ singleagencydata?.openingTime }}</p>
+      <p><strong>Closing Time:</strong> {{ singleagencydata?.closingTime }}</p>
+      <p>
+        <strong>Contact Number:</strong>
+        {{ singleagencydata?.contactNumber1 }},
+        {{ singleagencydata?.contactNumber2 }}
+      </p>
+      <p class="place-location">
+        <strong>Location:</strong>{{ singleagencydata?.location | uppercase }}
+      </p>
+    </div>
+    <p class="place-location">
+      <strong>Email : </strong>
+      <span class="font-bold text-red-600 text-[15px]">{{
+        singleagencydata?.email
+      }}</span>
+    </p>
+    <div class="facilities p-3">
+      <h3 class="font-bold text-[20px] !text-[black] !mb-[20px]">Services</h3>
+      <table class="facilities-table">
+        <tbody>
+          <tr>
+            <th class="w-[70%] md:w-[50%]">Facility</th>
+            <th class="w-[30%] md:w-[50%]">Included</th>
+          </tr>
+          <tr>
+            <td>Tour package</td>
+            <td>
+              {{ singleagencydata?.services?.Tourpackage ? "Yes" : "No" }}
+            </td>
+          </tr>
+          <tr>
+            <td>Customer Support</td>
+            <td>
+              {{ singleagencydata?.services?.CustomerSupport ? "Yes" : "No" }}
+            </td>
+          </tr>
+          <tr>
+            <td>Transportation Services</td>
+            <td>
+              {{
+                singleagencydata?.services?.TransportationServices
+                  ? "Yes"
+                  : "No"
+              }}
+            </td>
+          </tr>
+          <tr>
+            <td>Hotel Reservation Services</td>
+            <td>
+              {{
+                singleagencydata?.services?.HotelReservationServices
+                  ? "Yes"
+                  : "No"
+              }}
+            </td>
+          </tr>
+          <tr>
+            <td>Travel Consultation and Advice</td>
+            <td>
+              {{
+                singleagencydata?.services?.TravelConsultationandAdvice
+                  ? "Yes"
+                  : "No"
+              }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<section class="py-6 ">
+  <div class="cont">
+    <div class="row justify-center pl-8 mb-4">
+      <div class="col-xl-6 col-lg-8 col-sm-10">
+        <h2 class="font-bold text-[30px]">
+          Plcaes
+        </h2>
+      </div>
+    </div>
+
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-center px-6 animate__animated animate__fadeIn"
+    >
+      <div class="my-3 cursor-pointer" *ngFor="let dt of data" (click)="gotoplace(dt?._id)">
+        <div class="card border-primary hover:scale-105">
+          <div class="card-body">
+            <div class="text-primary mb-5 grid place-items-center">
+             <img src="{{dt?.placeurl[0]}}" alt="" class="!w-[150px] !h-[150px]  rounded-lg">
+            </div>
+            <h6 class="font-bold mb-3">{{dt?.placeName}}</h6>
+            <p class="text-muted mb-0">
+              {{dt?.placeDescription | placedescription}}
+            </p>
+            <p class="text-muted mb-0 font-bold ">
+              {{dt?.location}}
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Repeat the same structure for other cards -->
+    </div>
+  </div>
+</section>
+
+
+
+<div class="cont ">
+  <div class="row justify-center pl-8 mb-4">
+    <div class="col-xl-6 col-lg-8 col-sm-10">
+      <h2 class="font-bold text-[30px]">
+        Packages
+      </h2>
+    </div>
+  </div>  
+  <div class="mt-5 flex justify-center flex-col items-center">
+      <div class="d-style btn btn-brc-tp border-2 w-[90%] bgc-white btn-outline-blue btn-h-outline-blue btn-a-outline-blue w-100 my-2 py-3 shadow-sm "
+      *ngFor="let dt of packagedata">
+        <!-- Basic Plan -->
+        <div class="flex flex-col md:flex-row items-center border-2 ">
+            <div class="md:w-4/12 text-center md:text-left">
+                <h4 class="pt-3 text-2xl font-semibold text-primary-d1 leading-tight">
+                    {{dt?.packageName}}
+                </h4>
+            </div>
+            <ul class="list-none md:w-4/12 text-dark-l1 text-lg text-left my-4 md:my-0">
+                <li class="flex items-center mt-2 md:mt-0">
+                  <i class="fa-solid fa-location-dot"></i>
+                    <span class="text-sm pl-4" *ngFor="let pls of dt?.places">{{pls?.placename}},</span>
+                </li>
+                <li class="flex items-center mt-2">
+                  <i class="fa-solid fa-calendar-days"></i>
+                    <span class="text-lg pl-4">Start : {{dt?.startDate}}</span>
+                </li>
+                <li class="flex items-center mt-2">
+                  <i class="fa-solid fa-calendar-days"></i>
+                    <span class="text-lg pl-4">End : {{dt?.endDate}}</span>
+                </li>
+            </ul>
+            <div class="text-center md:text-right md:w-4/12">
+                <a  class="f-n-hover btn btn-info btn-raised px-4 py-2 md:py-3 w-3/4 md:w-auto text-lg font-semibold" (click)="gotpackage(dt?._id)">full View</a>
+            </div>
+        </div>
+    </div>
+
+  </div>
+</div>

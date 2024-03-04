@@ -40,6 +40,8 @@ import { UserLoadingComponent } from './components/userloading/userloading.compo
 import { guidesComponent } from './components/guides/guides.component';
 import { FilteringguideComponent } from './components/guides/filtering/filtering.component';
 import { BookingDetailsComponent } from './components/bookingdetails/bookingdetails.component';
+import { AgencyFulldetailsComponent } from './components/agencyfulldetails/agencyfulldetails.component';
+import { placedescriptionPipe } from './pipes/placesescription.pipe';
 
 
 @NgModule({
@@ -78,7 +80,9 @@ import { BookingDetailsComponent } from './components/bookingdetails/bookingdeta
     UserLoadingComponent,
     guidesComponent,
     FilteringguideComponent,
-    BookingDetailsComponent
+    BookingDetailsComponent,
+    AgencyFulldetailsComponent,
+    placedescriptionPipe
   ],
   imports: [CommonModule, UserRoutes, HttpClientModule,ReactiveFormsModule,FormsModule,StarRatingModule],
   exports: [],

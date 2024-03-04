@@ -14,10 +14,26 @@ tr:nth-child(even) {
 
 @media(max-width:550px){
     .one{
-        flex-direction: column !important;
-        height: auto;
+        width: 100%;
+    }
+    .main{
+        flex-direction: column;
     }
     .one-one{
         width: 100%;
     }
 }
+    /* width */
+    #scroll::-webkit-scrollbar {
+      width: 1px;
+    }
+
+    /* Track */
+    #scroll::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    #scroll::-webkit-scrollbar-thumb {
+      background: rgb(186, 13, 13);
+    }

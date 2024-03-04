@@ -54,6 +54,7 @@ export class FooterComponent implements OnInit, OnDestroy {
   review(value: any) {
     this.reviewdata = value;
   }
+
   submitreview() {
     if (this.reviewdata !== '' && this.rate > 0) {
       const data = { rating: this.rate, comment: this.reviewdata };
@@ -86,6 +87,8 @@ export class FooterComponent implements OnInit, OnDestroy {
           }
         },
         error: (err) => {
+          this.emty=''
+          this.service.starfilling.next(0)
           this.router.navigate(['/user/profileadd']);
         },
       });

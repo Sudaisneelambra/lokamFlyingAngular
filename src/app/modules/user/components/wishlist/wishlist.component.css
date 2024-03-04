@@ -550,3 +550,33 @@ a.list-group-item, .list-group-item-action {
     min-width: 250px !important;
   }
 }
+
+@media(max-width:550px){
+    .lin{
+        flex-direction: column;
+    }
+    .one{
+        width: 100%;
+    }
+    .man{
+        width: 100% !important;
+    }
+}
+
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    padding: 8px;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.man{
+    width: calc(100% - 250px);
+}

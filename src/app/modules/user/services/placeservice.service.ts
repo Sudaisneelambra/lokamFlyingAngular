@@ -21,5 +21,9 @@ export class UserPlaceService {
   getsingleplace(id:any):Observable<any>{
     return this.http.get(`${this.api}/user/getsingleplace/${id}`)
   }
+
+  getplace(id:any):Observable<any>{
+    return this.http.get(`${this.api}/user/getplace/${id}`)
+  }
   
 }

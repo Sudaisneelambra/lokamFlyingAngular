@@ -16,6 +16,7 @@ import { WishlistComponent } from '../components/wishlist/wishlist.component';
 import { BookingComponent } from '../components/booking/booking.component';
 import { guidesComponent } from '../components/guides/guides.component';
 import { BookingDetailsComponent } from '../components/bookingdetails/bookingdetails.component';
+import { AgencyFulldetailsComponent } from '../components/agencyfulldetails/agencyfulldetails.component';
 
 const routes: Routes = [
   {
@@ -83,6 +84,10 @@ const routes: Routes = [
       {
         path:'bookingdetails',
         component:BookingDetailsComponent
+      },
+      {
+        path:'agencyfulldetails/:id',
+        component:AgencyFulldetailsComponent
       },
     ]
   },

@@ -13,7 +13,7 @@ export class PackageListComponent{
 
     constructor(private router:Router) {}
 
-    singlepackage(id:any){
-        // this.router.navigate(['/user/singlepackage',id])
+    singleagency(id:any){
+        this.router.navigate(['/user/agencyfulldetails',id])
     }
 }

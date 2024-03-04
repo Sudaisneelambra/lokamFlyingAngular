@@ -22,5 +22,11 @@ export class UserPackageService {
     return this.http.get(`${this.api}/user/getsinglepackage/${id}`)
   }
 
+  getpackage(id:any):Observable<any>{
+    console.log('manjumman');
+    
+    return this.http.get(`${this.api}/user/getpackage/${id}`)
+  }
+
   
 }

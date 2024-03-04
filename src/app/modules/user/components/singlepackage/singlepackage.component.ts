@@ -49,7 +49,7 @@ export class SinglePackegeComponent implements OnInit, OnDestroy {
                 this.singlepackage = res.package;
 
                 this.places = res.place;
-                this.objplace = this.singlepackage.places;
+                this.objplace = this.singlepackage?.places;
                 this.guide = res.guide;
 
                 for (let i = 0; i < this.places.length; i++) {

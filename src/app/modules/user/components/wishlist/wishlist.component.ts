@@ -4,6 +4,7 @@ import { UserWishlistService } from "../../services/userwishlist.service";
 import { useservice } from "../../services/user.service";
 import { Location } from "@angular/common";
 import { Router } from "@angular/router";
+import { userprofileservice } from "../../services/profile.service";
 
 @Component({
     selector:'app-wishlist',
@@ -18,8 +19,10 @@ export class WishlistComponent implements OnInit,OnDestroy{
     bool=false
     removeid:any
     message:any
+    userprof$ = new Subscription()
+    userdata: any;
 
-    constructor(private wishlistservice:UserWishlistService, private service:useservice,private location:Location, private router:Router){}
+    constructor(private wishlistservice:UserWishlistService, private service:useservice,private location:Location, private router:Router, private userprofile:userprofileservice){}
 
     ngOnInit(): void {
         this.wishlist$ = this.wishlistservice.getwishlist().subscribe({
@@ -41,6 +44,23 @@ export class WishlistComponent implements OnInit,OnDestroy{
                 
             }
         })
+
+        this.userprof$ = this.userprofile.getprofile().subscribe({
+            next: (res) => {
+              if (res.expiry) {
+                alert('session expired or internal error please login');
+                this.service.userlogout();
+              } else {
+                if (res.success) {
+                  this.userdata = res.data;
+                }
+              }
+            },
+            error: (err) => {
+              console.log(err);
+              console.log(err.error.message );
+            },
+          });
     }
     gotopackage(id:any){
         console.log(id);
@@ -69,6 +89,7 @@ export class WishlistComponent implements OnInit,OnDestroy{
 
     ngOnDestroy(): void {
         this.wishlist$?.unsubscribe()
+        this.userprof$?.unsubscribe()
     }
 
 }

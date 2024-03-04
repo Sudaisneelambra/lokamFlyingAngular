@@ -14,10 +14,10 @@
     </div>
   
   <section class="love w-full h-screen flex">
-    <div class="sin w-[25%] h-full md:space-y-1 overflow-auto">
+    <div class="sin w-[25%] h-full md:space-y-1 ">
       <ng-container *ngIf="places && places.length>0; else noplace">
         <div
-        class="place w-full h-[100px] flex"
+        class="place w-full h-[100px] flex cursor-pointer"
         *ngFor="let pls of places; let i = index"
         (click)="singleplace(pls?._id)"
       >
@@ -30,7 +30,7 @@
           >
             {{ pls?.placeName | uppercase }}
           </h1>
-          <h1>{{pls?.location}}</h1>
+          <h1 class="location">{{pls?.location}}</h1>
         </h1>
       </div>
       </ng-container>
