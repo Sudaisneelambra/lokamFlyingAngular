@@ -45,7 +45,6 @@ export class ProfileAdd implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       const id = params['id'];
-      console.log(id);
       if (id) {
         this.profilegetting$ = this.profileservice.getprof(id).subscribe({
           next: (res) => {
@@ -105,10 +104,7 @@ export class ProfileAdd implements OnInit, OnDestroy {
   submit() {
     if (!this.userProfileForm.valid) {
       this.msg = 'form is not valid ,please fill correctly';
-      console.log('validalla');
     } else {
-      console.log('validan');
-      console.log(this.userProfileForm.value);
       this.addprofile$ = this.profileservice
         .postuserdata(this.userProfileForm.value)
         .subscribe({

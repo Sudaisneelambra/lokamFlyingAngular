@@ -71,7 +71,6 @@ export class PackagefullComponent implements OnInit, OnDestroy {
 
 //   get guid api
   guideget(id: any) {
-    console.log(id);
     this.router.navigate([`/agency/guidedetails/${id}`]);
   }
 

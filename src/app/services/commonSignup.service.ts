@@ -70,8 +70,6 @@ export class UserService {
 
   getprofileadd() {
     const one = localStorage.getItem('profileadd');
-    console.log(one);
-    
     if (one) {
       if (one === 'true') {
         return true;

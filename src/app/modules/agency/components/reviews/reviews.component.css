@@ -1,0 +1,7 @@
+.one{
+    overflow-wrap: break-word;
+}
+
+.fa-star.filled {
+    color: yellow; /* Change the color of filled stars as per your design */
+}

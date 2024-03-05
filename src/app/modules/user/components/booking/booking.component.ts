@@ -55,7 +55,6 @@ export class BookingComponent implements OnInit, OnDestroy {
             } else {
               this.singlepackage = res.data[0];
               this.prs = parseInt(this.singlepackage.packagePrice);
-              console.log(this.singlepackage);
             }
           },
           error: (err) => {
@@ -96,7 +95,6 @@ export class BookingComponent implements OnInit, OnDestroy {
   }
 
   edit(id: any) {
-    console.log(id);
     this.router.navigate(['/user/profileadd'], { queryParams: { id } });
   }
 
@@ -124,8 +122,6 @@ export class BookingComponent implements OnInit, OnDestroy {
             this.service.userlogout();
           } else {
             if (res.already) {
-              console.log('manjumbmal boys');
-
               this.message = res.message;
               setTimeout(() => {
                 this.message = '';
@@ -138,8 +134,6 @@ export class BookingComponent implements OnInit, OnDestroy {
                     this.service.userlogout();
                   } else {
                     this.orderid = res.id;
-                    console.log(this.orderid);
-                    console.log(res);
                     this.initiatePayment();
                   }
                 },

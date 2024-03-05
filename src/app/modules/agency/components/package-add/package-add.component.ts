@@ -84,7 +84,6 @@ export class PackageAddComponent implements OnInit, OnDestroy {
     // getting queryparams
     this.route.queryParams.subscribe((params) => {
       this.id = params['id'];
-      console.log('ID from query params:', this.id);
       if (this.id) {
         // deleting place from database
         this.singlePackage$ = this.packageservice
@@ -282,10 +281,6 @@ export class PackageAddComponent implements OnInit, OnDestroy {
     const index = this.selectedGuides.findIndex(
       (selectedGuide) => selectedGuide.id === guide._id
     );
-    console.log(this.selectedGuides);
-    
-    console.log(index);
-
     if (index > -1) {
       // If the guide is already selected, remove it from the selectedGuides array
       this.selectedGuides.splice(index, 1);

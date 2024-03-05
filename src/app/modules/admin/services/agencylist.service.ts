@@ -18,11 +18,9 @@ export class agencylist {
   }
 
   agencyblock(id:any):Observable<any>{
-    console.log(id);
     return this.http.post(`${this.api}/admin/agencyblock`,{id})
   }
   agencyunblock(id:any):Observable<any>{
-    console.log(id);
     return this.http.post(`${this.api}/admin/agencyunblock`,{id})
   }
 
@@ -32,7 +30,6 @@ export class agencylist {
   }
 
   getagencyfulldetais(id:any):Observable<any>{
-    console.log(id);
     return this.http.get(`${this.api}/admin/getagencyfulldetais/${id}`)
   }
 

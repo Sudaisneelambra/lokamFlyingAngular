@@ -29,8 +29,6 @@ export class StrictDeleteGuid implements OnDestroy{
           this.agencyservice.agencylogout();
         } else {
           if (res.success) {
-            console.log('strictly confirmed and deleted');
-  
             setTimeout(() => {
               this.router.navigate(['/agency/home']);
             }, 1000);

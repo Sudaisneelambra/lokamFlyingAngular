@@ -33,7 +33,6 @@ export class WishlistComponent implements OnInit,OnDestroy{
                   } else {
                     if(res.success){
                         this.wishitem=res.data
-                        console.log(this.wishitem);
                     } else{
                         console.log(res.message);  
                     }
@@ -63,8 +62,6 @@ export class WishlistComponent implements OnInit,OnDestroy{
           });
     }
     gotopackage(id:any){
-        console.log(id);
-        
         this.router.navigate(['/user/singlepackage',id])
     }
 

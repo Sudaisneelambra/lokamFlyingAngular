@@ -19,8 +19,7 @@ export class WebSiteReview implements OnInit, OnDestroy{
     ngOnInit(): void {
         this.review$ = this.service.gettingpagereview().subscribe({
             next:(res)=>{
-                this.reviewdata=res.data   
-                console.log(this.reviewdata);
+                this.reviewdata=res.data
             },
             error:(err)=>{
                 console.log(err);

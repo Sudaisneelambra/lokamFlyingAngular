@@ -29,11 +29,7 @@ export class Packages implements OnInit, OnDestroy{
                     alert('session expired or internal error please login')
                     this.service.agencylogout()
                    } else{
-                    console.log(res);
-                    
                         this.package = res.data;
-                        console.log(this.package);
-                        
                    }
             },
             error:(err)=>{
@@ -42,13 +38,11 @@ export class Packages implements OnInit, OnDestroy{
         })
     }
     
-    blockpackage(id:any){
-        console.log('block');        
+    blockpackage(id:any){     
         this.modalview=true
         this.blockid =id
     }
     unblockpackage(id:any){
-        console.log('unbloc');
         this.modalviewun=true
         this.unblockid=id
     }

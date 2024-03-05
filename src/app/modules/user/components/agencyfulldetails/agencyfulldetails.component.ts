@@ -86,7 +86,6 @@ export class AgencyFulldetailsComponent{
               this.service.userlogout();
             } else {
               if(res.success){
-                console.log(res);
                 this.fullreview=res.data
               } else {
                 console.log(res.message);
@@ -185,9 +184,7 @@ export class AgencyFulldetailsComponent{
     }
 
     rating(event: any) {
-      this.rate = event;
-      console.log(this.rate);
-      
+      this.rate = event; 
     }
 
     review(value: any) {
@@ -197,7 +194,6 @@ export class AgencyFulldetailsComponent{
     submitreview(id:any){
       if (this.reviewdata !== '' && this.rate > 0) {
         const data = { rating: this.rate, comment: this.reviewdata ,agencyid: id};
-        console.log(data);
         this.profile$ = this.profileservice.getprofile().subscribe({
           next: (res) => {
             if (res.expiry) {

@@ -24,7 +24,6 @@ export class guidescomponent implements OnInit, OnDestroy {
         } else {
           if (res.success) {
             this.guides = res.data;
-            console.log(this.guides);
           }
         }
       },

@@ -27,7 +27,6 @@ export class UserList implements OnInit,OnDestroy{
                     this.service.agencylogout()
                    } else{
                        this.data=res.userlist
-                       console.log(this.data);
                     }
             },
             error:(err)=>{

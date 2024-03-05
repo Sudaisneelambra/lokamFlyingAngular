@@ -34,7 +34,6 @@ export class FooterComponent implements OnInit, OnDestroy {
         } else {
           if(res.success){
             this.fullreview=res.data
-            console.log(this.fullreview);
           } else {
             console.log(res.message);
             
@@ -68,7 +67,6 @@ export class FooterComponent implements OnInit, OnDestroy {
   submitreview() {
     if (this.reviewdata !== '' && this.rate > 0) {
       const data = { rating: this.rate, comment: this.reviewdata };
-      console.log(data);
       this.profile$ = this.profileservice.getprofile().subscribe({
         next: (res) => {
           if (res.expiry) {

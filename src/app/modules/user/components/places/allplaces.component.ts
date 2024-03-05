@@ -22,7 +22,6 @@ export class AllPlacesComponent implements OnInit,OnDestroy{
     ngOnInit(): void {
 
       this.bool=true
-        console.log(this.router.url);
         
         setTimeout(() => {
           this.bool=false
@@ -41,7 +40,6 @@ export class AllPlacesComponent implements OnInit,OnDestroy{
                 if (res.success) {
                   this.data=res.data
                   this.places =  this.data;
-                  console.log(this.places);
                 } else {
                   console.log(res.message);
                 }

@@ -21,7 +21,6 @@ export class DeleteConformation implements OnInit ,OnDestroy{
   placedelete$ = new Subscription()
 
   ngOnInit(): void {
-    console.log(this.id);
   }
 
   @Output() daleteconformationdelete = new EventEmitter();

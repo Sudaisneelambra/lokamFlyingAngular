@@ -28,7 +28,6 @@ export class guidesComponent implements OnInit, OnDestroy{
                     if(res.success){
                         this.guide=res.data
                         this.data=res.data
-                        console.log(this.guide);
                         this.agencies=res.data
                         
                     } else{
@@ -45,7 +44,6 @@ export class guidesComponent implements OnInit, OnDestroy{
     }
 
     filtering(event:any){
-        console.log(event);
         if(event=='all'){
             this.guide=this.data
         } else{
@@ -57,7 +55,7 @@ export class guidesComponent implements OnInit, OnDestroy{
     }
 
     searching(query:any){
-        
+
         if (query.trim() !== '') {
           this.guide = this.guide.filter((guid:any)=>{
            return  guid.guidename.toLowerCase().includes(query.toLowerCase())

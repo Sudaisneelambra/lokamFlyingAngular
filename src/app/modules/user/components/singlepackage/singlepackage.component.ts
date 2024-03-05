@@ -63,7 +63,6 @@ export class SinglePackegeComponent implements OnInit, OnDestroy {
                     }
                   }
                 }
-                console.log(this.result);
               }
             },
             error: (err) => {

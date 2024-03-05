@@ -38,8 +38,6 @@ export class userblockconformation implements OnDestroy {
           alert('session expired or internal error please login');
           this.service.agencylogout();
         } else {
-          console.log(res);
-
           if (res.success) {
             this.message = res.message;
             setTimeout(() => {

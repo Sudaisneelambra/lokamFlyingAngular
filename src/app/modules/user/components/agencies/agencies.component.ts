@@ -27,8 +27,6 @@ export class AgneciesComponent implements OnInit, OnDestroy{
               } else {
                 if (res.success) {
                   this.agencies = res.data;
-                  console.log(this.agencies);
-                  
                 } else {
                   console.log(res.message);
                 }

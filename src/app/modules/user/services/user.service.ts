@@ -18,8 +18,6 @@ export class useservice {
    // logout and token delete
    userlogout(){
     const one = localStorage.getItem('token');
-    console.log(one);
-
     localStorage.clear()
     this.router.navigate(['/authentication'])
     

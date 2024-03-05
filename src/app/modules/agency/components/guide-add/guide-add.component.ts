@@ -104,7 +104,6 @@ export class GuideAddComponent implements OnInit, OnDestroy {
                 }, 2000);
               } else {
                 this.message = data.message;
-                console.log(this.message);
               }
             }
           },
@@ -140,7 +139,6 @@ export class GuideAddComponent implements OnInit, OnDestroy {
         const data = this.guideForm.value;
 
         const formdata = new FormData();
-        console.log(this.guideForm.value);
         formdata.append('guidename', data.guideName);
         formdata.append('aboutguide', data.aboutGuide);
         formdata.append('experience', data.experience);
@@ -169,7 +167,7 @@ export class GuideAddComponent implements OnInit, OnDestroy {
             }
           },
           error: (err) => {
-            console.log('minnan');
+            console.log(err);
           },
         });
       }

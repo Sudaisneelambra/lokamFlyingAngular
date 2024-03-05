@@ -88,7 +88,6 @@ export class PlaceAddComponent implements OnInit, OnDestroy {
   onSubmit() {
     if (this.selectedImages.length < 5) {
       this.message = 'please select minimum and maximum 5photos';
-      console.log('loggg');
     } else if (this.placeForm.valid) {
       const formData = new FormData();
       formData.append('placeName', this.placeForm.value.placeName);

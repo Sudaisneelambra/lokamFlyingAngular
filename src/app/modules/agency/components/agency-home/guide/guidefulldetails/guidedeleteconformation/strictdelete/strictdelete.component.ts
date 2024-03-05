@@ -22,8 +22,6 @@ export class StrictDelete {
         this.placeservice.packageplacedelete(this.id).subscribe({
             next: (res) => {
                 if (res.success) {
-                    console.log('strictly confirmed and deleted');
-                    
                   setTimeout(() => {
                     this.router.navigate(['/agency/home']);
                   }, 1000);

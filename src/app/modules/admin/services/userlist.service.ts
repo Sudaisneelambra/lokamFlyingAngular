@@ -18,12 +18,10 @@ export class userlist {
   }
 
   userblock(id:any):Observable<any>{
-    console.log(id);
     return this.http.post(`${this.api}/admin/blockuser`,{id})
   }
 
   userunblock(id:any):Observable<any>{
-    console.log(id);
     return this.http.post(`${this.api}/admin/unblockuser`,{id})
   }
 

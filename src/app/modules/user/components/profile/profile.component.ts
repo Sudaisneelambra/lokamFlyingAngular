@@ -30,7 +30,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         } else {
           if (res.success) {
             this.data = res.data;
-            console.log(this.data);
           }
         }
       },

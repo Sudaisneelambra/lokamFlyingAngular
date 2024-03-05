@@ -17,7 +17,7 @@ export class ReviewComponent implements OnInit,OnDestroy{
     ngOnInit(): void {
         this.review$ =this.agencycommon.getreview().subscribe({
             next:(res)=>{
-                console.log(res);
+                this.reviewdata = res.data
             },
             error:(err)=>{
                 console.log(err);

@@ -37,7 +37,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
         } else {
           if (res.success) {
             this.packages = res.data;
-            console.log(this.packages);
           } else {
             console.log(res.message);
           }
@@ -56,7 +55,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
         } else {
           if (res.success) {
             this.places = res.data;
-            console.log(this.places);
           } else {
             console.log(res.message);
           }
