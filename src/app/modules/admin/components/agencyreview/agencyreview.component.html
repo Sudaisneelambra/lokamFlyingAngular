@@ -1,0 +1,35 @@
+<div class=" flex justify-center items-center min-h-screen md:p-10">
+    <div class=" w-[100%] px-10 flex flex-col gap-2 p-5 bg-gray-800 text-white">
+        <h1 class="py-5 text-lg">Agency Reviews</h1>
+        <!-- Item Container -->
+        <div class="flex flex-col gap-3 mt-1" *ngFor="let dt of reviewdata">
+            <div class="flex flex-col gap-4 bg-gray-700 p-4">
+                <!-- Profile and Rating -->
+                <div class="flex justify justify-between">
+                    <div class="flex gap-2">
+                        <div class="w-7 h-7 text-center rounded-full bg-yellow-500">{{dt?.userdetails[0]?.username[0] | uppercase}}</div>
+                        <span>{{dt?.userdetails[0]?.username}}</span>
+                    </div>
+                </div>
+            
+                <div class="one">
+                    {{dt?.comment}}
+                </div>
+                <p class="flex justify-between items-center  w-[200px]">
+                    rating :- <i class="fa-solid fa-star" 
+                    *ngFor="let b of [1,2,3,4,5] ;let i =index"
+                    [ngClass]="{'filled': i < dt?.rating}"
+                    ></i>
+                </p>
+
+                <div class="one font-bold text-[red]">
+                    about : {{dt?.agencydetails[0]?.name}}
+                </div>
+                <div class="flex justify-between">
+                    <span>{{dt?.date?.split("T")[0]}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>

@@ -31,6 +31,8 @@ export class AgencyMainHome implements DoCheck{
  
     this.service.findprofilecollection().subscribe({
       next:(res)=>{
+        console.log(res.profileadd);
+        
         this.profileckecks=res.profileadd
         
       },
@@ -79,9 +81,9 @@ export class AgencyMainHome implements DoCheck{
 
   ngDoCheck() {
     if(this.router.url !== '/agency/home' && this.router.url !== '/agency/profileadd'){
-      
       if(!this.profileckecks){
-        
+        console.log(this.profileckecks);  
+      
         this.router.navigate(['/agency/profileadd'])
       }
     }

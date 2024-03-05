@@ -28,4 +28,8 @@ export class admincommon {
     return this.http.get(`${this.api}/admin/getallbooking`)
   }
 
+  getallagencyreview():Observable<any>{
+    return this.http.get(`${this.api}/admin/getallagencyreview`)
+  }
+
 } 

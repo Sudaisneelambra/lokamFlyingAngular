@@ -68,3 +68,12 @@ body{
         font-size: 5px !important;
     }
 }
+
+@media(max-width:400px){
+    .one{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}

@@ -3,7 +3,7 @@
   <div
     class="agencies w-full overflow-auto flex gap-x-16 px-10 pb-10 pt-3 h-[350px]"
   >
-    <div class="agency min-w-[225px] flex items-end relative cursor-pointer"*ngFor="let data of agency">
+    <div class="agency min-w-[225px] flex items-end relative cursor-pointer"*ngFor="let data of agency" (click)="gotopackage(data._id)">
       <img src="{{data?.logo_url}}" alt="" class="absolute h-full">
       <div class="agency-about w-full h-[35%] pl-4 space-y-1 z-10">
         <h1 class="font-bold text-white text-[20px] mt-2">{{data?.name | uppercase}}</h1>

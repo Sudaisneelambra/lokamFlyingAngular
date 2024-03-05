@@ -14,6 +14,7 @@ export class guidesComponent implements OnInit, OnDestroy{
     data:any
     gude$ = new Subscription()
     agencies:any
+    lengths:any
     
     constructor(private service:useservice){}
 
@@ -45,7 +46,6 @@ export class guidesComponent implements OnInit, OnDestroy{
 
     filtering(event:any){
         console.log(event);
-        
         if(event=='all'){
             this.guide=this.data
         } else{
@@ -57,14 +57,15 @@ export class guidesComponent implements OnInit, OnDestroy{
     }
 
     searching(query:any){
-      
+        
         if (query.trim() !== '') {
-          
           this.guide = this.guide.filter((guid:any)=>{
            return  guid.guidename.toLowerCase().includes(query.toLowerCase())
             
           })
         } else{
+            console.log('min');
+            
           this.guide=this.data
         }
       }

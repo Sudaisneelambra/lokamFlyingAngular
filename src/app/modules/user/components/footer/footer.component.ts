@@ -17,6 +17,7 @@ export class FooterComponent implements OnInit, OnDestroy {
   profile$ = new Subscription();
   reviewget$ = new Subscription();
   emty=''
+  bool=true
 
   constructor(
     private service: useservice,
@@ -47,6 +48,15 @@ export class FooterComponent implements OnInit, OnDestroy {
     })
 
   }
+
+  fullreviewagency(){
+    if(this.bool){
+      this.bool=false
+    } else{
+      this.bool=true
+    }
+  }
+
   rating(event: any) {
     this.rate = event;
   }

@@ -24,6 +24,8 @@ import { packagefulldetails } from "./components/packagefulldetails/packagefulld
 import { guidedetails } from "./components/guidedetails/guidedetails.component";
 import { placedetails } from "./components/placedetails/placedetails.component";
 import { BookingComponent } from "./components/bookingdetails/bookingdetails.component";
+import { AgencyReviewComponent } from "./components/agencyreview/agencyreview.component";
+import { WebSiteReview } from "./components/sitereview/sitereview.component";
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { BookingComponent } from "./components/bookingdetails/bookingdetails.com
         packagefulldetails,
         guidedetails,
         placedetails,
-        BookingComponent
+        BookingComponent,
+        AgencyReviewComponent,
+        WebSiteReview
     ],
     imports:[CommonModule,AgencyRoutes,HttpClientModule],
     providers:[]

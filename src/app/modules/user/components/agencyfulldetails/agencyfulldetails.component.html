@@ -185,5 +185,62 @@
         </div>
     </div>
 
+    <div class="w-[90%] h-full flex flex-col shadow-md bg-[#1e1522b9] rounded-md">
+      <h1 for="textInput" class="text-[white] font-bold text-center text-[30px]">Reviews</h1>
+      <div class="kin py-2  w-full flex items-center justify-around">
+        <div class="lin flex">
+          <input type="text" id="textInput" name="textInput" class="p-[6px] rounded-sm mr-3" placeholder="put the review" [(ngModel)]="emty" (keyup)="review(reviews.value)" #reviews>
+          <app-starrating (rate)="rating($event)"></app-starrating>
+        </div>
+        <button (click)="submitreview(singleagencydata?._id)" class="!px-3 !py-1 mt-4">Submit</button>
+      </div>
+
+      <div class="w-full p-5 flex justify-center flex-wrap gap-4 h-[200px] border-2" *ngIf="fullreview && fullreview?.length>0 && boolean">
+        <ng-container *ngIf="fullreview && fullreview?.length>0">
+          <div class=""  *ngFor="let dt of fullreview.slice(0, 3)">
+            <div class="rev min-w-[200px] max-w-[200px] h-full flex-wrap"> 
+              <p class="font-semibold">{{dt?.userdetails[0]?.username}}</p>
+            <p class="flex justify-between items-center">
+              rating :- <i class="fa-solid fa-star" 
+              *ngFor="let b of [1,2,3,4,5] ;let i =index"
+              [ngClass]="{'filled': i < dt?.rating}"
+              ></i>
+            </p>
+              <p class="para">{{dt?.comment}}</p> 
+              <div class="chat-discription w-full">
+                <p class="text-[13px] mt-2">{{dt?.date?.split("T")[0]}}</p>
+              </div>
+             
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <p class="text-center cursor-pointer mb-1 hover:text-red-600" (click)="fullreviewagency()" *ngIf="fullreview?.length>0 && boolean">View more..</p>
+      <p class="text-center cursor-pointer mb-1 hover:text-red-600" (click)="fullreviewagency()" *ngIf="fullreview?.length>0 && !boolean">Show less..</p>
+      <div class="shah w-full p-5 flex justify-center flex-wrap gap-4 h-[200px] overflow-auto" *ngIf="!boolean">
+        <ng-container *ngIf="fullreview && fullreview?.length>0">
+          <div class=""  *ngFor="let dt of fullreview">
+            <div class="rev min-w-[200px] max-w-[200px] h-full flex justify-between flex-col"> 
+              <p class="font-semibold">{{dt?.userdetails[0]?.username}}</p>
+            <p class="flex justify-between items-center">
+              rating :- <i class="fa-solid fa-star" 
+              *ngFor="let b of [1,2,3,4,5] ;let i =index"
+              [ngClass]="{'filled': i < dt?.rating}"
+              ></i>
+            </p>
+              <div class="chat-discription w-full">
+                <p class="para text-[13px]">{{dt?.comment}}</p>
+              </div>
+              <div class="chat-discription w-full">
+                <p class="text-[13px] mt-2">{{dt?.date?.split("T")[0]}}</p>
+              </div>
+             
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+
+    </div>
   </div>
 </div>

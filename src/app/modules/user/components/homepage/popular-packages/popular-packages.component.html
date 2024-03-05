@@ -6,7 +6,7 @@
     <ng-container *ngIf="package">
       <div
         class="package min-w-[400px] h-[400px] cursor-pointer"
-        *ngFor="let data of package"
+        *ngFor="let data of package.slice(0,5)"
         (click)="singlepackage(data?._id)"
       >
         <div class="package-image h-[65%] w-full"></div>

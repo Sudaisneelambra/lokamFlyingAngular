@@ -21,6 +21,14 @@ export class agencyService {
     return this.http.get(`${this.api}/agency/profileckeck`)
   }
 
+  getbooking():Observable<any>{
+    return this.http.get(`${this.api}/agency/getbooking`)
+  }
+
+  getreview():Observable<any>{
+    return this.http.get(`${this.api}/agency/getreview`)
+  }
+
   // logout and token delete
   agencylogout(){
     const one = localStorage.getItem('token');

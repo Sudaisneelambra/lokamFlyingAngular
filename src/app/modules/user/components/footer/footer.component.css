@@ -41,6 +41,7 @@ button{
     box-shadow: 0px 0px 4px 0px gray;
     padding: 10px;
     border-radius: 10px;
+    margin-top: 5px;
 }
 .btn{
     height: 30px;
@@ -53,4 +54,9 @@ button{
 
 .fa-star.filled {
     color: yellow; /* Change the color of filled stars as per your design */
+}
+
+.shah::-webkit-scrollbar{
+    width: 10px;
+
 }

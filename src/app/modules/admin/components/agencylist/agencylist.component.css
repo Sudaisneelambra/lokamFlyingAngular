@@ -19,8 +19,8 @@ body{
     z-index: -1;
     bottom: 14px;
     box-shadow: 0 16px 5px rgba(0,0,0,.04);
-    max-width: 90%;
-    width: 90%;
+    max-width: 100%;
+    width: 100%;
     height: 50px;
     left: 1px;
 }
@@ -67,4 +67,13 @@ body{
     .sin {
         font-size: 5px !important;
     }
+    .one{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+    }
+}
+.min{
+    overflow-wrap: break-word;
 }

@@ -44,8 +44,16 @@ export class useservice {
     return this.http.post(`${this.userapi}/user/reviewandrating`,{data})
   }
 
+  agencyreview(data:any):Observable<any>{
+    return this.http.post(`${this.userapi}/user/agencyreview`,{data})
+  }
+
   gettingpagereview():Observable<any>{
     return this.http.get(`${this.userapi}/user/gettingpagereview`)
+  }
+
+  getingagencyreview(id:any):Observable<any>{
+    return this.http.get(`${this.userapi}/user/getingagencyreview/${id}`)
   }
 
   getguide():Observable<any>{

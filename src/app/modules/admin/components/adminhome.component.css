@@ -147,7 +147,6 @@ height: calc(100vh - 70px);
 width: 100%; 
 overflow-y: scroll; 
 overflow-x: hidden; 
-padding: 40px 30px 30px 30px; 
 } 
 
 .main::-webkit-scrollbar-thumb { 
@@ -168,6 +167,7 @@ align-items: center;
 flex-wrap: wrap; 
 gap: 10px; 
 margin-bottom: 30px;
+margin-top: 30px;
 } 
 .nav { 
 min-height: 91vh; 
@@ -414,10 +414,7 @@ border-radius: 4px;
     } 
     .searchbar { 
         display: none; 
-    } 
-    .main { 
-        padding: 40px 30px 30px 30px; 
-    } 
+    }
     .searchbar2 { 
         width: 100%; 
         display: flex; 

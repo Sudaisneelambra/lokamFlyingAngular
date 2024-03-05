@@ -9,6 +9,8 @@ import { PlaceFulldetails } from '../components/agency-home/places/placesfulldet
 import { AgencyMainHome } from '../components/home.component';
 import { GuideFulldetailes } from '../components/agency-home/guide/guidefulldetails/guidefulldetails.component';
 import { PackagefullComponent } from '../components/agency-home/package/packagefulldetails/packagefulldetails.component';
+import { BookingComponent } from '../components/bookindetails/bookindetails.component';
+import { ReviewComponent } from '../components/reviews/reviews.component';
 
 const routes: Routes = [
   {
@@ -46,6 +48,14 @@ const routes: Routes = [
         {
           path:'packagedetails/:id',
           component:PackagefullComponent
+        },
+        {
+          path:'bookingdetails',
+          component:BookingComponent
+        },
+        {
+          path:'review',
+          component:ReviewComponent
         },
     ]
   },

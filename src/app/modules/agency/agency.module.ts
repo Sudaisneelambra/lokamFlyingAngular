@@ -26,6 +26,8 @@ import { PackageDeleteConformation } from './components/agency-home/package/pack
 import { PackageEditConfirmationComponent } from './components/agency-home/package/packagefulldetails/packageeditconfirmation/packageeditconfirmation.component';
 import { StrictDelete } from './components/agency-home/places/placesfulldetails/deleteconformation/strictdelete/strictdelete.component';
 import { StrictDeleteGuid } from './components/agency-home/guide/guidefulldetails/guidedeleteconformation/strictdeleteguid/strictdeleteguid.component';
+import { BookingComponent } from './components/bookindetails/bookindetails.component';
+import { ReviewComponent } from './components/reviews/reviews.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { StrictDeleteGuid } from './components/agency-home/guide/guidefulldetail
     PackageDeleteConformation,
     PackageEditConfirmationComponent,
     StrictDelete,
-    StrictDeleteGuid
+    StrictDeleteGuid,
+    BookingComponent,
+    ReviewComponent
     ],
   imports: [CommonModule,AgencyRoutes, ReactiveFormsModule, HttpClientModule, FormsModule],
   exports: [],

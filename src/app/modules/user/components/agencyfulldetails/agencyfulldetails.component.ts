@@ -7,6 +7,7 @@ import { Location } from "@angular/common";
 import { UserAgencyService } from "../../services/agencyservice.service";
 import { PlaceService } from "src/app/modules/agency/services/place.service";
 import { UserPackageService } from "../../services/packageservice.service";
+import { userprofileservice } from "../../services/profile.service";
 
 @Component({
     selector:'app-agencydetails',
@@ -32,6 +33,14 @@ export class AgencyFulldetailsComponent{
     package$= new Subscription()
     data: any;
     packagedata: any;
+    rate: any;
+    reviewdata: any;
+    emty=''
+    profile$ = new Subscription();
+    review$ =new Subscription();
+    reviewget$= new Subscription();
+    fullreview: any;
+    boolean=true
 
   
     // constructor for injecting services
@@ -42,7 +51,8 @@ export class AgencyFulldetailsComponent{
       private router: Router,
       private route: ActivatedRoute,
       private placeservice:UserPlaceService,
-      private packageservice:UserPackageService
+      private packageservice:UserPackageService,
+      private profileservice:userprofileservice
     ) {}
   
   
@@ -58,8 +68,7 @@ export class AgencyFulldetailsComponent{
               this.service.userlogout()
             } else {
               this.singleagencydata = res.data[0];
-              this.images = res.data[0].file_urls;
-              console.log(res.data);
+                this.images = res.data[0].file_urls;
               
             }
           },
@@ -67,6 +76,30 @@ export class AgencyFulldetailsComponent{
             this.router.navigate(['/error']);
           },
         });
+
+        // review
+
+        this.reviewget$ = this.service.getingagencyreview(id).subscribe({
+          next:(res)=>{
+            if (res.expiry) {
+              alert('session expired please login');
+              this.service.userlogout();
+            } else {
+              if(res.success){
+                console.log(res);
+                this.fullreview=res.data
+              } else {
+                console.log(res.message);
+                
+              }
+            }
+          },
+          error:(err)=>{
+            console.log(err);
+            
+          }
+        })
+  
 
             // all place getting api
     this.placeSubscription$ = this.placeservice.getplace(id).subscribe({
@@ -92,7 +125,6 @@ export class AgencyFulldetailsComponent{
           this.service.userlogout()
         } else {
           this.packagedata = res.data;
-          console.log(this.packagedata);
         }
         
       },
@@ -110,7 +142,16 @@ export class AgencyFulldetailsComponent{
         this.auto();
       }
 
+      
   
+    }
+
+    fullreviewagency(){
+      if(this.boolean){
+        this.boolean=false
+      } else{
+        this.boolean=true
+      }
     }
 
     gotoplace(id:any){
@@ -140,6 +181,63 @@ export class AgencyFulldetailsComponent{
         this.selectedIndex = 0;
       } else {
         this.selectedIndex++;
+      }
+    }
+
+    rating(event: any) {
+      this.rate = event;
+      console.log(this.rate);
+      
+    }
+
+    review(value: any) {
+      this.reviewdata = value;
+    }
+
+    submitreview(id:any){
+      if (this.reviewdata !== '' && this.rate > 0) {
+        const data = { rating: this.rate, comment: this.reviewdata ,agencyid: id};
+        console.log(data);
+        this.profile$ = this.profileservice.getprofile().subscribe({
+          next: (res) => {
+            if (res.expiry) {
+              alert('session expired please login');
+              this.service.userlogout();
+            } else {
+              this.review$ = this.service.agencyreview(data).subscribe({
+                next: (res) => {
+                  if (res.expiry) {
+                    alert('session expired please login');
+                    this.service.userlogout();
+                  } else {
+                    if (res.success) {
+                      alert(res.message);
+                      this.emty=''
+                      this.service.starfilling.next(0)
+                       setTimeout(() => {
+                        this.router.navigateByUrl('/user',{skipLocationChange: true}).then(()=>{
+                          this.router.navigate(['/user/agencyfulldetails/',id])
+                        })
+                        }, 2000);
+                    } else {
+                      alert(res.message);
+                    }
+                  }
+                },
+                error: (err) => {
+                  console.log(err);
+                },
+              });
+            }
+          },
+          error: (err) => {
+            this.emty=''
+            this.service.starfilling.next(0)
+            this.router.navigate(['/user/profileadd']);
+          },
+        });
+      } else {
+        alert('write review and rate ');
       }
     }
   

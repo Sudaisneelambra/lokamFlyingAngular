@@ -51,6 +51,14 @@ export class AdminHome {
     this.router.navigate(['/admin/bookingdetails'])
   }
 
+  gotoagencyreview(){
+    this.router.navigate(['/admin/agencyreview'])
+  }
+
+  gotopagereview(){
+    this.router.navigate(['/admin/pagereview'])
+  }
+
   logout(){
     const confirm = window.confirm('are you sure to logout')
    if(confirm){

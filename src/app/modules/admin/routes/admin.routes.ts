@@ -14,6 +14,8 @@ import { packagefulldetails } from "../components/packagefulldetails/packagefull
 import { guidedetails } from "../components/guidedetails/guidedetails.component";
 import { placedetails } from "../components/placedetails/placedetails.component";
 import { BookingComponent } from "../components/bookingdetails/bookingdetails.component";
+import { AgencyReviewComponent } from "../components/agencyreview/agencyreview.component";
+import { WebSiteReview } from "../components/sitereview/sitereview.component";
 
 
 const routes: Routes = [
@@ -72,6 +74,14 @@ const routes: Routes = [
         {
             path:'bookingdetails',
             component:BookingComponent
+        },
+        {
+            path:'agencyreview',
+            component:AgencyReviewComponent
+        },
+        {
+            path:'pagereview',
+            component:WebSiteReview
         },
       ]
     },

@@ -27,20 +27,54 @@
       </div>
     </div>
   </div>
-  <div class="review w-[90%] flex justify-center gap-5 px-3 flex-wrap mt-5">
-    <div class="rev min-w-[200px] max-w-[200px] h-full" *ngFor="let dt of fullreview">
-      <p class="font-semibold">{{dt?.userdetails[0]?.username}}</p>
-      <div class="chat-discription w-full">
-        <p class="text-[13px]">{{dt?.comment}}</p>
+  
+  <ng-container *ngIf="bool">
+    <div class="shah w-full  my-2" *ngIf="fullreview && fullreview.length>0">
+      <div class="review w-[90%] flex justify-center gap-5 px-3 flex-wrap ">
+        <div class="rev min-w-[200px] max-w-[200px] flex flex-col justify-between " *ngFor="let dt of fullreview.slice(0,3)">
+          <p class="font-semibold">{{dt?.userdetails[0]?.username}}</p>
+          <div class="chat-discription w-full">
+            <p class="text-[13px]">{{dt?.comment}}</p>
+          </div>
+          <p class="flex justify-between items-center">
+            rating :- <i class="fa-solid fa-star" 
+            *ngFor="let b of [1,2,3,4,5] ;let i =index"
+            [ngClass]="{'filled': i < dt?.rating}"
+            ></i>
+          </p>
+          <div class="chat-discription w-full">
+            <p class="text-[13px] mt-2">{{dt?.date?.split("T")[0]}}</p>
+          </div>
+        </div>
       </div>
-      <p class="flex justify-between items-center">
-        rating :- <i class="fa-solid fa-star" 
-        *ngFor="let b of [1,2,3,4,5] ;let i =index"
-        [ngClass]="{'filled': i < dt?.rating}"
-        ></i>
-      </p>
     </div>
-  </div>
+  </ng-container>
+
+  <p class="text-center cursor-pointer mb-1 hover:text-red-600" (click)="fullreviewagency()" *ngIf="fullreview?.length>0 && bool">View more..</p>
+      <p class="text-center cursor-pointer mb-1 hover:text-red-600" (click)="fullreviewagency()" *ngIf="fullreview?.length>0 && !bool">Show less..</p>
+
+  <ng-container *ngIf="!bool">
+    <div class="shah w-full h-[200px] overflow-auto  flex justify-center !my-2" *ngIf="fullreview && fullreview.length>0">
+      <div class="review w-[90%] flex justify-center gap-5 px-3 flex-wrap ">
+        <div class="rev min-w-[200px] max-w-[200px]  flex flex-col justify-between" *ngFor="let dt of fullreview">
+          <p class="font-semibold">{{dt?.userdetails[0]?.username}}</p>
+          <div class="chat-discription w-full">
+            <p class="text-[13px]">{{dt?.comment}}</p>
+          </div>
+          <p class="flex justify-between items-center">
+            rating :- <i class="fa-solid fa-star" 
+            *ngFor="let b of [1,2,3,4,5] ;let i =index"
+            [ngClass]="{'filled': i < dt?.rating}"
+            ></i>
+          </p>
+          <div class="chat-discription w-full">
+            <p class="text-[13px] mt-2">{{dt?.date?.split("T")[0]}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
   <div class="w-[90%] flex justify-center gap-4 mt-4">
     <p class="text-[10px]">
       <i class="pr-1 fa-brands fa-whatsapp"></i>whatsapp

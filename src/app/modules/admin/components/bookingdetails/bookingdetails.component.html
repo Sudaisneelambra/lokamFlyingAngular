@@ -1,5 +1,5 @@
-<!-- *ngIf="data && data?.length > 0; else nobooking" -->
-<ng-container >
+
+<ng-container *ngIf="bookings && bookings?.length > 0; else nobooking" >
 <div
       class=" z-10 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700 "
       id="checkout"
@@ -72,54 +72,3 @@
       No booking Found
     </h1>
   </ng-template>
-
-
-  
-  <!-- (click)="gottopackage( dt?.packagedetails[0]?._id)" -->
-  
-
-
-
-  <!-- <div class="lg:w-96 w-full bg-gray-100 h-full">
-    <div
-      class="flex flex-col lg:h-screen h-auto lg:px-8 md:px-7 px-4 lg:py-20 md:py-10 py-6 justify-between overflow-y-auto"
-    >
-      <div>
-        <p
-          class="lg:text-4xl text-3xl font-black leading-9 text-gray-800"
-        >
-          Summary
-        </p>
-        <div class="flex items-center justify-between pt-16">
-          <p class="text-base leading-none text-gray-800">
-            total booking packages
-          </p>
-          <p class="text-base leading-none text-gray-800">
-            {{ 'data.length '}} packages
-          </p>
-        </div>
-        <div class="flex items-center justify-between pt-5">
-          <p class="text-base leading-none text-gray-800">total amount</p>
-          <p class="text-base leading-none text-gray-800">
-            {{ 'totalPrice | currency : "INR"' }}
-          </p>
-        </div>
-      </div>
-      <div>
-        <div class="flex items-center pb-6 justify-between lg:pt-5 pt-20">
-          <p class="text-2xl leading-normal text-gray-800">Total</p>
-          <p
-            class="text-2xl font-bold leading-normal text-right text-gray-800"
-          >
-            {{ 'totalPrice | currency : "INR" '}} (include tax)
-          </p>
-        </div> -->
-        <!-- <button
-          class="text-base leading-none px-5 py-2 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white"
-          (click)="back()"
-        >
-          back
-        </button> -->
-      <!-- </div>
-    </div>
-  </div> -->

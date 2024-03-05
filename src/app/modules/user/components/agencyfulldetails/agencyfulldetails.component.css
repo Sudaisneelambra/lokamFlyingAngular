@@ -413,3 +413,58 @@ body{margin-top:20px;
 .deleted-text{
 text-decoration:line-through;;    
 }
+
+/* review */
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  /* Style for the submit button */
+  button[type="submit"] {
+    /* width: 100%; */
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Hover effect for the submit button */
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  @media(max-width:570px){
+    .kin{
+        flex-direction: column;
+    }
+    .lin{
+        flex-direction: column;
+        align-items: center;
+    }
+  }
+
+  .rev{
+    box-shadow: 0px 0px 4px 0px gray;
+    padding: 10px ;
+    border-radius: 10px;
+}
+
+.para{
+    overflow-wrap: break-word !important;
+ 
+}
+
+.fa-star.filled {
+    color: yellow; /* Change the color of filled stars as per your design */
+}
+
+.shah::-webkit-scrollbar{
+    width: 10px;
+
+}
