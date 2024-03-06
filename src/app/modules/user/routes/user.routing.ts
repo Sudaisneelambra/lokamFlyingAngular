@@ -17,6 +17,7 @@ import { BookingComponent } from '../components/booking/booking.component';
 import { guidesComponent } from '../components/guides/guides.component';
 import { BookingDetailsComponent } from '../components/bookingdetails/bookingdetails.component';
 import { AgencyFulldetailsComponent } from '../components/agencyfulldetails/agencyfulldetails.component';
+import { ChatComponent } from '../components/chat/chat.component';
 
 const routes: Routes = [
   {
@@ -88,6 +89,10 @@ const routes: Routes = [
       {
         path:'agencyfulldetails/:id',
         component:AgencyFulldetailsComponent
+      },
+      {
+        path:'chatcomponent',
+        component:ChatComponent
       },
     ]
   },

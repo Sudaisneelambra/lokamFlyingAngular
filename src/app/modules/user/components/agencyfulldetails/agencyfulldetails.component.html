@@ -195,10 +195,10 @@
         <button (click)="submitreview(singleagencydata?._id)" class="!px-3 !py-1 mt-4">Submit</button>
       </div>
 
-      <div class="w-full p-5 flex justify-center flex-wrap gap-4 h-[200px] border-2" *ngIf="fullreview && fullreview?.length>0 && boolean">
+      <div class="w-full p-5 flex justify-center flex-wrap gap-4 h-[200px]  overflow-auto" *ngIf="fullreview && fullreview?.length>0 && boolean">
         <ng-container *ngIf="fullreview && fullreview?.length>0">
           <div class=""  *ngFor="let dt of fullreview.slice(0, 3)">
-            <div class="rev min-w-[200px] max-w-[200px] h-full flex-wrap"> 
+            <div class="rev min-w-[200px] max-w-[200px] flex justify-between h-full flex-wrap"> 
               <p class="font-semibold">{{dt?.userdetails[0]?.username}}</p>
             <p class="flex justify-between items-center">
               rating :- <i class="fa-solid fa-star" 

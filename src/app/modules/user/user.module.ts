@@ -43,6 +43,7 @@ import { BookingDetailsComponent } from './components/bookingdetails/bookingdeta
 import { AgencyFulldetailsComponent } from './components/agencyfulldetails/agencyfulldetails.component';
 import { placedescriptionPipe } from './pipes/placesescription.pipe';
 import { aboutpackage } from './pipes/aboutpackage.pipe';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { aboutpackage } from './pipes/aboutpackage.pipe';
     BookingDetailsComponent,
     AgencyFulldetailsComponent,
     placedescriptionPipe,
-    aboutpackage
+    aboutpackage,
+    ChatComponent
   ],
   imports: [CommonModule, UserRoutes, HttpClientModule,ReactiveFormsModule,FormsModule,StarRatingModule],
   exports: [],

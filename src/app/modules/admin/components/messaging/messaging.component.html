@@ -1,0 +1,49 @@
+<div class="main h-[500px]">
+    <div class="app  !w-[300px] h-full">
+        <div class="row app-one">
+          <div class="col-sm-8 conversation ">
+            <!-- Heading -->
+            <div class="row heading ">
+              <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
+                <div class="heading-avatar-icon flex  items-center">
+                  <img src="/assets/images/avthar-removebg-preview.png" />
+                  <p class="ml-2 font-bold">{{name}}</p>
+                </div>
+              </div>
+            </div>
+            <!-- Heading End -->
+            <!-- Message Box -->
+            <div class="row message  !h-[85%]" id="conversation">
+            <div class="minu  h-[90%] !overflow-auto">
+              <ng-container *ngFor="let msg of messages">
+                <div class="row message-body">
+                  <div class="col-sm-12" [ngClass]="{'message-main-receiver': msg?.sender == name,'message-main-sender': msg?.sender !== name }">
+                    <div class="" [ngClass]="{'receiver': msg?.sender == name,'sender': msg?.sender !== name }">
+                      <div class="message-text">{{msg.chatdata}}</div>
+                      <span class="message-time " [ngClass]="{'message-time': msg?.sender == name,'message-times': msg?.sender !== name }"> {{msg.date | date: 'shortTime'}} </span>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+
+            </div>
+    
+            <form id="form" action="" class=" w-full flex justify-between items-center mt-[2px]">
+              <input
+                id="input"
+                #val
+                autocomplete="off"
+                [(ngModel)]="newMessage"
+                name="chat"
+                class="py-1  w-[85%] rounded-md ml-2 pl-2"
+                (keyup.enter)="sendMessage()"
+              />
+              <i class="fa-solid fa-paper-plane w-[10%] text-[20px] text-center" (click)="sendMessage()"></i>
+            </form>
+          </div>
+          <!-- Conversation End -->
+        </div>
+        <!-- App One End -->
+      </div>
+    
+</div>

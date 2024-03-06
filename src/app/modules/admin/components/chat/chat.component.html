@@ -1,0 +1,38 @@
+<div class="main h-[500px]">
+    <div class="app  !w-[300px] h-full">
+        <div class="row app-one">
+          <div class="col-sm-8 conversation ">
+            <!-- Heading -->
+            <div class="row heading ">
+              <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
+                <div class="heading-avatar-icon flex  items-center">
+                  <img src="/assets/images/avthar-removebg-preview.png" />
+                  <p class="ml-2 font-bold">Users List</p>
+                </div>
+              </div>
+            </div>
+            <!-- Heading End -->
+            <!-- Message Box -->
+            <div class="row message  !h-[85%]" id="conversation">
+            <div class="minu  h-[90%] !overflow-auto">
+              <ng-container *ngIf="uniquesender && uniquesender?.length>0">
+                <div class="row message-body" *ngFor="let data of uniquesender" (click)="gotomessages(data)">
+                  <div class="col-sm-12 message-main-receiver">
+                    <div class="receiver">
+                      <div class="message-text">{{data}}</div>
+                      <span class="message-time "> click for more </span>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            <!-- Message Box End -->
+            </div>
+    
+            
+          </div>
+          <!-- Conversation End -->
+        </div>
+        <!-- App One End -->
+      </div>
+    
+</div>

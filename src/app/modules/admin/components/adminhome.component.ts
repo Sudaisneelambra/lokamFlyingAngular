@@ -54,6 +54,9 @@ export class AdminHome {
   gotoagencyreview(){
     this.router.navigate(['/admin/agencyreview'])
   }
+  gotomessage(){
+    this.router.navigate(['/admin/chatlist'])
+  }
 
   gotopagereview(){
     this.router.navigate(['/admin/pagereview'])

@@ -16,6 +16,8 @@ import { placedetails } from "../components/placedetails/placedetails.component"
 import { BookingComponent } from "../components/bookingdetails/bookingdetails.component";
 import { AgencyReviewComponent } from "../components/agencyreview/agencyreview.component";
 import { WebSiteReview } from "../components/sitereview/sitereview.component";
+import { MessagingComponent } from "../components/messaging/messaging.component";
+import { ChatList } from "../components/chat/chat.component";
 
 
 const routes: Routes = [
@@ -82,6 +84,14 @@ const routes: Routes = [
         {
             path:'pagereview',
             component:WebSiteReview
+        },
+        {
+            path:'chatlist',
+            component:ChatList
+        },
+        {
+            path:'messages/:name',
+            component:MessagingComponent
         },
       ]
     },

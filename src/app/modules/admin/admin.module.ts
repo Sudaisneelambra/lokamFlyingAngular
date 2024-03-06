@@ -26,6 +26,9 @@ import { placedetails } from "./components/placedetails/placedetails.component";
 import { BookingComponent } from "./components/bookingdetails/bookingdetails.component";
 import { AgencyReviewComponent } from "./components/agencyreview/agencyreview.component";
 import { WebSiteReview } from "./components/sitereview/sitereview.component";
+import { MessagingComponent } from "./components/messaging/messaging.component";
+import { FormsModule } from "@angular/forms";
+import { ChatList } from "./components/chat/chat.component";
 
 
 @NgModule({
@@ -53,9 +56,11 @@ import { WebSiteReview } from "./components/sitereview/sitereview.component";
         placedetails,
         BookingComponent,
         AgencyReviewComponent,
-        WebSiteReview
+        WebSiteReview,
+        MessagingComponent,
+        ChatList
     ],
-    imports:[CommonModule,AgencyRoutes,HttpClientModule],
+    imports:[CommonModule,AgencyRoutes,HttpClientModule,FormsModule],
     providers:[]
 })
 

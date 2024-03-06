@@ -105,6 +105,10 @@ export class FooterComponent implements OnInit, OnDestroy {
     }
   }
 
+  chat(){
+    this.router.navigate(['/user/chatcomponent'])
+  }
+
   ngOnDestroy(): void {
     this.review$?.unsubscribe();
     this.profile$?.unsubscribe();
