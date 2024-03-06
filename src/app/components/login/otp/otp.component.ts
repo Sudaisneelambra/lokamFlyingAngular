@@ -43,9 +43,11 @@ export class OtpComponent implements OnChanges {
         next: (res) => {
           if (res.success && res.user) {
             this.message = res.message;
-            localStorage.setItem('tokenuser', res.token);
+            console.log('go to home');
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('type', res.type);
             setTimeout(() => {
-              this.router.navigate(['home']);
+              this.router.navigate(['/user/home']);
             }, 3000);
           } else if (res.success && res.agency) {
             this.message = res.message;
@@ -59,11 +61,17 @@ export class OtpComponent implements OnChanges {
             }, 4000);
           } else {
             this.message = res.message;
+            setTimeout(() => {
+              this.out.emit(false);
+            }, 3000);
           }
         },
         error: (err) => {
           console.log(err);
           this.message = 'otp verification failed';
+          setTimeout(() => {
+            this.out.emit(false);
+          }, 3000);
         },
       });
     }

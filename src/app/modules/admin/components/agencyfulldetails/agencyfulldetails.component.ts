@@ -28,7 +28,7 @@ export class AgencyFullDetails implements OnInit,OnDestroy{
                 this.agencyfulldetails$ =this.adminagency.getagencyfulldetais(id).subscribe({
                     next:(res)=>{
                         if(res.expiry){
-                            alert('session expired or internal error please login')
+                            alert('session expired  please login')
                             this.service.agencylogout()
                            } else{
                                this.agency=res.agency

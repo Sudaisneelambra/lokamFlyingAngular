@@ -28,7 +28,7 @@ export class MainHome implements OnInit, OnDestroy {
     this.$userprifile = this.profileservice.getusername().subscribe({
       next:(res)=>{
         if (res.expiry) {
-          alert('session expired or internal error please login');
+          alert('session expired or internal server , please login');
           this.service.userlogout();
         } else {
           if (res.success) {
@@ -48,5 +48,6 @@ export class MainHome implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.$userprifile?.unsubscribe()
   }
 }

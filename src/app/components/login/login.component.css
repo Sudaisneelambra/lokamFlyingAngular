@@ -181,3 +181,7 @@ button:hover{
       transform: rotate(1turn)
     }
   }
+
+  button:disabled{
+    cursor: not-allowed;
+  }
