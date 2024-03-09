@@ -76,17 +76,8 @@ export class ChatComponent implements OnInit,OnDestroy{
           // Connect to socket.io server
           this.socket = io('http://localhost:1000');
           this.socket.on('message', (message:any) =>{
-            this.chatlist$ =  this.chatservice.getMessages().subscribe( {
-              next:(res)=>{
-                this.messages = res;
-                console.log(this.messages);
-              },
-              error:(err)=>{
-                console.log(err);
-                
-              }
-                
-              });
+            console.log(message);
+            this.messages.push(message)
           });
     }
 
@@ -96,17 +87,6 @@ export class ChatComponent implements OnInit,OnDestroy{
         this.newMessage = '';
       }
 
-      this.chatlist$ =  this.chatservice.getMessages().subscribe( {
-        next:(res)=>{
-          this.messages = res;
-          console.log(this.messages);
-        },
-        error:(err)=>{
-          console.log(err);
-          
-        }
-          
-        });
       }
 
       ngOnDestroy(): void {

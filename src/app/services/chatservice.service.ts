@@ -17,7 +17,7 @@ export class ChatService {
 
   socket = io('http://localhost:1000');
 
-  private baseUrl = 'http://localhost:1000'; 
+  private baseUrl = 'http://localhost:3000'; 
 
   sendMessage(message: any, sender:string,reviver:string) {
     console.log('sendMessage: ', message)
@@ -28,11 +28,11 @@ export class ChatService {
 
 
   getMessages(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/usermessages`);
+    return this.http.get<any[]>(`${this.baseUrl}/chat/usermessages`);
   }
 
   getsingleusrchat(data:any):Observable<any>{
-    return this.http.get(`${this.baseUrl}/getsingleusrchat/${data}`)
+    return this.http.get(`${this.baseUrl}/chat/getsingleusrchat/${data}`)
   }
 
   

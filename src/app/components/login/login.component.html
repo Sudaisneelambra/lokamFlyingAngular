@@ -5,6 +5,7 @@
   (out)="boool($event)"
   [formdata]="data"
 ></app-otp>
+<app-credentials *ngIf="credential" (cans)="cancelling($event)"></app-credentials>
 <body>
   <div class="main">
     <input type="checkbox" id="chk" aria-hidden="true" />
@@ -162,7 +163,12 @@
           >
         </div>
 
-        <button [disabled]="!userForm.valid">Sign up</button>
+        <button class="" [disabled]="!userForm.valid">
+          <div class="w-ful grid place-items-center" *ngIf="!loading">
+            <div class="custom-loader"></div>
+          </div>
+          <span *ngIf="loading">Sign up</span>
+          </button>
         <p
           style="
             color: red;

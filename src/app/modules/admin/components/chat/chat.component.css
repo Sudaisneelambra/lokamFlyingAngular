@@ -350,7 +350,7 @@ span {
     font-size: 12px;
     color: #9a9a9a;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   
   }
 

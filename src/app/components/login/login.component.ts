@@ -21,6 +21,8 @@ export class LoginComponent {
   loginmessage!: string;
   error!: string;
 
+  credential=false
+
   // dependency injecting
   constructor(
     private fb: FormBuilder,
@@ -92,9 +94,11 @@ export class LoginComponent {
   // submittision of signup form
   onSubmit(): void {
     this.submitted = true;
+    this.loading=false
     this.userService.userSignupPost(this.userForm.value).subscribe({
       next: (res: any) => {
         if (res.otpsend) {
+          this.loading=true
           this.otp = res;
           this.bool = true;
           this.data = this.userForm.value;
@@ -102,14 +106,19 @@ export class LoginComponent {
             this.otp = '';
           }, 6000);
         } else {
+          this.loading=true
           this.already = res.message;
+          console.log(res.message);
+          console.log('sudais');
           setTimeout(() => {
+            this.credential=true
             this.already = '';
           }, 4000);
         }
       },
       error: (err) => {
         console.log(err);
+        this.credential=true
         alert(err.error.message);
       },
     });
@@ -131,32 +140,27 @@ export class LoginComponent {
               this.loginmessage = res.message;
               localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
               localStorage.setItem('type', res.type);
-              setTimeout(() => {
                 this.loading=true
                 this.loginmessage = '';
                 this.router.navigate(['user']);
-              }, 1000);
+   
             } else if (res.admin) {
               this.loginmessage = res.message;
               localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
               console.log(res.token);
 
               localStorage.setItem('type', res.type);
-              setTimeout(() => {
                 console.log('admin');
                 this.loading=true
                 this.loginmessage = '';
                 this.router.navigate(['/admin']);
-              }, 1000);
             } else if (res.resistered) {
               this.loginmessage = res.message;
               localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
               localStorage.setItem('type', res.type);
               this.router.navigate(['/agency/home']);
-              setTimeout(() => {
                 this.loading=true
                 this.loginmessage = '';
-              }, 1000);
             } else if (!res.resistered) {
               this.error = res.message;
               setTimeout(() => {
@@ -175,7 +179,10 @@ export class LoginComponent {
             }, 2000);
           }
         },
-        error: (err) => {},
+        error: (err) => {
+          console.log(err);
+        this.credential=true          
+        },
       });
     }, 2000);
   }
@@ -200,5 +207,9 @@ export class LoginComponent {
   // pawword hiding function
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
+  }
+
+  cancelling(event:any){
+    this.credential=event
   }
 }

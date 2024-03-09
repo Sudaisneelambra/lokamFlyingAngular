@@ -36,10 +36,10 @@
                 autocomplete="off"
                 [(ngModel)]="newMessage"
                 name="chat"
-                class="py-1  w-[85%] rounded-md ml-2 pl-2"
+                class="py-1 outline-none w-[85%] rounded-md ml-2 pl-2"
                 (keyup.enter)="sendMessage()"
               />
-              <i class="fa-solid fa-paper-plane w-[10%] text-[20px] text-center" (click)="sendMessage()"></i>
+              <img src="/assets/images/sendbutton.png" class="mr-1 bg-[#bab1b1] p-[5px] rounded-full" alt="" (click)="sendMessage()">
             </form>
           </div>
           <!-- Conversation End -->

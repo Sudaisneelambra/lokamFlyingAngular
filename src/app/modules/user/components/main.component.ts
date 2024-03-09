@@ -24,7 +24,6 @@ export class MainHome implements OnInit, OnDestroy {
     }
 
     this.bool=true
-   setTimeout(() => {
     this.$userprifile = this.profileservice.getusername().subscribe({
       next:(res)=>{
         if (res.expiry) {
@@ -44,7 +43,6 @@ export class MainHome implements OnInit, OnDestroy {
         console.log(err);
       }
     })
-   }, 3700);
   }
 
   ngOnDestroy(): void {

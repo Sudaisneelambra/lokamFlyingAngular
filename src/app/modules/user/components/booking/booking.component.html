@@ -152,7 +152,10 @@
       </div>
       <div class="btn-block">
         <button type="submit" class="!px-6 !w-auto mt-10 mb-20" (click)="payment()">
-          finalize Trip Reservation
+          <div class="w-ful grid place-items-center" *ngIf="!loading">
+            <div class="custom-loader"></div>
+          </div>
+          <span *ngIf="loading">finalize Trip Reservation</span>
         </button>
         <h6 class="text-[red]">{{message}}</h6>
       </div>

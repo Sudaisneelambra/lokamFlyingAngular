@@ -33,6 +33,7 @@ export class BookingComponent implements OnInit, OnDestroy {
   persons:any
   order$ = new Subscription();
   alredybooked$ = new Subscription;
+  loading=true
 
   constructor(
     private profileservice: userprofileservice,
@@ -108,6 +109,7 @@ export class BookingComponent implements OnInit, OnDestroy {
   }
 
   payment() {
+    this.loading=false
     if (this.price > 0) {
       const paymentdata = {
         price: this.price,
@@ -122,6 +124,7 @@ export class BookingComponent implements OnInit, OnDestroy {
             this.service.userlogout();
           } else {
             if (res.already) {
+              this.loading=true
               this.message = res.message;
               setTimeout(() => {
                 this.message = '';
@@ -133,6 +136,7 @@ export class BookingComponent implements OnInit, OnDestroy {
                     alert('session expired or internal error please login');
                     this.service.userlogout();
                   } else {
+                    this.loading=true
                     this.orderid = res.id;
                     this.initiatePayment();
                   }

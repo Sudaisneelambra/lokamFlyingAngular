@@ -62,6 +62,10 @@ export class AdminHome {
     this.router.navigate(['/admin/pagereview'])
   }
 
+  gotohome(){
+    this.router.navigate(['/admin'])
+  }
+
   logout(){
     const confirm = window.confirm('are you sure to logout')
    if(confirm){

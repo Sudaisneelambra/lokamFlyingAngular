@@ -10,6 +10,7 @@ import { OtpComponent } from './components/login/otp/otp.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { JwtInterceptor } from './common.intecepter';
+import { CredentialsComponent } from './components/login/credentials/credentials.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { JwtInterceptor } from './common.intecepter';
     OtpComponent,
     LoginComponent,
     NotFoundComponent,
+    CredentialsComponent
   ],
   imports: [
     BrowserModule,

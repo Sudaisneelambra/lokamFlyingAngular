@@ -22,11 +22,6 @@ export class AllPlacesComponent implements OnInit,OnDestroy{
     ngOnInit(): void {
 
       this.bool=true
-        
-        setTimeout(() => {
-          this.bool=false
-        }, 3700);
-        
         if(this.router.url =='/user/places'){
             this.router.navigate(['/user/places/lokamdescription'])
         }
@@ -38,6 +33,7 @@ export class AllPlacesComponent implements OnInit,OnDestroy{
                 this.service.userlogout();
               } else {
                 if (res.success) {
+                 this.bool=false  
                   this.data=res.data
                   this.places =  this.data;
                 } else {

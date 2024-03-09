@@ -34,8 +34,13 @@ export class MessagingComponent{
            if(this.name){
             this.singleusrchat$ =this.chatservice.getsingleusrchat(this.name).subscribe({
               next:(res)=>{
+               if(res.expiry){
+                alert('session expired')
+                this.router.navigate(['/authentification'])
+               } else {
                 this.messages=res
                 console.log(this.messages);
+               }
               },
               error:(err)=>{
                 console.log(err);
@@ -47,19 +52,11 @@ export class MessagingComponent{
           })
 
         // Connect to socket.io server
-        this.socket = io('http://localhost:1000'); // Replace with your server URL
+        this.socket = io('http://localhost:1000')
         this.socket.on('message', (message:any) =>{
-          this.singleusrchat$ =this.chatservice.getsingleusrchat(this.name).subscribe({
-            next:(res)=>{
-              this.messages=res
-              console.log(this.messages);
-            },
-            error:(err)=>{
-              console.log(err);
-              
-            }
-          })
-        });
+          console.log("message from socket",message)
+          this.messages.push(message)
+        })
 
          
     }
@@ -69,18 +66,6 @@ export class MessagingComponent{
         this.chatservice.sendMessage(this.newMessage,'sudais',this.name);
         this.newMessage = '';
       }
-
-      this.chatservice.getsingleusrchat(this.name).subscribe( {
-        next:(res)=>{
-          this.messages = res;
-          console.log(this.messages);
-        },
-        error:(err)=>{
-          console.log(err);
-          
-        }
-          
-        });
       }
 
       ngOnDestroy(): void {

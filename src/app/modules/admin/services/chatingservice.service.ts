@@ -16,7 +16,7 @@ export class ChattingSerive {
 
     socket = io('http://localhost:1000');
   
-    private baseUrl = 'http://localhost:1000'; 
+    private baseUrl = 'http://localhost:3000'; 
   
     sendMessage(message: any, username:string) {
       console.log('sendMessage: ', message)
@@ -26,7 +26,7 @@ export class ChattingSerive {
   
   
     getMessages(): Observable<any[]> {
-      return this.http.get<any[]>(`${this.baseUrl}/allmessages`);
+      return this.http.get<any[]>(`${this.baseUrl}/chat/allmessages`);
     }
     
 

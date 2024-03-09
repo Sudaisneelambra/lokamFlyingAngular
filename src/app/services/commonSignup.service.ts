@@ -79,6 +79,16 @@ export class UserService {
     }
     return false;
   }
+
+
+  getcredentials():Observable<any>{
+    return this.http.get(`${this.userapi}/user/getcredentials`)
+  }
+
+  loginwithcredential(id:any):Observable<any>{
+    console.log(id);
+    return this.http.post(`${this.userapi}/user/loginwithcredential`,{id})
+  }
 }
 
 interface login {

@@ -12,6 +12,7 @@ import { useservice } from "../../../services/user.service";
 
 export class SinglePlaceComponent implements OnInit,OnDestroy{
 
+    loading=false
     singlePlacedata!: any;
     selectedIndex = 0;
     bool = true;
@@ -37,6 +38,7 @@ export class SinglePlaceComponent implements OnInit,OnDestroy{
   
     // oninit for getting single place
     ngOnInit(): void {
+      this.loading=true
       this.route.params.subscribe((params) => {
         const id = params['id'];
     //     // getting all detials of specific place
@@ -46,11 +48,13 @@ export class SinglePlaceComponent implements OnInit,OnDestroy{
               alert('session expired please login')
               this.service.userlogout()
             } else {
+              this.loading=false
               this.singlePlacedata = res.data[0];
               this.images = res.data[0].placeurl;
             }
           },
           error: (err) => {
+            this.loading=false
             this.router.navigate(['/error']);
           },
         });
