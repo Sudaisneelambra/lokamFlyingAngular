@@ -48,4 +48,5 @@ export class MainHome implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.$userprifile?.unsubscribe()
   }
+  
 }

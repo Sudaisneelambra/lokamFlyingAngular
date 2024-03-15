@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ChatService } from "../../../../services/chatservice.service";
 import { Subscription } from "rxjs";
-import { ProfileService } from "src/app/modules/agency/services/profile.service";
 import { userprofileservice } from "../../services/profile.service";
 import { useservice } from "../../services/user.service";
 import { Router } from "@angular/router";
@@ -21,7 +20,7 @@ export class ChatComponent implements OnInit,OnDestroy{
     profile$ = new Subscription;
     messages: any[] = [];
     chatlist$=new Subscription()
-    private socket: any;
+    socket: any;
 
 
     constructor(private chatservice:ChatService, private profileservice:userprofileservice, private service:useservice, private router:Router){}
@@ -50,6 +49,18 @@ export class ChatComponent implements OnInit,OnDestroy{
               } else {
                 if (res.success) {
                   this.username=res.data.username 
+                  // Connect to socket.io server
+                    this.socket = io('http://localhost:1000',{
+                      auth: {
+                        username: `${this.username}`,
+                      },
+                    });
+
+                    this.socket.on('message', (message:any) =>{
+                      console.log("message from socket",message)
+                      this.messages.push(message)
+                    })
+
                 } else{
                   console.log(res.message);
                 }
@@ -69,21 +80,16 @@ export class ChatComponent implements OnInit,OnDestroy{
           error:(err)=>{
             console.log(err);
             
-          }
-            
-          });
-      
-          // Connect to socket.io server
-          this.socket = io('http://localhost:1000');
-          this.socket.on('message', (message:any) =>{
-            console.log(message);
-            this.messages.push(message)
-          });
+          }});
+          
     }
 
     sendMessage() {
       if(this.newMessage !== ''){
-        this.chatservice.sendMessage(this.newMessage,this.username,'sudais');
+        const datas={chatdata:this.newMessage,reciver:'sudais',sender:this.username,date:new Date()}
+        this.messages.push(datas)
+        console.log(this.messages);
+        this.socket.emit('message',datas);
         this.newMessage = '';
       }
 
@@ -93,6 +99,9 @@ export class ChatComponent implements OnInit,OnDestroy{
         this.$userprifile?.unsubscribe()
         this.profile$?.unsubscribe()
         this.chatlist$?.unsubscribe()
+         if (this.socket) {
+          this.socket.disconnect();
+         }
 
     }
 }

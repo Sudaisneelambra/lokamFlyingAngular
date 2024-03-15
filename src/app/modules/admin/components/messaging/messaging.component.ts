@@ -52,7 +52,12 @@ export class MessagingComponent{
           })
 
         // Connect to socket.io server
-        this.socket = io('http://localhost:1000')
+        this.socket = io('http://localhost:1000',{
+                      auth: {
+                        username: `sudais`,
+                      },
+                    });
+
         this.socket.on('message', (message:any) =>{
           console.log("message from socket",message)
           this.messages.push(message)
@@ -63,7 +68,9 @@ export class MessagingComponent{
 
     sendMessage() {
       if(this.newMessage !== ''){
-        this.chatservice.sendMessage(this.newMessage,'sudais',this.name);
+        const datas={chatdata:this.newMessage,reciver:this.name,sender:'sudais',date:new Date()}
+        this.messages.push(datas)
+        this.socket.emit('message', datas);
         this.newMessage = '';
       }
       }

@@ -15,14 +15,9 @@ export class ChatService {
 
   constructor(private http: HttpClient, private router:Router ) {}
 
-  socket = io('http://localhost:1000');
 
   private baseUrl = 'http://localhost:3000'; 
-
-  sendMessage(message: any, sender:string,reviver:string) {
-    console.log('sendMessage: ', message)
-    this.socket.emit('message', {message,sender,reviver});
-  }
+ 
 
 
 
