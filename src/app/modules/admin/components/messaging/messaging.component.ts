@@ -30,7 +30,6 @@ export class MessagingComponent{
 
           this.route.params.subscribe((params)=>{
             this.name=params['name']
-            console.log(this.name);
            if(this.name){
             this.singleusrchat$ =this.chatservice.getsingleusrchat(this.name).subscribe({
               next:(res)=>{
@@ -39,7 +38,6 @@ export class MessagingComponent{
                 this.router.navigate(['/authentification'])
                } else {
                 this.messages=res
-                console.log(this.messages);
                }
               },
               error:(err)=>{
@@ -52,14 +50,13 @@ export class MessagingComponent{
           })
 
         // Connect to socket.io server
-        this.socket = io('http://localhost:1000',{
+        this.socket = io('http://13.201.116.55:1000',{
                       auth: {
                         username: `sudais`,
                       },
                     });
 
         this.socket.on('message', (message:any) =>{
-          console.log("message from socket",message)
           this.messages.push(message)
         })
 

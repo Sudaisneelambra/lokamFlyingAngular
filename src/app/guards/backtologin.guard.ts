@@ -19,13 +19,13 @@ export class backtoLoginAuthGuard implements CanActivate {
   canActivate(): boolean {
     if (!this.userservice.isLoggedIn()) {
       return true; // User not logged in, allow access
-    } else if (this.userservice.gettypeuser()) {
+    } else if (this.userservice.type.type==='user') {
       this.router.navigate(['user']);
       return false; // User is of type 'user', deny access
-    } else if (this.userservice.gettypeagency()) {
+    } else if (this.userservice.type.type==='agency') {
       this.router.navigate(['agency/home']);
       return false; // User is of type 'agency', deny access
-    } else if (this.userservice.gettypeadmin()) {
+    } else if (this.userservice.type.type==='admin') {
       this.router.navigate(['/admin']);
       return false; // User is of type 'agency', deny access
     }

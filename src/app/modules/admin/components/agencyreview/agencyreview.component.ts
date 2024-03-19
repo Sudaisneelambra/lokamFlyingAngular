@@ -21,7 +21,6 @@ export class AgencyReviewComponent{
         this.review$ = this.commonadmin.getallagencyreview().subscribe({
             next:(res)=>{
                 this.reviewdata=res.data   
-                console.log(this.reviewdata);
             },
             error:(err)=>{
                 console.log(err);

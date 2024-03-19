@@ -35,7 +35,6 @@ export class BookingComponent implements OnInit,OnDestroy{
     }
 
     gotoagency(id:any){
-        console.log(id);
         this.router.navigate(['/admin/agencydetails',id])
     }
 

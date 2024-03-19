@@ -15,7 +15,6 @@ export class packageService {
   
   // package adding api
   addpackage(data:any):Observable<any>{
-    console.log(data);
     return this.http.post(`${this.api}/agency/packageadd`,data)
   }
 

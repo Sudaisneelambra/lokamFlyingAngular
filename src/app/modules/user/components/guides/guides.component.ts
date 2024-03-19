@@ -31,7 +31,6 @@ export class guidesComponent implements OnInit, OnDestroy{
                         this.agencies=res.data
                         
                     } else{
-                        console.log(res.message);
                         
                     }
                   }
@@ -62,7 +61,6 @@ export class guidesComponent implements OnInit, OnDestroy{
             
           })
         } else{
-            console.log('min');
             
           this.guide=this.data
         }

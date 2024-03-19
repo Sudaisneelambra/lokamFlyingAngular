@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { ChattingSerive } from "../../services/chatingservice.service";
 import { Router } from "@angular/router";
+import { useservice } from "src/app/modules/user/services/user.service";
 
 @Component({
     selector:'app-chatting',
@@ -16,23 +17,24 @@ export class ChatList implements OnInit, OnDestroy{
     list: any;
     uniquesender:any
 
-    constructor(private chatservice:ChattingSerive, private router:Router){}
+    constructor(private chatservice:ChattingSerive, private router:Router ,private service:useservice){}
 
     ngOnInit(): void {
         this.userslist$ = this.chatservice.getMessages().subscribe( {
             next:(res)=>{
-              this.messages = res
-              console.log(this.messages);
-              this.list= this.messages.filter((m)=>{
-                console.log(m.sender);
-                return m.sender != 'sudais'
-              }).map((n)=>{
-                return n.sender
-              })
-              console.log(this.list);
-              this.uniquesender=[...new Set(this.list)]
-              console.log(this.uniquesender);
-              
+              if (res.expiry) {
+                alert('session expired or internal error please login');
+                this.service.userlogout();
+              } else {
+                this.messages = res
+                this.list= this.messages?.filter((m)=>{
+                  return m.sender != 'sudais'
+                }).map((n)=>{
+                  return n.sender
+                })
+                this.uniquesender=[...new Set(this.list)]
+                
+              }
               
             },
             error:(err)=>{

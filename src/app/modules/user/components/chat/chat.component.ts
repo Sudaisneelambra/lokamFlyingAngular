@@ -50,19 +50,17 @@ export class ChatComponent implements OnInit,OnDestroy{
                 if (res.success) {
                   this.username=res.data.username 
                   // Connect to socket.io server
-                    this.socket = io('http://localhost:1000',{
+                    this.socket = io('http://13.201.116.55:1000',{
                       auth: {
                         username: `${this.username}`,
                       },
                     });
 
                     this.socket.on('message', (message:any) =>{
-                      console.log("message from socket",message)
                       this.messages.push(message)
                     })
 
                 } else{
-                  console.log(res.message);
                 }
               }
               
@@ -75,7 +73,6 @@ export class ChatComponent implements OnInit,OnDestroy{
           this.chatlist$ = this.chatservice.getMessages().subscribe( {
           next:(res)=>{
             this.messages = res;
-            console.log(this.messages);
           },
           error:(err)=>{
             console.log(err);
@@ -88,7 +85,6 @@ export class ChatComponent implements OnInit,OnDestroy{
       if(this.newMessage !== ''){
         const datas={chatdata:this.newMessage,reciver:'sudais',sender:this.username,date:new Date()}
         this.messages.push(datas)
-        console.log(this.messages);
         this.socket.emit('message',datas);
         this.newMessage = '';
       }

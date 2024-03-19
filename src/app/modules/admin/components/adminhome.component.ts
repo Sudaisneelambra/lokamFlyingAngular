@@ -23,18 +23,23 @@ export class AdminHome {
   }
 
   gotouser(){
+    this.one=true
     this.router.navigate(['/admin/user-list'])
+    
   }
 
   gotoagency(){
+    this.one=true
     this.router.navigate(['/admin/agency-list'])
   }
 
   gotoBlockedAgency(){
+    this.one=true
     this.router.navigate(['/admin/blocked-agency'])
   }
 
   gotoblockedusers(){
+    this.one=true
     this.router.navigate(['/admin/blocked-user'])
   }
   gotopackage(){
@@ -74,6 +79,7 @@ export class AdminHome {
   }
 
   requests(){
+    this.one=true
     this.router.navigate(['/admin/requests'])
   }
 }

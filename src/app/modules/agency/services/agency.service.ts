@@ -32,7 +32,6 @@ export class agencyService {
   // logout and token delete
   agencylogout(){
     const one = localStorage.getItem('token');
-    console.log(one);
 
     localStorage.clear()
     this.router.navigate(['/authentication'])

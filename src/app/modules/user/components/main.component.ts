@@ -34,7 +34,6 @@ export class MainHome implements OnInit, OnDestroy {
             this.bool= false
             this.name=res.data.username 
           } else{
-            console.log(res.message);
           }
         }
         

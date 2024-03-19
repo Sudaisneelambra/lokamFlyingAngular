@@ -24,9 +24,7 @@ export class PlacesComponent implements OnInit,OnDestroy{
                     alert('session expired or internal error please login')
                     this.service.agencylogout()
                    } else{
-                    console.log(res);
                         this.places = res.data;
-                        console.log(this.places);
                         
                    }
             },

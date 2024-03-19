@@ -38,7 +38,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
           if (res.success) {
             this.packages = res.data;
           } else {
-            console.log(res.message);
           }
         }
       },
@@ -56,7 +55,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
           if (res.success) {
             this.places = res.data;
           } else {
-            console.log(res.message);
           }
         }
       },
@@ -75,7 +73,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
           if (res.success) {
             this.agencies = res.data;
           } else {
-            console.log(res.message);
           }
         }
       },

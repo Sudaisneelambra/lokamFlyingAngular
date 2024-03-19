@@ -17,11 +17,11 @@ import {
     constructor(private userservice: UserService, private router: Router) {}
   
     canActivate(): boolean {
-        if(this.userservice.isLoggedIn() && this.userservice.gettypeagency()){
+        if(this.userservice.isLoggedIn() &&this.userservice.type.type==='agency'){
             return true
-        } else if(this.userservice.isLoggedIn() &&  this.userservice.gettypeuser()){
+        } else if(this.userservice.isLoggedIn() &&  this.userservice.type.type==='user'){
             this.router.navigate(['/user/home'])
-        } else if (this.userservice.isLoggedIn() && this.userservice.gettypeadmin()){
+        } else if (this.userservice.isLoggedIn() && this.userservice.type.type==='admin'){
             this.router.navigate(['/admin'])
         } else if (!this.userservice.isLoggedIn()){
           this.router.navigate(['/authentication'])

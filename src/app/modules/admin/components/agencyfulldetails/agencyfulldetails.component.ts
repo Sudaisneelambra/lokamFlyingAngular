@@ -32,7 +32,6 @@ export class AgencyFullDetails implements OnInit,OnDestroy{
                             this.service.agencylogout()
                            } else{
                                this.agency=res.agency
-                               console.log(this.agency);
                             }
                     },
                     error:(err)=>{

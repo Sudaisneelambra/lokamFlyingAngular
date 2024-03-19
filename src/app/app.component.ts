@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from './services/commonSignup.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  constructor(private router: Router) {}
+
+  constructor(private commonSignupService:UserService){}
 
   ngOnInit(): void {
+    this.commonSignupService.type=  this.commonSignupService.tockendecode();
+    
   }
   title = 'lokamaflying';
 

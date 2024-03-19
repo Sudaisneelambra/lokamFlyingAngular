@@ -34,7 +34,6 @@ export class WishlistComponent implements OnInit,OnDestroy{
                     if(res.success){
                         this.wishitem=res.data
                     } else{
-                        console.log(res.message);  
                     }
                   }
             },

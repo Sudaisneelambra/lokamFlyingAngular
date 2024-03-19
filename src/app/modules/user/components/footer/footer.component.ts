@@ -35,7 +35,6 @@ export class FooterComponent implements OnInit, OnDestroy {
           if(res.success){
             this.fullreview=res.data
           } else {
-            console.log(res.message);
             
           }
         }

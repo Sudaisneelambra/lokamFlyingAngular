@@ -21,6 +21,9 @@ export class NavBarComponent{
             this.bool=true
         }
     }
+    toggleBooleanValue(){
+        this.bool=true
+    }
 
     logout(){
         this.userservice.userlogout()

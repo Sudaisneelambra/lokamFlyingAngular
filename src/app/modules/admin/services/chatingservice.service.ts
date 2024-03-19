@@ -25,8 +25,8 @@ export class ChattingSerive {
   
   
   
-    getMessages(): Observable<any[]> {
-      return this.http.get<any[]>(`${this.baseUrl}/chat/allmessages`);
+    getMessages(): Observable<any> {
+      return this.http.get(`${this.baseUrl}/chat/allmessages`);
     }
     
 

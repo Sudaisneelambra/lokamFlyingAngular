@@ -34,8 +34,8 @@ export class CredentialsComponent implements OnInit,OnDestroy{
     usecredential(id:any){
         this.loginwithcredential$ = this.commonservice.loginwithcredential(id).subscribe({
             next:(res)=>{
-                localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
-                localStorage.setItem('type', res.type);
+                localStorage.setItem('token', res.token);
+              this.commonservice.type=this.commonservice.tockendecode()
                   this.router.navigate(['user']);
             },
             error:(err)=>{

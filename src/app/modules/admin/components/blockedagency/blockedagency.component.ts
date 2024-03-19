@@ -28,7 +28,6 @@ export class blockedagency implements OnInit, OnDestroy{
                  this.service.agencylogout()
                 } else{
                  this.data=res.list
-                 console.log(this.data);
                 }
              },
              error:(err)=>{

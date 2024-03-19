@@ -88,7 +88,6 @@ export class AgencyFulldetailsComponent{
               if(res.success){
                 this.fullreview=res.data
               } else {
-                console.log(res.message);
                 
               }
             }

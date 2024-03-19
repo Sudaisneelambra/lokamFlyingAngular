@@ -108,8 +108,6 @@ export class LoginComponent {
         } else {
           this.loading=true
           this.already = res.message;
-          console.log(res.message);
-          console.log('sudais');
           setTimeout(() => {
             this.credential=true
             this.already = '';
@@ -139,26 +137,24 @@ export class LoginComponent {
           if (res.success) {
             if (res.user) {
               this.loginmessage = res.message;
-              localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
-              localStorage.setItem('type', res.type);
+              console.log(res.token);
+              localStorage.setItem('token', res.token); 
+              this.userService.type=this.userService.tockendecode()
                 this.loading=true
                 this.loginmessage = '';
                 this.router.navigate(['user']);
    
             } else if (res.admin) {
               this.loginmessage = res.message;
-              localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
-              console.log(res.token);
-
-              localStorage.setItem('type', res.type);
-                console.log('admin');
+              localStorage.setItem('token', res.token);
+              this.userService.type=this.userService.tockendecode()
                 this.loading=true
                 this.loginmessage = '';
                 this.router.navigate(['/admin']);
             } else if (res.resistered) {
               this.loginmessage = res.message;
-              localStorage.setItem('token', res.token); // Store JWT token in localStorage upon successful login
-              localStorage.setItem('type', res.type);
+              localStorage.setItem('token', res.token); 
+              this.userService.type=this.userService.tockendecode()
               this.router.navigate(['/agency/home']);
                 this.loading=true
                 this.loginmessage = '';
@@ -182,8 +178,7 @@ export class LoginComponent {
         },
         error: (err) => {
           this.loading=true
-          console.log(err);
-          this.credential=true          
+          console.log(err);         
         },
       });
     }, 2000);

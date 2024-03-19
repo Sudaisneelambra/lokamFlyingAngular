@@ -26,7 +26,6 @@ export class AgencyList{
                 this.service.agencylogout()
                } else{
                 this.data=res.list
-                console.log(this.data);
                }
             },
             error:(err)=>{
@@ -46,7 +45,6 @@ export class AgencyList{
     }
 
     fulldetails(id:any){
-        console.log(id);
         this.router.navigate(['/admin/agencydetails',id])
     }
     

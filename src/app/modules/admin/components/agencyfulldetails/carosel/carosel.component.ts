@@ -36,7 +36,6 @@ export class CaroselComponet{
         if(this.val){
           this.auto()
         }
-        console.log(this.image);
         
       }
     

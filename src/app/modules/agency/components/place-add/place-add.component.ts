@@ -130,7 +130,6 @@ export class PlaceAddComponent implements OnInit, OnDestroy {
         },
       });
     } else {
-      console.log('Form is invalid or no images selected');
     }
   }
 
@@ -180,7 +179,6 @@ export class PlaceAddComponent implements OnInit, OnDestroy {
         },
       });
     } else {
-      console.log('Form is invalid or no images selected');
     }
   }
 

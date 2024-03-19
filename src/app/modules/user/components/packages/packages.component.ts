@@ -33,7 +33,6 @@ export class PackagesComponent implements OnInit, OnDestroy{
                   this.packages = res.data;
                   this.data=this.packages
                 } else {
-                  console.log(res.message);
                 }
               }
             },

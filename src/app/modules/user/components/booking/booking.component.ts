@@ -46,7 +46,6 @@ export class BookingComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.rout.params.subscribe((params) => {
       const id = params['id'];
-      console.log(id);
       if (id) {
         this.package$ = this.packageservice.getsinglepackage(id).subscribe({
           next: (res) => {
@@ -206,7 +205,6 @@ export class BookingComponent implements OnInit, OnDestroy {
           alert('your booking success');
           this.router.navigate(['/user/home']);
         } else {
-          console.log(res.message);
         }
       },
       error: (err) => {

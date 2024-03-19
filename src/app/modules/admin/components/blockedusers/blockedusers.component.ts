@@ -26,7 +26,6 @@ export class Blockeduser implements OnDestroy{
                     this.service.agencylogout()
                    } else{
                        this.data=res.userlist
-                       console.log(this.data);
                     }
             },
             error:(err)=>{

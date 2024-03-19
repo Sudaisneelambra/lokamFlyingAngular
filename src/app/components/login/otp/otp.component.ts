@@ -43,7 +43,6 @@ export class OtpComponent implements OnChanges {
         next: (res) => {
           if (res.success && res.user) {
             this.message = res.message;
-            console.log('go to home');
             localStorage.setItem('token', res.token);
             localStorage.setItem('type', res.type);
             setTimeout(() => {

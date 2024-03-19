@@ -12,7 +12,6 @@ export class TrendingAgencyComponent implements OnInit, OnChanges{
   constructor(private router:Router) {}
   
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log(this.agency);
   }
 
 
@@ -20,7 +19,6 @@ export class TrendingAgencyComponent implements OnInit, OnChanges{
   @Input() agency:any
 
   ngOnInit(): void {
-    console.log(this.agency);
     
   }
 

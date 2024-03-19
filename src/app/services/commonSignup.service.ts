@@ -11,6 +11,7 @@ const httpOptions = {
 })
 export class UserService {
   private userapi = 'http://13.201.116.55:3000';
+  type:any
 
   constructor(private http: HttpClient) {}
 
@@ -57,6 +58,19 @@ export class UserService {
       return false;
     }
   }
+  
+  tockendecode(){
+    const token= localStorage.getItem('token')
+    if (!token) {
+      return;
+    }
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    
+    return JSON.parse(window.atob(base64));
+  }
+
+
 
    // type admin check
    gettypeadmin() {
@@ -86,7 +100,6 @@ export class UserService {
   }
 
   loginwithcredential(id:any):Observable<any>{
-    console.log(id);
     return this.http.post(`${this.userapi}/user/loginwithcredential`,{id})
   }
 }
