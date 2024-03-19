@@ -10,7 +10,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class UserService {
-  private userapi = 'http://13.201.116.55:3000:3000';
+  private userapi = 'http://13.201.116.55:3000';
 
   constructor(private http: HttpClient) {}
 
