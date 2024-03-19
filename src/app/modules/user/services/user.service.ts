@@ -13,7 +13,7 @@ const httpOptions = {
 export class useservice {
   constructor(private http: HttpClient, private router:Router ) {}
 
-  private userapi = 'http://localhost:3000';
+  private userapi = 'http://13.201.116.55';
 
    // logout and token delete
    userlogout(){

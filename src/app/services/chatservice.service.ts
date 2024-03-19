@@ -16,7 +16,7 @@ export class ChatService {
   constructor(private http: HttpClient, private router:Router ) {}
 
 
-  private baseUrl = 'http://localhost:3000'; 
+  private baseUrl = 'http://13.201.116.55'; 
  
 
 

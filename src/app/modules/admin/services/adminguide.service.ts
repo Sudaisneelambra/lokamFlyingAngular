@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 
 export class adminguide {
 
-  private api = 'http://localhost:3000';
+  private api = 'http://13.201.116.55';
 
 
     constructor(private http: HttpClient,private router:Router) {}

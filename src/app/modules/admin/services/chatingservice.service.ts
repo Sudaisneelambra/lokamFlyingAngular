@@ -16,7 +16,7 @@ export class ChattingSerive {
 
     // socket = io('http://localhost:1000');
   
-    private baseUrl = 'http://localhost:3000'; 
+    private baseUrl = 'http://13.201.116.55'; 
   
     // sendMessage(message: any, username:string) {
     //   console.log('sendMessage: ', message)

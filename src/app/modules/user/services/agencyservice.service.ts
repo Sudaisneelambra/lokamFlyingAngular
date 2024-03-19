@@ -13,7 +13,7 @@ const httpOptions = {
 export class UserAgencyService {
   constructor(private http: HttpClient, private router:Router ) {}
 
-  private api = 'http://localhost:3000';
+  private api = 'http://13.201.116.55';
   
 
   gettingagencies():Observable<any>{

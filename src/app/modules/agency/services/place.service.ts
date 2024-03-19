@@ -10,7 +10,7 @@ export class PlaceService{
 
     constructor(private http:HttpClient){}
 
-  private api = 'http://localhost:3000';
+  private api = 'http://13.201.116.55';
 
     // add place api
     addplace(data:any):Observable<any>{
