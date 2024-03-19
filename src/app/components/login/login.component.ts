@@ -117,6 +117,7 @@ export class LoginComponent {
         }
       },
       error: (err) => {
+        this.loading=true
         console.log(err);
         this.credential=true
         alert(err.error.message);
@@ -180,8 +181,9 @@ export class LoginComponent {
           }
         },
         error: (err) => {
+          this.loading=true
           console.log(err);
-        this.credential=true          
+          this.credential=true          
         },
       });
     }, 2000);
