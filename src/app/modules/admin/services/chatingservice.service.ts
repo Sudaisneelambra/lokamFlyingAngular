@@ -14,14 +14,14 @@ export class ChattingSerive {
 
     constructor(private http: HttpClient,private router:Router) {}
 
-    socket = io('http://localhost:1000');
+    // socket = io('http://localhost:1000');
   
     private baseUrl = 'http://localhost:3000'; 
   
-    sendMessage(message: any, username:string) {
-      console.log('sendMessage: ', message)
-      this.socket.emit('message', {message,username});
-    }
+    // sendMessage(message: any, username:string) {
+    //   console.log('sendMessage: ', message)
+    //   this.socket.emit('message', {message,username});
+    // }
   
   
   
