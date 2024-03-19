@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class agencyService {
   constructor(private http: HttpClient,private router:Router) {}
   
-  private api = 'http://13.201.116.55';
+  private api = 'http://13.201.116.55:3000';
   
   // token check
   gettoken():Observable<any>{

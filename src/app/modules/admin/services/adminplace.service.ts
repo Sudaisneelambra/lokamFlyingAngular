@@ -11,7 +11,7 @@ export class placesService {
 
     constructor(private http: HttpClient) {}
 
-  private api = 'http://13.201.116.55';
+  private api = 'http://13.201.116.55:3000';
 
 
   gettingallplaces():Observable<any>{

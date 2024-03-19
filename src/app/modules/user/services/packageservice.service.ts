@@ -13,7 +13,7 @@ const httpOptions = {
 export class UserPackageService {
   constructor(private http: HttpClient, private router:Router ) {}
 
-  private api = 'http://13.201.116.55';
+  private api = 'http://13.201.116.55:3000';
 
   gettingpackages():Observable<any>{
     return this.http.get(`${this.api}/user/getpackages`)

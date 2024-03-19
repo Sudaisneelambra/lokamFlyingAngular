@@ -12,7 +12,7 @@ export class admincommon {
 
     constructor(private http: HttpClient,private router:Router) {}
 
-    private api = 'http://13.201.116.55';
+    private api = 'http://13.201.116.55:3000';
 
   // logout and token delete
   agencylogout(){
