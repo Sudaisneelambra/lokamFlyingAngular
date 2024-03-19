@@ -255,7 +255,7 @@
         </div>
         <p class="text-[12px] text-green-600">{{ loginmessage }}</p>
         <p class="text-[12px] text-red-600">{{ error }}</p>
-        <button class="">
+        <button class="" [disabled]="!login.valid">
           <div class="w-ful grid place-items-center" *ngIf="!loading">
             <div class="custom-loader"></div>
           </div>

@@ -131,7 +131,6 @@ export class LoginComponent {
   // logining login form
   logins() {
     this.loading = false;
-    setTimeout(() => {
       this.userService.userLogin(this.login.value).subscribe({
         next: (res) => {
           if (res.success) {
@@ -181,7 +180,6 @@ export class LoginComponent {
           console.log(err);         
         },
       });
-    }, 2000);
   }
 
   // radio button value storing
