@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { io } from "socket.io-client";
 import { Observable } from 'rxjs';
+import { environment } from 'src/environment/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -16,7 +17,7 @@ export class ChatService {
   constructor(private http: HttpClient, private router:Router ) {}
 
 
-  private baseUrl = 'http://13.201.116.55:3000'; 
+  private baseUrl = environment.backEndurl; 
  
 
 

@@ -5,6 +5,8 @@ import { userprofileservice } from "../../services/profile.service";
 import { useservice } from "../../services/user.service";
 import { Router } from "@angular/router";
 import { io } from "socket.io-client";
+import { environment } from "src/environment/environment";
+
 
 @Component({
     selector:'app-chating',
@@ -50,7 +52,7 @@ export class ChatComponent implements OnInit,OnDestroy{
                 if (res.success) {
                   this.username=res.data.username 
                   // Connect to socket.io server
-                    this.socket = io('http://13.201.116.55:1000',{
+                    this.socket = io(environment.chatapiUrl,{
                       auth: {
                         username: `${this.username}`,
                       },
@@ -83,7 +85,7 @@ export class ChatComponent implements OnInit,OnDestroy{
 
     sendMessage() {
       if(this.newMessage !== ''){
-        const datas={chatdata:this.newMessage,reciver:'sudais',sender:this.username,date:new Date()}
+        const datas={chatdata:this.newMessage,reciever:'sudais',sender:this.username,date:new Date()}
         this.messages.push(datas)
         this.socket.emit('message',datas);
         this.newMessage = '';

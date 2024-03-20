@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { io } from "socket.io-client";
 import { ChatService } from "src/app/services/chatservice.service";
+import { environment } from '../../../../../environment/environment';
+
 @Component({
     selector:'app-messaging',
     templateUrl:'./messaging.component.html',
@@ -18,16 +20,13 @@ export class MessagingComponent{
     profile$ = new Subscription;
     messages: any[] = [];
     private socket: any;
-  singleusrchat$ =new Subscription()
-  name: any;
+    singleusrchat$ =new Subscription()
+    name: any;
 
 
     constructor(private chatservice:ChatService, private router:Router, private route:ActivatedRoute){}
 
     ngOnInit(): void {
-      
-
-
           this.route.params.subscribe((params)=>{
             this.name=params['name']
            if(this.name){
@@ -50,7 +49,7 @@ export class MessagingComponent{
           })
 
         // Connect to socket.io server
-        this.socket = io('http://13.201.116.55:1000',{
+        this.socket = io(environment.chatapiUrl,{
                       auth: {
                         username: `sudais`,
                       },
@@ -65,7 +64,7 @@ export class MessagingComponent{
 
     sendMessage() {
       if(this.newMessage !== ''){
-        const datas={chatdata:this.newMessage,reciver:this.name,sender:'sudais',date:new Date()}
+        const datas={chatdata:this.newMessage,reciever:this.name,sender:'sudais',date:new Date()}
         this.messages.push(datas)
         this.socket.emit('message', datas);
         this.newMessage = '';

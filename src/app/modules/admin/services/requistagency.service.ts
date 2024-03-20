@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environment/environment';
+
 
 
 @Injectable({
@@ -11,7 +13,7 @@ export class requestagency {
 
     constructor(private http: HttpClient) {}
 
-  private api = 'http://13.201.116.55:3000';
+  private api = environment.backEndurl;
 
 
   requestedagency():Observable<any>{

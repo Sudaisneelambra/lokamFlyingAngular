@@ -16,7 +16,7 @@
             <div class="row message  !h-[85%]" id="conversation">
             <div class="minu  h-[90%] !overflow-auto">
               <ng-container *ngFor="let msg of messages">
-                <div class="row message-body" *ngIf="msg.sender === name || msg.sender === name" >
+                <div class="row message-body" *ngIf="msg.sender === name || msg.reciever === name" >
                   <div class="col-sm-12" [ngClass]="{'message-main-receiver': msg?.sender == name,'message-main-sender': msg?.sender == 'sudais' }">
                     <div class="" [ngClass]="{'receiver': msg?.sender == name,'sender': msg?.sender == 'sudais' }">
                       <div class="message-text">{{msg.chatdata}}</div>

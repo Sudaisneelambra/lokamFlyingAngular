@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environment/environment';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ export class admincommon {
 
     constructor(private http: HttpClient,private router:Router) {}
 
-    private api = 'http://13.201.116.55:3000';
+    private api = environment.backEndurl;
 
   // logout and token delete
   agencylogout(){

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environment/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -13,7 +14,7 @@ const httpOptions = {
 export class useservice {
   constructor(private http: HttpClient, private router:Router ) {}
 
-  private userapi = 'http://13.201.116.55:3000';
+  private userapi = environment.backEndurl;
 
    // logout and token delete
    userlogout(){

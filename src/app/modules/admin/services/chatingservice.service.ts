@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environment/environment';
 
 import { io } from "socket.io-client";
 
@@ -16,7 +17,7 @@ export class ChattingSerive {
 
     // socket = io('http://localhost:1000');
   
-    private baseUrl = 'http://13.201.116.55:3000'; 
+    private baseUrl = environment.backEndurl; 
   
     // sendMessage(message: any, username:string) {
     //   console.log('sendMessage: ', message)
