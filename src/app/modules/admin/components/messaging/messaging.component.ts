@@ -63,7 +63,7 @@ export class MessagingComponent{
     }
 
     sendMessage() {
-      if(this.newMessage !== ''){
+      if(this.newMessage && this.newMessage.trim() !== ''){
         const datas={chatdata:this.newMessage,reciever:this.name,sender:'sudais',date:new Date()}
         this.messages.push(datas)
         this.socket.emit('message', datas);

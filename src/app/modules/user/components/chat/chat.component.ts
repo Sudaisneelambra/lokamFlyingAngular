@@ -84,7 +84,7 @@ export class ChatComponent implements OnInit,OnDestroy{
     }
 
     sendMessage() {
-      if(this.newMessage !== ''){
+      if(this.newMessage && this.newMessage.trim() !== ''){
         const datas={chatdata:this.newMessage,reciever:'sudais',sender:this.username,date:new Date()}
         this.messages.push(datas)
         this.socket.emit('message',datas);
