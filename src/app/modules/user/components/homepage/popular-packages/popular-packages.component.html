@@ -12,14 +12,6 @@
       <div class="package-image h-[65%] w-full" (click)="singlepackage(data?._id)"></div>
       <div class="package-about w-full h-[35%] pl-4 md:space-y-[5px]" (click)="singlepackage(data?._id)">
           <h1 class="package-h1 flex justify-between items-center">
-            <p>
-              <i class="fa-solid fa-star text-[13px]"></i
-                ><i class="fa-solid fa-star text-[13px]"></i
-                  ><i class="fa-solid fa-star text-[13px]"></i
-              ><i class="fa-solid fa-star text-[13px]"></i
-              ><i class="fa-solid fa-star text-[13px]"></i
-              ><span class="text-[10px]">(200reviews)</span>
-            </p>
             <p class="text-[18px] pr-2">₹ {{ data?.packagePrice }}</p>
           </h1>
           <p class="text-white md:text-[20px] font-bold">

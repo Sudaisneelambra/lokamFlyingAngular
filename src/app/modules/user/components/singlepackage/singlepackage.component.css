@@ -163,7 +163,7 @@ button {
   width: 70%; 
   font-family: sans-serif;
   margin-left: 15px; 
-}
+}padding
 .package-detailss th{
 font-size: 18px;
 }
@@ -219,6 +219,20 @@ font-size: 18px;
     .package-details{
         width: 100%;
     }
+    button {
+   
+      background-color: #3498db; 
+      color: white;
+      padding: 5px 20px;
+      border: none; 
+      font-size: 10px;
+      cursor: pointer; 
+    
+   
+      border-radius: 5px; 
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    
 }
 
 

@@ -124,8 +124,16 @@ export class SinglePackegeComponent implements OnInit, OnDestroy {
     this.router.navigate(['/user/booking',id])
   }
 
+  isExpired(date:any){
+    if(new Date(date)<new Date()){
+      return true    
+    }else{
+      return false
+    }
+  }
   ngOnDestroy(): void {
     this.userwishlist$?.unsubscribe()
     this.singlepackage$?.unsubscribe();
   }
+
 }

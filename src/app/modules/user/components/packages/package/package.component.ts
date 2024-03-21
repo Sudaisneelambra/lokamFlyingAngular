@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, DoCheck, Input } from "@angular/core";
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, Input, OnChanges, SimpleChanges } from "@angular/core";
 import { Router } from "@angular/router";
 
 @Component({
@@ -16,5 +16,13 @@ export class PackageComponet {
     singlepackage(id:any){
         this.router.navigate(['/user/singlepackage',id])
     }
+
+    isExpired(date:any){
+        if(new Date(date)<new Date()){
+          return true    
+        }else{
+          return false
+        }
+      }
 
 }

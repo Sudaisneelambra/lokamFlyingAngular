@@ -150,6 +150,7 @@ export class BookingComponent implements OnInit, OnDestroy {
         error: (err) => {},
       });
     } else {
+      this.loading=true
       this.message = 'enter the number of persons';
       setTimeout(() => {
         this.message = '';

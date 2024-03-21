@@ -61,6 +61,7 @@
                                             <span>Available Slote: <span class="text-success font-medium">{{dt?.packagedetails[0]?.availableSlot}}</span></span>
                                         </div>
                                     </a>
+                                    <p class="mt-1 text-[red] font-bold" *ngIf="isExpired(dt?.packagedetails[0]?.startDate)">Package Expired...</p>
                                 </div>
                             </div>
                         </div>

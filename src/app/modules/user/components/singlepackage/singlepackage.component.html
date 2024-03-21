@@ -1,8 +1,8 @@
 <app-success *ngIf="boolean"  (bool)="okey($event)"></app-success>
 <div class="w-full flex justify-center items-center p-5">
-  <div class="package-details" ngFor="let pack of singlepackage">
+  <div class="package-details relative overflow-hidden"  [ngStyle]="isExpired(singlepackage?.startDate) ? { 'padding-left': '0px' } : { 'padding-left': '4px'}" ngFor="let pack of singlepackage">
     <h1 class="w-full text-[30px] text-right">
-      <i class="fa-solid fa-xmark" (click)="back()"></i>
+      <i class="fa-solid fa-xmark " (click)="back()"></i>
     </h1>
     <h2 class="package-name flex-wrap">
       {{ singlepackage?.packageName | uppercase }}
@@ -125,15 +125,15 @@
                 <h1 class="more-text hidden">more...</h1>
               </div>
               <div class="place-details">
-                <p class="text-[18px] font-bold !text-[#ffaf4d]">
+                <p class="text-[15px] font-bold !text-[#ffaf4d]">
                   {{ pls?.placename | uppercase }}
                 </p>
-                <p class="text-[18px] font-bold">
+                <p class="text-[12px] font-bold">
                   Arriving Time: {{ pls?.arrivingtime }} ({{
                     pls?.arrivalDate
                   }})
                 </p>
-                <p class="text-[18px] font-bold">
+                <p class="text-[12px] font-bold">
                   Return Time: {{ pls?.returntime }} ({{ pls?.returnDate }})
                 </p>
               </div>
@@ -156,10 +156,10 @@
                 <h1 class="more-text hidden">more...</h1>
               </div>
               <div class="place-details">
-                <p class="font-extrabold text-[18px] !text-[#801100]">
+                <p class="font-extrabold text-[15px] !text-[#801100]">
                   {{ gd?.guidename | uppercase }}
                 </p>
-                <p class="font-bold text-[18px]">
+                <p class="font-bold text-[15px]">
                   Expirience: {{ gd?.experience }} years
                 </p>
               </div>
@@ -172,7 +172,7 @@
       <button
         (click)="addToWishlist(singlepackage?._id)"
         [disabled]="loading"
-        class="m-[15px]  flex justify-center"
+        class="m-[15px]  flex justify-center items-center"
       >
         <span *ngIf="!loading">Add to Wishlist</span>
         <span *ngIf="loading" class="mr-4">Loading..</span>
@@ -189,5 +189,6 @@
       <button class="m-[15px]" (click)="booking(singlepackage._id)">Book Now</button>
     </div>
     <h1 class="w-full text-center text-red-600">{{msg}}</h1>
+    <div class="w-full h-full bg-[#685c5ca8] absolute top-0 flex justify-center items-center font-bold text-[20px] text-[#73ff00]" *ngIf="isExpired(singlepackage?.startDate)">Package Expired..</div>
   </div>
 </div>
