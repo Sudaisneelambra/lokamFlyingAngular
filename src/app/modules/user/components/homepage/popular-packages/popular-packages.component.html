@@ -3,19 +3,19 @@
   <div
     class="packages w-full flex justify-center items-center gap-10 md:gap-[60px] px-10 pb-10 pt-3 flex-wrap"
   >
+
     <ng-container *ngIf="package">
       <div
-        class="package min-w-[400px] h-[400px] cursor-pointer"
-        *ngFor="let data of package.slice(0,5)"
-        (click)="singlepackage(data?._id)"
+      class="package min-w-[400px] h-[400px] cursor-pointer relative"
+      *ngFor="let data of package.slice(0,5)"
       >
-        <div class="package-image h-[65%] w-full"></div>
-        <div class="package-about w-full h-[35%] pl-4 md:space-y-[5px]">
+      <div class="package-image h-[65%] w-full" (click)="singlepackage(data?._id)"></div>
+      <div class="package-about w-full h-[35%] pl-4 md:space-y-[5px]" (click)="singlepackage(data?._id)">
           <h1 class="package-h1 flex justify-between items-center">
             <p>
               <i class="fa-solid fa-star text-[13px]"></i
-              ><i class="fa-solid fa-star text-[13px]"></i
-              ><i class="fa-solid fa-star text-[13px]"></i
+                ><i class="fa-solid fa-star text-[13px]"></i
+                  ><i class="fa-solid fa-star text-[13px]"></i
               ><i class="fa-solid fa-star text-[13px]"></i
               ><i class="fa-solid fa-star text-[13px]"></i
               ><span class="text-[10px]">(200reviews)</span>
@@ -35,7 +35,10 @@
             <p class="pr-2">{{ data?.agencydetails[0].name |uppercase }}</p>
           </h1>
         </div>
+        <div class="w-full h-full bg-[#ffffffae] absolute top-0 border-2 flex justify-center items-center font-bold text-[20px] border-[orangered] rounded-[10px] text-[red]" *ngIf="isExpired(data?.startDate)">Package Expired</div>
       </div>
     </ng-container>
+    
+
   </div>
 </section>

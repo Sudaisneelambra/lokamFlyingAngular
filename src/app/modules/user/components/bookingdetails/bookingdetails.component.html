@@ -98,6 +98,7 @@
                 <p class="text-base font-black leading-none text-gray-800 mt-3">
                   total : {{ dt?.price | currency : "INR" }}
                 </p>
+                <p class="mt-1 text-[red] text-[13px]" *ngIf="isExpired(dt?.packagedetails[0]?.startDate )">Expired...</p>
               </div>
             </div>
           </div>

@@ -16,6 +16,7 @@ export class CredentialsComponent implements OnInit,OnDestroy{
     data: any;
     credential$ = new Subscription()
     loginwithcredential$= new Subscription();
+    loading= true
     constructor(private commonservice:UserService,private router:Router){}
     
     ngOnInit(): void {
@@ -32,13 +33,16 @@ export class CredentialsComponent implements OnInit,OnDestroy{
     }
 
     usecredential(id:any){
+        this.loading=false
         this.loginwithcredential$ = this.commonservice.loginwithcredential(id).subscribe({
             next:(res)=>{
+                this.loading=true
                 localStorage.setItem('token', res.token);
               this.commonservice.type=this.commonservice.tockendecode()
                   this.router.navigate(['user']);
             },
             error:(err)=>{
+                this.loading=true
                 this.router.navigate(['/authentication'])
             }
         })

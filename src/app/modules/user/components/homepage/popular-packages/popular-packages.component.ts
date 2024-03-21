@@ -15,6 +15,12 @@ export class PopularPackagesComponent {
  
   singlepackage(id:any){
     this.router.navigate(['/user/singlepackage',id])
-
+  }
+  isExpired(date:any){
+    if(new Date(date)<new Date()){
+      return true    
+    }else{
+      return false
+    }
   }
 }

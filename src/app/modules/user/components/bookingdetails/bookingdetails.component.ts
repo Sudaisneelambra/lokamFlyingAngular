@@ -70,6 +70,14 @@ export class BookingDetailsComponent implements OnInit,OnDestroy{
         this.router.navigate(['/user/singlepackage',id])
         
     }
+
+    isExpired(date:any){
+      if(new Date(date)<new Date()){
+        return true    
+      }else{
+        return false
+      }
+    }
     ngOnDestroy(): void {
         this.userprof$?.unsubscribe()
         this.booking$?.unsubscribe()
