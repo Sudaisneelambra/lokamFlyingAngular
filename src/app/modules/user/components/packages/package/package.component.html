@@ -1,16 +1,16 @@
 <ng-container *ngIf="package && package.length > 0; else nodata">
   <div
-    class="main w-full h-[400px] flex my-5 relative"
+    class="main w-full h-[400px] flex my-5 relative "
     *ngFor="let dt of package; let i = index"
   >
     <div
-      class="one h-full w-[50%] grid place-items-center"
+      class="one !h-full w-[50%] flex justify-center items-center "
       [ngClass]="{ 'order-2': i % 2 == 0 }"
     >
       <img
         src="/assets/images/testination.jpeg"
         alt=""
-        class="w-[90%] h-[90%]"
+        class="w-[90%] !h-[90%] "
       />
     </div>
     <div class="two h-full w-[50%] bg-[#d7d4d49f] grid place-items-center">
