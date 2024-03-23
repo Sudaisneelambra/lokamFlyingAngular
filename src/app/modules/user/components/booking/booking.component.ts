@@ -44,6 +44,9 @@ export class BookingComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+
+    window.scrollTo(0, 0);
+
     this.rout.params.subscribe((params) => {
       const id = params['id'];
       if (id) {

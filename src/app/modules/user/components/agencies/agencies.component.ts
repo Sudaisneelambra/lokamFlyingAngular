@@ -19,6 +19,7 @@ export class AgneciesComponent implements OnInit, OnDestroy{
 
 
     ngOnInit(): void {
+      window.scrollTo(0, 0);
         this.agencyget$ = this.useragency.gettingagencies().subscribe({
             next: (res) => {
               if (res.expiry) {

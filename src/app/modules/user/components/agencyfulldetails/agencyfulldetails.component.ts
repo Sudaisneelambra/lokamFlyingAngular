@@ -58,6 +58,8 @@ export class AgencyFulldetailsComponent{
   
     // oninit for getting single place
     ngOnInit(): void {
+    window.scrollTo(0, 0);
+
       this.route.params.subscribe((params) => {
         const id = params['id'];
     //     // getting all detials of specific place

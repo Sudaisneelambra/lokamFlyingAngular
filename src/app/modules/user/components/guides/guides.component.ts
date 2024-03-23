@@ -19,6 +19,8 @@ export class guidesComponent implements OnInit, OnDestroy{
     constructor(private service:useservice){}
 
     ngOnInit(): void {
+    window.scrollTo(0, 0);
+
         this.gude$ =this.service.getguide().subscribe({
             next:(res)=>{
                 if (res.expiry) {

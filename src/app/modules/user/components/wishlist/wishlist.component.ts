@@ -25,6 +25,8 @@ export class WishlistComponent implements OnInit,OnDestroy{
     constructor(private wishlistservice:UserWishlistService, private service:useservice,private location:Location, private router:Router, private userprofile:userprofileservice){}
 
     ngOnInit(): void {
+    window.scrollTo(0, 0);
+
         this.wishlist$ = this.wishlistservice.getwishlist().subscribe({
             next:(res)=>{
                 if (res.expiry) {

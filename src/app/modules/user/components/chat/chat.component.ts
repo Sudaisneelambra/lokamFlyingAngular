@@ -28,6 +28,7 @@ export class ChatComponent implements OnInit,OnDestroy{
     constructor(private chatservice:ChatService, private profileservice:userprofileservice, private service:useservice, private router:Router){}
 
     ngOnInit(): void {
+    window.scrollTo(0, 0);
 
         this.profile$ = this.profileservice.getprofile().subscribe({
             next: (res) => {

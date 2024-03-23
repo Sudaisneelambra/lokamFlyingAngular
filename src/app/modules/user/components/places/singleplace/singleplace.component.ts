@@ -38,6 +38,8 @@ export class SinglePlaceComponent implements OnInit,OnDestroy{
   
     // oninit for getting single place
     ngOnInit(): void {
+    window.scrollTo(0, 0);
+
       this.loading=true
       this.route.params.subscribe((params) => {
         const id = params['id'];

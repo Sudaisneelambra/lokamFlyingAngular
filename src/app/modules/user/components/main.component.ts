@@ -17,6 +17,7 @@ export class MainHome implements OnInit, OnDestroy {
   constructor(private router:Router, private profileservice:userprofileservice ,private service:useservice) {}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
 
     if (this.router.url == '/user') {
       

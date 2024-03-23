@@ -20,6 +20,8 @@ export class PackagesComponent implements OnInit, OnDestroy{
     constructor(private userpackage:UserPackageService, private service:useservice) {}
 
     ngOnInit(): void {
+    window.scrollTo(0, 0);
+
       this.bool=true
         setTimeout(() => {
           this.bool=false

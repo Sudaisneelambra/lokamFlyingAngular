@@ -25,6 +25,8 @@ export class BookingDetailsComponent implements OnInit,OnDestroy{
 
 
     ngOnInit(): void {
+    window.scrollTo(0, 0);
+
         this.userprof$ = this.userprofile.getprofile().subscribe({
             next: (res) => {
               if (res.expiry) {

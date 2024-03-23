@@ -29,6 +29,8 @@ export class HomepageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
+
     this.packageget$ = this.userpackage.gettingpackages().subscribe({
       next: (res) => {
         if (res.expiry) {
